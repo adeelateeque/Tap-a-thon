@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tappad_white">#FFFFFF</color>
+    <color name="tappad_black">#000000</color>
+    <color name="tappad_green">#ff00ff00</color>
+    <color name="tappad_red">#ffff0000</color>
+</resources>
