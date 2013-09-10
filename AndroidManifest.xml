@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name="MyActivity"
+        <activity android:name=".GameMenu"
                   android:label="@string/app_name" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,5 +20,7 @@
             </intent-filter>
         </activity>
         <service android:name=".TimerService"/>
+        <activity android:name=".GamePad"
+                  android:label="@string/app_name" android:screenOrientation="landscape" />
     </application>
 </manifest>
