@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="chord-v1.0.0-20130327">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Chord SDK/Sample/ChordApiDemo/libs/chord-v1.0.0-20130327.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

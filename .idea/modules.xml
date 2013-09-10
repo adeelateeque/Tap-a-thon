@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Chord SDK/Sample/ChordApiDemo/ChordApiDemo.iml" filepath="$PROJECT_DIR$/../Chord SDK/Sample/ChordApiDemo/ChordApiDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$//Tap-a-thon.iml" filepath="$PROJECT_DIR$//Tap-a-thon.iml" />
+    </modules>
+  </component>
+</project>
+
