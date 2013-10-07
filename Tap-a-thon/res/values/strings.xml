@@ -3,4 +3,6 @@
     <string name="app_name">Tap-a-thon</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>
