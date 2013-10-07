@@ -12,7 +12,7 @@ public class GamePad extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gamepad);
+        setContentView(R.layout.activity_game_pad);
         tappadView = (MultitouchView) findViewById(R.id.gestureOverlayView);
     }
 }

@@ -33,7 +33,7 @@ public class GameMenu extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gamemenu);
+        setContentView(R.layout.activity_main);
 
         btnStart = (Button) findViewById(R.id.btn_start);
         tvName = (TextView) findViewById(R.id.tv_name);
