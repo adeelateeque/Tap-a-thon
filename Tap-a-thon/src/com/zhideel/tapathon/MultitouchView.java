@@ -1,10 +1,7 @@
 package com.zhideel.tapathon;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PointF;
+import android.graphics.*;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.SparseArray;
@@ -37,7 +34,7 @@ public class MultiTouchView extends View {
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setTextSize(20);
+        textPaint.setTextSize(100);
 
         randomPaint();
     }
@@ -51,6 +48,12 @@ public class MultiTouchView extends View {
                 randomPaint();
             }
         }, getRandomDelay());
+    }
+
+    private void randomShock()
+    {
+        Bitmap fireAlert = BitmapFactory.decodeResource(getResources(),
+                R.drawable.fire_alert);
     }
 
     private int getRandomDelay()
@@ -130,8 +133,12 @@ public class MultiTouchView extends View {
         }
         if (mActivePointers.size() >= 3) {
             this.setBackgroundColor(getResources().getColor(R.color.tappad_green));
+
+            Bitmap fireAlert = BitmapFactory.decodeResource(getResources(),
+                    R.drawable.fire_alert);
+            canvas.drawBitmap(fireAlert, 130, 10, null);
         }
-        canvas.drawText("Total pointers: " + mActivePointers.size(), 10, 40, textPaint);
+        canvas.drawText("Total pointers: " + mActivePointers.size(), this.getWidth()/2 , this.getHeight()/2, textPaint);
     }
 
 } 
