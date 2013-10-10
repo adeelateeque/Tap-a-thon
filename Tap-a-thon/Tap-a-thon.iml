@@ -2,9 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
-      <configuration>
-        <option name="UPDATE_PROPERTY_FILES" value="true" />
-      </configuration>
+      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -13,19 +11,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Android 4.3 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="chord-v1.0.0-20130327" level="project" />
-    <orderEntry type="library" name="android-support-v13" level="project" />
-    <orderEntry type="module-library">
-      <library name="chord-migration-v1.5.0-20130828">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/chord-migration-v1.5.0-20130828.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="0" level="project" />
+    <orderEntry type="library" name="libs" level="project" />
   </component>
 </module>
 

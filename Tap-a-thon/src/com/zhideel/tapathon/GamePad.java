@@ -7,12 +7,12 @@ import android.os.Bundle;
 //TODO add long tap listener
 public class GamePad extends Activity {
 
-    MultitouchView tappadView;
+    MultiTouchView tappadView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_pad);
-        tappadView = (MultitouchView) findViewById(R.id.gestureOverlayView);
+        tappadView = (MultiTouchView) findViewById(R.id.gestureOverlayView);
     }
 }

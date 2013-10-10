@@ -2,6 +2,7 @@ package com.zhideel.tapathon;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class GameMenu extends Activity {
     private ChordManager mChordManager = null;
 
     private Button btnStart;
+    private Button btnLogin;
 
     private boolean bStarted = false;
 
@@ -36,6 +38,7 @@ public class GameMenu extends Activity {
         setContentView(R.layout.activity_main);
 
         btnStart = (Button) findViewById(R.id.btn_start);
+        btnLogin = (Button) findViewById(R.id.btn_login);
         tvName = (TextView) findViewById(R.id.tv_name);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +52,14 @@ public class GameMenu extends Activity {
                     stopChord();
                     Toast.makeText(getBaseContext(), "Stop", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent=new Intent(view.getContext(), GamePad.class);
+                startActivity(myIntent);
+                finish();
             }
         });
     }

@@ -13,7 +13,7 @@ import android.view.View;
 
 import java.util.Random;
 
-public class MultitouchView extends View {
+public class MultiTouchView extends View {
 
     private static final int SIZE = 60;
     private SparseArray<PointF> mActivePointers;
@@ -25,7 +25,7 @@ public class MultitouchView extends View {
     private Paint textPaint;
 
 
-    public MultitouchView(Context context, AttributeSet attrs) {
+    public MultiTouchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
@@ -46,7 +46,7 @@ public class MultitouchView extends View {
     {
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                MultitouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
+                MultiTouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
                 invalidate();
                 randomPaint();
             }
@@ -55,7 +55,7 @@ public class MultitouchView extends View {
 
     private int getRandomDelay()
     {
-       return randInt(1, randInt(1, 5)) * 1000;
+       return randInt(1, randInt(1, 3)) * randInt(0, 1) < 0.5 ? 500 : 1000;
     }
 
 

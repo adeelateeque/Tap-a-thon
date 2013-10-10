@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/all-share sdk/allshare_android/2.0/library/0/LibAllShareInterface_docs_2.0.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/all-share sdk/allshare_android/2.0/library/0/LibAllShareInterface_2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
