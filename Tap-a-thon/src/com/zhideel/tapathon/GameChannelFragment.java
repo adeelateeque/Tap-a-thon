@@ -62,6 +62,8 @@ public class GameChannelFragment extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(getActivity(), "Create", Toast.LENGTH_SHORT).show();
+				getDialog().dismiss();
+				
 			}
 		});
 	}

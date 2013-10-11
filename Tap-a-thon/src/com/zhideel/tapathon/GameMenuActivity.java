@@ -51,13 +51,13 @@ public class GameMenuActivity extends Activity {
                     startChord();
                     
                     FragmentTransaction dFrag = getFragmentManager().beginTransaction();
-                    Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+                    Fragment prev = getFragmentManager().findFragmentByTag("dialog_channel");
                     if (prev != null) {
             	    	dFrag.remove(prev);
             	    }
             	    dFrag.addToBackStack(null);
                     GameChannelFragment mFragment = new GameChannelFragment();
-                    mFragment.show(getFragmentManager(), "dialog");
+                    mFragment.show(getFragmentManager(), "dialog_channel");
                     dFrag.commit();
                     
                     Toast.makeText(getBaseContext(), "Start", Toast.LENGTH_SHORT).show();
