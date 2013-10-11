@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:icon="@drawable/ic_launcher"
         android:allowBackup="true">
-        <activity android:name=".GameMenu"
+        <activity android:name=".GameMenuActivity"
                   android:label="@string/app_name" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <service android:name=".TimerService"/>
-        <activity android:name=".GamePad"
+        <activity android:name=".GamePadActivity"
                   android:label="@string/app_name" android:screenOrientation="landscape" />
     </application>
 </manifest>
