@@ -1,6 +1,8 @@
 package com.zhideel.tapathon;
 
 import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,9 +63,16 @@ public class GameChannelFragment extends DialogFragment {
 		btnCreate.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity(), "Create", Toast.LENGTH_SHORT).show();
-				getDialog().dismiss();
-				
+				FragmentTransaction dFrag = getFragmentManager().beginTransaction();
+				Fragment prev = getFragmentManager().findFragmentByTag("dialog_create");
+				if (prev != null) {
+					dFrag.remove(prev);
+         	    }
+         	    dFrag.addToBackStack(null);
+         	    CreateChannelFragment mFragment = new CreateChannelFragment();
+         	    mFragment.show(getFragmentManager(), "dialog_create");
+         	    dFrag.commit();
+         	    getDialog().dismiss();
 			}
 		});
 	}
