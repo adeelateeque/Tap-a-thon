@@ -136,9 +136,25 @@ public class MultiTouchView extends View {
 
             Bitmap fireAlert = BitmapFactory.decodeResource(getResources(),
                     R.drawable.fire_alert);
-            canvas.drawBitmap(fireAlert, 130, 10, null);
+
+            canvas.drawBitmap(getResizedBitmap(fireAlert, canvas.getHeight(), canvas.getWidth()), 0 , 0, null);
         }
-        canvas.drawText("Total pointers: " + mActivePointers.size(), this.getWidth()/2 , this.getHeight()/2, textPaint);
+        canvas.drawText("Total pointers: " + mActivePointers.size(), this.getWidth()/2 - 50, this.getHeight()/2, textPaint);
+    }
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+        return resizedBitmap;
     }
 
 } 
