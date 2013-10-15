@@ -10,4 +10,5 @@
     <string name="cancel">Cancel</string>
     <string name="new_channel_name">Enter New Channel Name</string>
     <string name="enable_allshare">Enable AllShare</string>
+    <string name="key_pref_music_volume">70</string>
 </resources>

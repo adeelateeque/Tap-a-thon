@@ -21,7 +21,10 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05137fe-3a51-40a3-9895-b09c628d6cf4" name="Default" comment="" />
+    <list default="true" id="a05137fe-3a51-40a3-9895-b09c628d6cf4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MusicManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/values/strings.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/values/strings.xml" />
+    </list>
     <ignored path="Tap-a-thon.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,15 +96,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tap-a-thon.iml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/Tap-a-thon.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ic_launcher.png" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/drawable-hdpi/ic_launcher.png">
           <provider selected="true" editor-type-id="images">
@@ -137,11 +131,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiTouchView.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MultiTouchView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MultiTouchView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="149" column="47" selection-start="4828" selection-end="4828" vertical-scroll-proportion="0.65914786" vertical-offset="1837" max-vertical-offset="2635">
+            <state line="159" column="2" selection-start="5117" selection-end="5117" vertical-scroll-proportion="0.0" vertical-offset="1837" max-vertical-offset="2635">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MusicManager.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MusicManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="35" selection-start="3276" selection-end="3276" vertical-scroll-proportion="0.52781373" vertical-offset="1088" max-vertical-offset="2448">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#562#584#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -187,6 +193,7 @@
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/GamePad.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/CreateChannelFragment.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MultiTouchView.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MusicManager.java" />
       </list>
     </option>
   </component>
@@ -652,12 +659,12 @@
       <created>1381388958610</created>
       <updated>1381388958610</updated>
       <workItem from="1381388965452" duration="3202000" />
-      <workItem from="1381830039450" duration="713000" />
+      <workItem from="1381830039450" duration="1115000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3915000" />
+    <option name="totallyTimeSpent" value="4317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1327" extended-state="6" />
@@ -678,7 +685,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3300892" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3300892" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3300892" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -709,16 +716,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_channel.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -812,8 +809,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MultiTouchView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="47" selection-start="4828" selection-end="4828" vertical-scroll-proportion="0.65914786" vertical-offset="1837" max-vertical-offset="2635">
+        <state line="159" column="2" selection-start="5117" selection-end="5117" vertical-scroll-proportion="0.0" vertical-offset="1837" max-vertical-offset="2635">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MusicManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="35" selection-start="3276" selection-end="3276" vertical-scroll-proportion="0.52781373" vertical-offset="1088" max-vertical-offset="2448">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#562#584#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
