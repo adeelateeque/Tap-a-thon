@@ -14,8 +14,9 @@ public class MusicManager {
     public static final int MUSIC_MENU = 0;
     public static final int MUSIC_GAME = 1;
     public static final int MUSIC_END_GAME = 2;
+    private static final int PREF_DEFAULT_MUSIC_VOLUME_ITEM = 9;
 
-    private static HashMap<Integer, MediaPlayer> players = new HashMap<Integer, MediaPlayer>();
+    private static HashMap players = new HashMap<Integer, MediaPlayer>();
     private static int currentMusic = -1;
     private static int previousMusic = -1;
 
@@ -51,18 +52,18 @@ public class MusicManager {
         }
         currentMusic = music;
         Log.d(TAG, "Current music is now [" + currentMusic + "]");
-        MediaPlayer mp = players.get(music);
+        MediaPlayer mp = (MediaPlayer) players.get(music);
         if (mp != null) {
             if (!mp.isPlaying()) {
                 mp.start();
             }
         } else {
             if (music == MUSIC_MENU) {
-                mp = MediaPlayer.create(context, R.raw.menu_music);
+                mp = MediaPlayer.create(context, R.raw.game_music);
             } else if (music == MUSIC_GAME) {
                 mp = MediaPlayer.create(context, R.raw.game_music);
             } else if (music == MUSIC_END_GAME) {
-                mp = MediaPlayer.create(context, R.raw.end_game_music);
+                mp = MediaPlayer.create(context, R.raw.game_music);
             } else {
                 Log.e(TAG, "unsupported music number - " + music);
                 return;
@@ -85,7 +86,7 @@ public class MusicManager {
     }
 
     public static void pause() {
-        HashMap<Integer, MediaPlayer> mps = players.values();
+        Collection<MediaPlayer> mps = players.values();
         for (MediaPlayer p : mps) {
             if (p.isPlaying()) {
                 p.pause();
@@ -104,7 +105,7 @@ public class MusicManager {
         try {
             float volume = getMusicVolume(context);
             Log.d(TAG, "Setting music volume to " + volume);
-            Collection mps = players.values();
+            Collection<MediaPlayer> mps = players.values();
             for (MediaPlayer p : mps) {
                 p.setVolume(volume, volume);
             }
@@ -115,7 +116,7 @@ public class MusicManager {
 
     public static void release() {
         Log.d(TAG, "Releasing media players");
-        Collection mps = players.values();
+        Collection<MediaPlayer> mps = players.values();
         for (MediaPlayer mp : mps) {
             try {
                 if (mp != null) {
