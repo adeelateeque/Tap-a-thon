@@ -32,8 +32,7 @@
             android:layout_height="88dp"
             android:text="@string/start"
             android:background="@color/tappad_green"
-            android:alpha="0.5"
-            />
+            android:alpha="0.5" />
     </LinearLayout>
 
 </LinearLayout>
