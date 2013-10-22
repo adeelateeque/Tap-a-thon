@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/sd_main">
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -24,7 +24,7 @@
         android:text="@string/start" />
 
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -37,13 +37,13 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="@string/login" />
-        
+
         <Button
         	android:id="@+id/btn_register"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="@string/register" />
-        
+
     </LinearLayout>
 
 </LinearLayout>

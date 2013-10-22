@@ -31,7 +31,7 @@ public class MultiTouchView extends View {
         mActivePointers = new SparseArray<PointF>();
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // set painter color to a color you like
-        mPaint.setColor(Color.BLUE);
+        mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(100);
@@ -139,7 +139,7 @@ public class MultiTouchView extends View {
 
             canvas.drawBitmap(getResizedBitmap(fireAlert, canvas.getHeight(), canvas.getWidth()), 0 , 0, null);
         }
-        canvas.drawText("Total pointers: " + mActivePointers.size(), this.getWidth()/2 - 50, this.getHeight()/2, textPaint);
+        canvas.drawText("X", this.getWidth()/2 - 50, this.getHeight()/2, textPaint);
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
