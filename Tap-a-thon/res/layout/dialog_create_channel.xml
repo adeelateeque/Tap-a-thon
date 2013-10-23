@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
     <EditText
         android:id="@+id/et_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="59dp"
         android:hint="@string/new_channel_name" />
     <CheckBox
         android:id="@+id/cb_allshare"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="55dp"
         android:hint="@string/enable_allshare" />
         
     <LinearLayout
@@ -23,14 +23,14 @@
         
         <Button
             android:id="@+id/btn_create"
-            android:layout_width="0dp"
+            android:layout_width="107dp"
         	android:layout_height="wrap_content"
         	android:layout_weight="0.5"
         	android:text="@string/create" />
         
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="0dp"
+            android:layout_width="108dp"
         	android:layout_height="wrap_content"
         	android:layout_weight="0.5"
         	android:text="@string/cancel" />

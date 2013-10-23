@@ -1,6 +1,7 @@
 package com.zhideel.tapathon;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
 public class CreateChannelFragment extends DialogFragment{
 	
@@ -44,7 +43,10 @@ public class CreateChannelFragment extends DialogFragment{
 		btnCreate.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity(), "Created", Toast.LENGTH_SHORT).show();
+                //make connection
+                ConnectionManager cm = new ConnectionManager(CreateChannelFragment.this.getActivity());
+                Intent myIntent=new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
+                startActivity(myIntent);
 			}
 		});
 		
