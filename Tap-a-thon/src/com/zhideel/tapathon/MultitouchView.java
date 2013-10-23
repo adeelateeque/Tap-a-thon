@@ -24,7 +24,7 @@ public class MultiTouchView extends View {
 	private static final int SIZE = 60;
 	private SparseArray<PointF> mActivePointers;
 	private Paint mPaint;
-	private int[] colors = { Color.BLUE, Color.GREEN, Color.MAGENTA, Color.CYAN, Color.RED, Color.YELLOW };
+	private int[] colors = { Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW };
 	private boolean isSelected;
 	private Paint textPaint;
 	private String currentText;
@@ -44,7 +44,7 @@ public class MultiTouchView extends View {
 		textPaint.setColor(Color.WHITE);
 		textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
 		textPaint.setTextSize(100);
-
+		
 		randomPaint();
 		randText();
 	}
@@ -53,9 +53,10 @@ public class MultiTouchView extends View {
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
 				if (!isSelected) {
-					MultiTouchView.this.setBackgroundColor(colors[randInt(0, 5)]);
+					MultiTouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
 				} else {
-					MultiTouchView.this.setBackground(MultiTouchView.this.getResources().getDrawable(R.drawable.fire_alert));
+					MultiTouchView.this.setBackgroundColor(Color.WHITE);
+					//MultiTouchView.this.setBackground(MultiTouchView.this.getResources().getDrawable(R.drawable.fire_alert));
 				}
 				invalidate();
 				randomPaint();
@@ -69,7 +70,7 @@ public class MultiTouchView extends View {
 	}
 
 	private int getRandomDelay() {
-		return randInt(1, randInt(1, 3)) * randInt(0, 1) < 0.5 ? 3000 : 3500;
+		return randInt(1, randInt(1, 3)) * randInt(0, 1) < 0.5 ? 2000 : 4000;
 	}
 
 	public int randInt(int min, int max) {

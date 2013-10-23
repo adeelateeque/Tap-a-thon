@@ -1,5 +1,6 @@
 package com.zhideel.tapathon;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,8 +22,9 @@ public class GamePadActivity extends Activity {
 	private GridView gridview;
 	private ArrayList<Integer> operands;
 	private String operator;
-	private TextView tvMultipler, tvQns;
+	private TextView tvMultipler, tvQns, tvTimer;
 	private Random rand = new Random();
+	private int randomQns;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class GamePadActivity extends Activity {
 		
 		tvMultipler = (TextView) findViewById(R.id.tv_multipler);
 		tvQns = (TextView) findViewById(R.id.tv_qns);
+		tvTimer = (TextView) findViewById(R.id.tv_timer);
 		gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(new PadAdapter(this));
 	}
@@ -41,15 +44,10 @@ public class GamePadActivity extends Activity {
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		tvMultipler.setText("1");
-		int randomQns = randInt(0, 81);
+		randomQns = randInt(0, 20);
 		tvQns.setText(Integer.toString(randomQns));
 		super.onPostCreate(savedInstanceState);
 	}
-	
-	public int randInt(int min, int max) {
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
-    }
 
 	@Override
 	protected void onPause() {
@@ -65,6 +63,11 @@ public class GamePadActivity extends Activity {
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
+	
+	public int randInt(int min, int max) {
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
 
 	public void addOperand(Integer operand) {
 		if (operands.size() < 2) {
@@ -99,10 +102,19 @@ public class GamePadActivity extends Activity {
 		} else {
 			result = op1 + op2;
 		}
+		
+		if (result == randomQns){
+			DecimalFormat df = new DecimalFormat("#.0");
+			double multipler = Double.parseDouble(tvMultipler.getText().toString());
+			multipler = Double.valueOf(df.format(multipler + 0.1));
+			tvMultipler.setText(Double.toString(multipler));
+		}
 		return result;
 	}
 	
 	public void resetCurrent(){
+		randomQns = randInt(0, 20);
+		tvQns.setText(Integer.toString(randomQns));
 		operands.clear();
 		operator = null;
 		gridview.setAdapter(new PadAdapter(this));
