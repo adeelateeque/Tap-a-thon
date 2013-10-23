@@ -26,12 +26,17 @@ public class MultiTouchView extends View {
 	private Paint mPaint;
 	private int[] colors = { Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW };
 	private boolean isSelected;
+	private static boolean isContinue = true;
 	private Paint textPaint;
 	private String currentText;
 
 	public MultiTouchView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView();
+	}
+	
+	public static void setContinue(boolean cont){
+		isContinue = cont;
 	}
 
 	private void initView() {
@@ -52,11 +57,13 @@ public class MultiTouchView extends View {
 	private void randomPaint() {
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
-				if (!isSelected) {
+				if ((!isSelected) && (isContinue)) {
 					MultiTouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
-				} else {
+				} else if (isContinue){
 					MultiTouchView.this.setBackgroundColor(Color.WHITE);
 					//MultiTouchView.this.setBackground(MultiTouchView.this.getResources().getDrawable(R.drawable.fire_alert));
+				} else {
+					MultiTouchView.this.setBackgroundColor(Color.BLACK);
 				}
 				invalidate();
 				randomPaint();
@@ -79,7 +86,7 @@ public class MultiTouchView extends View {
 	}
 
 	private void randText() {
-		if (!isSelected) {
+		if ((!isSelected) && (isContinue)) {
 			int rand = randInt(0, 13);
 			if (rand == 10) {
 				currentText = "+";

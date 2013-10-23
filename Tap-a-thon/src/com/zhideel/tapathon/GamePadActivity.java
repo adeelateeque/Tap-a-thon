@@ -3,16 +3,20 @@ package com.zhideel.tapathon;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //TODO add double tap listener
 //TODO add long tap listener
@@ -24,7 +28,8 @@ public class GamePadActivity extends Activity {
 	private String operator;
 	private TextView tvMultipler, tvQns, tvTimer;
 	private Random rand = new Random();
-	private int randomQns;
+	private int randomQns, correctAns;
+	private int interval = 60;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,10 +48,17 @@ public class GamePadActivity extends Activity {
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
+		timer();
+		correctAns = 0;
 		tvMultipler.setText("1");
 		randomQns = randInt(0, 20);
 		tvQns.setText(Integer.toString(randomQns));
+		
 		super.onPostCreate(savedInstanceState);
+	}
+	
+	public void setInterval(int interval){
+		tvTimer.setText(Integer.toString(interval));
 	}
 
 	@Override
@@ -62,6 +74,29 @@ public class GamePadActivity extends Activity {
 		super.onResume();
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
+	}
+	
+	private void timer(){
+		final Timer time = new Timer();
+		time.scheduleAtFixedRate(new TimerTask(){
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						if (interval != 0){
+							interval--;
+							setInterval(interval);
+						}
+						else {
+							MultiTouchView.setContinue(false);
+							Toast.makeText(getApplication(), Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
+							time.cancel();
+						}
+					}
+				});
+			}
+		}, 0, 1000);
 	}
 	
 	public int randInt(int min, int max) {
@@ -108,6 +143,7 @@ public class GamePadActivity extends Activity {
 			double multipler = Double.parseDouble(tvMultipler.getText().toString());
 			multipler = Double.valueOf(df.format(multipler + 0.1));
 			tvMultipler.setText(Double.toString(multipler));
+			correctAns++;
 		}
 		return result;
 	}
