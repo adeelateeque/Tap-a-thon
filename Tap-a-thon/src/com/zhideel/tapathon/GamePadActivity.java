@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 //TODO add double tap listener
 //TODO add long tap listener
 public class GamePadActivity extends Activity {
@@ -48,34 +50,29 @@ public class GamePadActivity extends Activity {
 
 class PadAdapter extends BaseAdapter {
     private Context mContext;
-
+    private ArrayList<MultiTouchView> tappads;
     public PadAdapter(Context c) {
         mContext = c;
+        tappads  = new ArrayList<MultiTouchView>();
     }
 
     public int getCount() {
-        return 12;
+        return 9;
     }
 
     public Object getItem(int position) {
-        return null;
+        return tappads.get(position);
     }
 
     public long getItemId(int position) {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         MultiTouchView tappad;
-        if (convertView == null) {  // if it's not recycled, initialize some attributes
-            tappad = new MultiTouchView(mContext, null);
-            tappad.setLayoutParams(new GridView.LayoutParams(460, 275));
-            tappad.setAlpha(0.4f);
-        } else {
-            tappad = (MultiTouchView) convertView;
-        }
-
+        tappad = new MultiTouchView(mContext, null);
+        tappad.setLayoutParams(new GridView.LayoutParams(parent.getWidth()/3, parent.getHeight()/3-7));
+        tappad.setAlpha(0.4f);
         return tappad;
     }
 
