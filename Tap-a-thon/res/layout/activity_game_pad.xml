@@ -1,34 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:weightSum="1"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1"
     android:background="@drawable/sd_main"
-    android:baselineAligned="false">
+    android:baselineAligned="false" >
 
-    <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="0dp"
-                  android:layout_weight="0.15"></LinearLayout>
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15" />
 
-    <LinearLayout android:layout_weight="0.85"  android:layout_width="fill_parent"
-                  android:layout_height="0dp" android:paddingLeft="10dp" android:paddingRight="12dp" android:weightSum="1" android:orientation="horizontal">
+    <LinearLayout 
+        android:layout_weight="0.85"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="12dp"
+        android:weightSum="1"
+        android:orientation="horizontal" >
 
         <GridView
+            android:id="@+id/gridview"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="0.75"
             android:layout_gravity="left|top"
             android:gravity="left"
-            android:id="@+id/gridview"
             android:numColumns="3"
-            android:stretchMode="columnWidth">
-        </GridView>
+            android:stretchMode="columnWidth" />
 
-        <LinearLayout  android:layout_width="0dp"
-                       android:layout_height="fill_parent"
-                       android:layout_weight="0.25"></LinearLayout>
-
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical"
+            android:weightSum="1" >
+            
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="fill_parent"
+            	android:layout_height="0dp"
+            	android:layout_weight="0.33" />
+            
+            <TextView
+                android:id="@+id/tv_multipler"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:textSize="30sp"
+                android:gravity="center" />
+            
+            <TextView
+                android:id="@+id/tv_qns"
+                android:layout_width="fill_parent"
+            	android:layout_height="0dp"
+            	android:layout_weight="0.33"
+            	android:textSize="30sp"
+                android:gravity="center" />
+            
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 

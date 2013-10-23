@@ -1,6 +1,7 @@
 package com.zhideel.tapathon;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,15 +11,18 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 //TODO add double tap listener
 //TODO add long tap listener
 public class GamePadActivity extends Activity {
+	
 	private boolean continueMusic;
 	private GridView gridview;
 	private ArrayList<Integer> operands;
 	private String operator;
+	private TextView tvMultipler, tvQns;
+	private Random rand = new Random();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,16 +31,27 @@ public class GamePadActivity extends Activity {
 		setContentView(R.layout.activity_game_pad);
 
 		operands = new ArrayList<Integer>();
-
+		
+		tvMultipler = (TextView) findViewById(R.id.tv_multipler);
+		tvQns = (TextView) findViewById(R.id.tv_qns);
 		gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(new PadAdapter(this));
 	}
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
+		tvMultipler.setText("1");
+		int randomQns = randInt(0, 81);
+		tvQns.setText(Integer.toString(randomQns));
 		super.onPostCreate(savedInstanceState);
 	}
+	
+	public int randInt(int min, int max) {
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
 
+	@Override
 	protected void onPause() {
 		super.onPause();
 		if (!continueMusic) {
@@ -54,19 +69,24 @@ public class GamePadActivity extends Activity {
 	public void addOperand(Integer operand) {
 		if (operands.size() < 2) {
 			operands.add(operand);
-		} else {
-			if (operator != null){
-				doCalc();
-			}
 		}
+	}
+	
+	public ArrayList<Integer> getOperands(){
+		return operands;
 	}
 
 	public void setOperator(String operator) {
-		this.operator = operator;
-		if (operands.size() == 2) { doCalc(); }
+		if (this.operator == null) {
+			this.operator = operator;
+		}
+	}
+	
+	public String getOperator(){
+		return this.operator;
 	}
 
-	private int doCalc() {
+	public int doCalc() {
 		Integer op1 = operands.get(0);
 		Integer op2 = operands.get(1);
 		Integer result = 0;
@@ -79,8 +99,13 @@ public class GamePadActivity extends Activity {
 		} else {
 			result = op1 + op2;
 		}
-		Toast.makeText(this, Integer.toString(result), Toast.LENGTH_LONG).show();
 		return result;
+	}
+	
+	public void resetCurrent(){
+		operands.clear();
+		operator = null;
+		gridview.setAdapter(new PadAdapter(this));
 	}
 
 }
