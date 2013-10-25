@@ -9,11 +9,38 @@
         android:layout_width="255dp"
         android:layout_height="59dp"
         android:hint="@string/new_channel_name" />
+    
     <CheckBox
         android:id="@+id/cb_allshare"
         android:layout_width="255dp"
         android:layout_height="55dp"
         android:hint="@string/enable_allshare" />
+    
+    <RadioGroup
+        android:id="@+id/rg_lvl"
+        android:layout_width="255dp"
+        android:layout_height="55dp"
+        android:orientation="horizontal" >
+        
+        <RadioButton
+            android:id="@+id/rb_easy"
+            android:layout_width="wrap_content"
+        	android:layout_height="55dp"
+        	android:text="@string/easy" />
+        
+        <RadioButton
+            android:id="@+id/rb_normal"
+            android:layout_width="wrap_content"
+        	android:layout_height="55dp"
+        	android:text="@string/normal" />
+        
+        <RadioButton
+            android:id="@+id/rb_hard"
+            android:layout_width="wrap_content"
+        	android:layout_height="55dp"
+        	android:text="@string/hard" />
+        
+    </RadioGroup>
         
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +62,5 @@
         	android:layout_weight="0.5"
         	android:text="@string/cancel" />
         
-    </LinearLayout>"
-
+    </LinearLayout>
 </LinearLayout>

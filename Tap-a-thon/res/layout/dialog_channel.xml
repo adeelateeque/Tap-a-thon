@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <EditText
+    <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_gravity="center"
-        android:text="Channel Name"/>
+        android:id="@+id/lv_channel"
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:layout_width="match_parent"

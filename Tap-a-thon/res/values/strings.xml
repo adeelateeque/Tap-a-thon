@@ -11,4 +11,7 @@
     <string name="new_channel_name">Channel Name</string>
     <string name="enable_allshare">Enable AllShare</string>
     <string name="key_pref_music_volume">70</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
 </resources>
