@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libs1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Poker/libs/LibAllShareInterface_1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Poker/libs/chord-v1.0.0-20130327.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Poker/libs/square-otto-1.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

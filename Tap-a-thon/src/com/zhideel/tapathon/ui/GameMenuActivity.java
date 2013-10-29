@@ -1,10 +1,5 @@
 package com.zhideel.tapathon.ui;
 
-import com.zhideel.tapathon.ConnectionManager;
-import com.zhideel.tapathon.R;
-import com.zhideel.tapathon.R.id;
-import com.zhideel.tapathon.R.layout;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -14,8 +9,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.zhideel.tapathon.ConnectionManager;
+import com.zhideel.tapathon.R;
 
-public class GameMenuActivity extends Activity {
+public class GameMenuActivity extends Activity implements GameChannelFragment.OnServerChosenListener {
 
 	public static final String TAG = "Tapathon";
 	
@@ -74,5 +71,10 @@ public class GameMenuActivity extends Activity {
             cm.destroy();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onServerChosen(String serverName) {
+        Toast.makeText(this, serverName, Toast.LENGTH_LONG).show();
     }
 }
