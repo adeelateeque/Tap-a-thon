@@ -1,19 +1,8 @@
 package com.zhideel.tapathon.ui;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.zhideel.tapathon.R;
-import com.zhideel.tapathon.R.id;
-import com.zhideel.tapathon.R.layout;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -21,6 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.zhideel.tapathon.R;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //TODO add double tap listener
 //TODO add long tap listener
@@ -42,9 +38,16 @@ public class GamePadActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_game_pad);
-
+        MultiTouchView.GameLevel level = null;
 		Bundle extras = getIntent().getExtras();
-		MultiTouchView.setLevel(extras.getString("level"));
+        if(extras != null){
+            level = (MultiTouchView.GameLevel) extras.getSerializable("level");
+            if(level == null)
+            {
+                level = MultiTouchView.GameLevel.EASY;
+            }
+        }
+		MultiTouchView.setLevel(level);
 		
 		operands = new ArrayList<Integer>();
 		

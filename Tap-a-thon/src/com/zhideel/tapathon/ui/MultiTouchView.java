@@ -1,29 +1,26 @@
 package com.zhideel.tapathon.ui;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import com.zhideel.tapathon.R;
-import com.zhideel.tapathon.R.color;
-import com.zhideel.tapathon.R.drawable;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PointF;
+import android.graphics.*;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+import com.zhideel.tapathon.R;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MultiTouchView extends View {
-	// Usually this can be a field rather than a method variable
+
+    public enum GameLevel
+    {
+        EASY, MEDIUM, HARD;
+    }
+
+    // Usually this can be a field rather than a method variable
 	private static Random rand = new Random();
 	private static final int SIZE = 60;
 	private SparseArray<PointF> mActivePointers;
@@ -33,7 +30,7 @@ public class MultiTouchView extends View {
 	private static boolean isContinue = true;
 	private Paint textPaint;
 	private String currentText;
-	private static String selectedLevel;
+	private static GameLevel selectedLevel;
 	private int minDelay, maxDelay;
 
 	public MultiTouchView(Context context, AttributeSet attrs) {
@@ -41,7 +38,7 @@ public class MultiTouchView extends View {
 		initView();
 	}
 	
-	public static void setLevel(String level){
+	public static void setLevel(GameLevel level){
 		selectedLevel = level;
 	}
 	
@@ -60,14 +57,14 @@ public class MultiTouchView extends View {
 		textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
 		textPaint.setTextSize(100);
 		
-		if (selectedLevel.equals("Easy")){
+		if (selectedLevel == GameLevel.EASY){
 			minDelay = 3000;
 			maxDelay = 5000;
 		}
-		else if (selectedLevel.equals("Normal")){
+		else if (selectedLevel == GameLevel.MEDIUM){
 			minDelay = 2000;
 			maxDelay = 4000;
-		}else if (selectedLevel.equals("Hard")){
+		}else if (selectedLevel == GameLevel.HARD){
 			minDelay = 1500;
 			maxDelay = 2500;
 		}

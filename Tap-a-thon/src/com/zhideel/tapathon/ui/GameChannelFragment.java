@@ -1,9 +1,5 @@
 package com.zhideel.tapathon.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -13,12 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
+import android.widget.*;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.R;
@@ -28,6 +19,10 @@ import com.zhideel.tapathon.chord.ConnectionChord;
 import com.zhideel.tapathon.chord.ConnectionChord.OnServerListChangedListener;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class GameChannelFragment extends DialogFragment implements OnServerListChangedListener, BusManager {
 	
@@ -67,7 +62,7 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		getDialog().setTitle("Game Channel");
+		getDialog().setTitle("Available room");
 		view = (LinearLayout) inflater.inflate(R.layout.dialog_channel, null);
 		btnJoin = (Button) view.findViewById(R.id.btn_join);
 		listChannel = (ListView) view.findViewById(R.id.lv_channel);
@@ -87,6 +82,7 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 			public void onClick(View v) {
                 Intent myIntent=new Intent(GameChannelFragment.this.getActivity(), GamePadActivity.class);
                 startActivity(myIntent);
+                getDialog().dismiss();
 			}
 		});
 		

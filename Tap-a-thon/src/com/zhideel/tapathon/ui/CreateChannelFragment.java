@@ -1,10 +1,5 @@
 package com.zhideel.tapathon.ui;
 
-import com.zhideel.tapathon.ConnectionManager;
-import com.zhideel.tapathon.R;
-import com.zhideel.tapathon.R.id;
-import com.zhideel.tapathon.R.layout;
-
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.*;
+import com.zhideel.tapathon.ConnectionManager;
+import com.zhideel.tapathon.R;
 
 public class CreateChannelFragment extends DialogFragment{
 	
@@ -27,7 +18,7 @@ public class CreateChannelFragment extends DialogFragment{
 	private CheckBox cbAllShare;
 	private RadioGroup rgLvl;
 	private Button btnCreate, btnCancel;
-	private String selection = "";
+	private MultiTouchView.GameLevel selection;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +28,7 @@ public class CreateChannelFragment extends DialogFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		getDialog().setTitle("Create Channel");
+		getDialog().setTitle("Create a room");
 		view = (LinearLayout) inflater.inflate(R.layout.dialog_create_channel, null);
 		etChannelName = (EditText) view.findViewById(R.id.et_name);
 		cbAllShare = (CheckBox) view.findViewById(R.id.cb_allshare);
@@ -57,25 +48,26 @@ public class CreateChannelFragment extends DialogFragment{
 				switch (rgLvl.getCheckedRadioButtonId())
 				{
 					case R.id.rb_easy:
-						selection = "Easy";
+						selection = MultiTouchView.GameLevel.EASY;
 						break;
 					
 					case R.id.rb_normal:
-						selection = "Normal";
+						selection = MultiTouchView.GameLevel.MEDIUM;
 						break;
 					
 					case R.id.rb_hard:
-						selection = "Hard";
+						selection = MultiTouchView.GameLevel.HARD;
 						break;
 				}
-				
-				if (!(selection.equals(""))){
+
+				if ((selection != null)){
 					//make connection
-					Toast.makeText(getActivity(), selection, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), selection.toString(), Toast.LENGTH_SHORT).show();
 					ConnectionManager cm = new ConnectionManager(CreateChannelFragment.this.getActivity());
 					Intent myIntent=new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
 					myIntent.putExtra("level", selection);
                 	startActivity(myIntent);
+                    getDialog().dismiss();
 				}
 				else {
 					Toast.makeText(getActivity(), "Please select a difficulty.", Toast.LENGTH_SHORT).show();
