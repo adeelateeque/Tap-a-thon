@@ -50,7 +50,7 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
         setContentView(R.layout.activity_main);
         cm = new ConnectionManager(this);
         btnStart = (Button) findViewById(R.id.btn_start);
-        etName = (EditText) findViewById(R.id.et_name);
+        etName = (EditText) findViewById(R.id.user_name_text_view);
         final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.POKER_PREFERENCES,
                 Context.MODE_PRIVATE);
         final String userName = sharedPreferences.getString(GameMenuActivity.USER_NAME_KEY, "");
@@ -128,9 +128,9 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
 
     @Override
     public void onServerChosen(String serverName) {
-        final Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra(GameActivity.CLIENT, true);
-        intent.putExtra(GameActivity.SERVER_NAME, serverName);
+        final Intent intent = new Intent(this, GamePadActivity.class);
+        intent.putExtra(GamePadActivity.CLIENT, true);
+        intent.putExtra(GamePadActivity.SERVER_NAME, serverName);
         startActivity(intent);
     }
 

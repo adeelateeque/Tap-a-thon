@@ -24,7 +24,7 @@ import com.zhideel.tapathon.logic.ClientModel.ClientModelEvent.BlindEvent.BlindT
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
 import com.zhideel.tapathon.logic.PokerUtils.GameResult;
 import com.zhideel.tapathon.logic.ServerModel.GameState;
-import com.zhideel.tapathon.ui.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
+import com.zhideel.tapathon.ui.GamePadActivity.GameActivityEvent.*;
 import com.zhideel.tapathon.utils.Preconditions;
 
 import java.util.*;

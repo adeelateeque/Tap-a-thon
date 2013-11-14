@@ -11,17 +11,15 @@
  */
 package com.zhideel.tapathon.utils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
-
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.LruCache;
-
 import com.zhideel.tapathon.logic.Card;
-import com.zhideel.tapathon.ui.GameActivity.GameActivityEvent.TokenEvent.TokenType;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
 
 /**
  * Cache used for caching bitmaps used in the game.
@@ -131,7 +129,7 @@ public class BitmapCache {
 	 *            of the token
 	 * @return {@link android.graphics.Bitmap} of the token
 	 */
-	public Bitmap getBitmapForClientToken(TokenType tokenType) {
+	/*public Bitmap getBitmapForClientToken(TokenType tokenType) {
 		final StringBuilder builder = new StringBuilder("client_");
 
 		switch (tokenType) {
@@ -152,5 +150,5 @@ public class BitmapCache {
 		}
 
 		return getBitmap(builder.toString());
-	}
+	}*/
 }

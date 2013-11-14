@@ -11,10 +11,6 @@
  */
 package com.zhideel.tapathon.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -27,7 +23,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.R;
@@ -37,6 +32,10 @@ import com.zhideel.tapathon.chord.ConnectionChord;
 import com.zhideel.tapathon.chord.ConnectionChord.OnServerListChangedListener;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * {@link android.app.DialogFragment} for choosing server from the list of discovered servers.
@@ -48,7 +47,7 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 	private OnServerChosenListener mOnServerChosenListener;
 	private ServerAdapter mServerAdapter;
 	private Bus mBus;
-	private MenuActivity mParentActivity;
+	private GamePadActivity mParentActivity;
 
 	@Subscribe
 	public void onNodeLeftOnPublicChannel(NodeLeftOnPublicChannelEvent event) {
@@ -66,13 +65,12 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 
 	@Override
 	public void onAttach(Activity parent) {
-		mParentActivity = (MenuActivity) parent;
+		mParentActivity = (GamePadActivity) parent;
 		super.onAttach(parent);
 	}
 
 	@Override
 	public void onDetach() {
-		mParentActivity.enableClientButton();
 		super.onDetach();
 	}
 
@@ -80,7 +78,7 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mBus = CommunicationBus.getInstance();
-		mConnectionChord = new ConnectionChord(getActivity(), GameActivity.GAME_NAME, ChooseServerDialog.this);
+		mConnectionChord = new ConnectionChord(getActivity(), GamePadActivity.GAME_NAME, ChooseServerDialog.this);
 		mOnServerChosenListener = (OnServerChosenListener) getActivity();
 		startBus();
 	}

@@ -50,33 +50,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05137fe-3a51-40a3-9895-b09c628d6cf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/BitmapView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/events/BusEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Card.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CardDeck.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/Const.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Model.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PlayerInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerHand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ServerModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/values/strings.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tap-a-thon.iws" />
@@ -137,6 +118,23 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" line="60" class="com.zhideel.tapathon.ui.GameMenuActivity$2" package="com.zhideel.tapathon.ui">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -146,74 +144,87 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="719" column="14" selection-start="21176" selection-end="21176" vertical-scroll-proportion="5.6632257" vertical-offset="7834" max-vertical-offset="16235">
-              <folding>
-                <element signature="e#0#25830#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#4200#4542#0" expanded="true" />
-                <element signature="e#4464#4501#0" expanded="true" />
-                <element signature="e#4537#4538#0" expanded="true" />
-                <element signature="e#7039#7072#0" expanded="true" />
-                <element signature="e#7097#7108#0" expanded="true" />
-                <element signature="e#7110#7260#0" expanded="true" />
-                <element signature="e#7253#7254#0" expanded="true" />
-                <element signature="e#7280#7310#0" expanded="true" />
-                <element signature="e#7312#7442#0" expanded="true" />
-                <element signature="e#7435#7436#0" expanded="true" />
-                <element signature="e#7561#7594#0" expanded="true" />
-                <element signature="e#7614#7625#0" expanded="true" />
-                <element signature="e#7627#7757#0" expanded="true" />
-                <element signature="e#7750#7751#0" expanded="true" />
-                <element signature="e#8004#8028#0" expanded="true" />
-                <element signature="e#9842#9855#0" expanded="true" />
-                <element signature="e#9878#9889#0" expanded="true" />
-                <element signature="e#9891#10136#0" expanded="true" />
-                <element signature="e#10131#10132#0" expanded="true" />
-                <element signature="e#10159#10174#0" expanded="true" />
-                <element signature="e#11944#11958#0" expanded="true" />
-                <element signature="e#11984#11995#0" expanded="true" />
-                <element signature="e#11997#12178#0" expanded="true" />
-                <element signature="e#12170#12171#0" expanded="true" />
-                <element signature="e#12198#12213#0" expanded="true" />
-                <element signature="e#12215#12373#0" expanded="true" />
-                <element signature="e#12365#12366#0" expanded="true" />
-                <element signature="e#20169#20212#0" expanded="true" />
-                <element signature="e#20230#20271#0" expanded="true" />
-                <element signature="e#20296#20321#0" expanded="true" />
-                <element signature="e#20323#20518#0" expanded="true" />
-                <element signature="e#20511#20512#0" expanded="true" />
-                <element signature="e#21267#21288#0" expanded="true" />
-                <element signature="e#22226#22227#0" expanded="true" />
-                <element signature="e#22253#22254#0" expanded="true" />
-                <element signature="e#22292#22293#0" expanded="true" />
-                <element signature="e#22327#22328#0" expanded="true" />
-                <element signature="e#22356#22357#0" expanded="true" />
-                <element signature="e#22381#22382#0" expanded="true" />
-                <element signature="e#23183#23184#0" expanded="true" />
-                <element signature="e#23208#23209#0" expanded="true" />
-                <element signature="e#23240#23241#0" expanded="true" />
-                <element signature="e#23268#23269#0" expanded="true" />
-                <element signature="e#23307#23308#0" expanded="true" />
-                <element signature="e#23342#23343#0" expanded="true" />
-                <element signature="e#23638#23639#0" expanded="true" />
-                <element signature="e#23666#23667#0" expanded="true" />
-                <element signature="e#24203#24204#0" expanded="true" />
-                <element signature="e#24227#24228#0" expanded="true" />
-                <element signature="e#25511#25512#0" expanded="true" />
-                <element signature="e#25549#25550#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="dialog_channel.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_channel.xml">
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SyncStats.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../Android/sdk/platforms/android-18/android.jar!/android/content/SyncStats.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="69" selection-start="570" selection-end="570" vertical-scroll-proportion="-10.2" vertical-offset="0" max-vertical-offset="578">
+      <file leaf-file-name="dialog_create_channel.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml">
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
               <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view_game_pad.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="26" selection-start="549" selection-end="549" vertical-scroll-proportion="-8.185185" vertical-offset="0" max-vertical-offset="374">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GamePadActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="93" selection-start="6198" selection-end="6198" vertical-scroll-proportion="0.617268" vertical-offset="2037" max-vertical-offset="9180">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1944#2361#0" expanded="true" />
+                <element signature="e#2265#2302#0" expanded="true" />
+                <element signature="e#2353#2354#0" expanded="true" />
+                <element signature="e#3488#3521#0" expanded="true" />
+                <element signature="e#3558#3569#0" expanded="true" />
+                <element signature="e#3571#3812#0" expanded="true" />
+                <element signature="e#3793#3794#0" expanded="true" />
+                <element signature="e#3832#3862#0" expanded="true" />
+                <element signature="e#3864#4085#0" expanded="true" />
+                <element signature="e#4066#4067#0" expanded="true" />
+                <element signature="e#4225#4258#0" expanded="true" />
+                <element signature="e#4278#4289#0" expanded="true" />
+                <element signature="e#4291#4512#0" expanded="true" />
+                <element signature="e#4493#4494#0" expanded="true" />
+                <element signature="e#4809#4833#0" expanded="true" />
+                <element signature="e#6965#6978#0" expanded="true" />
+                <element signature="e#7015#7026#0" expanded="true" />
+                <element signature="e#7253#7268#0" expanded="true" />
+                <element signature="e#8111#8112#0" expanded="true" />
+                <element signature="e#8147#8148#0" expanded="true" />
+                <element signature="e#10373#10374#0" expanded="true" />
+                <element signature="e#10421#10422#0" expanded="true" />
+                <element signature="e#10469#10470#0" expanded="true" />
+                <element signature="e#10525#10526#0" expanded="true" />
+                <element signature="e#10563#10564#0" expanded="true" />
+                <element signature="e#10609#10610#0" expanded="true" />
+                <element signature="e#11714#11715#0" expanded="true" />
+                <element signature="e#11760#11761#0" expanded="true" />
+                <element signature="e#11801#11802#0" expanded="true" />
+                <element signature="e#11850#11851#0" expanded="true" />
+                <element signature="e#11898#11899#0" expanded="true" />
+                <element signature="e#11954#11955#0" expanded="true" />
+                <element signature="e#12331#12332#0" expanded="true" />
+                <element signature="e#12380#12381#0" expanded="true" />
+                <element signature="e#13151#13152#0" expanded="true" />
+                <element signature="e#13196#13197#0" expanded="true" />
+                <element signature="e#14894#14895#0" expanded="true" />
+                <element signature="e#14953#14954#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -230,95 +241,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameChannelFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameChannelFragment.java">
+      <file leaf-file-name="ClientModel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="44" selection-start="2125" selection-end="2125" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="2771">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_game_pad.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="26" selection-start="549" selection-end="549" vertical-scroll-proportion="-8.185185" vertical-offset="0" max-vertical-offset="374">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GamePadActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="188" column="29" selection-start="7300" selection-end="7300" vertical-scroll-proportion="-20.8" vertical-offset="2149" max-vertical-offset="4029">
+            <state line="60" column="56" selection-start="2136" selection-end="2136" vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="10064">
               <folding>
-                <element signature="e#2067#2484#0" expanded="true" />
-                <element signature="e#2388#2425#0" expanded="true" />
-                <element signature="e#2476#2477#0" expanded="true" />
-                <element signature="e#3611#3644#0" expanded="true" />
-                <element signature="e#3681#3692#0" expanded="true" />
-                <element signature="e#3694#3935#0" expanded="true" />
-                <element signature="e#3916#3917#0" expanded="true" />
-                <element signature="e#3955#3985#0" expanded="true" />
-                <element signature="e#3987#4208#0" expanded="true" />
-                <element signature="e#4189#4190#0" expanded="true" />
-                <element signature="e#4348#4381#0" expanded="true" />
-                <element signature="e#4401#4412#0" expanded="true" />
-                <element signature="e#4414#4635#0" expanded="true" />
-                <element signature="e#4616#4617#0" expanded="true" />
-                <element signature="e#4932#4956#0" expanded="true" />
-                <element signature="e#6991#6992#0" expanded="true" />
-                <element signature="e#7027#7028#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameBoardView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="2584">
-              <folding>
+                <element signature="e#0#14924#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#2017#2716#0" expanded="true" />
-                <element signature="e#2127#2690#0" expanded="true" />
-                <element signature="e#2671#2672#0" expanded="true" />
-                <element signature="e#2705#2706#0" expanded="true" />
-                <element signature="e#3048#3049#0" expanded="true" />
-                <element signature="e#3079#3080#0" expanded="true" />
-                <element signature="e#3252#3253#0" expanded="true" />
-                <element signature="e#3288#3289#0" expanded="true" />
+                <element signature="e#10446#10476#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerTableView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java">
+      <file leaf-file-name="GameLogicController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="8" selection-start="2369" selection-end="2369" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="5576">
+            <state line="26" column="67" selection-start="1298" selection-end="1298" vertical-scroll-proportion="0.0" vertical-offset="12002" max-vertical-offset="12818">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MultiTouchView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="17" selection-start="3856" selection-end="3856" vertical-scroll-proportion="-5.1272726" vertical-offset="2115" max-vertical-offset="3961">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1120#1121#0" expanded="true" />
-                <element signature="e#1148#1149#0" expanded="true" />
-                <element signature="e#1197#1198#0" expanded="true" />
-                <element signature="e#1221#1222#0" expanded="true" />
-                <element signature="e#1998#2484#0" expanded="true" />
-                <element signature="e#2479#2480#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -326,13 +266,41 @@
       <file leaf-file-name="GameMenuActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="57" selection-start="2429" selection-end="2429" vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2771">
+            <state line="66" column="31" selection-start="2535" selection-end="2535" vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="2771">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2042#3500#0" expanded="true" />
-                <element signature="e#3489#3490#0" expanded="true" />
-                <element signature="e#3837#3865#0" expanded="true" />
-                <element signature="e#4458#4483#0" expanded="true" />
+                <element signature="e#2054#3512#0" expanded="true" />
+                <element signature="e#3501#3502#0" expanded="true" />
+                <element signature="e#3849#3877#0" expanded="true" />
+                <element signature="e#4470#4495#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="4" selection-start="1197" selection-end="1197" vertical-scroll-proportion="-5.888889" vertical-offset="351" max-vertical-offset="1122">
+              <folding>
+                <element signature="e#676#694#0" expanded="true" />
+                <element signature="e#1291#1324#0" expanded="true" />
+                <element signature="e#1647#1662#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="28" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <folding>
+                <element signature="e#987#1005#0" expanded="true" />
+                <element signature="e#1592#1610#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -374,11 +342,8 @@
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/events/BusEvent.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Card.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/UserNameDialog.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Model.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/Const.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/BitmapView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CardDeck.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/values/strings.xml" />
@@ -386,15 +351,19 @@
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MenuActivity.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameActivity.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
       </list>
     </option>
   </component>
@@ -484,6 +453,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -512,6 +503,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="GamePadActivity.java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -573,6 +586,7 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Poker" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -863,12 +877,12 @@
       <workItem from="1382402148240" duration="13401000" />
       <workItem from="1383038711972" duration="2107000" />
       <workItem from="1383122550033" duration="1503000" />
-      <workItem from="1384327801005" duration="13692000" />
+      <workItem from="1384327801005" duration="16694000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43136000" />
+    <option name="totallyTimeSpent" value="46138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1329" extended-state="0" />
@@ -891,10 +905,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961783" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39919028" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32874495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34493926" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32955465" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955465" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3125506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19291966" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -989,25 +1003,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/drawable-mdpi/sd_main.jpg">
       <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_channel.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
@@ -1018,16 +1015,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/drawable-mdpi/landing_bg.jpeg">
       <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
@@ -1042,7 +1029,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="27" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
           <folding>
-            <element signature="e#0#1775#0" expanded="true" />
+            <element signature="e#0#1775#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1064,33 +1051,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="39" selection-start="2364" selection-end="2376" vertical-scroll-proportion="-5.1272726" vertical-offset="874" max-vertical-offset="3502">
-          <folding>
-            <element signature="e#0#5539#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/Const.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="66" selection-start="795" selection-end="795" vertical-scroll-proportion="-6.181818" vertical-offset="0" max-vertical-offset="6290">
           <folding>
-            <element signature="e#0#12994#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#10401#10425#0" expanded="true" />
-            <element signature="e#10556#10580#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="810" selection-end="810" vertical-scroll-proportion="-6.490909" vertical-offset="0" max-vertical-offset="2754">
-          <folding>
-            <element signature="e#0#4569#0" expanded="true" />
+            <element signature="e#0#12994#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#10401#10425#0" expanded="false" />
+            <element signature="e#10556#10580#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1099,7 +1067,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="7" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1411">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1124,36 +1092,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="30" selection-start="871" selection-end="871" vertical-scroll-proportion="-7.418182" vertical-offset="0" max-vertical-offset="2057">
           <folding>
-            <element signature="e#0#2732#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1868#1869#0" expanded="true" />
-            <element signature="e#1902#1903#0" expanded="true" />
-            <element signature="e#1927#1928#0" expanded="true" />
-            <element signature="e#1954#1955#0" expanded="true" />
-            <element signature="e#1975#1976#0" expanded="true" />
-            <element signature="e#2008#2009#0" expanded="true" />
-            <element signature="e#2028#2029#0" expanded="true" />
-            <element signature="e#2062#2063#0" expanded="true" />
-            <element signature="e#2087#2088#0" expanded="true" />
-            <element signature="e#2117#2118#0" expanded="true" />
-            <element signature="e#2138#2139#0" expanded="true" />
-            <element signature="e#2170#2171#0" expanded="true" />
-            <element signature="e#2193#2194#0" expanded="true" />
-            <element signature="e#2227#2228#0" expanded="true" />
-            <element signature="e#2252#2253#0" expanded="true" />
-            <element signature="e#2283#2284#0" expanded="true" />
-            <element signature="e#2305#2306#0" expanded="true" />
-            <element signature="e#2351#2352#0" expanded="true" />
-            <element signature="e#2378#2379#0" expanded="true" />
-            <element signature="e#2406#2407#0" expanded="true" />
-            <element signature="e#2432#2433#0" expanded="true" />
-            <element signature="e#2463#2464#0" expanded="true" />
-            <element signature="e#2485#2486#0" expanded="true" />
-            <element signature="e#2641#2642#0" expanded="true" />
-            <element signature="e#2671#2672#0" expanded="true" />
-            <element signature="e#2702#2703#0" expanded="true" />
-            <element signature="e#2727#2728#0" expanded="true" />
+            <element signature="e#0#2732#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1845#1846#0" expanded="false" />
+            <element signature="e#1868#1869#0" expanded="false" />
+            <element signature="e#1902#1903#0" expanded="false" />
+            <element signature="e#1927#1928#0" expanded="false" />
+            <element signature="e#1954#1955#0" expanded="false" />
+            <element signature="e#1975#1976#0" expanded="false" />
+            <element signature="e#2008#2009#0" expanded="false" />
+            <element signature="e#2028#2029#0" expanded="false" />
+            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="e#2087#2088#0" expanded="false" />
+            <element signature="e#2117#2118#0" expanded="false" />
+            <element signature="e#2138#2139#0" expanded="false" />
+            <element signature="e#2170#2171#0" expanded="false" />
+            <element signature="e#2193#2194#0" expanded="false" />
+            <element signature="e#2227#2228#0" expanded="false" />
+            <element signature="e#2252#2253#0" expanded="false" />
+            <element signature="e#2283#2284#0" expanded="false" />
+            <element signature="e#2305#2306#0" expanded="false" />
+            <element signature="e#2351#2352#0" expanded="false" />
+            <element signature="e#2378#2379#0" expanded="false" />
+            <element signature="e#2406#2407#0" expanded="false" />
+            <element signature="e#2432#2433#0" expanded="false" />
+            <element signature="e#2463#2464#0" expanded="false" />
+            <element signature="e#2485#2486#0" expanded="false" />
+            <element signature="e#2641#2642#0" expanded="false" />
+            <element signature="e#2671#2672#0" expanded="false" />
+            <element signature="e#2702#2703#0" expanded="false" />
+            <element signature="e#2727#2728#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1183,10 +1151,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="98" column="35" selection-start="2793" selection-end="2812" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2924">
           <folding>
-            <element signature="e#2510#2511#0" expanded="true" />
-            <element signature="e#2529#2530#0" expanded="true" />
-            <element signature="e#2990#2991#0" expanded="true" />
-            <element signature="e#3023#3024#0" expanded="true" />
+            <element signature="e#2510#2511#0" expanded="false" />
+            <element signature="e#2529#2530#0" expanded="false" />
+            <element signature="e#2990#2991#0" expanded="false" />
+            <element signature="e#3023#3024#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1226,30 +1194,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="43" selection-start="1236" selection-end="1236" vertical-scroll-proportion="-18.88889" vertical-offset="0" max-vertical-offset="1241">
-          <folding>
-            <element signature="e#676#694#0" expanded="true" />
-            <element signature="e#1291#1324#0" expanded="true" />
-            <element signature="e#2073#2088#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="7" selection-start="2242" selection-end="2242" vertical-scroll-proportion="0.0" vertical-offset="6409" max-vertical-offset="10064">
-          <folding>
-            <element signature="e#0#14915#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CommunicationBus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="63" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
@@ -1257,23 +1201,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="428" column="26" selection-start="14248" selection-end="14257" vertical-scroll-proportion="0.0" vertical-offset="10217" max-vertical-offset="12546">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/BitmapView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="13" selection-start="846" selection-end="846" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="43" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
           <folding />
         </state>
       </provider>
@@ -1292,43 +1222,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="549" selection-end="549" vertical-scroll-proportion="-8.185185" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameChannelFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="44" selection-start="2125" selection-end="2125" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2771">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="42" selection-start="995" selection-end="995" vertical-scroll-proportion="-11.148149" vertical-offset="175" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="57" selection-start="2429" selection-end="2429" vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2771">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2042#3500#0" expanded="true" />
-            <element signature="e#3489#3490#0" expanded="true" />
-            <element signature="e#3837#3865#0" expanded="true" />
-            <element signature="e#4458#4483#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1364,88 +1261,170 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="29" selection-start="7300" selection-end="7300" vertical-scroll-proportion="-20.8" vertical-offset="2149" max-vertical-offset="4029">
+        <state line="19" column="25" selection-start="794" selection-end="794" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2720">
           <folding>
-            <element signature="e#2067#2484#0" expanded="true" />
-            <element signature="e#2388#2425#0" expanded="true" />
-            <element signature="e#2476#2477#0" expanded="true" />
-            <element signature="e#3611#3644#0" expanded="true" />
-            <element signature="e#3681#3692#0" expanded="true" />
-            <element signature="e#3694#3935#0" expanded="true" />
-            <element signature="e#3916#3917#0" expanded="true" />
-            <element signature="e#3955#3985#0" expanded="true" />
-            <element signature="e#3987#4208#0" expanded="true" />
-            <element signature="e#4189#4190#0" expanded="true" />
-            <element signature="e#4348#4381#0" expanded="true" />
-            <element signature="e#4401#4412#0" expanded="true" />
-            <element signature="e#4414#4635#0" expanded="true" />
-            <element signature="e#4616#4617#0" expanded="true" />
-            <element signature="e#4932#4956#0" expanded="true" />
-            <element signature="e#6991#6992#0" expanded="true" />
-            <element signature="e#7027#7028#0" expanded="true" />
+            <element signature="e#0#4488#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameActivity.java">
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="719" column="14" selection-start="21176" selection-end="21176" vertical-scroll-proportion="5.6632257" vertical-offset="7834" max-vertical-offset="16235">
+        <state line="30" column="43" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="77" selection-start="2694" selection-end="2694" vertical-scroll-proportion="0.0" vertical-offset="992" max-vertical-offset="3468">
           <folding>
-            <element signature="e#0#25830#0" expanded="true" />
+            <element signature="e#0#5507#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4200#4542#0" expanded="true" />
-            <element signature="e#4464#4501#0" expanded="true" />
-            <element signature="e#4537#4538#0" expanded="true" />
-            <element signature="e#7039#7072#0" expanded="true" />
-            <element signature="e#7097#7108#0" expanded="true" />
-            <element signature="e#7110#7260#0" expanded="true" />
-            <element signature="e#7253#7254#0" expanded="true" />
-            <element signature="e#7280#7310#0" expanded="true" />
-            <element signature="e#7312#7442#0" expanded="true" />
-            <element signature="e#7435#7436#0" expanded="true" />
-            <element signature="e#7561#7594#0" expanded="true" />
-            <element signature="e#7614#7625#0" expanded="true" />
-            <element signature="e#7627#7757#0" expanded="true" />
-            <element signature="e#7750#7751#0" expanded="true" />
-            <element signature="e#8004#8028#0" expanded="true" />
-            <element signature="e#9842#9855#0" expanded="true" />
-            <element signature="e#9878#9889#0" expanded="true" />
-            <element signature="e#9891#10136#0" expanded="true" />
-            <element signature="e#10131#10132#0" expanded="true" />
-            <element signature="e#10159#10174#0" expanded="true" />
-            <element signature="e#11944#11958#0" expanded="true" />
-            <element signature="e#11984#11995#0" expanded="true" />
-            <element signature="e#11997#12178#0" expanded="true" />
-            <element signature="e#12170#12171#0" expanded="true" />
-            <element signature="e#12198#12213#0" expanded="true" />
-            <element signature="e#12215#12373#0" expanded="true" />
-            <element signature="e#12365#12366#0" expanded="true" />
-            <element signature="e#20169#20212#0" expanded="true" />
-            <element signature="e#20230#20271#0" expanded="true" />
-            <element signature="e#20296#20321#0" expanded="true" />
-            <element signature="e#20323#20518#0" expanded="true" />
-            <element signature="e#20511#20512#0" expanded="true" />
-            <element signature="e#21267#21288#0" expanded="true" />
-            <element signature="e#22226#22227#0" expanded="true" />
-            <element signature="e#22253#22254#0" expanded="true" />
-            <element signature="e#22292#22293#0" expanded="true" />
-            <element signature="e#22327#22328#0" expanded="true" />
-            <element signature="e#22356#22357#0" expanded="true" />
-            <element signature="e#22381#22382#0" expanded="true" />
-            <element signature="e#23183#23184#0" expanded="true" />
-            <element signature="e#23208#23209#0" expanded="true" />
-            <element signature="e#23240#23241#0" expanded="true" />
-            <element signature="e#23268#23269#0" expanded="true" />
-            <element signature="e#23307#23308#0" expanded="true" />
-            <element signature="e#23342#23343#0" expanded="true" />
-            <element signature="e#23638#23639#0" expanded="true" />
-            <element signature="e#23666#23667#0" expanded="true" />
-            <element signature="e#24203#24204#0" expanded="true" />
-            <element signature="e#24227#24228#0" expanded="true" />
-            <element signature="e#25511#25512#0" expanded="true" />
-            <element signature="e#25549#25550#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="67" selection-start="1298" selection-end="1298" vertical-scroll-proportion="0.0" vertical-offset="12002" max-vertical-offset="12818">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="56" selection-start="2136" selection-end="2136" vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="10064">
+          <folding>
+            <element signature="e#0#14924#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#10446#10476#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="26" selection-start="549" selection-end="549" vertical-scroll-proportion="-8.185185" vertical-offset="0" max-vertical-offset="374">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_channel.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="31" selection-start="2535" selection-end="2535" vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="2771">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2054#3512#0" expanded="true" />
+            <element signature="e#3501#3502#0" expanded="true" />
+            <element signature="e#3849#3877#0" expanded="true" />
+            <element signature="e#4470#4495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="42" selection-start="995" selection-end="995" vertical-scroll-proportion="-11.148149" vertical-offset="175" max-vertical-offset="1241">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="4" selection-start="1197" selection-end="1197" vertical-scroll-proportion="-5.888889" vertical-offset="351" max-vertical-offset="1122">
+          <folding>
+            <element signature="e#676#694#0" expanded="true" />
+            <element signature="e#1291#1324#0" expanded="true" />
+            <element signature="e#1647#1662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="28" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+          <folding>
+            <element signature="e#987#1005#0" expanded="true" />
+            <element signature="e#1592#1610#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="93" selection-start="6198" selection-end="6198" vertical-scroll-proportion="0.617268" vertical-offset="2037" max-vertical-offset="9180">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1944#2361#0" expanded="true" />
+            <element signature="e#2265#2302#0" expanded="true" />
+            <element signature="e#2353#2354#0" expanded="true" />
+            <element signature="e#3488#3521#0" expanded="true" />
+            <element signature="e#3558#3569#0" expanded="true" />
+            <element signature="e#3571#3812#0" expanded="true" />
+            <element signature="e#3793#3794#0" expanded="true" />
+            <element signature="e#3832#3862#0" expanded="true" />
+            <element signature="e#3864#4085#0" expanded="true" />
+            <element signature="e#4066#4067#0" expanded="true" />
+            <element signature="e#4225#4258#0" expanded="true" />
+            <element signature="e#4278#4289#0" expanded="true" />
+            <element signature="e#4291#4512#0" expanded="true" />
+            <element signature="e#4493#4494#0" expanded="true" />
+            <element signature="e#4809#4833#0" expanded="true" />
+            <element signature="e#6965#6978#0" expanded="true" />
+            <element signature="e#7015#7026#0" expanded="true" />
+            <element signature="e#7253#7268#0" expanded="true" />
+            <element signature="e#8111#8112#0" expanded="true" />
+            <element signature="e#8147#8148#0" expanded="true" />
+            <element signature="e#10373#10374#0" expanded="true" />
+            <element signature="e#10421#10422#0" expanded="true" />
+            <element signature="e#10469#10470#0" expanded="true" />
+            <element signature="e#10525#10526#0" expanded="true" />
+            <element signature="e#10563#10564#0" expanded="true" />
+            <element signature="e#10609#10610#0" expanded="true" />
+            <element signature="e#11714#11715#0" expanded="true" />
+            <element signature="e#11760#11761#0" expanded="true" />
+            <element signature="e#11801#11802#0" expanded="true" />
+            <element signature="e#11850#11851#0" expanded="true" />
+            <element signature="e#11898#11899#0" expanded="true" />
+            <element signature="e#11954#11955#0" expanded="true" />
+            <element signature="e#12331#12332#0" expanded="true" />
+            <element signature="e#12380#12381#0" expanded="true" />
+            <element signature="e#13151#13152#0" expanded="true" />
+            <element signature="e#13196#13197#0" expanded="true" />
+            <element signature="e#14894#14895#0" expanded="true" />
+            <element signature="e#14953#14954#0" expanded="true" />
           </folding>
         </state>
       </provider>

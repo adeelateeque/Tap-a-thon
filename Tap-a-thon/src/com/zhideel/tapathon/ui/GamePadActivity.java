@@ -9,6 +9,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -23,15 +24,11 @@ import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.ClientGameChord;
 import com.zhideel.tapathon.chord.GameChord;
 import com.zhideel.tapathon.chord.ServerGameChord;
-import com.zhideel.tapathon.logic.CommunicationBus;
-import com.zhideel.tapathon.logic.GameLogicController;
-import com.zhideel.tapathon.logic.Model;
+import com.zhideel.tapathon.events.BusEvent;
+import com.zhideel.tapathon.logic.*;
 import com.zhideel.tapathon.utils.BitmapCache;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 //TODO add double tap listener
 //TODO add long tap listener
@@ -176,6 +173,55 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         }
 	}
 
+
+    @Override
+    public void onBackPressed() {
+        // @formatter:off
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.exit)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+        // @formatter:on
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        for (CommunicationBus.BusManager manager : mManagers) {
+            manager.stopBus();
+        }
+
+        if (gameBoardView != null) {
+            gameBoardView.stopBus();
+        }
+
+        mGameChord.stopChord();
+        if (mManager != null) {
+            mManager.stop();
+        }
+
+        if (mServiceProvider != null) {
+            ServiceConnector.deleteServiceProvider(mServiceProvider);
+        }
+
+        unregisterReceiver(mWiFiBroadcastReceiver);
+
+        super.onDestroy();
+        mAllShareDialog.dismiss();
+        mNoAllShareCastDialog.dismiss();
+    }
+
+    public void startGame(View v) {
+        mBus.post(GameLogicController.StartGameEvent.INSTANCE);
+    }
+
     public GameBoardView getGameBoard()
     {
         return gameBoardView;
@@ -203,6 +249,10 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		if (!continueMusic) {
 			MusicManager.pause();
 		}
+        mNoAllShareCastDialog.dismiss();
+        mAllShareDialog.dismiss();
+        super.onPause();
+
 	}
 
 	@Override
@@ -210,6 +260,14 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		super.onResume();
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
+
+        if (!mIsClient) {
+            if (mManager == null) {
+                mNoAllShareCastDialog.show();
+            } else if (!mAllShareEnabled) {
+                mAllShareDialog.show();
+            }
+        }
 	}
 
     private void registerWifiStateReceiver() {
@@ -226,6 +284,221 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     @Override
     public void stopBus() {
         mBus.unregister(this);
+    }
+
+    public static class GameActivityEvent extends BusEvent {
+
+        private static final long serialVersionUID = 20130326L;
+
+        GameActivityEvent() {
+            super();
+        }
+
+        public static class YourTurnEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            private final YourTurnType mTurnType;
+            private final int mMinimumBidAmount;
+            private final int mAmount;
+
+            public YourTurnEvent(YourTurnType turnType, int amount, int minimumBidAmount) {
+                super();
+                mTurnType = turnType;
+                mMinimumBidAmount = minimumBidAmount;
+                mAmount = amount;
+            }
+
+            public YourTurnType getTurnType() {
+                return mTurnType;
+            }
+
+            public int getMinimumBidAmount() {
+                return mMinimumBidAmount;
+            }
+
+            public int getAmount() {
+                return mAmount;
+            }
+
+            public enum YourTurnType {
+                //@formatter:off
+                CHECK,
+                CALL,
+                NONE;
+                //@formatter:on
+
+                @Override
+                public String toString() {
+                    return name();
+                };
+
+            }
+
+        }
+
+        public static class TurnEndEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            public TurnEndEvent() {
+                super();
+            }
+
+        }
+
+        public static class AmountEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            private final int mAmount;
+            private final int mBidAmount;
+            private final int mMinimumBidAmount;
+
+            public AmountEvent(int amount, int bidAmount, int minimumBidAmount) {
+                super();
+                mAmount = amount;
+                mBidAmount = bidAmount;
+                mMinimumBidAmount = minimumBidAmount;
+            }
+
+            public int getAmount() {
+                return mAmount;
+            }
+
+            public int getBidAmount() {
+                return mBidAmount;
+            }
+
+            public int getMinimumBidAmount() {
+                return mMinimumBidAmount;
+            }
+
+        }
+
+        public static class TokenEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            private final TokenType mTokenType;
+
+            public TokenEvent(TokenType tokenType) {
+                super();
+                mTokenType = tokenType;
+            }
+
+            public TokenType getTokenType() {
+                return mTokenType;
+            }
+
+            public enum TokenType {
+                //@formatter:off
+                SMALL_BLIND,
+                BIG_BLIND,
+                DEALER_WITH_SMALL_BLIND,
+                DEALER,
+                NONE;
+                //@formatter:on
+
+                @Override
+                public String toString() {
+                    return name();
+                }
+
+            }
+
+        }
+
+        public static class CardsEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            private final transient Pair<Card, Card> mCards;
+
+            public CardsEvent(Pair<Card, Card> cards) {
+                super();
+                mCards = cards;
+            }
+
+            public Pair<Card, Card> getCards() {
+                return mCards;
+            }
+
+        }
+
+        public static class SitEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            public SitEvent() {
+                super();
+            }
+
+        }
+
+        public static class StandEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            public StandEvent() {
+                super();
+            }
+
+        }
+
+        public static class GameEndEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130326L;
+
+            public GameEndEvent() {
+                super();
+            }
+
+        }
+
+        public static class TableFullEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130329L;
+
+            public TableFullEvent() {
+                super();
+            }
+
+        }
+
+        public static class SittingPlayersChangedEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130410L;
+            private final int mSittingPlayersCount;
+            private final ServerModel.GameState mGameState;
+
+            private static final EnumSet<ServerModel.GameState> ONGOING_GAME = EnumSet.of(ServerModel.GameState.FLOP, ServerModel.GameState.PRE_FLOP,
+                    ServerModel.GameState.RIVER, ServerModel.GameState.TURN);
+
+            public SittingPlayersChangedEvent(ServerModel.GameState gameState, int sittingPlayersCount) {
+                super();
+                mSittingPlayersCount = sittingPlayersCount;
+                mGameState = gameState;
+            }
+
+            public int getSittingPlayersCount() {
+                return mSittingPlayersCount;
+            }
+
+            public boolean isGameOngoing() {
+                return ONGOING_GAME.contains(mGameState);
+            }
+        }
+
+        public static class ClearCardsEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20140417L;
+
+            public ClearCardsEvent() {
+                super();
+            }
+        }
+
     }
 
 }
@@ -259,5 +532,4 @@ class PadAdapter extends BaseAdapter {
 		tappad.setAlpha(0.4f);
 		return tappad;
 	}
-
 }

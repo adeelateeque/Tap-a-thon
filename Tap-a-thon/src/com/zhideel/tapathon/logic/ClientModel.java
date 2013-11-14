@@ -20,9 +20,9 @@ import com.zhideel.tapathon.chord.ChordMessage.MessageType;
 import com.zhideel.tapathon.events.BusEvent;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
 import com.zhideel.tapathon.logic.GameLogicController.PokerLogicEvent.BiddingEvent.BiddingType;
-import com.zhideel.tapathon.ui.GameActivity.GameActivityEvent;
-import com.zhideel.tapathon.ui.GameActivity.GameActivityEvent.TokenEvent.TokenType;
-import com.zhideel.tapathon.ui.GameActivity.GameActivityEvent.YourTurnEvent.YourTurnType;
+import com.zhideel.tapathon.ui.GamePadActivity.GameActivityEvent;
+import com.zhideel.tapathon.ui.GamePadActivity.GameActivityEvent.TokenEvent.TokenType;
+import com.zhideel.tapathon.ui.GamePadActivity.GameActivityEvent.YourTurnEvent.YourTurnType;
 import com.zhideel.tapathon.utils.Preconditions;
 
 /**

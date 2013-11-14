@@ -44,25 +44,18 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_start"
+        android:text="@string/start"
+        android:alpha="0.8"
+        android:textColor="@color/tappad_white"
+        android:textSize="40dp"
+        android:background="#00a5ff"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.2"
         android:gravity="center|bottom"
-        android:orientation="vertical"
-        android:baselineAligned="true"
-        android:background="#00a5ff"
-        android:alpha="0.8">
 
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="@string/start"
-            android:alpha="1"
-            android:textColor="@color/tappad_white"
-            android:textSize="40dp"
-            android:background="@android:color/transparent"/>
-    </LinearLayout>
+        />
 
 </LinearLayout>
