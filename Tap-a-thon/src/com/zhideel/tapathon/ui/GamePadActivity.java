@@ -1,45 +1,189 @@
 package com.zhideel.tapathon.ui;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.*;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.TextView;
 import android.widget.Toast;
+import com.sec.android.allshare.ServiceConnector;
+import com.sec.android.allshare.ServiceProvider;
+import com.sec.android.allshare.screen.ScreenCastManager;
+import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
+import com.zhideel.tapathon.chord.ClientGameChord;
+import com.zhideel.tapathon.chord.GameChord;
+import com.zhideel.tapathon.chord.ServerGameChord;
+import com.zhideel.tapathon.logic.CommunicationBus;
+import com.zhideel.tapathon.logic.GameLogicController;
+import com.zhideel.tapathon.logic.Model;
+import com.zhideel.tapathon.utils.BitmapCache;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 
 //TODO add double tap listener
 //TODO add long tap listener
-public class GamePadActivity extends Activity {
+public class GamePadActivity extends Activity implements CommunicationBus.BusManager{
 	
-	public static final String GAME_NAME = "Tapathon";
-	
+	public static final String GAME_NAME = "TAPATHON";
+    public static final String CLIENT = "CLIENT";
+    public static final String SERVER_NAME = "SERVER_NAME";
+    private Bus mBus;
+    private GameChord mGameChord;
+    private GameLogicController mLogicController;
+    private List<CommunicationBus.BusManager> mManagers;
+    private boolean mIsClient;
+    private ServiceProvider mServiceProvider;
+    private ScreenCastManager mManager;
+    private BitmapCache mMemoryCache;
+    private Vibrator mVibrator;
+    private boolean mAllShareEnabled;
+    private Dialog mAllShareDialog;
+    private Dialog mNoAllShareCastDialog;
 	private boolean continueMusic;
-	private GridView gridview;
-	private ArrayList<Integer> operands;
-	private String operator;
-	private TextView tvMultipler, tvQns, tvTimer;
-	private Random rand = new Random();
-	private int randomQns, correctAns;
-	private int interval = 60;
+    private GameBoardView gameBoardView;
+
+
+    private final BroadcastReceiver mWiFiBroadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final WifiInfo info = (WifiInfo) intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
+            if (info == null) {
+                finish();
+                Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
+            }
+        }
+
+    };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_game_pad);
+
+        mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        registerWifiStateReceiver();
+
+        final int memClass = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
+        final int cacheSize = 1024 * 1024 * memClass / 8;
+        mMemoryCache = new BitmapCache(cacheSize, getAssets());
+
+        final String userName = getSharedPreferences(GameMenuActivity.POKER_PREFERENCES, MODE_PRIVATE).getString(
+                GameMenuActivity.USER_NAME_KEY, "");
+
+        mBus = CommunicationBus.getInstance();
+        mManagers = new LinkedList<CommunicationBus.BusManager>();
+        mManagers.add(this);
+
+        final Model model = new Model(!mIsClient);
+
+        final Intent intent = getIntent();
+        mIsClient = intent.getBooleanExtra(CLIENT, false);
+
+        final String roomName;
+
+        mAllShareDialog = new AlertDialog.Builder(GamePadActivity.this).setMessage(R.string.all_share_dialog_message)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mManager.activateManagerUI();
+                    }
+                }).setNegativeButton(R.string.all_share_dialog_exit, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setCancelable(false).create();
+
+        mNoAllShareCastDialog = new AlertDialog.Builder(GamePadActivity.this)
+                .setMessage(R.string.no_all_share_cast_dialog).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setCancelable(false).create();
+
+        if (mIsClient) {
+            roomName = getIntent().getStringExtra(SERVER_NAME);
+            mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
+            //mStartGame.setVisibility(View.GONE);
+        } else {
+            roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
+            mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
+
+            ServiceConnector.createServiceProvider(this, new ServiceConnector.IServiceConnectEventListener() {
+
+                @Override
+                public void onCreated(ServiceProvider sprovider, ServiceConnector.ServiceState state) {
+                    mServiceProvider = sprovider;
+                    mManager = sprovider.getScreenCastManager();
+                    if (mManager != null) {
+                        mNoAllShareCastDialog.dismiss();
+                        mAllShareDialog.show();
+                        mManager.setScreenCastEventListener(new ScreenCastManager.IScreenCastEventListener() {
+
+                            @Override
+                            public void onStopped(ScreenCastManager screencastmanager) {
+                                mAllShareEnabled = false;
+                                mAllShareDialog.show();
+                            }
+
+                            @Override
+                            public void onStarted(ScreenCastManager screencastmanager) {
+                                mAllShareEnabled = true;
+                                mAllShareDialog.dismiss();
+                                screencastmanager.setMode(ScreenCastManager.ScreenMode.DUAL);
+                            }
+                        });
+
+                        showGameDisplay();
+
+                    }
+                }
+
+                @Override
+                public void onDeleted(ServiceProvider sprovider) {
+                }
+            });
+
+            mLogicController = new GameLogicController(model, getResources());
+            mManagers.add(mLogicController);
+        }
+
+        //roomNameView.setText(roomName);
+        mManagers.add(model);
+        mManagers.add(mGameChord);
+
+        for (CommunicationBus.BusManager manager : mManagers) {
+            manager.startBus();
+        }
+	}
+
+    public GameBoardView getGameBoard()
+    {
+        return gameBoardView;
+    }
+
+    private void showGameDisplay() {
         MultiTouchView.GameLevel level = null;
-		Bundle extras = getIntent().getExtras();
+        Bundle extras = getIntent().getExtras();
         if(extras != null){
             level = (MultiTouchView.GameLevel) extras.getSerializable("level");
             if(level == null)
@@ -47,31 +191,11 @@ public class GamePadActivity extends Activity {
                 level = MultiTouchView.GameLevel.EASY;
             }
         }
-		MultiTouchView.setLevel(level);
-		
-		operands = new ArrayList<Integer>();
-		
-		tvMultipler = (TextView) findViewById(R.id.tv_multipler);
-		tvQns = (TextView) findViewById(R.id.tv_qns);
-		tvTimer = (TextView) findViewById(R.id.tv_timer);
-		gridview = (GridView) findViewById(R.id.gridview);
-		gridview.setAdapter(new PadAdapter(this));
-	}
 
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		timer();
-		correctAns = 0;
-		tvMultipler.setText("1");
-		randomQns = randInt(0, 20);
-		tvQns.setText(Integer.toString(randomQns));
-		
-		super.onPostCreate(savedInstanceState);
-	}
-	
-	public void setInterval(int interval){
-		tvTimer.setText(Integer.toString(interval));
-	}
+
+        gameBoardView = new GameBoardView(this, level,(ViewGroup)findViewById(R.id.gameboard_container));
+    }
+
 
 	@Override
 	protected void onPause() {
@@ -87,86 +211,22 @@ public class GamePadActivity extends Activity {
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
-	
-	private void timer(){
-		final Timer time = new Timer();
-		time.scheduleAtFixedRate(new TimerTask(){
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						if (interval != 0){
-							interval--;
-							setInterval(interval);
-						}
-						else {
-							MultiTouchView.setContinue(false);
-							Toast.makeText(getApplication(), Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
-							time.cancel();
-						}
-					}
-				});
-			}
-		}, 0, 1000);
-	}
-	
-	public int randInt(int min, int max) {
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
+
+    private void registerWifiStateReceiver() {
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        registerReceiver(mWiFiBroadcastReceiver, filter);
     }
 
-	public void addOperand(Integer operand) {
-		if (operands.size() < 2) {
-			operands.add(operand);
-		}
-	}
-	
-	public ArrayList<Integer> getOperands(){
-		return operands;
-	}
+    @Override
+    public void startBus() {
+        mBus.register(this);
+    }
 
-	public void setOperator(String operator) {
-		if (this.operator == null) {
-			this.operator = operator;
-		}
-	}
-	
-	public String getOperator(){
-		return this.operator;
-	}
-
-	public int doCalc() {
-		Integer op1 = operands.get(0);
-		Integer op2 = operands.get(1);
-		Integer result = 0;
-		if (operator.equalsIgnoreCase("X")) {
-			result = op1 * op2;
-		} else if (operator.equalsIgnoreCase("/")) {
-			result = op1 / op2;
-		} else if (operator.equalsIgnoreCase("-")) {
-			result = op1 - op2;
-		} else {
-			result = op1 + op2;
-		}
-		
-		if (result == randomQns){
-			DecimalFormat df = new DecimalFormat("#.0");
-			double multipler = Double.parseDouble(tvMultipler.getText().toString());
-			multipler = Double.valueOf(df.format(multipler + 0.1));
-			tvMultipler.setText(Double.toString(multipler));
-			correctAns++;
-		}
-		return result;
-	}
-	
-	public void resetCurrent(){
-		randomQns = randInt(0, 20);
-		tvQns.setText(Integer.toString(randomQns));
-		operands.clear();
-		operator = null;
-		gridview.setAdapter(new PadAdapter(this));
-	}
+    @Override
+    public void stopBus() {
+        mBus.unregister(this);
+    }
 
 }
 
