@@ -13,8 +13,6 @@ import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.Toast;
 import com.sec.android.allshare.ServiceConnector;
 import com.sec.android.allshare.ServiceProvider;
@@ -28,7 +26,10 @@ import com.zhideel.tapathon.events.BusEvent;
 import com.zhideel.tapathon.logic.*;
 import com.zhideel.tapathon.utils.BitmapCache;
 
-import java.util.*;
+import java.util.EnumSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 
 //TODO add double tap listener
 //TODO add long tap listener
@@ -51,13 +52,14 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private Dialog mNoAllShareCastDialog;
 	private boolean continueMusic;
     private GameBoardView gameBoardView;
+    private StatsView statsView;
 
 
     private final BroadcastReceiver mWiFiBroadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            final WifiInfo info = (WifiInfo) intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
+            final WifiInfo info = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
             if (info == null) {
                 finish();
                 Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
@@ -213,9 +215,16 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         unregisterReceiver(mWiFiBroadcastReceiver);
 
-        super.onDestroy();
+
         mAllShareDialog.dismiss();
         mNoAllShareCastDialog.dismiss();
+
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     public void startGame(View v) {
@@ -225,6 +234,11 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     public GameBoardView getGameBoard()
     {
         return gameBoardView;
+    }
+
+    public StatsView getStatsView()
+    {
+        return statsView;
     }
 
     private void showGameDisplay() {
@@ -240,6 +254,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
 
         gameBoardView = new GameBoardView(this, level,(ViewGroup)findViewById(R.id.gameboard_container));
+        statsView = new StatsView(this, (ViewGroup)findViewById(R.id.statsboard_container));
     }
 
 
@@ -285,6 +300,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     public void stopBus() {
         mBus.unregister(this);
     }
+
+
 
     public static class GameActivityEvent extends BusEvent {
 
@@ -501,35 +518,4 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     }
 
-}
-
-class PadAdapter extends BaseAdapter {
-	private Context mContext;
-	private ArrayList<MultiTouchView> tappads;
-
-	public PadAdapter(Context c) {
-		mContext = c;
-		tappads = new ArrayList<MultiTouchView>();
-	}
-
-	public int getCount() {
-		return 9;
-	}
-
-	public Object getItem(int position) {
-		return tappads.get(position);
-	}
-
-	public long getItemId(int position) {
-		return 0;
-	}
-
-	public View getView(int position, View convertView, ViewGroup parent) {
-		MultiTouchView tappad;
-		tappad = new MultiTouchView(mContext, null);
-		tappad.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / 3,
-				parent.getHeight() / 3 - 7));
-		tappad.setAlpha(0.4f);
-		return tappad;
-	}
 }

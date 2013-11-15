@@ -4,134 +4,35 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.CommunicationBus;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Adeel on 14/11/13.
  */
-public class GameBoardView extends View implements CommunicationBus.BusManager {
+public class GameBoardView implements CommunicationBus.BusManager {
     private Activity mContext;
     private final Bus mBus;
     private GridView gridview;
-    private ArrayList<Integer> operands;
-    private String operator;
-    private TextView tvMultipler, tvQns, tvTimer;
-    private Random rand = new Random();
-    private int randomQns, correctAns;
-    private int interval = 60;
+
     public GameBoardView(Context context, MultiTouchView.GameLevel level, ViewGroup viewGroup) {
-        super(context);
         MultiTouchView.setLevel(level);
-        mContext = ((Activity)GameBoardView.this.getContext());
+        mContext = (Activity) context;
         this.mBus = CommunicationBus.getInstance();
 
         View.inflate(mContext, R.layout.view_game_pad, viewGroup);
+        gridview = (GridView) viewGroup.findViewById(R.id.gridview);
+        gridview.setAdapter(new PadAdapter(mContext));
 
-        operands = new ArrayList<Integer>();
-        tvMultipler = (TextView) findViewById(R.id.tv_multipler);
-        tvQns = (TextView) findViewById(R.id.tv_qns);
-        tvTimer = (TextView) findViewById(R.id.tv_timer);
-        gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new PadAdapter(GameBoardView.this.getContext()));
-        timer();
-        correctAns = 0;
-        tvMultipler.setText("1");
-        randomQns = randInt(0, 20);
-        tvQns.setText(Integer.toString(randomQns));
     }
 
-    public void setInterval(int interval){
-        tvTimer.setText(Integer.toString(interval));
-    }
-
-    private void timer(){
-        final Timer time = new Timer();
-        time.scheduleAtFixedRate(new TimerTask(){
-            @Override
-            public void run() {
-                mContext.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (interval != 0) {
-                            interval--;
-                            setInterval(interval);
-                        } else {
-                            MultiTouchView.setContinue(false);
-                            Toast.makeText((GameBoardView.this.getContext()), Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
-                            time.cancel();
-                        }
-                    }
-                });
-            }
-        }, 0, 1000);
-    }
-
-    public int randInt(int min, int max) {
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
-    }
-
-    public void addOperand(Integer operand) {
-        if (operands.size() < 2) {
-            operands.add(operand);
-        }
-    }
-
-    public ArrayList<Integer> getOperands(){
-        return operands;
-    }
-
-    public void setOperator(String operator) {
-        if (this.operator == null) {
-            this.operator = operator;
-        }
-    }
-
-    public String getOperator(){
-        return this.operator;
-    }
-
-    public int doCalc() {
-        Integer op1 = operands.get(0);
-        Integer op2 = operands.get(1);
-        Integer result = 0;
-        if (operator.equalsIgnoreCase("X")) {
-            result = op1 * op2;
-        } else if (operator.equalsIgnoreCase("/")) {
-            result = op1 / op2;
-        } else if (operator.equalsIgnoreCase("-")) {
-            result = op1 - op2;
-        } else {
-            result = op1 + op2;
-        }
-
-        if (result == randomQns){
-            DecimalFormat df = new DecimalFormat("#.0");
-            double multipler = Double.parseDouble(tvMultipler.getText().toString());
-            multipler = Double.valueOf(df.format(multipler + 0.1));
-            tvMultipler.setText(Double.toString(multipler));
-            correctAns++;
-        }
-        return result;
-    }
-
-    public void resetCurrent(){
-        randomQns = randInt(0, 20);
-        tvQns.setText(Integer.toString(randomQns));
-        operands.clear();
-        operator = null;
-        gridview.setAdapter(new PadAdapter((GameBoardView.this.getContext())));
+    public void resetBoard() {
+        gridview.setAdapter(new PadAdapter(mContext));
     }
 
     @Override
@@ -142,5 +43,37 @@ public class GameBoardView extends View implements CommunicationBus.BusManager {
     @Override
     public void stopBus() {
         mBus.unregister(this);
+    }
+}
+
+
+class PadAdapter extends BaseAdapter {
+    private Context mContext;
+    private ArrayList<MultiTouchView> tappads;
+
+    public PadAdapter(Context c) {
+        mContext = c;
+        tappads = new ArrayList<MultiTouchView>();
+    }
+
+    public int getCount() {
+        return 9;
+    }
+
+    public Object getItem(int position) {
+        return tappads.get(position);
+    }
+
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        MultiTouchView tappad;
+        tappad = new MultiTouchView(mContext, null);
+        tappad.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / 3,
+                parent.getHeight() / 3 - 7));
+        tappad.setAlpha(0.4f);
+        return tappad;
     }
 }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.zhideel.tapathon.ConnectionManager;
 import com.zhideel.tapathon.R;
 
-public class GameMenuActivity extends Activity implements GameChannelFragment.OnServerChosenListener {
+public class GameMenuActivity extends Activity implements ChooseServerDialog.OnServerChosenListener {
 
 	public static final String TAG = "Tapathon";
     public static final String POKER_PREFERENCES = "POKER_PREFERENCES";
@@ -74,7 +74,7 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
             	    	dFrag.remove(prev);
             	    }
             	    dFrag.addToBackStack(null);
-                    GameChannelFragment mFragment = new GameChannelFragment();
+                    ChooseServerDialog mFragment = new ChooseServerDialog();
                     mFragment.show(getFragmentManager(), "dialog_channel");
                     dFrag.commit();
                     

@@ -136,30 +136,30 @@ public class MultiTouchView extends View {
 
 		case MotionEvent.ACTION_DOWN:
 		case MotionEvent.ACTION_POINTER_DOWN: {
-			ArrayList<Integer> operands = ((GamePadActivity) super.getContext()).getGameBoard().getOperands();
-			String operator = ((GamePadActivity) super.getContext()).getGameBoard().getOperator();
+			ArrayList<Integer> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
+			String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 			
 			try {
 				int number = Integer.parseInt(currentText);
 				if (operands.size() < 2){
-					((GamePadActivity) super.getContext()).getGameBoard().addOperand(number);
+					((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
 					this.isSelected = true;
 					if ((operands.size() == 2) && (operator != null)) {
-						int result = ((GamePadActivity) super.getContext()).getGameBoard().doCalc();
+						int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
 						Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
-						((GamePadActivity) super.getContext()).getGameBoard().resetCurrent();
+						((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
 					}
 				}
 				
 			} catch (NumberFormatException e) {
 				String cOperator = currentText;
 				if (operator == null){
-					((GamePadActivity) super.getContext()).getGameBoard().setOperator(cOperator);
+					((GamePadActivity) super.getContext()).getStatsView().setOperator(cOperator);
 					this.isSelected = true;
 					if (operands.size() == 2) {
-						int result = ((GamePadActivity) super.getContext()).getGameBoard().doCalc();
+						int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
 						Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
-						((GamePadActivity) super.getContext()).getGameBoard().resetCurrent();
+						((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
 					}
 				}
 			}

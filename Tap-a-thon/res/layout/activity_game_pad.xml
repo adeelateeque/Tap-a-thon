@@ -31,36 +31,12 @@
             android:gravity="left" />
 
         <LinearLayout
+            android:id="@+id/statsboard_container"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:orientation="vertical"
             android:weightSum="1" >
-            
-            <TextView
-                android:id="@+id/tv_timer"
-                android:layout_width="fill_parent"
-            	android:layout_height="0dp"
-            	android:layout_weight="0.33"
-            	android:textSize="30sp"
-                android:gravity="center" />
-            
-            <TextView
-                android:id="@+id/tv_multipler"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.33"
-                android:textSize="30sp"
-                android:gravity="center" />
-            
-            <TextView
-                android:id="@+id/tv_qns"
-                android:layout_width="fill_parent"
-            	android:layout_height="0dp"
-            	android:layout_weight="0.33"
-            	android:textSize="30sp"
-                android:gravity="center" />
-            
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

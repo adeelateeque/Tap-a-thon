@@ -11,18 +11,14 @@
  */
 package com.zhideel.tapathon.ui;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.app.*;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.R;
@@ -47,7 +43,8 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 	private OnServerChosenListener mOnServerChosenListener;
 	private ServerAdapter mServerAdapter;
 	private Bus mBus;
-	private GamePadActivity mParentActivity;
+	private GameMenuActivity mParentActivity;
+    private Button btnJoin, btnCreate;
 
 	@Subscribe
 	public void onNodeLeftOnPublicChannel(NodeLeftOnPublicChannelEvent event) {
@@ -65,7 +62,7 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 
 	@Override
 	public void onAttach(Activity parent) {
-		mParentActivity = (GamePadActivity) parent;
+		mParentActivity = (GameMenuActivity) parent;
 		super.onAttach(parent);
 	}
 
@@ -95,6 +92,8 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.dialog_channel, container);
 
+        btnJoin = (Button) view.findViewById(R.id.btn_join);
+        btnCreate = (Button) view.findViewById(R.id.btn_create);
 		final ListView serversListView = (ListView) view.findViewById(R.id.lv_channel);
 		serversListView.setOnItemClickListener(this);
 		mServerAdapter = new ServerAdapter();
@@ -102,7 +101,35 @@ public class ChooseServerDialog extends DialogFragment implements OnServerListCh
 		return view;
 	}
 
-	@Override
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        btnJoin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent myIntent=new Intent(ChooseServerDialog.this.getActivity(), GamePadActivity.class);
+                startActivity(myIntent);
+                getDialog().dismiss();
+            }
+        });
+
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction dFrag = getFragmentManager().beginTransaction();
+                Fragment prev = getFragmentManager().findFragmentByTag("dialog_create");
+                if (prev != null) {
+                    dFrag.remove(prev);
+                }
+                dFrag.addToBackStack(null);
+                CreateChannelFragment mFragment = new CreateChannelFragment();
+                mFragment.show(getFragmentManager(), "dialog_create");
+                dFrag.commit();
+                getDialog().dismiss();
+            }
+        });
+    }
+
+    @Override
 	public void onDestroy() {
 		stopBus();
 		mConnectionChord.stopChord();
