@@ -11,12 +11,12 @@
  */
 package com.zhideel.tapathon.logic;
 
-import com.squareup.otto.Bus;
-import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.squareup.otto.Bus;
+import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
 
 /**
  * Contains the game model used on the server side.
@@ -86,9 +86,7 @@ public class ServerModel implements BusManager {
 	List<Player> getPlayingPlayers() {
 		final List<Player> playingPlayers = new LinkedList<Player>();
 		for (Player player : mPlayers) {
-			if (player.isPlaying()) {
-				playingPlayers.add(player);
-			}
+			playingPlayers.add(player);
 		}
 		return playingPlayers;
 	}
@@ -96,7 +94,6 @@ public class ServerModel implements BusManager {
 	int getPlayersCount() {
 		return getPlayingPlayers().size();
 	}
-
 
 	PadDeck getDeck() {
 		return mDeck;
@@ -109,7 +106,6 @@ public class ServerModel implements BusManager {
 	void setGameState(GameState gameState) {
 		mGameState = gameState;
 	}
-
 
 	/**
 	 * Performs table initialization.

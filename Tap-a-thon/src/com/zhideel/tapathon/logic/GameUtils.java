@@ -26,17 +26,14 @@ public class GameUtils {
 	/**
 	 * Returns game result. Contains the players and their hands.
 	 * 
-	 * @param tablePads
-	 *            An array of 5 cards on the table.
 	 * @param players
 	 *            A list of all players.
 	 * @return A GameResult object.
 	 */
-	public static GameResult getGameResult(Pad[] tablePads, List<Player> players) {
+	public static GameResult getGameResult(List<Player> players) {
         final GameResult gameResult = new GameResult();
-
+        
 		return gameResult;
-
 	}
 
 	/**
@@ -51,8 +48,6 @@ public class GameUtils {
 
 		return winnersList;
 	}
-
-
 
 	static class GameResult {
 
@@ -76,7 +71,6 @@ public class GameUtils {
 			return player.getScore();
 		}
 
-
 		/**
 		 * Returns the list of winners. Usually only one, except when there is a tie.
 		 * 
@@ -85,7 +79,5 @@ public class GameUtils {
 		public List<Player> getWinners() {
 			return mWinners;
 		}
-
 	}
-
 }

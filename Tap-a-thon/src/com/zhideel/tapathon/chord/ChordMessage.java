@@ -33,10 +33,6 @@ public final class ChordMessage implements Serializable {
 	static final String USERNAME = "USERNAME";
 
 	public static final String SCORE = "SCORE";
-	public static final String BLIND_TYPE = "BLIND_TYPE";
-	public static final String FIRST_CARD = "FIRST_CARD";
-	public static final String SECOND_CARD = "SECOND_CARD";
-	public static final String BIDDING_TYPE = "BIDDING_TYPE";
 
 	private final MessageType mType;
 	private final Map<String, Object> mPayload;

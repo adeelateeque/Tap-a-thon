@@ -12,6 +12,7 @@
 package com.zhideel.tapathon.logic;
 
 import android.util.Pair;
+
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.chord.BusEvent;
@@ -25,12 +26,8 @@ public class ClientModel implements BusManager {
 
 	private final Bus mBus;
 
-	private int mAmount;
-	private int mPreviousBidAmount;
-	private int mBidAmount;
-	private int mMinimumBidAmount;
+	private int mScore;
 	private Pair<Pad, Pad> mCards;
-	private boolean mIsDealer;
 
 	ClientModel() {
 		mBus = CommunicationBus.getInstance();
@@ -44,14 +41,10 @@ public class ClientModel implements BusManager {
 	 */
 	@Subscribe
 	public void gameEnd(ClientModelEvent.GameEnd event) {
-		mAmount += event.getAmount();
-		mBidAmount = 0;
-		mMinimumBidAmount = 0;
-		mPreviousBidAmount = 0;
-		mIsDealer = false;
+		mScore += event.getScore();
 
 		postToGameActivity(new GameActivityEvent.GameEndEvent());
-		postToGameActivity(new GameActivityEvent.AmountEvent(mAmount, mBidAmount, mMinimumBidAmount));
+		//postToGameActivity(new GameActivityEvent.AmountEvent(mAmount, mBidAmount, mMinimumBidAmount));
 	}
 
 	@Override
@@ -90,15 +83,15 @@ public class ClientModel implements BusManager {
 
 			private static final long serialVersionUID = 20130403L;
 
-			public static final String AMOUNT = "SCORE";
+			public static final String SCORE = "SCORE";
 
-			public GameEnd(int amount) {
+			public GameEnd(int score) {
 				super(ClientModelEventType.WON);
-				putInt(AMOUNT, amount);
+				putInt(SCORE, score);
 			}
 
-			public int getAmount() {
-				return getInt(AMOUNT);
+			public int getScore() {
+				return getInt(SCORE);
 			}
 		}
 
@@ -109,7 +102,6 @@ public class ClientModel implements BusManager {
 	 */
 	public static enum ClientModelEventType {
 		//@formatter:off
-
 		WON,
 		LOSE;
 		//@formatter:off
@@ -118,6 +110,5 @@ public class ClientModel implements BusManager {
 		public String toString() {
 			return name();
 		}
-		
 	}
 }

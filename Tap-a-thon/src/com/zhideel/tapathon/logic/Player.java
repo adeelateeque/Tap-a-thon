@@ -11,10 +11,7 @@
  */
 package com.zhideel.tapathon.logic;
 
-import android.util.Pair;
 import com.zhideel.tapathon.utils.Preconditions;
-
-import java.util.Arrays;
 
 /**
  * Represents a player's state in the poker game.
@@ -23,14 +20,11 @@ public final class Player implements Comparable<Player> {
 
 	private final String mName;
 	private final String mNodeName;
-	private final Pad[] mPads;
 	private int mScore;
-
 
 	private Player(String playerName, String nodeName) {
 		mName = Preconditions.checkNotNull(playerName);
 		mNodeName = Preconditions.checkNotNull(nodeName);
-		mPads = new Pad[2];
 		mScore = ServerModel.INITIAL_SCORE;
 	}
 
@@ -48,72 +42,13 @@ public final class Player implements Comparable<Player> {
 	}
 
 	/**
-	 * Takes the given amount from the player's pool.
-	 * 
-	 * @param amount
-	 *            an amount to take from the player's pool
-	 */
-	public void takeAmount(int amount) {
-		final int newAmount = mScore - amount;
-		Preconditions.checkState(newAmount >= 0);
-		mScore = newAmount;
-	}
-
-	/**
 	 * Adds the given amount to the player's pool.
 	 * 
 	 * @param amount
 	 *            amount to add to the player's pool
 	 */
-	public void addAmount(int amount) {
-		mScore += amount;
-	}
-
-	/**
-	 * Returns single card.
-	 * 
-	 * @param index
-	 *            index of the card (could be 0 or 1)
-	 * @return returns the card at the given index
-	 * @throws IllegalArgumentException
-	 *             thrown when the given index is different than 0 or 1
-	 */
-	public Pad getCard(int index) {
-		if (index < 0 || index > 1) {
-			throw new IllegalArgumentException(Integer.toString(index));
-		}
-		return mPads[index];
-	}
-
-	/**
-	 * Sets the player's cards.
-	 * 
-	 * @param cards
-	 *            the pair of cards to set
-	 */
-	public void setCards(Pair<Pad, Pad> cards) {
-		mPads[0] = cards.first;
-		mPads[1] = cards.second;
-	}
-
-	/**
-	 * Clears player's cards.
-	 */
-	public void clearCards() {
-		mPads[0] = mPads[1] = null;
-	}
-
-	/**
-	 * Checks if player has cards.
-	 * 
-	 * @return boolean that indicates if the player has cards
-	 */
-	public boolean hasCards() {
-		return mPads[0] != null && mPads[1] != null;
-	}
-
-	public Pad[] getCards() {
-		return Arrays.copyOf(mPads, mPads.length);
+	public void addScore(int score) {
+		mScore += score;
 	}
 
 	public int getScore() {
