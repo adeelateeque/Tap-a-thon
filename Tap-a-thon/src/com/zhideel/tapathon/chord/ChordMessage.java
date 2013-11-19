@@ -32,7 +32,7 @@ public final class ChordMessage implements Serializable {
 	static final String SERVER_NODE_NAME = "SERVER_NODE_NAME";
 	static final String USERNAME = "USERNAME";
 
-	public static final String AMOUNT = "AMOUNT";
+	public static final String SCORE = "SCORE";
 	public static final String BLIND_TYPE = "BLIND_TYPE";
 	public static final String FIRST_CARD = "FIRST_CARD";
 	public static final String SECOND_CARD = "SECOND_CARD";
@@ -161,25 +161,12 @@ public final class ChordMessage implements Serializable {
 		
 		// Client messages.
 		GET_SERVERS_LIST,
-		SIT,
-		STAND,
-		BIDDING,
-		FOLD,
-		ALL_IN,
 		USERNAME,
 		
 		// Server messages.
 		SERVER_NAME_BROADCAST,
 		SERVER_NODE_NAME,
-		BLIND,
-		DEALER,
-		YOUR_TURN,
-		GAME_END,
-		CARD_PAIR,
-		PLAYER_STATE,
-		TABLE_FULL,
-		ALLOW_SIT,
-		CLEAR_CARDS;
+		GAME_END;
 		// @formatter:on
 
 		@Override

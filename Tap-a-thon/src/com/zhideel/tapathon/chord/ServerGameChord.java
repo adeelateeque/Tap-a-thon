@@ -29,11 +29,6 @@ public class ServerGameChord extends GameChord {
 	@Override
 	void handlePrivateMessage(ChordMessage message) {
 		switch (message.getType()) {
-		case SIT:
-		case STAND:
-		case FOLD:
-		case ALL_IN:
-		case BIDDING:
 		case USERNAME:
 			handleMessageFromClient(message);
 			break;
@@ -65,21 +60,6 @@ public class ServerGameChord extends GameChord {
 		final String senderNodeName = message.getSenderNodeName();
 
 		switch (message.getType()) {
-		case SIT:
-			//postPokerLogicEvent(new PokerLogicEvent.SitEvent(senderNodeName));
-			break;
-		case STAND:
-			//postPokerLogicEvent(new PokerLogicEvent.StandEvent(senderNodeName));
-			break;
-		case BIDDING:
-			//postPokerLogicEvent(new PokerLogicEvent.BiddingEvent(senderNodeName, message.getInt(ChordMessage.AMOUNT), (BiddingType) message.getObject(ChordMessage.BIDDING_TYPE)));
-			break;
-		case FOLD:
-			//postPokerLogicEvent(new PokerLogicEvent.FoldEvent(senderNodeName));
-			break;
-		case ALL_IN:
-			//postPokerLogicEvent(new PokerLogicEvent.AllInEvent(senderNodeName, message.getInt(ChordMessage.AMOUNT)));
-			break;
 		case USERNAME:
 			//postPokerLogicEvent(new PokerLogicEvent.UsernameEvent(message.getString(UsernameEvent.USERNAME), senderNodeName));
 			break;

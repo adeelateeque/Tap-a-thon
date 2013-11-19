@@ -11,11 +11,10 @@
  */
 package com.zhideel.tapathon.logic;
 
-import java.util.Arrays;
-
 import android.util.Pair;
-
 import com.zhideel.tapathon.utils.Preconditions;
+
+import java.util.Arrays;
 
 /**
  * Represents a player's state in the poker game.
@@ -24,33 +23,19 @@ public final class Player implements Comparable<Player> {
 
 	private final String mName;
 	private final String mNodeName;
-	private final Card[] mCards;
-	private int mAmount;
-	private int mCurrentBid;
-	private boolean mAllIn;
-	private boolean mPlaying;
-	private boolean mSitting;
-	private String mLastPlayersAction;
-	private boolean mShouldShowCards;
+	private final Pad[] mPads;
+	private int mScore;
 
-	public static final String INITIAL_PLAYERS_ACTION = "-----";
-	public static final String FOLD_ACTION = "fold";
-	public static final String RAISE_ACTION = "raise";
-	public static final String CALL_ACTION = "call";
-	public static final String CHECK_ACTION = "check";
-	public static final String ALL_IN_ACTION = "all in";
 
 	private Player(String playerName, String nodeName) {
 		mName = Preconditions.checkNotNull(playerName);
 		mNodeName = Preconditions.checkNotNull(nodeName);
-		mCards = new Card[2];
-		mAmount = ServerModel.INITIAL_AMOUNT;
-		mSitting = false;
-		mLastPlayersAction = INITIAL_PLAYERS_ACTION;
+		mPads = new Pad[2];
+		mScore = ServerModel.INITIAL_SCORE;
 	}
 
 	/**
-	 * Creates new player instance with the {@value com.zhideel.tapathon.logic.Player#INITIAL_AMOUNT} value as initial amount.
+	 * Creates new player instance
 	 * 
 	 * @param name
 	 *            the player's name
@@ -69,9 +54,9 @@ public final class Player implements Comparable<Player> {
 	 *            an amount to take from the player's pool
 	 */
 	public void takeAmount(int amount) {
-		final int newAmount = mAmount - amount;
+		final int newAmount = mScore - amount;
 		Preconditions.checkState(newAmount >= 0);
-		mAmount = newAmount;
+		mScore = newAmount;
 	}
 
 	/**
@@ -81,7 +66,7 @@ public final class Player implements Comparable<Player> {
 	 *            amount to add to the player's pool
 	 */
 	public void addAmount(int amount) {
-		mAmount += amount;
+		mScore += amount;
 	}
 
 	/**
@@ -93,11 +78,11 @@ public final class Player implements Comparable<Player> {
 	 * @throws IllegalArgumentException
 	 *             thrown when the given index is different than 0 or 1
 	 */
-	public Card getCard(int index) {
+	public Pad getCard(int index) {
 		if (index < 0 || index > 1) {
 			throw new IllegalArgumentException(Integer.toString(index));
 		}
-		return mCards[index];
+		return mPads[index];
 	}
 
 	/**
@@ -106,16 +91,16 @@ public final class Player implements Comparable<Player> {
 	 * @param cards
 	 *            the pair of cards to set
 	 */
-	public void setCards(Pair<Card, Card> cards) {
-		mCards[0] = cards.first;
-		mCards[1] = cards.second;
+	public void setCards(Pair<Pad, Pad> cards) {
+		mPads[0] = cards.first;
+		mPads[1] = cards.second;
 	}
 
 	/**
 	 * Clears player's cards.
 	 */
 	public void clearCards() {
-		mCards[0] = mCards[1] = null;
+		mPads[0] = mPads[1] = null;
 	}
 
 	/**
@@ -124,15 +109,15 @@ public final class Player implements Comparable<Player> {
 	 * @return boolean that indicates if the player has cards
 	 */
 	public boolean hasCards() {
-		return mCards[0] != null && mCards[1] != null;
+		return mPads[0] != null && mPads[1] != null;
 	}
 
-	public Card[] getCards() {
-		return Arrays.copyOf(mCards, mCards.length);
+	public Pad[] getCards() {
+		return Arrays.copyOf(mPads, mPads.length);
 	}
 
-	public int getAmount() {
-		return mAmount;
+	public int getScore() {
+		return mScore;
 	}
 
 	public String getName() {
@@ -143,66 +128,6 @@ public final class Player implements Comparable<Player> {
 		return mNodeName;
 	}
 
-	public void setPlaying(boolean playing) {
-		mPlaying = playing;
-	}
-
-	public boolean isPlaying() {
-		return mPlaying;
-	}
-
-	public void setCurrentBid(int currentBid) {
-		mCurrentBid = currentBid;
-	}
-
-	public int getCurrentBid() {
-		return mCurrentBid;
-	}
-
-	public boolean isSitting() {
-		return mSitting;
-	}
-
-	public void setSitting(boolean sitting) {
-		mSitting = sitting;
-	}
-
-	public boolean isAllIn() {
-		return mAllIn;
-	}
-
-	public void setAllIn(boolean allIn) {
-		mAllIn = allIn;
-	}
-
-	/**
-	 * Clears player's information.
-	 */
-	public void clearGame() {
-		mAllIn = false;
-		mPlaying = false;
-		mCurrentBid = 0;
-		mCards[0] = null;
-		mCards[1] = null;
-		mLastPlayersAction = INITIAL_PLAYERS_ACTION;
-		mShouldShowCards = false;
-	}
-
-	public String getLastPlayersAction() {
-		return mLastPlayersAction;
-	}
-
-	public void setLastPlayersAction(String lastPlayersAction) {
-		mLastPlayersAction = lastPlayersAction;
-	}
-
-	public boolean getShouldShowCards() {
-		return mShouldShowCards;
-	}
-
-	public void setShouldShowCards(boolean shouldShowCards) {
-		mShouldShowCards = shouldShowCards;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -233,9 +158,9 @@ public final class Player implements Comparable<Player> {
 
 	@Override
 	public int compareTo(Player another) {
-		if (mCurrentBid > another.mCurrentBid) {
+		if (mScore > another.mScore) {
 			return 1;
-		} else if (mCurrentBid < another.mCurrentBid) {
+		} else if (mScore < another.mScore) {
 			return -1;
 		} else {
 			return 0;

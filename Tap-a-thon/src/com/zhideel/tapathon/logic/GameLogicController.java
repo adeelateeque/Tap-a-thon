@@ -19,10 +19,10 @@ import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.ChordMessage;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
 import com.zhideel.tapathon.chord.GameChord.ClientDisconnectedEvent;
-import com.zhideel.tapathon.events.BusEvent;
+import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.logic.ClientModel.ClientModelEvent.BlindEvent.BlindType;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
-import com.zhideel.tapathon.logic.PokerUtils.GameResult;
+import com.zhideel.tapathon.logic.GameUtils.GameResult;
 import com.zhideel.tapathon.logic.ServerModel.GameState;
 import com.zhideel.tapathon.ui.GamePadActivity.GameActivityEvent.*;
 import com.zhideel.tapathon.utils.Preconditions;
@@ -52,14 +52,12 @@ public class GameLogicController implements BusManager {
 	 */
 	@Subscribe
 	public void startGame(StartGameEvent event) {
-		mModel.triggerPokerTableEvent();
-		mModel.setGameState(GameState.PRE_FLOP);
-		mModel.setTableMessage(mResources.getString(R.string.game_started));
+		mModel.setGameState(GameState.NOT_STARTED);
 
 		// Set the sitting players as playing one.
 		for (Player player : mModel.getPlayers()) {
 			if (player.isSitting()) {
-				if (player.getAmount() > 0) {
+				if (player.getScore() > 0) {
 					player.setPlaying(true);
 				} else {
 					final ChordMessage message = ChordMessage.obtainMessage(MessageType.CLEAR_CARDS);
@@ -82,7 +80,7 @@ public class GameLogicController implements BusManager {
 
 		Player smallBlindPlayer;
 		// Choose the player with small blind.
-		if (mModel.getPlayingPlayersCount() == ServerModel.MIN_PLAYER_NUMBER) {
+		if (mModel.getPlayersCount() == ServerModel.MIN_PLAYER_NUMBER) {
 			smallBlindPlayer = mModel.getDealer();
 		} else {
 			smallBlindPlayer = mModel.getNextPlayer(mModel.getDealer());
@@ -92,14 +90,14 @@ public class GameLogicController implements BusManager {
 			}
 		}
 
-		final int smallBlindAmount = Math.min(smallBlindPlayer.getAmount(), ServerModel.SMALL_BLIND);
+		final int smallBlindAmount = Math.min(smallBlindPlayer.getScore(), ServerModel.SMALL_BLIND);
 		smallBlindPlayer.takeAmount(smallBlindAmount);
 		smallBlindPlayer.setCurrentBid(smallBlindAmount);
 		mModel.setPlayerWithSmallBlind(smallBlindPlayer);
 
 		final ChordMessage smallBlindMessage = ChordMessage.obtainMessage(MessageType.BLIND);
 		smallBlindMessage.putObject(ChordMessage.BLIND_TYPE, BlindType.SMALL_BLIND);
-		smallBlindMessage.putInt(ChordMessage.AMOUNT, smallBlindAmount);
+		smallBlindMessage.putInt(ChordMessage.SCORE, smallBlindAmount);
 		sendToClient(smallBlindMessage, smallBlindPlayer);
 		mModel.increaseTablePool(smallBlindAmount);
 
@@ -114,14 +112,14 @@ public class GameLogicController implements BusManager {
 			bigBlindPlayer = mModel.getNextPlayer(bigBlindPlayer);
 		}
 
-		final int bigBlindAmount = Math.min(bigBlindPlayer.getAmount(), ServerModel.BIG_BLIND);
+		final int bigBlindAmount = Math.min(bigBlindPlayer.getScore(), ServerModel.BIG_BLIND);
 		bigBlindPlayer.takeAmount(bigBlindAmount);
 		bigBlindPlayer.setCurrentBid(bigBlindAmount);
 		mModel.setPlayerWithBigBlind(bigBlindPlayer);
 
 		final ChordMessage bigBlindMessage = ChordMessage.obtainMessage(MessageType.BLIND);
 		bigBlindMessage.putObject(ChordMessage.BLIND_TYPE, BlindType.BIG_BLIND);
-		bigBlindMessage.putInt(ChordMessage.AMOUNT, bigBlindAmount);
+		bigBlindMessage.putInt(ChordMessage.SCORE, bigBlindAmount);
 		sendToClient(bigBlindMessage, bigBlindPlayer);
 		mModel.increaseTablePool(bigBlindAmount);
 
@@ -132,11 +130,11 @@ public class GameLogicController implements BusManager {
 		for (Player pokerPlayer : mModel.getPlayers()) {
 			if (pokerPlayer.isPlaying()) {
 				final ChordMessage cardMessage = ChordMessage.obtainMessage(MessageType.CARD_PAIR);
-				final Card firstCard = mModel.getNextCard();
-				final Card secondCard = mModel.getNextCard();
-				pokerPlayer.setCards(new Pair<Card, Card>(firstCard, secondCard));
-				cardMessage.putObject(ChordMessage.FIRST_CARD, firstCard);
-				cardMessage.putObject(ChordMessage.SECOND_CARD, secondCard);
+				final Pad firstPad = mModel.getNextCard();
+				final Pad secondPad = mModel.getNextCard();
+				pokerPlayer.setCards(new Pair<Pad, Pad>(firstPad, secondPad));
+				cardMessage.putObject(ChordMessage.FIRST_CARD, firstPad);
+				cardMessage.putObject(ChordMessage.SECOND_CARD, secondPad);
 				sendToClient(cardMessage, pokerPlayer);
 			}
 		}
@@ -173,7 +171,7 @@ public class GameLogicController implements BusManager {
 
 		// Send your turn message.
 		final ChordMessage turnMessage = ChordMessage.obtainMessage(MessageType.YOUR_TURN);
-		turnMessage.putObject(ChordMessage.AMOUNT, mModel.getCurrentBid());
+		turnMessage.putObject(ChordMessage.SCORE, mModel.getCurrentBid());
 		sendToClient(turnMessage, turnPlayer);
 	}
 
@@ -242,7 +240,7 @@ public class GameLogicController implements BusManager {
 		// Players without turn can send fold while standing.
 		if (player.equals(mModel.getCurrentPlayer())) {
 			determineNextPlayer();
-		} else if (mModel.getPlayingPlayersCount() == 1) {
+		} else if (mModel.getPlayersCount() == 1) {
 			endOfGame(true);
 		}
 	}
@@ -264,7 +262,7 @@ public class GameLogicController implements BusManager {
 		player.takeAmount(bidAmount - currentBid);
 		player.setCurrentBid(bidAmount);
 
-		if (player.getAmount() == 0) {
+		if (player.getScore() == 0) {
 			player.setAllIn(true);
 		}
 
@@ -301,7 +299,7 @@ public class GameLogicController implements BusManager {
 		final Player player = mModel.getPlayer(allInEvent.getNodeName());
 		mModel.increaseTablePool(amount - player.getCurrentBid());
 		player.setCurrentBid(amount);
-		player.takeAmount(player.getAmount());
+		player.takeAmount(player.getScore());
 		player.setAllIn(true);
 		player.setLastPlayersAction(Player.ALL_IN_ACTION);
 		mModel.setTableMessage(player.getName() + " " + mResources.getString(R.string.all_in));
@@ -311,7 +309,7 @@ public class GameLogicController implements BusManager {
 	private boolean mEndGameInNewRound;
 
 	private void determineNextPlayer() {
-		if (mModel.getPlayingPlayersCount() == 1) {
+		if (mModel.getPlayersCount() == 1) {
 			endOfGame(true);
 			return;
 		}
@@ -437,7 +435,7 @@ public class GameLogicController implements BusManager {
 		if (allFolded) {
 			winners = mModel.getPlayingPlayers();
 		} else {
-			final GameResult gameResult = PokerUtils.getGameResult(mModel.getCommonCards(), mModel.getPlayingPlayers());
+			final GameResult gameResult = GameUtils.getGameResult(mModel.getCommonCards(), mModel.getPlayingPlayers());
 			winners = gameResult.getWinners();
 			losers = gameResult.getSortedMap();
 		}
@@ -447,7 +445,7 @@ public class GameLogicController implements BusManager {
 		int pot = mModel.getTablePool();
 
 		// Splits the pot into side pots if necessary
-		if (mModel.getPlayingPlayersCount() * mModel.getCurrentBid() != pot && !allFolded) {
+		if (mModel.getPlayersCount() * mModel.getCurrentBid() != pot && !allFolded) {
 			// At least one player with all-in different than the current bid, so create the side pots
 			final List<Player> allPlayers = mModel.getPlayers();
 			Collections.sort(allPlayers);
@@ -470,7 +468,7 @@ public class GameLogicController implements BusManager {
 				}
 			}
 		} else {
-			pots.add(new Pair<Integer, List<Player>>(pot / mModel.getPlayingPlayersCount(), mModel.getPlayingPlayers()));
+			pots.add(new Pair<Integer, List<Player>>(pot / mModel.getPlayersCount(), mModel.getPlayingPlayers()));
 		}
 
 		pot = mModel.getTablePool();
@@ -490,7 +488,7 @@ public class GameLogicController implements BusManager {
 			}
 
 			final ChordMessage gameEndMessage = ChordMessage.obtainMessage(MessageType.GAME_END);
-			gameEndMessage.putInt(ChordMessage.AMOUNT, wonAmount);
+			gameEndMessage.putInt(ChordMessage.SCORE, wonAmount);
 			sendToClient(gameEndMessage, winner.getNodeName());
 			winner.addAmount(wonAmount);
 			pot -= wonAmount;
@@ -526,7 +524,7 @@ public class GameLogicController implements BusManager {
 				}
 
 				final ChordMessage gameEndMessage = ChordMessage.obtainMessage(MessageType.GAME_END);
-				gameEndMessage.putInt(ChordMessage.AMOUNT, wonAmount);
+				gameEndMessage.putInt(ChordMessage.SCORE, wonAmount);
 				sendToClient(gameEndMessage, loser.getNodeName());
 				loser.addAmount(wonAmount);
 				pot -= wonAmount;
@@ -553,7 +551,7 @@ public class GameLogicController implements BusManager {
 
 	private void sendYourTurnToNextPlayingPlayer(Player nextPlayer) {
 		final ChordMessage turnMessage = ChordMessage.obtainMessage(MessageType.YOUR_TURN);
-		turnMessage.putObject(ChordMessage.AMOUNT, mModel.getCurrentBid());
+		turnMessage.putObject(ChordMessage.SCORE, mModel.getCurrentBid());
 		sendToClient(turnMessage, nextPlayer.getNodeName());
 		mModel.triggerPokerTableEvent();
 	}
@@ -573,12 +571,12 @@ public class GameLogicController implements BusManager {
 
 		if (player == null) {
 			mModel.addPlayer(Player.createPlayer(usernameEvent.getUsername(), nodeName));
-			amount = ServerModel.INITIAL_AMOUNT;
+			amount = ServerModel.INITIAL_SCORE;
 		} else {
-			amount = player.getAmount();
+			amount = player.getScore();
 		}
 
-		stateMessage.putInt(ChordMessage.AMOUNT, amount);
+		stateMessage.putInt(ChordMessage.SCORE, amount);
 		sendToClient(stateMessage, usernameEvent);
 		mModel.triggerPokerTableEvent();
 	}
@@ -631,7 +629,7 @@ public class GameLogicController implements BusManager {
 
 		private final PokerLogicEventType mType;
 		private static final String NODE_NAME = "NODE_NAME";
-		private static final String AMOUNT = "AMOUNT";
+		private static final String AMOUNT = "SCORE";
 
 		private PokerLogicEvent(PokerLogicEventType type, String nodeName) {
 			super();

@@ -22,7 +22,7 @@ import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.ClientGameChord;
 import com.zhideel.tapathon.chord.GameChord;
 import com.zhideel.tapathon.chord.ServerGameChord;
-import com.zhideel.tapathon.events.BusEvent;
+import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.logic.*;
 import com.zhideel.tapathon.utils.BitmapCache;
 
@@ -430,14 +430,14 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
             private static final long serialVersionUID = 20130326L;
 
-            private final transient Pair<Card, Card> mCards;
+            private final transient Pair<Pad, Pad> mCards;
 
-            public CardsEvent(Pair<Card, Card> cards) {
+            public CardsEvent(Pair<Pad, Pad> cards) {
                 super();
                 mCards = cards;
             }
 
-            public Pair<Card, Card> getCards() {
+            public Pair<Pad, Pad> getCards() {
                 return mCards;
             }
 

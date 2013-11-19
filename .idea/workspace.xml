@@ -50,17 +50,245 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05137fe-3a51-40a3-9895-b09c628d6cf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/view_stats.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/.settings/org.eclipse.jdt.core.prefs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/.settings/org.eclipse.jdt.ui.prefs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/Poker.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/big_blind.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/cards.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/chips1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/chips2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/chips3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_big_blind.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_card_back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_clubs_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_dealer.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_dealer_with_small_blind.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_diamonds_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_hearts_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_small_blind.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/client_spades_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/clubs_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/dealer.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/dealer_with_small_blind.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/diamonds_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/hearts_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/small_blind.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_ace.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_eight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_five.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_four.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_jack.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_nine.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_seven.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_six.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_ten.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_three.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/spades_two.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/assets/table.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/ic_launcher-web.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/libs/LibAllShareInterface_1.0.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/libs/armeabi/libchord.so" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/libs/chord-v1.0.0-20130327.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/libs/square-otto-1.3.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/all_in_disable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/all_in_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/all_in_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/blue_btn_bg_normal.9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/blue_btn_bg_pressed.9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/btn_bg_disable.9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/call_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/call_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/check_disable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/check_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/check_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/client_background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/cover_btn_disable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/cover_btn_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/cover_btn_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/fold_disable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/fold_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/fold_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/menu_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/points_border.9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/points_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/poker_chip_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/poker_chip_100.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/poker_chip_20.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/poker_chip_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/poker_chip_50.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/raise_disable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/raise_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/raise_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/sit_down_disable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/sit_down_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/sit_down_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/stand_up_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/stand_up_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/start_normal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/start_pressed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/violet_btn_bg_normal.9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable-xxhdpi/violet_btn_bg_pressed.9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_all_in_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_blue_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_call_check_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_fold_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_raise_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_sit_stand_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_start_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_turn_cards_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/drawable/button_violet_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/layout/about_dialog_fragment.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/layout/choose_server_dialog_fragment.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/layout/game_activity.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/layout/menu_activity.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/layout/server_name_text_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/layout/user_name_dialog_fragment.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values-sw600dp/dimens.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values-v11/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values-v14/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values/colors.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values/dimens.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values/strings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/res/values/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/AbstractChord.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/ChordMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/ClientGameChord.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/ConnectionChord.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/GameChord.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/IChordChannelListenerAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/ServerGameChord.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/debug/LoggedChordChannel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/debug/LoggedChordChannelListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/events/BusEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/Card.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/CardDeck.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/ClientModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/CommunicationBus.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/Model.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/Player.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/PokerHand.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/PokerLogicController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/PokerUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/ServerModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/AboutDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/BitmapView.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/ChooseServerDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/Const.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/GameActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/MenuActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/PlayerInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/PokerTableView.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/UserNameDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/utils/BitmapCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Poker/src/com/srpol/poker/utils/Preconditions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerHand.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PlayerInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/events/BusEvent.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/BusEvent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Card.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Pad.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CardDeck.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PadDeck.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerUtils.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ChordMessage.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ChordMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/GameChord.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/GameChord.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ServerGameChord.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ServerGameChord.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ServerModel.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ServerModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tap-a-thon.iws" />
@@ -130,118 +358,7 @@
     <favorites_list name="Tap-a-thon" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="dialog_channel.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_channel.xml">
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="880">
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameLogicController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="273" column="19" selection-start="9710" selection-end="9710" vertical-scroll-proportion="0.0" vertical-offset="5453" max-vertical-offset="16588">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameChannelFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameChannelFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="0" selection-start="5207" selection-end="5207" vertical-scroll-proportion="0.0" vertical-offset="2765" max-vertical-offset="3586">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="5" selection-start="1204" selection-end="1204" vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="1342">
-              <folding>
-                <element signature="e#0#1418#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PokerHand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerHand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="13" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="2398">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="19" selection-start="766" selection-end="766" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4532">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateChannelFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="43" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="1628">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameMenuActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="5" selection-start="5635" selection-end="5635" vertical-scroll-proportion="0.62484777" vertical-offset="2567" max-vertical-offset="3388">
-              <folding>
-                <element signature="e#1052#1385#0" expanded="true" />
-                <element signature="e#1377#1378#0" expanded="true" />
-                <element signature="e#2053#3509#0" expanded="true" />
-                <element signature="e#3498#3499#0" expanded="true" />
-                <element signature="e#3846#3874#0" expanded="true" />
-                <element signature="e#4467#4492#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChooseServerDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="13" selection-start="2386" selection-end="2386" vertical-scroll-proportion="0.0" vertical-offset="2354" max-vertical-offset="4422">
-              <folding>
-                <element signature="e#3617#3918#0" expanded="true" />
-                <element signature="e#3907#3908#0" expanded="true" />
-                <element signature="e#3959#4608#0" expanded="true" />
-                <element signature="e#4597#4598#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommunicationBus.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CommunicationBus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="63" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0" vertical-offset="147" max-vertical-offset="968">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -259,7 +376,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MusicManager.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/MultiTouchView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ChordListener.java" />
@@ -274,21 +390,15 @@
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameChannelFragment.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/events/BusEvent.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Card.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/UserNameDialog.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Model.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/Const.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/BitmapView.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CardDeck.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PlayerInfo.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MenuActivity.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameActivity.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils/BitmapCache.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml" />
@@ -301,6 +411,22 @@
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/BusEvent.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ChordMessage.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/GameChord.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ServerGameChord.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Card.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CardDeck.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Pad.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PadDeck.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerUtils.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameUtils.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PlayerInfo.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ServerModel.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java" />
       </list>
     </option>
   </component>
@@ -774,7 +900,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
+              <option name="myItemId" value="debug" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chord" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -845,6 +993,9 @@
       <recent name="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/utils" />
       <recent name="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic" />
       <recent name="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.zhideel.tapathon.chord" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Tap-a-thon/res/drawable-mdpi" />
@@ -1129,45 +1280,46 @@
       <workItem from="1383038711972" duration="2107000" />
       <workItem from="1383122550033" duration="1503000" />
       <workItem from="1384327801005" duration="17259000" />
-      <workItem from="1384498425931" duration="5265000" />
+      <workItem from="1384498425931" duration="8068000" />
+      <workItem from="1384830147980" duration="3357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51968000" />
+    <option name="totallyTimeSpent" value="58128000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1329" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="2560" height="1329" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1762132" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874495" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961783" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32821342" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34493926" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955465" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3125506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31204528" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19291966" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.23866348" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1762132" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874495" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961783" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955465" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1192,35 +1344,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Poker/src/com/srpol/poker/chord/GameChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="9" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.0" vertical-offset="376" max-vertical-offset="1581" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/src/com/srpol/poker/ui/GameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="745" column="54" selection-start="22174" selection-end="22174" vertical-scroll-proportion="0.0" vertical-offset="10597" max-vertical-offset="14331" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/src/com/srpol/poker/logic/PokerLogicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="44" selection-start="10307" selection-end="10307" vertical-scroll-proportion="1.757651" vertical-offset="2091" max-vertical-offset="12546" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/IChordChannelListenerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="41" selection-start="706" selection-end="734" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1581">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ServerGameChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="42" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.0" vertical-offset="1054" max-vertical-offset="2261">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/Tap-a-thon/libs/chord-migration-v1.5.0-20130828.jar!/com/samsung/chord/IChordChannel.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="44" selection-start="298" selection-end="298" vertical-scroll-proportion="0.14382403" vertical-offset="0" max-vertical-offset="1182" />
@@ -1274,96 +1397,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ServerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="13" selection-start="989" selection-end="989" vertical-scroll-proportion="0.0" vertical-offset="6" max-vertical-offset="6698">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PlayerInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="30" selection-start="871" selection-end="871" vertical-scroll-proportion="-7.418182" vertical-offset="0" max-vertical-offset="2057">
-          <folding>
-            <element signature="e#0#2732#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1845#1846#0" expanded="false" />
-            <element signature="e#1868#1869#0" expanded="false" />
-            <element signature="e#1902#1903#0" expanded="false" />
-            <element signature="e#1927#1928#0" expanded="false" />
-            <element signature="e#1954#1955#0" expanded="false" />
-            <element signature="e#1975#1976#0" expanded="false" />
-            <element signature="e#2008#2009#0" expanded="false" />
-            <element signature="e#2028#2029#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
-            <element signature="e#2087#2088#0" expanded="false" />
-            <element signature="e#2117#2118#0" expanded="false" />
-            <element signature="e#2138#2139#0" expanded="false" />
-            <element signature="e#2170#2171#0" expanded="false" />
-            <element signature="e#2193#2194#0" expanded="false" />
-            <element signature="e#2227#2228#0" expanded="false" />
-            <element signature="e#2252#2253#0" expanded="false" />
-            <element signature="e#2283#2284#0" expanded="false" />
-            <element signature="e#2305#2306#0" expanded="false" />
-            <element signature="e#2351#2352#0" expanded="false" />
-            <element signature="e#2378#2379#0" expanded="false" />
-            <element signature="e#2406#2407#0" expanded="false" />
-            <element signature="e#2432#2433#0" expanded="false" />
-            <element signature="e#2463#2464#0" expanded="false" />
-            <element signature="e#2485#2486#0" expanded="false" />
-            <element signature="e#2641#2642#0" expanded="false" />
-            <element signature="e#2671#2672#0" expanded="false" />
-            <element signature="e#2702#2703#0" expanded="false" />
-            <element signature="e#2727#2728#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="35" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ClientGameChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="36" selection-start="1088" selection-end="1100" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/AbstractChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="0" selection-start="6346" selection-end="6467" vertical-scroll-proportion="0.0" vertical-offset="3009" max-vertical-offset="4522">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ChordMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="35" selection-start="2793" selection-end="2812" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2924">
-          <folding>
-            <element signature="e#2510#2511#0" expanded="false" />
-            <element signature="e#2529#2530#0" expanded="false" />
-            <element signature="e#2990#2991#0" expanded="false" />
-            <element signature="e#3023#3024#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ConnectionChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="58" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1173">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/GameChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="29" selection-start="1016" selection-end="1036" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1547">
           <folding />
         </state>
       </provider>
@@ -1382,13 +1418,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/PokerTableView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="8" selection-start="2369" selection-end="2369" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="5576">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../Android/sdk/platforms/android-18/android.jar!/android/content/SyncStats.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="69" selection-start="570" selection-end="570" vertical-scroll-proportion="-10.2" vertical-offset="0" max-vertical-offset="578" />
@@ -1398,19 +1427,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="25" selection-start="794" selection-end="794" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2720">
           <folding>
-            <element signature="e#0#4488#0" expanded="true" />
+            <element signature="e#0#4531#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="4" selection-start="1197" selection-end="1197" vertical-scroll-proportion="0.43220338" vertical-offset="0" max-vertical-offset="1180">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/AndroidManifest.xml">
@@ -1421,46 +1450,22 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/activity_game_pad.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="35" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.69899243" vertical-offset="281" max-vertical-offset="1078">
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_stats.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_stats.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="1" selection-start="114" selection-end="114" vertical-scroll-proportion="0.08312342" vertical-offset="0" max-vertical-offset="794">
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="58" selection-start="3978" selection-end="3978" vertical-scroll-proportion="2.4764853" vertical-offset="1167" max-vertical-offset="5126">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1120#1121#0" expanded="true" />
-            <element signature="e#1148#1149#0" expanded="true" />
-            <element signature="e#1197#1198#0" expanded="true" />
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="e#1998#2484#0" expanded="true" />
-            <element signature="e#2479#2480#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="5" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.61632156" vertical-offset="264" max-vertical-offset="1870">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1474,131 +1479,38 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_create_channel.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/view_game_pad.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="38" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../Android/sdk/platforms/android-18/android.jar!/android/content/ContextWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="61" selection-start="206" selection-end="206" vertical-scroll-proportion="0.027227722" vertical-offset="88" max-vertical-offset="4114">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="23" selection-start="8065" selection-end="8065" vertical-scroll-proportion="-12.36" vertical-offset="4399" max-vertical-offset="10802">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1991#2397#0" expanded="true" />
-            <element signature="e#2301#2338#0" expanded="true" />
-            <element signature="e#2389#2390#0" expanded="true" />
-            <element signature="e#3524#3557#0" expanded="true" />
-            <element signature="e#3594#3605#0" expanded="true" />
-            <element signature="e#3868#3898#0" expanded="true" />
-            <element signature="e#4261#4294#0" expanded="true" />
-            <element signature="e#4314#4325#0" expanded="true" />
-            <element signature="e#4845#4869#0" expanded="true" />
-            <element signature="e#7001#7014#0" expanded="true" />
-            <element signature="e#7051#7062#0" expanded="true" />
-            <element signature="e#7289#7304#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/events/BusEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="21" selection-start="786" selection-end="794" vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1342">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1496">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CardDeck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="17" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.0" vertical-offset="873" max-vertical-offset="1694">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="5" selection-start="1658" selection-end="1658" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12540">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CommunicationBus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="63" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="273" column="19" selection-start="9710" selection-end="9710" vertical-scroll-proportion="0.0" vertical-offset="5453" max-vertical-offset="16588">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="1204" selection-end="1204" vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="1342">
-          <folding>
-            <element signature="e#0#1418#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PokerHand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1853">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="19" selection-start="766" selection-end="766" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4532">
-          <folding />
-        </state>
+        <state line="6" column="61" selection-start="206" selection-end="206" vertical-scroll-proportion="0.027227722" vertical-offset="88" max-vertical-offset="4114" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/res/layout/dialog_channel.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java">
@@ -1618,26 +1530,167 @@
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/ChooseServerDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="13" selection-start="2386" selection-end="2386" vertical-scroll-proportion="0.0" vertical-offset="2354" max-vertical-offset="4422">
-          <folding>
-            <element signature="e#3617#3918#0" expanded="true" />
-            <element signature="e#3907#3908#0" expanded="true" />
-            <element signature="e#3959#4608#0" expanded="true" />
-            <element signature="e#4597#4598#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameMenuActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="5" selection-start="5635" selection-end="5635" vertical-scroll-proportion="0.62484777" vertical-offset="2567" max-vertical-offset="3388">
+        <state line="46" column="13" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.5822994" vertical-offset="0" max-vertical-offset="3388">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/AbstractChord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="242" column="13" selection-start="6729" selection-end="6729" vertical-scroll-proportion="0.0" vertical-offset="4643" max-vertical-offset="5852">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/BusEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="3" selection-start="771" selection-end="771" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1254">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ChordMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="168" column="17" selection-start="4460" selection-end="4460" vertical-scroll-proportion="0.0" vertical-offset="2607" max-vertical-offset="3410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ConnectionChord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="36" selection-start="1364" selection-end="1364" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1518">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/IChordChannelListenerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="41" selection-start="706" selection-end="734" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1581">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ServerGameChord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="9" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2486">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="469" column="19" selection-start="14084" selection-end="14084" vertical-scroll-proportion="0.0" vertical-offset="9127" max-vertical-offset="10692">
           <folding>
-            <element signature="e#1052#1385#0" expanded="true" />
-            <element signature="e#1377#1378#0" expanded="true" />
-            <element signature="e#2053#3509#0" expanded="true" />
-            <element signature="e#3498#3499#0" expanded="true" />
-            <element signature="e#3846#3874#0" expanded="true" />
-            <element signature="e#4467#4492#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/CommunicationBus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="18" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="968">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/GameChord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1342">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ClientGameChord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="9" selection-start="1759" selection-end="1759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1276">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Pad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="11" selection-start="859" selection-end="859" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="1584">
+          <folding>
+            <element signature="e#1051#1052#0" expanded="true" />
+            <element signature="e#1071#1072#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1124#1125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PadDeck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="818" selection-end="978" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="0" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.82191783" vertical-offset="0" max-vertical-offset="1100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="35" selection-start="1812" selection-end="1826" vertical-scroll-proportion="1.9178082" vertical-offset="44" max-vertical-offset="1870">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="39" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="4994">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="42" selection-start="2220" selection-end="2220" vertical-scroll-proportion="0.6438356" vertical-offset="1067" max-vertical-offset="1870">
+          <folding>
+            <element signature="e#2243#2244#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ServerModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="30" selection-start="2779" selection-end="2779" vertical-scroll-proportion="-0.72602737" vertical-offset="2695" max-vertical-offset="3498">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="21" selection-start="3624" selection-end="3624" vertical-scroll-proportion="3.890411" vertical-offset="0" max-vertical-offset="3432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/GameLogicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="24" selection-start="2109" selection-end="2109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="16192">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/ClientModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="17" selection-start="2929" selection-end="2929" vertical-scroll-proportion="1.2191781" vertical-offset="1199" max-vertical-offset="2464">
+          <folding />
         </state>
       </provider>
     </entry>

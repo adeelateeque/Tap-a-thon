@@ -15,7 +15,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.LruCache;
-import com.zhideel.tapathon.logic.Card;
+import com.zhideel.tapathon.logic.Pad;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -93,30 +93,30 @@ public class BitmapCache {
 	}
 
 	/**
-	 * Returns bitmap for the specified {@link Card}.
+	 * Returns bitmap for the specified {@link com.zhideel.tapathon.logic.Pad}.
 	 * 
-	 * @param card
+	 * @param pad
 	 *            whose {@link android.graphics.Bitmap} should be returned
-	 * @return {@link android.graphics.Bitmap} of the specified {@link Card}
+	 * @return {@link android.graphics.Bitmap} of the specified {@link com.zhideel.tapathon.logic.Pad}
 	 */
-	public Bitmap getBitmapForCard(Card card) {
-		return getBitmap(card.getColor().name().toLowerCase(Locale.getDefault()) + "_"
-				+ card.getRank().name().toLowerCase(Locale.getDefault()));
+	public Bitmap getBitmapForCard(Pad pad) {
+		return getBitmap(pad.getColor().name().toLowerCase(Locale.getDefault()) + "_"
+				+ pad.getSymbol().name().toLowerCase(Locale.getDefault()));
 	}
 
 	/**
-	 * Returns {@link android.graphics.Bitmap} for the specified client card.
+	 * Returns {@link android.graphics.Bitmap} for the specified client pad.
 	 * 
-	 * @param card
+	 * @param pad
 	 *            whose (@link Bitmap} should be returned
-	 * @return {@link android.graphics.Bitmap} of the specified client card
+	 * @return {@link android.graphics.Bitmap} of the specified client pad
 	 */
-	public Bitmap getBitmapForClientCard(Card card) {
+	public Bitmap getBitmapForClientCard(Pad pad) {
 		// @formatter:off
 		final StringBuilder builder = new StringBuilder("client_")
-			.append(card.getColor().name().toLowerCase(Locale.getDefault()))
+			.append(pad.getColor().name().toLowerCase(Locale.getDefault()))
 			.append('_')
-			.append(card.getRank().name().toLowerCase(Locale.getDefault()));
+			.append(pad.getSymbol().name().toLowerCase(Locale.getDefault()));
 		// @formatter:on
 
 		return getBitmap(builder.toString());
