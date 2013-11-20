@@ -44,7 +44,7 @@ public final class Player implements Comparable<Player> {
 	/**
 	 * Adds the given amount to the player's pool.
 	 * 
-	 * @param amount
+	 * @param score
 	 *            amount to add to the player's pool
 	 */
 	public void addScore(int score) {

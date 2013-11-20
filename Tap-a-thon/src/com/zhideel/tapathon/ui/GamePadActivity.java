@@ -9,24 +9,26 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.sec.android.allshare.ServiceConnector;
 import com.sec.android.allshare.ServiceProvider;
 import com.sec.android.allshare.screen.ScreenCastManager;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
+import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ClientGameChord;
 import com.zhideel.tapathon.chord.GameChord;
 import com.zhideel.tapathon.chord.ServerGameChord;
-import com.zhideel.tapathon.chord.BusEvent;
-import com.zhideel.tapathon.logic.*;
+import com.zhideel.tapathon.logic.CommunicationBus;
+import com.zhideel.tapathon.logic.GameLogicController;
+import com.zhideel.tapathon.logic.Model;
 import com.zhideel.tapathon.utils.BitmapCache;
 
-import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -53,6 +55,10 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 	private boolean continueMusic;
     private GameBoardView gameBoardView;
     private StatsView statsView;
+    private Button btnStart;
+    private TextView tvWaiting;
+
+    public static Context mContext;
 
 
     private final BroadcastReceiver mWiFiBroadcastReceiver = new BroadcastReceiver() {
@@ -73,6 +79,17 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_game_pad);
+        mContext = getApplicationContext();
+        btnStart =  (Button) findViewById(R.id.btn_start);
+        tvWaiting =  (TextView) findViewById(R.id.tv_waiting);
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnStart.setVisibility(View.GONE);
+                showGameDisplay();
+            }
+        });
+
 
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerWifiStateReceiver();
@@ -106,7 +123,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        mAllShareDialog.dismiss();
                     }
                 }).setCancelable(false).create();
 
@@ -115,15 +132,17 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        mNoAllShareCastDialog.dismiss();
                     }
                 }).setCancelable(false).create();
 
         if (mIsClient) {
+            btnStart.setVisibility(View.GONE);
             roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
-            //mStartGame.setVisibility(View.GONE);
+            showGameDisplay();
         } else {
+            tvWaiting.setVisibility(View.GONE);
             roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
             mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
 
@@ -151,9 +170,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                                 screencastmanager.setMode(ScreenCastManager.ScreenMode.DUAL);
                             }
                         });
-
-                        showGameDisplay();
-
                     }
                 }
 
@@ -161,6 +177,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 public void onDeleted(ServiceProvider sprovider) {
                 }
             });
+
 
             mLogicController = new GameLogicController(model, getResources());
             mManagers.add(mLogicController);
@@ -311,157 +328,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             super();
         }
 
-        public static class YourTurnEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            private final YourTurnType mTurnType;
-            private final int mMinimumBidAmount;
-            private final int mAmount;
-
-            public YourTurnEvent(YourTurnType turnType, int amount, int minimumBidAmount) {
-                super();
-                mTurnType = turnType;
-                mMinimumBidAmount = minimumBidAmount;
-                mAmount = amount;
-            }
-
-            public YourTurnType getTurnType() {
-                return mTurnType;
-            }
-
-            public int getMinimumBidAmount() {
-                return mMinimumBidAmount;
-            }
-
-            public int getAmount() {
-                return mAmount;
-            }
-
-            public enum YourTurnType {
-                //@formatter:off
-                CHECK,
-                CALL,
-                NONE;
-                //@formatter:on
-
-                @Override
-                public String toString() {
-                    return name();
-                };
-
-            }
-
-        }
-
-        public static class TurnEndEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            public TurnEndEvent() {
-                super();
-            }
-
-        }
-
-        public static class AmountEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            private final int mAmount;
-            private final int mBidAmount;
-            private final int mMinimumBidAmount;
-
-            public AmountEvent(int amount, int bidAmount, int minimumBidAmount) {
-                super();
-                mAmount = amount;
-                mBidAmount = bidAmount;
-                mMinimumBidAmount = minimumBidAmount;
-            }
-
-            public int getAmount() {
-                return mAmount;
-            }
-
-            public int getBidAmount() {
-                return mBidAmount;
-            }
-
-            public int getMinimumBidAmount() {
-                return mMinimumBidAmount;
-            }
-
-        }
-
-        public static class TokenEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            private final TokenType mTokenType;
-
-            public TokenEvent(TokenType tokenType) {
-                super();
-                mTokenType = tokenType;
-            }
-
-            public TokenType getTokenType() {
-                return mTokenType;
-            }
-
-            public enum TokenType {
-                //@formatter:off
-                SMALL_BLIND,
-                BIG_BLIND,
-                DEALER_WITH_SMALL_BLIND,
-                DEALER,
-                NONE;
-                //@formatter:on
-
-                @Override
-                public String toString() {
-                    return name();
-                }
-
-            }
-
-        }
-
-        public static class CardsEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            private final transient Pair<Pad, Pad> mCards;
-
-            public CardsEvent(Pair<Pad, Pad> cards) {
-                super();
-                mCards = cards;
-            }
-
-            public Pair<Pad, Pad> getCards() {
-                return mCards;
-            }
-
-        }
-
-        public static class SitEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            public SitEvent() {
-                super();
-            }
-
-        }
-
-        public static class StandEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130326L;
-
-            public StandEvent() {
-                super();
-            }
-
-        }
 
         public static class GameEndEvent extends GameActivityEvent {
 
@@ -472,50 +338,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             }
 
         }
-
-        public static class TableFullEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130329L;
-
-            public TableFullEvent() {
-                super();
-            }
-
-        }
-
-        public static class SittingPlayersChangedEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20130410L;
-            private final int mSittingPlayersCount;
-            private final ServerModel.GameState mGameState;
-
-            private static final EnumSet<ServerModel.GameState> ONGOING_GAME = EnumSet.of(ServerModel.GameState.FLOP, ServerModel.GameState.PRE_FLOP,
-                    ServerModel.GameState.RIVER, ServerModel.GameState.TURN);
-
-            public SittingPlayersChangedEvent(ServerModel.GameState gameState, int sittingPlayersCount) {
-                super();
-                mSittingPlayersCount = sittingPlayersCount;
-                mGameState = gameState;
-            }
-
-            public int getSittingPlayersCount() {
-                return mSittingPlayersCount;
-            }
-
-            public boolean isGameOngoing() {
-                return ONGOING_GAME.contains(mGameState);
-            }
-        }
-
-        public static class ClearCardsEvent extends GameActivityEvent {
-
-            private static final long serialVersionUID = 20140417L;
-
-            public ClearCardsEvent() {
-                super();
-            }
-        }
-
     }
 
 }

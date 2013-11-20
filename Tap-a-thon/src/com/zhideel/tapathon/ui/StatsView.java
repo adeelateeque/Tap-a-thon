@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.CommunicationBus;
+import com.zhideel.tapathon.logic.GameLogicController;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class StatsView implements CommunicationBus.BusManager {
                             MultiTouchView.setContinue(false);
                             Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
                             time.cancel();
+                            mBus.post(GameLogicController.EndGameEvent.INSTANCE);
                         }
                     }
                 });

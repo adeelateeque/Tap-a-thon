@@ -11,18 +11,10 @@
  */
 package com.zhideel.tapathon.logic;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import android.content.Intent;
 import android.content.res.Resources;
-import android.util.Pair;
-
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ChordMessage;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
@@ -30,8 +22,10 @@ import com.zhideel.tapathon.chord.GameChord.ClientDisconnectedEvent;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
 import com.zhideel.tapathon.logic.GameUtils.GameResult;
 import com.zhideel.tapathon.logic.ServerModel.GameState;
-import com.zhideel.tapathon.ui.GamePadActivity.GameActivityEvent.SittingPlayersChangedEvent;
-import com.zhideel.tapathon.utils.Preconditions;
+import com.zhideel.tapathon.ui.EndGameActivity;
+import com.zhideel.tapathon.ui.GamePadActivity;
+
+import java.util.List;
 
 /**
  * Encapsulates whole logic of the poker game.
@@ -66,12 +60,13 @@ public class GameLogicController implements BusManager {
 	 *            that triggers game end
 	 */
 	@Subscribe
-	private void endGame(EndGameEvent event) {
+	public void endGame(EndGameEvent event) {
 		final List<Player> winners;
 		final List<Player> losers;
 		
-		final GameResult gameResult = GameUtils.getGameResult(mModel.getPlayingPlayers());
+		final GameResult gameResult = GameUtils.getGameResult(mModel.getPlayers());
 		winners = gameResult.getWinners();
+        losers = mModel.getPlayers();
 
 		// Notify the winners
 		for (Player winner : losers) {
@@ -95,7 +90,9 @@ public class GameLogicController implements BusManager {
 
 		mModel.clearGame();
 		mModel.setGameState(GameState.GAME_FINISHED);
-		mBus.post(new SittingPlayersChangedEvent(mModel.getGameState());
+
+        Intent eg = new Intent(GamePadActivity.mContext, EndGameActivity.class);
+        GamePadActivity.mContext.startActivity(eg);
 	}
 
 	/**
@@ -108,12 +105,10 @@ public class GameLogicController implements BusManager {
 	public void handleUsername(PokerLogicEvent.UsernameEvent usernameEvent) {
 		final String nodeName = usernameEvent.getNodeName();
 		final Player player = mModel.getPlayer(nodeName);
-		final ChordMessage stateMessage = ChordMessage.obtainMessage(MessageType.PLAYER_STATE);
-		final int score;
-
+        Integer score = ServerModel.INITIAL_SCORE;
+        ChordMessage stateMessage = ChordMessage.obtainMessage(MessageType.USERNAME);
 		if (player == null) {
 			mModel.addPlayer(Player.createPlayer(usernameEvent.getUsername(), nodeName));
-			score = ServerModel.INITIAL_SCORE;
 		} else {
 			score = player.getScore();
 		}
@@ -166,10 +161,6 @@ public class GameLogicController implements BusManager {
 			super();
 			putObject(NODE_NAME, nodeName);
 			mType = type;
-		}
-
-		public PokerLogicEventType getType() {
-			return mType;
 		}
 
 		public String getNodeName() {

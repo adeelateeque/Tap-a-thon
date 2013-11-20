@@ -11,9 +11,7 @@
  */
 package com.zhideel.tapathon.logic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 public class GameUtils {
 
@@ -31,8 +29,13 @@ public class GameUtils {
 	 * @return A GameResult object.
 	 */
 	public static GameResult getGameResult(List<Player> players) {
-        final GameResult gameResult = new GameResult();
-        
+
+        TreeMap<Player, Integer> playerScore = new TreeMap<Player, Integer>();
+        for(Player player : players)
+        {
+            playerScore.put(player, player.getScore());
+        }
+        final GameResult gameResult = new GameResult(getWinnersList(playerScore));
 		return gameResult;
 	}
 
@@ -44,10 +47,33 @@ public class GameUtils {
 	 * @return A list of winners. Usually just one, but can be more if there is a tie.
 	 */
 	private static List<Player> getWinnersList(TreeMap<Player, Integer> playerScores) {
-		final List<Player> winnersList = new ArrayList<Player>();
+
+        Map<Player, Integer> sortedMap = sortByValue(playerScores);
+		final List<Player> winnersList = new ArrayList<Player>(sortedMap.keySet());
 
 		return winnersList;
 	}
+
+    public static <K, V extends Comparable<? super V>> Map<K, V>
+    sortByValue( Map<K, V> map )
+    {
+        List<Map.Entry<K, V>> list =
+                new LinkedList<Map.Entry<K, V>>( map.entrySet() );
+        Collections.sort( list, new Comparator<Map.Entry<K, V>>()
+        {
+            public int compare( Map.Entry<K, V> o1, Map.Entry<K, V> o2 )
+            {
+                return (o1.getValue()).compareTo( o2.getValue() );
+            }
+        } );
+
+        Map<K, V> result = new LinkedHashMap<K, V>();
+        for (Map.Entry<K, V> entry : list)
+        {
+            result.put( entry.getKey(), entry.getValue() );
+        }
+        return result;
+    }
 
 	static class GameResult {
 
@@ -55,9 +81,10 @@ public class GameUtils {
 
 		/**
 		 * Constructor method. GameResult holds all game information - which player has what cards.
-		 */
-		public GameResult() {
-
+         * @param winnersList
+         */
+		public GameResult(List<Player> winnersList) {
+            this.mWinners = winnersList;
 		}
 
 		/**

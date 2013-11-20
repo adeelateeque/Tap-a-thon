@@ -80,7 +80,6 @@ public class MultiTouchView extends View {
 					MultiTouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
 				} else if (isContinue){
 					MultiTouchView.this.setBackgroundColor(Color.WHITE);
-					//MultiTouchView.this.setBackground(MultiTouchView.this.getResources().getDrawable(R.drawable.fire_alert));
 				} else {
 					MultiTouchView.this.setBackgroundColor(Color.BLACK);
 				}
@@ -89,10 +88,6 @@ public class MultiTouchView extends View {
 				randText();
 			}
 		}, getRandomDelay());
-	}
-
-	private void randomShock() {
-		Bitmap fireAlert = BitmapFactory.decodeResource(getResources(), R.drawable.fire_alert);
 	}
 
 	private int getRandomDelay() {

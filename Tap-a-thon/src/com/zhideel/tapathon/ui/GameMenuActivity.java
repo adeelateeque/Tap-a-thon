@@ -122,7 +122,7 @@ public class GameMenuActivity extends Activity implements ChooseServerDialog.OnS
     }
 
     void setNameTextView(String name) {
-        final StringBuilder builder = new StringBuilder(getString(R.string.hello)).append(' ').append(name);
+        final StringBuilder builder = new StringBuilder().append(' ').append(name);
         etName.setText(builder.toString());
     }
 

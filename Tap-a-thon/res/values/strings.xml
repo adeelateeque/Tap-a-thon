@@ -50,6 +50,6 @@
     <string name="license_info">This app makes use of Otto event bus which is published under the Apache 2.0 License. More information can be found here http://www.apache.org/licenses/LICENSE-2.0</string>
     <string name="searching_for_rooms">searching&#8230;</string>
     <string name="all_share_dialog_message">The S Poker requires TV with AllShare Cast functionality.\n\nPress OK and connect with TV to play the game.\n\nThis dialog will be automatically dismissed after the connection is established.</string>
-    <string name="all_share_dialog_exit">Exit</string>
+    <string name="all_share_dialog_exit">Later</string>
     <string name="no_all_share_cast_dialog">Your device doesn\'t support AllShare Cast functionality.\n\nYou can always connect as client.</string>
 </resources>
