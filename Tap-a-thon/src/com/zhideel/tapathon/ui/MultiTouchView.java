@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 import com.zhideel.tapathon.R;
 
 import java.util.ArrayList;
@@ -32,6 +31,7 @@ public class MultiTouchView extends View {
 	private String currentText;
 	private static GameLevel selectedLevel;
 	private int minDelay, maxDelay;
+    private boolean startGame = false;
 
 	public MultiTouchView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -56,18 +56,25 @@ public class MultiTouchView extends View {
 		textPaint.setColor(Color.WHITE);
 		textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
 		textPaint.setTextSize(100);
-		
+
+        if (startGame == true){
+            minDelay = 0;
+            maxDelay = 0;
+            startGame = false;
+        }
+        else {
 		if (selectedLevel == GameLevel.EASY){
-			minDelay = 3000;
-			maxDelay = 5000;
+			minDelay = 4000;
+			maxDelay = 6000;
 		}
 		else if (selectedLevel == GameLevel.MEDIUM){
-			minDelay = 2000;
-			maxDelay = 4000;
+			minDelay = 3500;
+			maxDelay = 4500;
 		}else if (selectedLevel == GameLevel.HARD){
-			minDelay = 1500;
-			maxDelay = 2500;
-		}
+			minDelay = 2000;
+			maxDelay = 3500;
+        }
+        }
 		
 		randomPaint();
 		randText();
@@ -141,7 +148,7 @@ public class MultiTouchView extends View {
 					this.isSelected = true;
 					if ((operands.size() == 2) && (operator != null)) {
 						int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-						Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
 						((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
 					}
 				}
@@ -153,7 +160,7 @@ public class MultiTouchView extends View {
 					this.isSelected = true;
 					if (operands.size() == 2) {
 						int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-						Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
 						((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
 					}
 				}

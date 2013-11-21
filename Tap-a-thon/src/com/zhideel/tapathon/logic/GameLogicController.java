@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class GameLogicController implements BusManager {
 	private final Bus mBus;
-	private final ServerModel mModel;
+	public static ServerModel mModel;
 	private final Resources mResources;
 
 	public GameLogicController(Model model, Resources resources) {
@@ -102,7 +102,7 @@ public class GameLogicController implements BusManager {
 	 *            containing information about player that joined the game
 	 */
 	@Subscribe
-	public void handleUsername(PokerLogicEvent.UsernameEvent usernameEvent) {
+	public void handleUsername(GameLogicEvent.UsernameEvent usernameEvent) {
 		final String nodeName = usernameEvent.getNodeName();
 		final Player player = mModel.getPlayer(nodeName);
         Integer score = ServerModel.INITIAL_SCORE;
@@ -117,7 +117,7 @@ public class GameLogicController implements BusManager {
 		sendToClient(stateMessage, usernameEvent);
 	}
 
-	private <T extends PokerLogicEvent> void sendToClient(ChordMessage message, T event) {
+	private <T extends GameLogicEvent> void sendToClient(ChordMessage message, T event) {
 		sendToClient(message, event.getNodeName());
 	}
 
@@ -149,15 +149,15 @@ public class GameLogicController implements BusManager {
 	/**
 	 * Event posted through the {@link com.squareup.otto.Bus} that contains information about changes in the game logic.
 	 */
-	public static class PokerLogicEvent extends BusEvent {
+	public static class GameLogicEvent extends BusEvent {
 
 		private static final long serialVersionUID = 20130312L;
 
-		private final PokerLogicEventType mType;
+		private final GameLogicEventType mType;
 		private static final String NODE_NAME = "NODE_NAME";
 		private static final String SCORE = "SCORE";
 
-		private PokerLogicEvent(PokerLogicEventType type, String nodeName) {
+		private GameLogicEvent(GameLogicEventType type, String nodeName) {
 			super();
 			putObject(NODE_NAME, nodeName);
 			mType = type;
@@ -167,14 +167,14 @@ public class GameLogicController implements BusManager {
 			return (String) getObject(NODE_NAME);
 		}
 
-		public static class UsernameEvent extends PokerLogicEvent {
+		public static class UsernameEvent extends GameLogicEvent {
 
 			private static final long serialVersionUID = 20130325L;
 
 			public static final String USERNAME = "USERNAME";
 
 			public UsernameEvent(String username, String nodeName) {
-				super(PokerLogicEventType.USERNAME, nodeName);
+				super(GameLogicEventType.USERNAME, nodeName);
 				putObject(USERNAME, username);
 			}
 
@@ -185,9 +185,9 @@ public class GameLogicController implements BusManager {
 		}
 
 		/**
-		 * Represents type of the {@link GameLogicController.PokerLogicEvent}.
+		 * Represents type of the {@link com.zhideel.tapathon.logic.GameLogicController.GameLogicEvent}.
 		 */
-		public enum PokerLogicEventType {
+		public enum GameLogicEventType {
 			//@formatter:off
 		    USERNAME;
 			//@formatter:on

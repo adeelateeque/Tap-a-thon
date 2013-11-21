@@ -61,14 +61,14 @@ public class ServerGameChord extends GameChord {
 
 		switch (message.getType()) {
 		case USERNAME:
-			//postPokerLogicEvent(new PokerLogicEvent.UsernameEvent(message.getString(UsernameEvent.USERNAME), senderNodeName));
+			//postPokerLogicEvent(new GameLogicEvent.UsernameEvent(message.getString(UsernameEvent.USERNAME), senderNodeName));
 			break;
 		default:
 			throw new IllegalArgumentException(message.getType().name());
 		}
 	}
 
-	/*private <T extends PokerLogicEvent> void postPokerLogicEvent(T event) {
+	/*private <T extends GameLogicEvent> void postPokerLogicEvent(T event) {
 		mBus.post(event);
 	}*/
 

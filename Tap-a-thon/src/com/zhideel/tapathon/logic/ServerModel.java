@@ -73,7 +73,7 @@ public class ServerModel implements BusManager {
 		return null;
 	}
 
-	List<Player> getPlayers() {
+	public List<Player> getPlayers() {
 		return new ArrayList<Player>(mPlayers);
 	}
 

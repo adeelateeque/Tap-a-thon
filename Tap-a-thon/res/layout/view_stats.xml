@@ -4,27 +4,75 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_timer"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33"
-        android:textSize="30sp"
-        android:gravity="center" />
 
-    <TextView
-        android:id="@+id/tv_multipler"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.33"
-        android:textSize="30sp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_qns"
+        <TextView
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Question"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_qns"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:textSize="30sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.33"
-        android:textSize="30sp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Score"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_multipler"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.33"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Timer"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_timer"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:textSize="30sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
 </LinearLayout>

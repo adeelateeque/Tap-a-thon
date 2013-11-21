@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.CommunicationBus;
@@ -63,7 +62,7 @@ public class StatsView implements CommunicationBus.BusManager {
                             setInterval(interval);
                         } else {
                             MultiTouchView.setContinue(false);
-                            Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
                             time.cancel();
                             mBus.post(GameLogicController.EndGameEvent.INSTANCE);
                         }

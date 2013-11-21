@@ -15,6 +15,7 @@
     <ListView
         android:id="@+id/lv_score"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></ListView>
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"></ListView>
 
 </LinearLayout>

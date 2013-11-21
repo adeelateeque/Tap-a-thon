@@ -46,10 +46,9 @@
     <string name="press_start">Press Start button to start new round</string>
     <string name="room">ROOM-</string>
 
-    <string name="about_info">This app presents use of the AllShare and Chord libraries. Its source code can be found on Samsung Developer site: http://developer.samsung.com</string>
-    <string name="license_info">This app makes use of Otto event bus which is published under the Apache 2.0 License. More information can be found here http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="about_info">This is app is a fun math game...</string>
     <string name="searching_for_rooms">searching&#8230;</string>
-    <string name="all_share_dialog_message">The S Poker requires TV with AllShare Cast functionality.\n\nPress OK and connect with TV to play the game.\n\nThis dialog will be automatically dismissed after the connection is established.</string>
+    <string name="all_share_dialog_message">Tap-a-thon requires TV with AllShare Cast functionality.\n\nPress OK and connect with TV to play the game.\n\nThis dialog will be automatically dismissed after the connection is established.</string>
     <string name="all_share_dialog_exit">Later</string>
     <string name="no_all_share_cast_dialog">Your device doesn\'t support AllShare Cast functionality.\n\nYou can always connect as client.</string>
 </resources>

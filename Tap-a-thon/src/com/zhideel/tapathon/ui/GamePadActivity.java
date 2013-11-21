@@ -79,7 +79,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_game_pad);
-        mContext = getApplicationContext();
+        mContext = this;
         btnStart =  (Button) findViewById(R.id.btn_start);
         tvWaiting =  (TextView) findViewById(R.id.tv_waiting);
         btnStart.setOnClickListener(new View.OnClickListener() {

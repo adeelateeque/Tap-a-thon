@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:minWidth="330dp">
+    android:minWidth="350dp">
     
     <EditText
         android:id="@+id/et_name"
