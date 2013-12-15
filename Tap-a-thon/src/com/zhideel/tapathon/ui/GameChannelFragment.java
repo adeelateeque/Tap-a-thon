@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameChannelFragment extends DialogFragment implements OnServerListChangedListener, BusManager {
+public class GameChannelFragment extends DialogFragment implements OnServerListChangedListener, BusManager,ListView.OnItemClickListener {
 	
 	private ConnectionChord mConnectionChord;
 	private OnServerChosenListener mOnServerChosenListener;
@@ -32,9 +32,8 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	private Bus mBus;
 	
 	private LinearLayout view;
-	private Button btnJoin, btnCreate;
+	private Button btnCreate;
     private ListView listChannel;
-	private String selectedChannel;
 	
 	@Subscribe
 	public void onNodeLeftOnPublicChannel(NodeLeftOnPublicChannelEvent event) {
@@ -62,13 +61,13 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		getDialog().setTitle("Available room");
+		getDialog().setTitle("Available room(s)");
 		view = (LinearLayout) inflater.inflate(R.layout.dialog_channel, null);
-		btnJoin = (Button) view.findViewById(R.id.btn_join);
 		listChannel = (ListView) view.findViewById(R.id.lv_channel);
 		btnCreate = (Button) view.findViewById(R.id.btn_create);
 		
 		mServerAdapter = new ServerAdapter();
+        listChannel.setOnItemClickListener(this);
 		listChannel.setAdapter(mServerAdapter);
 		return view;
 	}
@@ -76,15 +75,6 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		
-		btnJoin.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-                Intent myIntent=new Intent(GameChannelFragment.this.getActivity(), GamePadActivity.class);
-                startActivity(myIntent);
-                getDialog().dismiss();
-			}
-		});
 		
 		btnCreate.setOnClickListener(new OnClickListener(){
 			@Override
@@ -102,8 +92,14 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 			}
 		});
 	}
-	
-	@Override
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mOnServerChosenListener.onServerChosen(((ServerAdapter) parent.getAdapter()).getItem(position));
+        dismiss();
+    }
+
+    @Override
 	public void startBus() {
 		mBus.register(this);
 	}

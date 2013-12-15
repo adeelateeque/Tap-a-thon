@@ -6,7 +6,8 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="join">Join</string>
-    <string name="create">Create</string>
+    <string name="create">Create a new room</string>
+    <string name="create_new">Create</string>
     <string name="cancel">Cancel</string>
     <string name="new_channel_name">Room name</string>
     <string name="enable_allshare">Enable AllShare</string>
@@ -34,7 +35,7 @@
     <string name="username_dialog_message">Please enter your name</string>
     <string name="username_dialog_title">Username</string>
     <string name="hello">Hello</string>
-    <string name="wifi_off">WiFi is turned off. You have to turn it on.</string>
+    <string name="wifi_off">WiFi is turned off or not connected to a network. You have to turn it on and connect to a networkf.</string>
     <string name="wifi_disconnected">WiFi got disconnected. Turn it on and reconnect to the server.</string>
     <string name="game_started">Game started</string>
     <string name="folded">folded</string>

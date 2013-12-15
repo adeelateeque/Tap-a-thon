@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ListAdapter;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.CommunicationBus;
@@ -35,6 +36,16 @@ public class GameBoardView implements CommunicationBus.BusManager {
         gridview.setAdapter(new PadAdapter(mContext));
     }
 
+    public void pauseBoard(boolean paused)
+    {
+       ListAdapter adapter = gridview.getAdapter();
+        for(int i = 0; i < adapter.getCount(); i++)
+        {
+            MultiTouchView view = (MultiTouchView) adapter.getItem(i);
+            view.setPaused(paused);
+        }
+    }
+
     @Override
     public void startBus() {
         mBus.register(this);
@@ -44,6 +55,7 @@ public class GameBoardView implements CommunicationBus.BusManager {
     public void stopBus() {
         mBus.unregister(this);
     }
+
 }
 
 
@@ -54,6 +66,13 @@ class PadAdapter extends BaseAdapter {
     public PadAdapter(Context c) {
         mContext = c;
         tappads = new ArrayList<MultiTouchView>();
+        for(int i=0; i < getCount(); i++)
+        {
+            MultiTouchView tappad;
+            tappad = new MultiTouchView(mContext, null);
+            tappad.setAlpha(0.4f);
+            tappads.add(tappad);
+        }
     }
 
     public int getCount() {
@@ -69,11 +88,10 @@ class PadAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        MultiTouchView tappad;
-        tappad = new MultiTouchView(mContext, null);
+
+        MultiTouchView tappad = (MultiTouchView) getItem(position);
         tappad.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / 3,
                 parent.getHeight() / 3 - 7));
-        tappad.setAlpha(0.4f);
         return tappad;
     }
 }

@@ -57,6 +57,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private StatsView statsView;
     private Button btnStart;
     private TextView tvWaiting;
+    private boolean allShareShownBefore = false;
 
     public static Context mContext;
 
@@ -202,7 +203,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                      GamePadActivity.this.finish();
                     }
                 })
                 .setNegativeButton(R.string.cancel, null)
@@ -281,6 +282,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		if (!continueMusic) {
 			MusicManager.pause();
 		}
+        if(statsView != null) statsView.setPaused(true);
+        if(gameBoardView != null) gameBoardView.pauseBoard(true);
         mNoAllShareCastDialog.dismiss();
         mAllShareDialog.dismiss();
         super.onPause();
@@ -292,11 +295,14 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		super.onResume();
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
-
-        if (!mIsClient) {
+        if(statsView != null){ statsView.setPaused(false); }
+        if(gameBoardView != null){ gameBoardView.pauseBoard(false); }
+        if (!mIsClient && !allShareShownBefore) {
             if (mManager == null) {
+                allShareShownBefore = true;
                 mNoAllShareCastDialog.show();
             } else if (!mAllShareEnabled) {
+                allShareShownBefore = true;
                 mAllShareDialog.show();
             }
         }

@@ -27,6 +27,7 @@ public class MultiTouchView extends View {
 	private int[] colors = { Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW };
 	private boolean isSelected;
 	private static boolean isContinue = true;
+    private boolean isPaused = false;
 	private Paint textPaint;
 	private String currentText;
 	private static GameLevel selectedLevel;
@@ -45,6 +46,15 @@ public class MultiTouchView extends View {
 	public static void setContinue(boolean cont){
 		isContinue = cont;
 	}
+
+    public void setPaused(boolean paused)
+    {
+       this.isPaused = paused;
+       if(isPaused == false)
+       {
+           randomPaint();
+       }
+    }
 
 	private void initView() {
 		mActivePointers = new SparseArray<PointF>();
@@ -91,8 +101,10 @@ public class MultiTouchView extends View {
 					MultiTouchView.this.setBackgroundColor(Color.BLACK);
 				}
 				invalidate();
-				randomPaint();
-				randText();
+				if(isPaused == false){
+                    randomPaint();
+                    randText();
+                }
 			}
 		}, getRandomDelay());
 	}

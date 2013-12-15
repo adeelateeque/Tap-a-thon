@@ -17,15 +17,8 @@
     	android:weightSum="1" >
 
         <Button
-            android:id="@+id/btn_join"
-            android:layout_width="0dp"
-        	android:layout_height="wrap_content"
-        	android:layout_weight="0.5"
-        	android:text="@string/join" />
-
-        <Button
             android:id="@+id/btn_create"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:layout_weight="0.5"
         	android:text="@string/create" />"

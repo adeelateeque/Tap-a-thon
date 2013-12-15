@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.zhideel.tapathon.ConnectionManager;
 import com.zhideel.tapathon.R;
 
-public class GameMenuActivity extends Activity implements ChooseServerDialog.OnServerChosenListener {
+public class GameMenuActivity extends Activity implements GameChannelFragment.OnServerChosenListener {
 
 	public static final String TAG = "Tapathon";
     public static final String POKER_PREFERENCES = "POKER_PREFERENCES";
@@ -54,18 +54,20 @@ public class GameMenuActivity extends Activity implements ChooseServerDialog.OnS
         final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.POKER_PREFERENCES,
                 Context.MODE_PRIVATE);
         final String userName = sharedPreferences.getString(GameMenuActivity.USER_NAME_KEY, "");
-        etName.append(userName);
+        etName.append(userName.trim());
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!bStarted) {
-                    final String name = etName.getText().toString();
-                    if (name.length() > 0) {
-                        final SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(GameMenuActivity.USER_NAME_KEY, name);
-                        editor.apply();
-                        setNameTextView(name);
+                    String name = etName.getText().toString();
+                    if (!(name.length() > 0)) {
+                       name = "ANONYMOUS";
                     }
+                    final SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(GameMenuActivity.USER_NAME_KEY, name);
+                    editor.apply();
+                    setNameTextView(name);
+
                     cm.startChord();
                     
                     FragmentTransaction dFrag = getFragmentManager().beginTransaction();
@@ -74,7 +76,7 @@ public class GameMenuActivity extends Activity implements ChooseServerDialog.OnS
             	    	dFrag.remove(prev);
             	    }
             	    dFrag.addToBackStack(null);
-                    ChooseServerDialog mFragment = new ChooseServerDialog();
+                    GameChannelFragment mFragment = new GameChannelFragment();
                     mFragment.show(getFragmentManager(), "dialog_channel");
                     dFrag.commit();
                     
@@ -122,8 +124,7 @@ public class GameMenuActivity extends Activity implements ChooseServerDialog.OnS
     }
 
     void setNameTextView(String name) {
-        final StringBuilder builder = new StringBuilder().append(' ').append(name);
-        etName.setText(builder.toString());
+        etName.setText(name);
     }
 
     @Override

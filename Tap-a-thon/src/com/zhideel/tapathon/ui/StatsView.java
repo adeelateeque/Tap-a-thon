@@ -22,6 +22,7 @@ import java.util.TimerTask;
 public class StatsView implements CommunicationBus.BusManager {
     private Activity mContext;
     private final Bus mBus;
+    private boolean isPaused;
     private ArrayList<Integer> operands;
     private String operator;
     private TextView tvMultipler, tvQns, tvTimer;
@@ -57,14 +58,16 @@ public class StatsView implements CommunicationBus.BusManager {
                 mContext.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (interval != 0) {
-                            interval--;
-                            setInterval(interval);
-                        } else {
-                            MultiTouchView.setContinue(false);
-                            //Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
-                            time.cancel();
-                            mBus.post(GameLogicController.EndGameEvent.INSTANCE);
+                        if(isPaused == false){
+                            if (interval != 0) {
+                                interval--;
+                                setInterval(interval);
+                            } else {
+                                MultiTouchView.setContinue(false);
+                                //Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
+                                time.cancel();
+                                mBus.post(GameLogicController.EndGameEvent.INSTANCE);
+                            }
                         }
                     }
                 });
@@ -127,6 +130,15 @@ public class StatsView implements CommunicationBus.BusManager {
         operands.clear();
         operator = null;
         ((GamePadActivity) mContext).getGameBoard().resetBoard();
+    }
+
+    public void setPaused(Boolean paused)
+    {
+        this.isPaused = true;
+        if(isPaused == false)
+        {
+            timer();
+        }
     }
 
 
