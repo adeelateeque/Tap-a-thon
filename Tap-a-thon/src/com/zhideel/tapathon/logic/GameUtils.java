@@ -35,7 +35,7 @@ public class GameUtils {
         {
             playerScore.put(player, player.getScore());
         }
-        final GameResult gameResult = new GameResult(getWinnersList(playerScore));
+        GameResult gameResult = new GameResult(getWinnersList(playerScore));
 		return gameResult;
 	}
 
@@ -75,7 +75,7 @@ public class GameUtils {
         return result;
     }
 
-	static class GameResult {
+	public static class GameResult {
 
 		private List<Player> mWinners;
 

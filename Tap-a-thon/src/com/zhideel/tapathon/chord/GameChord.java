@@ -12,6 +12,7 @@
 package com.zhideel.tapathon.chord;
 
 import android.content.Context;
+import com.zhideel.tapathon.logic.ClientModel;
 
 /**
  * Class responsible for handling {@link ChordMessage}s related to the game.
@@ -31,7 +32,7 @@ public abstract class GameChord extends AbstractChord {
 	void handlePrivateMessage(ChordMessage message) {
 		switch (message.getType()) {
 		case GAME_END:
-			//mBus.post(new ClientModelEvent.GameEnd(message.getInt(ChordMessage.SCORE)));
+			mBus.post(new ClientModel.ClientModelEvent.GameEnd(message.getInt(ChordMessage.SCORE)));
 			break;
 		case GET_SERVERS_LIST:
 		case SERVER_NAME_BROADCAST:

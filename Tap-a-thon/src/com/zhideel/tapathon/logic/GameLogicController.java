@@ -34,6 +34,7 @@ public class GameLogicController implements BusManager {
 	private final Bus mBus;
 	public static ServerModel mModel;
 	private final Resources mResources;
+    public GameResult gameResult;
 
 	public GameLogicController(Model model, Resources resources) {
 		mBus = CommunicationBus.getInstance();
@@ -64,12 +65,12 @@ public class GameLogicController implements BusManager {
 		final List<Player> winners;
 		final List<Player> losers;
 		
-		final GameResult gameResult = GameUtils.getGameResult(mModel.getPlayers());
+		gameResult = GameUtils.getGameResult(mModel.getPlayers());
 		winners = gameResult.getWinners();
         losers = mModel.getPlayers();
 
 		// Notify the winners
-		for (Player winner : losers) {
+		for (Player winner : winners) {
 			if (losers != null) {
 				losers.remove(winner);
 			}

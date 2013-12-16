@@ -154,13 +154,13 @@ public class ConnectionManager implements IChordChannelListener {
 
         @Override
         public void onNetworkDisconnected() {
-            // TODO Auto-generated method stub
+
 
         }
 
         @Override
         public void onError(int error) {
-            // TODO Auto-generated method stub
+
 
         }
     };

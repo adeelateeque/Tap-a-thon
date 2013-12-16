@@ -42,9 +42,7 @@ public class ClientModel implements BusManager {
 	@Subscribe
 	public void gameEnd(ClientModelEvent.GameEnd event) {
 		mScore += event.getScore();
-
 		postToGameActivity(new GameActivityEvent.GameEndEvent());
-		//postToGameActivity(new GameActivityEvent.AmountEvent(mAmount, mBidAmount, mMinimumBidAmount));
 	}
 
 	@Override

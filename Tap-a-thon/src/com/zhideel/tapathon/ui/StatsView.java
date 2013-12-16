@@ -67,7 +67,6 @@ public class StatsView implements CommunicationBus.BusManager {
 
                             } else {
                                 MultiTouchView.setContinue(false);
-                                //Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
                                 time.cancel();
                                 mBus.post(GameLogicController.EndGameEvent.INSTANCE);
                             }

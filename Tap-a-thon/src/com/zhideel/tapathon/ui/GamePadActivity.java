@@ -19,11 +19,13 @@ import com.sec.android.allshare.ServiceConnector;
 import com.sec.android.allshare.ServiceProvider;
 import com.sec.android.allshare.screen.ScreenCastManager;
 import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ClientGameChord;
 import com.zhideel.tapathon.chord.GameChord;
 import com.zhideel.tapathon.chord.ServerGameChord;
+import com.zhideel.tapathon.logic.ClientModel;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.logic.Model;
@@ -33,8 +35,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-//TODO add double tap listener
-//TODO add long tap listener
 public class GamePadActivity extends Activity implements CommunicationBus.BusManager{
 	
 	public static final String GAME_NAME = "TAPATHON";
@@ -61,7 +61,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     public static Context mContext;
 
-
     private final BroadcastReceiver mWiFiBroadcastReceiver = new BroadcastReceiver() {
 
         @Override
@@ -86,6 +85,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO send a START_GAME event to clients, same like END_GAME so they can call their showGameDisplay() also
                 btnStart.setVisibility(View.GONE);
                 showGameDisplay();
             }
@@ -325,6 +325,12 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     }
 
 
+    @Subscribe
+    public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent)
+    {
+        mLogicController.gameResult.getWinners();
+        //TODO you can do the rest from here i.e displaying the scoreboard
+    }
 
     public static class GameActivityEvent extends BusEvent {
 
