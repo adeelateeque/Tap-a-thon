@@ -22,13 +22,14 @@ import java.util.TimerTask;
 public class StatsView implements CommunicationBus.BusManager {
     private Activity mContext;
     private final Bus mBus;
-    private boolean isPaused;
+    private boolean isPaused = false;
     private ArrayList<Integer> operands;
     private String operator;
     private TextView tvMultipler, tvQns, tvTimer;
     private Random rand = new Random();
     private int randomQns, correctAns;
     private int interval = 60;
+
     public StatsView(Context context, ViewGroup viewGroup) {
         mContext = (Activity) context;
         this.mBus = CommunicationBus.getInstance();
@@ -46,22 +47,24 @@ public class StatsView implements CommunicationBus.BusManager {
         tvQns.setText(Integer.toString(randomQns));
     }
 
-    public void setInterval(int interval){
+    public void setInterval(int interval) {
         tvTimer.setText(Integer.toString(interval));
     }
 
-    private void timer(){
+    private void timer() {
         final Timer time = new Timer();
-        time.scheduleAtFixedRate(new TimerTask(){
+        time.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                mContext.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(isPaused == false){
+                if (isPaused == false) {
+                    mContext.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
                             if (interval != 0) {
+
                                 interval--;
                                 setInterval(interval);
+
                             } else {
                                 MultiTouchView.setContinue(false);
                                 //Toast.makeText(mContext, Integer.toString(correctAns), Toast.LENGTH_SHORT).show();
@@ -69,8 +72,9 @@ public class StatsView implements CommunicationBus.BusManager {
                                 mBus.post(GameLogicController.EndGameEvent.INSTANCE);
                             }
                         }
-                    }
-                });
+
+                    });
+                }
             }
         }, 0, 1000);
     }
@@ -86,7 +90,7 @@ public class StatsView implements CommunicationBus.BusManager {
         }
     }
 
-    public ArrayList<Integer> getOperands(){
+    public ArrayList<Integer> getOperands() {
         return operands;
     }
 
@@ -96,7 +100,7 @@ public class StatsView implements CommunicationBus.BusManager {
         }
     }
 
-    public String getOperator(){
+    public String getOperator() {
         return this.operator;
     }
 
@@ -114,7 +118,7 @@ public class StatsView implements CommunicationBus.BusManager {
             result = op1 + op2;
         }
 
-        if (result == randomQns){
+        if (result == randomQns) {
             DecimalFormat df = new DecimalFormat("#.0");
             double multipler = Double.parseDouble(tvMultipler.getText().toString());
             multipler = Double.valueOf(df.format(multipler + 0.1));
@@ -124,7 +128,7 @@ public class StatsView implements CommunicationBus.BusManager {
         return result;
     }
 
-    public void resetCurrent(){
+    public void resetCurrent() {
         randomQns = randInt(0, 20);
         tvQns.setText(Integer.toString(randomQns));
         operands.clear();
@@ -132,11 +136,9 @@ public class StatsView implements CommunicationBus.BusManager {
         ((GamePadActivity) mContext).getGameBoard().resetBoard();
     }
 
-    public void setPaused(Boolean paused)
-    {
-        this.isPaused = true;
-        if(isPaused == false)
-        {
+    public void setPaused(Boolean paused) {
+        this.isPaused = paused;
+        if (isPaused == false) {
             timer();
         }
     }
