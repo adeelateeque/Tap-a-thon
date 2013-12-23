@@ -22,7 +22,7 @@ public final class Player implements Comparable<Player> {
 	private final String mNodeName;
 	private int mScore;
 
-	private Player(String playerName, String nodeName) {
+	public Player(String playerName, String nodeName) {
 		mName = Preconditions.checkNotNull(playerName);
 		mNodeName = Preconditions.checkNotNull(nodeName);
 		mScore = ServerModel.INITIAL_SCORE;

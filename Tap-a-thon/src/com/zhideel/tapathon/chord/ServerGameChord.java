@@ -16,6 +16,7 @@ import android.content.Context;
 import com.samsung.chord.IChordChannel;
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
+import com.zhideel.tapathon.chord.GameChord.JoinedToServerEvent;
 
 /**
  * Class responsible for handling {@link ChordMessage}s related to the server side of the game.
@@ -31,6 +32,7 @@ public class ServerGameChord extends GameChord {
 		switch (message.getType()) {
 		case USERNAME:
 			handleMessageFromClient(message);
+			mBus.post(JoinedToServerEvent.INSTANCE);
 			break;
 		default:
 			super.handlePrivateMessage(message);

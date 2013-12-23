@@ -64,7 +64,9 @@ public class GameLogicController implements BusManager {
 	public void endGame(EndGameEvent event) {
 		final List<Player> winners;
 		final List<Player> losers;
-		
+		mModel.addPlayer(Player.createPlayer("ello", "lol"));
+		mModel.addPlayer(Player.createPlayer("ello", "lol"));
+		mModel.addPlayer(Player.createPlayer("ello", "lol"));
 		gameResult = GameUtils.getGameResult(mModel.getPlayers());
 		winners = gameResult.getWinners();
         losers = mModel.getPlayers();
