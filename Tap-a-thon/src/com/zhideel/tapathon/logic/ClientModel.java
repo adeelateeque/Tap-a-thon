@@ -27,11 +27,22 @@ public class ClientModel implements BusManager {
 	private final Bus mBus;
 
 	private int mScore;
-	private Pair<Pad, Pad> mCards;
 
 	ClientModel() {
 		mBus = CommunicationBus.getInstance();
 	}
+
+
+    /**
+     * Updates model and view when game starts.
+     *
+     * @param event
+     *            containing information about game start
+     */
+    @Subscribe
+    public void gameStart(ClientModelEvent.GameStart event) {
+        postToGameActivity(new GameActivityEvent.GameStartEvent());
+    }
 
 	/**
 	 * Updates model and view when game finished.
@@ -92,6 +103,15 @@ public class ClientModel implements BusManager {
 				return getInt(SCORE);
 			}
 		}
+
+        public static class GameStart extends ClientModelEvent {
+
+            private static final long serialVersionUID = 20131403L;
+
+            public GameStart() {
+                super(ClientModelEventType.WON);
+            }
+        }
 
 	}
 

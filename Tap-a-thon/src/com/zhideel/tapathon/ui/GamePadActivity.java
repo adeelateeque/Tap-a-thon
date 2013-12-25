@@ -25,7 +25,6 @@ import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ClientGameChord;
 import com.zhideel.tapathon.chord.GameChord;
 import com.zhideel.tapathon.chord.ServerGameChord;
-import com.zhideel.tapathon.logic.ClientModel;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.logic.Model;
@@ -85,9 +84,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO send a START_GAME event to clients, same like END_GAME so they can call their showGameDisplay() also
+                startGame();
                 btnStart.setVisibility(View.GONE);
-                showGameDisplay();
             }
         });
 
@@ -99,7 +97,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         final int cacheSize = 1024 * 1024 * memClass / 8;
         mMemoryCache = new BitmapCache(cacheSize, getAssets());
 
-        final String userName = getSharedPreferences(GameMenuActivity.POKER_PREFERENCES, MODE_PRIVATE).getString(
+        final String userName = getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES, MODE_PRIVATE).getString(
                 GameMenuActivity.USER_NAME_KEY, "");
 
         mBus = CommunicationBus.getInstance();
@@ -141,12 +139,12 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             btnStart.setVisibility(View.GONE);
             roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
-            showGameDisplay();
         } else {
             tvWaiting.setVisibility(View.GONE);
             roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
             mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
 
+            //for host to setup AllShare
             ServiceConnector.createServiceProvider(this, new ServiceConnector.IServiceConnectEventListener() {
 
                 @Override
@@ -179,7 +177,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 }
             });
 
-
             mLogicController = new GameLogicController(model, getResources());
             mManagers.add(mLogicController);
         }
@@ -196,7 +193,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     @Override
     public void onBackPressed() {
-        // @formatter:off
         new AlertDialog.Builder(this)
                 .setMessage(R.string.exit)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -208,7 +204,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();
-        // @formatter:on
     }
 
     @Override
@@ -245,7 +240,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         super.onStop();
     }
 
-    public void startGame(View v) {
+    public void startGame() {
         mBus.post(GameLogicController.StartGameEvent.INSTANCE);
     }
 
@@ -332,6 +327,12 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         //TODO you can do the rest from here i.e displaying the scoreboard
     }
 
+    @Subscribe
+    public void handleGameStart(GameActivityEvent.GameStartEvent gameStartEvent)
+    {
+      this.showGameDisplay();
+    }
+
     public static class GameActivityEvent extends BusEvent {
 
         private static final long serialVersionUID = 20130326L;
@@ -340,6 +341,15 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             super();
         }
 
+        public static class GameStartEvent extends GameActivityEvent {
+
+            private static final long serialVersionUID = 20130327L;
+
+            public GameStartEvent() {
+                super();
+            }
+
+        }
 
         public static class GameEndEvent extends GameActivityEvent {
 

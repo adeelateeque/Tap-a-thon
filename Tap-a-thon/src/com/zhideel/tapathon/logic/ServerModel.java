@@ -22,9 +22,6 @@ import java.util.List;
  */
 public class ServerModel implements BusManager {
 
-	/**
-	 * Specifies initial amount of tokens each player has at the beginning of the game.
-	 */
 	public static final int INITIAL_SCORE = 0;
 	public static final int MAX_PLAYER_NUMBER = 4;
 	public static final int MIN_PLAYER_NUMBER = 2;

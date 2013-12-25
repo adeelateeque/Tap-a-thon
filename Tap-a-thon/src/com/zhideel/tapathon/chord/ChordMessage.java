@@ -153,8 +153,6 @@ public final class ChordMessage implements Serializable {
 	}
 
 	public enum MessageType {
-		// @formatter:off
-		
 		// Client messages.
 		GET_SERVERS_LIST,
 		USERNAME,
@@ -162,8 +160,8 @@ public final class ChordMessage implements Serializable {
 		// Server messages.
 		SERVER_NAME_BROADCAST,
 		SERVER_NODE_NAME,
-		GAME_END;
-		// @formatter:on
+		GAME_END,
+        GAME_START;
 
 		@Override
 		public String toString() {

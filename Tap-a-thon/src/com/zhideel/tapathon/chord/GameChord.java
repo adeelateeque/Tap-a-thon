@@ -31,6 +31,9 @@ public abstract class GameChord extends AbstractChord {
 	@Override
 	void handlePrivateMessage(ChordMessage message) {
 		switch (message.getType()) {
+        case GAME_START:
+            mBus.post(new ClientModel.ClientModelEvent.GameStart());
+            break;
 		case GAME_END:
 			mBus.post(new ClientModel.ClientModelEvent.GameEnd(message.getInt(ChordMessage.SCORE)));
 			break;

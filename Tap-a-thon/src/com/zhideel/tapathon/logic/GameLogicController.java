@@ -28,7 +28,7 @@ import com.zhideel.tapathon.ui.GamePadActivity;
 import java.util.List;
 
 /**
- * Encapsulates whole logic of the poker game.
+ * Encapsulates whole logic of the game.
  */
 public class GameLogicController implements BusManager {
 	private final Bus mBus;
@@ -52,6 +52,11 @@ public class GameLogicController implements BusManager {
 	@Subscribe
 	public void startGame(StartGameEvent event) {
 		mModel.setGameState(GameState.STARTED);
+        mBus.post(new ClientModel.ClientModelEvent.GameStart());
+        final ChordMessage gameStartMessage = ChordMessage.obtainMessage(MessageType.GAME_START);
+        for (Player player : mModel.getPlayers()) {
+            sendToClient(gameStartMessage, player.getNodeName());
+        }
 	}
 
 	/**
@@ -64,9 +69,6 @@ public class GameLogicController implements BusManager {
 	public void endGame(EndGameEvent event) {
 		final List<Player> winners;
 		final List<Player> losers;
-		mModel.addPlayer(Player.createPlayer("ello", "lol"));
-		mModel.addPlayer(Player.createPlayer("ello", "lol"));
-		mModel.addPlayer(Player.createPlayer("ello", "lol"));
 		gameResult = GameUtils.getGameResult(mModel.getPlayers());
 		winners = gameResult.getWinners();
         losers = mModel.getPlayers();

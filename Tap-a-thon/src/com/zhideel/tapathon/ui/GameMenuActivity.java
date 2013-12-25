@@ -19,7 +19,7 @@ import com.zhideel.tapathon.R;
 public class GameMenuActivity extends Activity implements GameChannelFragment.OnServerChosenListener {
 
 	public static final String TAG = "Tapathon";
-    public static final String POKER_PREFERENCES = "POKER_PREFERENCES";
+    public static final String TAPATHON_PREFERENCES = "TAPATHON_PREFERENCES";
     public static final String USER_NAME_KEY = "USER_NAME_KEY";
 
     private Button btnStart;
@@ -51,7 +51,7 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
         cm = new ConnectionManager(this);
         btnStart = (Button) findViewById(R.id.btn_start);
         etName = (EditText) findViewById(R.id.user_name_text_view);
-        final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.POKER_PREFERENCES,
+        final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES,
                 Context.MODE_PRIVATE);
         final String userName = sharedPreferences.getString(GameMenuActivity.USER_NAME_KEY, "");
         etName.append(userName.trim());
@@ -82,17 +82,15 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
                     
                     Toast.makeText(getBaseContext(), "Start", Toast.LENGTH_SHORT).show();
                 } else {
-                    //mLogView.appendLog("\n[C] Stop Chord!");
                     cm.stopChord();
                     Toast.makeText(getBaseContext(), "Stop", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        mSharedPreferences = getSharedPreferences(POKER_PREFERENCES, MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
 
         final String name = mSharedPreferences.getString(USER_NAME_KEY, "");
         setNameTextView(name);
-
 
         registerWifiStateReceiver();
 
@@ -106,7 +104,6 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     public void onResume() {
         super.onResume();
         if (cm.isNotInit()) {
-            //mLogView.appendLog("\n[A] Initialize Chord!");
             cm.initChord();
         }
     }
