@@ -114,7 +114,7 @@ public abstract class AbstractChord implements BusManager {
 		mChordManager = ChordManager.getInstance(context);
 		mBus = CommunicationBus.getInstance();
 
-		final int result = mChordManager.start(ChordManager.INTERFACE_TYPE_WIFI, mChordManagerListener);
+		final int result = mChordManager.start(ChordManager.INTERFACE_TYPE_WIFI | ChordManager.INTERFACE_TYPE_WIFIAP | ChordManager.INTERFACE_TYPE_WIFIP2P, mChordManagerListener);
 
 		if (result != ChordManager.ERROR_NONE) {
 			onChordStartFailed(result);
@@ -208,7 +208,7 @@ public abstract class AbstractChord implements BusManager {
 	 *            to be sent
 	 */
 	void sendPublicMessage(ChordMessage message) {
-		mPublicChannel.sendDataToAll(mPayloadType, new byte[][] { message.getBytes() });
+		mPublicChannel.sendDataToAll(mPayloadType, new byte[][]{message.getBytes()});
 	}
 
 	/**
@@ -220,7 +220,7 @@ public abstract class AbstractChord implements BusManager {
 	 *            node nome of the receiver
 	 */
 	void sendPrivateMessage(ChordMessage message, String toNode) {
-		mPrivateChannel.sendData(toNode, mPayloadType, new byte[][] { message.getBytes() });
+		mPrivateChannel.sendData(toNode, mPayloadType, new byte[][]{message.getBytes()});
 	}
 
 	void handlePublicMessage(ChordMessage message) {

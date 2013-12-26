@@ -181,7 +181,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             mManagers.add(mLogicController);
         }
 
-        //roomNameView.setText(roomName);
         mManagers.add(model);
         mManagers.add(mGameChord);
 
@@ -318,7 +317,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     public void stopBus() {
         mBus.unregister(this);
     }
-
 
     @Subscribe
     public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent)

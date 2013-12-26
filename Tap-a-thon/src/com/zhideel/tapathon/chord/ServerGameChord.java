@@ -17,6 +17,7 @@ import com.samsung.chord.IChordChannel;
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
 import com.zhideel.tapathon.chord.GameChord.JoinedToServerEvent;
+import com.zhideel.tapathon.logic.GameLogicController;
 
 /**
  * Class responsible for handling {@link ChordMessage}s related to the server side of the game.
@@ -63,16 +64,16 @@ public class ServerGameChord extends GameChord {
 
 		switch (message.getType()) {
 		case USERNAME:
-			//postPokerLogicEvent(new GameLogicEvent.UsernameEvent(message.getString(UsernameEvent.USERNAME), senderNodeName));
+            postLogicEvent(new GameLogicController.GameLogicEvent.UsernameEvent(message.getString(GameLogicController.GameLogicEvent.UsernameEvent.USERNAME), senderNodeName));
 			break;
 		default:
 			throw new IllegalArgumentException(message.getType().name());
 		}
 	}
 
-	/*private <T extends GameLogicEvent> void postPokerLogicEvent(T event) {
+	private <T extends GameLogicController.GameLogicEvent> void postLogicEvent(T event) {
 		mBus.post(event);
-	}*/
+	}
 
 	@Override
 	void handlePublicMessage(ChordMessage message) {

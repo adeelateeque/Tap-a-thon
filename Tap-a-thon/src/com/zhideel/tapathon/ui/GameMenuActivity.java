@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.zhideel.tapathon.ConnectionManager;
 import com.zhideel.tapathon.R;
 
 public class GameMenuActivity extends Activity implements GameChannelFragment.OnServerChosenListener {
@@ -23,8 +22,6 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     public static final String USER_NAME_KEY = "USER_NAME_KEY";
 
     private Button btnStart;
-    private ConnectionManager cm;
-    private boolean bStarted = false;
     private EditText etName;
 
     private SharedPreferences mSharedPreferences;
@@ -48,7 +45,6 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        cm = new ConnectionManager(this);
         btnStart = (Button) findViewById(R.id.btn_start);
         etName = (EditText) findViewById(R.id.user_name_text_view);
         final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES,
@@ -58,7 +54,7 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!bStarted) {
+
                     String name = etName.getText().toString();
                     if (!(name.length() > 0)) {
                        name = "ANONYMOUS";
@@ -68,7 +64,6 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
                     editor.apply();
                     setNameTextView(name);
 
-                    cm.startChord();
                     
                     FragmentTransaction dFrag = getFragmentManager().beginTransaction();
                     Fragment prev = getFragmentManager().findFragmentByTag("dialog_channel");
@@ -81,10 +76,7 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
                     dFrag.commit();
                     
                     Toast.makeText(getBaseContext(), "Start", Toast.LENGTH_SHORT).show();
-                } else {
-                    cm.stopChord();
-                    Toast.makeText(getBaseContext(), "Stop", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
         mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
@@ -103,16 +95,10 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     @Override
     public void onResume() {
         super.onResume();
-        if (cm.isNotInit()) {
-            cm.initChord();
-        }
     }
 
     @Override
     public void onDestroy() {
-        if (!cm.isNotInit()) {
-            cm.destroy();
-        }
         super.onDestroy();
     }
 

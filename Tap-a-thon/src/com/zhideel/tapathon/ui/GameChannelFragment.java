@@ -53,7 +53,7 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mBus = CommunicationBus.getInstance();
-		mConnectionChord = new ConnectionChord(getActivity(), GamePadActivity.GAME_NAME, GameChannelFragment.this);
+		mConnectionChord = new ConnectionChord(getActivity().getApplicationContext(), GamePadActivity.GAME_NAME, GameChannelFragment.this);
 		mOnServerChosenListener = (OnServerChosenListener) getActivity();
 		startBus();
 	}
