@@ -48,7 +48,7 @@ public class ServerGameChord extends GameChord {
 		}
 	}
 
-	@Subscribe
+/*	@Subscribe
 	public void handleMessageFromLogic(ChordMessage message) {
 		if (message.isFromLogic()) {
 			if (message.getReceiverNodeName().equalsIgnoreCase(getNodeName())) {
@@ -57,7 +57,7 @@ public class ServerGameChord extends GameChord {
 				sendPrivateMessage(message, message.getReceiverNodeName());
 			}
 		}
-	}
+	}*/
 
 	private void handleMessageFromClient(ChordMessage message) {
 		final String senderNodeName = message.getSenderNodeName();

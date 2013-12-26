@@ -114,7 +114,7 @@ public abstract class AbstractChord implements BusManager {
 		mChordManager = ChordManager.getInstance(context);
 		mBus = CommunicationBus.getInstance();
 
-		final int result = mChordManager.start(ChordManager.INTERFACE_TYPE_WIFI | ChordManager.INTERFACE_TYPE_WIFIAP | ChordManager.INTERFACE_TYPE_WIFIP2P, mChordManagerListener);
+		final int result = mChordManager.start(ChordManager.INTERFACE_TYPE_WIFI, mChordManagerListener);
 
 		if (result != ChordManager.ERROR_NONE) {
 			onChordStartFailed(result);
