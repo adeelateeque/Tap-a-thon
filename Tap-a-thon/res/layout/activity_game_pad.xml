@@ -26,14 +26,33 @@
             android:weightSum="1"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/gameboard_container"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.75"
                 android:orientation="vertical"
                 android:layout_gravity="left|top"
-                android:gravity="left"/>
+                android:gravity="left">
+
+                <LinearLayout
+                    android:id="@+id/gameboard_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.75"
+                    android:orientation="vertical"
+                    android:layout_gravity="left|top"
+                    android:gravity="left">
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/game_end_view"
+                    android:background="@drawable/game_over"
+                    android:alpha="0.5"
+                    android:visibility="gone"/>
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/statsboard_container"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tap-a-thon</string>
-    <string name="start">START</string>
+    <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -49,7 +49,7 @@
 
     <string name="about_info">This is app is a fun math game...</string>
     <string name="searching_for_rooms">searching&#8230;</string>
-    <string name="all_share_dialog_message">Tap-a-thon requires TV with AllShare Cast functionality.\n\nPress OK and connect with TV to play the game.\n\nThis dialog will be automatically dismissed after the connection is established.</string>
+    <string name="all_share_dialog_message">Tap-a-thon can utilize a TV with AllShare Cast functionality for screen mirroring.\n\nPress OK and connect with TV to mirror the game.\n\nThis dialog will be automatically dismissed after the connection is established.</string>
     <string name="all_share_dialog_exit">Later</string>
     <string name="no_all_share_cast_dialog">Your device doesn\'t support AllShare Cast functionality.\n\nYou can always connect as client.</string>
 </resources>

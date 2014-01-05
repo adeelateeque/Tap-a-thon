@@ -65,17 +65,17 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
                     setNameTextView(name);
 
                     
-                    FragmentTransaction dFrag = getFragmentManager().beginTransaction();
+                   FragmentTransaction dFrag = getFragmentManager().beginTransaction();
                     Fragment prev = getFragmentManager().findFragmentByTag("dialog_channel");
                     if (prev != null) {
             	    	dFrag.remove(prev);
             	    }
             	    dFrag.addToBackStack(null);
-                    GameChannelFragment mFragment = new GameChannelFragment();
+                    CreateChannelFragment mFragment = new CreateChannelFragment();
                     mFragment.show(getFragmentManager(), "dialog_channel");
                     dFrag.commit();
                     
-                    Toast.makeText(getBaseContext(), "Start", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "Start", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -84,12 +84,15 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
         final String name = mSharedPreferences.getString(USER_NAME_KEY, "");
         setNameTextView(name);
 
+        /*
         registerWifiStateReceiver();
 
         if (!isWifiConnected()) {
             enableButtons(false);
             Toast.makeText(this, getString(R.string.wifi_off), Toast.LENGTH_LONG).show();
-        }
+        }*/
+
+        enableButtons(true);
     }
 
     @Override

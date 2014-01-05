@@ -7,12 +7,14 @@ import android.app.Dialog;
 import android.content.*;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.sec.android.allshare.ServiceConnector;
@@ -54,6 +56,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 	private boolean continueMusic;
     private GameBoardView gameBoardView;
     private StatsView statsView;
+    private ImageView gameEndView;
     private Button btnStart;
     private TextView tvWaiting;
     private boolean allShareShownBefore = false;
@@ -80,6 +83,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 		setContentView(R.layout.activity_game_pad);
         mContext = this;
         btnStart =  (Button) findViewById(R.id.btn_start);
+        gameEndView =  (ImageView) findViewById(R.id.game_end_view);
         tvWaiting =  (TextView) findViewById(R.id.tv_waiting);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -306,6 +310,11 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         final IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         registerReceiver(mWiFiBroadcastReceiver, filter);
+    }
+
+    public void showGameEndView()
+    {
+        gameEndView.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -15,7 +15,8 @@
         android:onClick="settingsClick"
         android:padding="10dp"
         android:text="@string/settings"
-        android:textColor="@color/menu_activity_button_text_color" />
+        android:textColor="@color/menu_activity_button_text_color"
+        android:visibility="gone"/>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -30,7 +31,8 @@
             android:text="Your name:"
             android:padding="10dp"
             android:textSize="30dp"
-            android:background="@android:color/holo_blue_light"/>
+            android:background="@android:color/holo_blue_light"
+            android:visibility="gone"/>
         <EditText
 
             android:id="@+id/user_name_text_view"
@@ -44,7 +46,7 @@
             android:maxLength="12"
             android:singleLine="true"
             android:layout_gravity="center_horizontal"
-            >
+            android:visibility="gone">
 
             <requestFocus />
         </EditText>

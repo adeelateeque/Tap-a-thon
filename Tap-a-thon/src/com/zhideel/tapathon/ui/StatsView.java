@@ -68,7 +68,8 @@ public class StatsView implements CommunicationBus.BusManager {
                             } else {
                                 MultiTouchView.setContinue(false);
                                 time.cancel();
-                                mBus.post(GameLogicController.EndGameEvent.INSTANCE);
+                                ((GamePadActivity)mContext).showGameEndView();
+                                //mBus.post(GameLogicController.EndGameEvent.INSTANCE);
                             }
                         }
 
@@ -118,9 +119,10 @@ public class StatsView implements CommunicationBus.BusManager {
         }
 
         if (result == randomQns) {
-            DecimalFormat df = new DecimalFormat("#.0");
+            //DecimalFormat df = new DecimalFormat("#.0");
             double multipler = Double.parseDouble(tvMultipler.getText().toString());
-            multipler = Double.valueOf(df.format(multipler + 0.1));
+            //multipler = Double.valueOf(df.format(multipler + 0.1));
+            multipler = Double.valueOf(multipler + 1);
             tvMultipler.setText(Double.toString(multipler));
             correctAns++;
         }

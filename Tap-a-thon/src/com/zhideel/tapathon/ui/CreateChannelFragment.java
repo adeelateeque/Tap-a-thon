@@ -27,10 +27,10 @@ public class CreateChannelFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("Create a room");
+        getDialog().setTitle("Select difficulty level:");
         view = (LinearLayout) inflater.inflate(R.layout.dialog_create_channel, null);
-        etChannelName = (EditText) view.findViewById(R.id.et_name);
-        cbAllShare = (CheckBox) view.findViewById(R.id.cb_allshare);
+        /*etChannelName = (EditText) view.findViewById(R.id.et_name);
+        cbAllShare = (CheckBox) view.findViewById(R.id.cb_allshare);*/
         rgLvl = (RadioGroup) view.findViewById(R.id.rg_lvl);
         btnCreate = (Button) view.findViewById(R.id.btn_create);
         btnCancel = (Button) view.findViewById(R.id.btn_cancel);
@@ -60,7 +60,7 @@ public class CreateChannelFragment extends DialogFragment {
 
                 if ((selection != null)) {
                     //make connection
-                    Toast.makeText(getActivity(), selection.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), selection.toString(), Toast.LENGTH_SHORT).show();
                     Intent myIntent = new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
                     myIntent.putExtra("level", selection);
                     startActivity(myIntent);
