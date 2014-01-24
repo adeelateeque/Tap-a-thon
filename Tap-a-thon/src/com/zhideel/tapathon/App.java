@@ -15,7 +15,7 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Config.context = this;
         sgp = new Sgp();
         try {
             sgp.initialize(getApplicationContext());
@@ -50,6 +50,6 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
     public static SgpGroupPlay getGroupPlaySdk() {
         return sdk;
     }
-
-
 }
+
+

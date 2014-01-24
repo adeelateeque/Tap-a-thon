@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.zhideel.tapathon.App;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
 import java.lang.reflect.InvocationTargetException;
@@ -131,35 +132,9 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
         }
     }
 
-    public boolean isWifiConnected() {
-        //Check for Wifi Connection
-        final ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        //Check if it is an Access Point
-        Boolean apState = false;
-        try {
-            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-            Method method = wifiManager.getClass().getDeclaredMethod("isWifiApEnabled");
-            method.setAccessible(true);
-
-            apState = (Boolean) method.invoke(wifiManager, (Object[]) null);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-
-        return (networkInfo != null && networkInfo.isConnected()) || apState;
-    }
-
     public void refreshButtons() {
         if (btnStart != null) {
-            if (isWifiConnected()) {
+            if (Config.isWifiConnected()) {
                 btnStart.setEnabled(true);
                 btnStart.setText("Start");
             } else {

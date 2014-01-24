@@ -5,6 +5,9 @@ import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
@@ -23,6 +26,7 @@ import com.sec.android.allshare.ServiceProvider;
 import com.sec.android.allshare.screen.ScreenCastManager;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ClientGameChord;
@@ -69,39 +73,13 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!isWifiConnected()) {
+            if (!Config.isWifiConnected()) {
                 finish();
                 Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
             }
         }
 
     };
-
-    public boolean isWifiConnected() {
-        //Check for Wifi Connection
-        final ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        //Check if it is an Access Point
-        Boolean apState = false;
-        try {
-            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-            Method method = wifiManager.getClass().getDeclaredMethod("isWifiApEnabled");
-            method.setAccessible(true);
-
-            apState = (Boolean) method.invoke(wifiManager, (Object[]) null);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-
-        return (networkInfo != null && networkInfo.isConnected()) || apState;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -271,6 +249,19 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     public void startGame() {
         mBus.post(GameLogicController.StartGameEvent.INSTANCE);
+    }
+
+
+    //TODO build the image and display out to the TV http://developer.samsung.com/allshare-framework/technical-docs/Sample-View-Controller
+    public void receivedSceenshot()
+    {
+        Bitmap[] parts = new Bitmap[4];
+        Bitmap result = Bitmap.createBitmap(parts[0].getWidth() * 2, parts[0].getHeight() * 2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(result);
+        Paint paint = new Paint();
+        for (int i = 0; i < parts.length; i++) {
+            canvas.drawBitmap(parts[i], parts[i].getWidth() * (i % 2), parts[i].getHeight() * (i / 2), paint);
+        }
     }
 
     public GameBoardView getGameBoard() {
