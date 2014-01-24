@@ -18,87 +18,84 @@ import com.zhideel.tapathon.utils.Preconditions;
  */
 public final class Player implements Comparable<Player> {
 
-	private final String mName;
-	private final String mNodeName;
-	private int mScore;
+    private final String mName;
+    private final String mNodeName;
+    private int mScore;
 
-	public Player(String playerName, String nodeName) {
-		mName = Preconditions.checkNotNull(playerName);
-		mNodeName = Preconditions.checkNotNull(nodeName);
-		mScore = ServerModel.INITIAL_SCORE;
-	}
+    public Player(String playerName, String nodeName) {
+        mName = Preconditions.checkNotNull(playerName);
+        mNodeName = Preconditions.checkNotNull(nodeName);
+        mScore = ServerModel.INITIAL_SCORE;
+    }
 
-	/**
-	 * Creates new player instance
-	 * 
-	 * @param name
-	 *            the player's name
-	 * @param nodeName
-	 *            the player's Chord node name
-	 * @return {@link com.zhideel.tapathon.logic.Player} instance
-	 */
-	public static Player createPlayer(String name, String nodeName) {
-		return new Player(name, nodeName);
-	}
+    /**
+     * Creates new player instance
+     *
+     * @param name     the player's name
+     * @param nodeName the player's Chord node name
+     * @return {@link com.zhideel.tapathon.logic.Player} instance
+     */
+    public static Player createPlayer(String name, String nodeName) {
+        return new Player(name, nodeName);
+    }
 
-	/**
-	 * Adds the given amount to the player's pool.
-	 * 
-	 * @param score
-	 *            amount to add to the player's pool
-	 */
-	public void addScore(int score) {
-		mScore += score;
-	}
+    /**
+     * Adds the given amount to the player's pool.
+     *
+     * @param score amount to add to the player's pool
+     */
+    public void addScore(int score) {
+        mScore += score;
+    }
 
-	public int getScore() {
-		return mScore;
-	}
+    public int getScore() {
+        return mScore;
+    }
 
-	public String getName() {
-		return mName;
-	}
+    public String getName() {
+        return mName;
+    }
 
-	public String getNodeName() {
-		return mNodeName;
-	}
+    public String getNodeName() {
+        return mNodeName;
+    }
 
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
 
-		final Player other = (Player) obj;
-		return mNodeName.equals(other.mNodeName);
-	}
+        final Player other = (Player) obj;
+        return mNodeName.equals(other.mNodeName);
+    }
 
-	@Override
-	public int hashCode() {
-		final String hash = mNodeName + mName;
-		return hash.hashCode();
-	}
+    @Override
+    public int hashCode() {
+        final String hash = mNodeName + mName;
+        return hash.hashCode();
+    }
 
-	@Override
-	public String toString() {
-		return mName;
-	}
+    @Override
+    public String toString() {
+        return mName;
+    }
 
-	@Override
-	public int compareTo(Player another) {
-		if (mScore > another.mScore) {
-			return 1;
-		} else if (mScore < another.mScore) {
-			return -1;
-		} else {
-			return 0;
-		}
-	}
+    @Override
+    public int compareTo(Player another) {
+        if (mScore > another.mScore) {
+            return 1;
+        } else if (mScore < another.mScore) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 }

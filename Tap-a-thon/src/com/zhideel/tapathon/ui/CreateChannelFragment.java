@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.zhideel.tapathon.R;
 
+import java.util.UUID;
+
 public class CreateChannelFragment extends DialogFragment {
 
     private LinearLayout view;
     private EditText etChannelName;
-    private CheckBox cbAllShare;
     private RadioGroup rgLvl;
     private Button btnCreate, btnCancel;
     private MultiTouchView.GameLevel selection;
@@ -27,10 +28,11 @@ public class CreateChannelFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("Create a room");
+        getDialog().setTitle("Create a Tapathon");
         view = (LinearLayout) inflater.inflate(R.layout.dialog_create_channel, null);
         etChannelName = (EditText) view.findViewById(R.id.et_name);
-        cbAllShare = (CheckBox) view.findViewById(R.id.cb_allshare);
+        etChannelName.setEnabled(false);
+        etChannelName.setText(getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 4)));
         rgLvl = (RadioGroup) view.findViewById(R.id.rg_lvl);
         btnCreate = (Button) view.findViewById(R.id.btn_create);
         btnCancel = (Button) view.findViewById(R.id.btn_cancel);
@@ -59,11 +61,11 @@ public class CreateChannelFragment extends DialogFragment {
                 }
 
                 if ((selection != null)) {
-                    //make connection
-                    Toast.makeText(getActivity(), selection.toString(), Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
-                    myIntent.putExtra("level", selection);
-                    startActivity(myIntent);
+                    Intent intent = new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
+                    intent.putExtra("level", selection);
+                    intent.putExtra(GamePadActivity.CLIENT, false);
+                    intent.putExtra(GamePadActivity.SERVER_NAME, etChannelName.getText());
+                    startActivity(intent);
                     getDialog().dismiss();
                 } else {
                     Toast.makeText(getActivity(), "Please select a difficulty.", Toast.LENGTH_SHORT).show();

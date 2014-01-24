@@ -10,7 +10,6 @@ import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -25,9 +24,9 @@ public class StatsView implements CommunicationBus.BusManager {
     private boolean isPaused = false;
     private ArrayList<Integer> operands;
     private String operator;
-    private TextView tvMultipler, tvQns, tvTimer;
+    private TextView tvScore, tvQuestion, tvTimer;
     private Random rand = new Random();
-    private int randomQns, correctAns;
+    private int randomQns, correctAnswerCount, totalQuestions;
     private int interval = 60;
 
     public StatsView(Context context, ViewGroup viewGroup) {
@@ -37,14 +36,14 @@ public class StatsView implements CommunicationBus.BusManager {
         View.inflate(mContext, R.layout.view_stats, viewGroup);
 
         operands = new ArrayList<Integer>();
-        tvMultipler = (TextView) viewGroup.findViewById(R.id.tv_multipler);
-        tvQns = (TextView) viewGroup.findViewById(R.id.tv_qns);
+        tvScore = (TextView) viewGroup.findViewById(R.id.tv_multipler);
+        tvQuestion = (TextView) viewGroup.findViewById(R.id.tv_qns);
         tvTimer = (TextView) viewGroup.findViewById(R.id.tv_timer);
         timer();
-        correctAns = 0;
-        tvMultipler.setText("1");
-        randomQns = randInt(0, 20);
-        tvQns.setText(Integer.toString(randomQns));
+        correctAnswerCount = 0;
+        totalQuestions = 0;
+        tvScore.setText("0");
+        newQuestion();
     }
 
     public void setInterval(int interval) {
@@ -66,8 +65,9 @@ public class StatsView implements CommunicationBus.BusManager {
                                 setInterval(interval);
 
                             } else {
-                                MultiTouchView.setContinue(false);
+                                ((GamePadActivity) mContext).getGameBoard().pauseBoard(true);
                                 time.cancel();
+                                ((GamePadActivity) mContext).showGameEndView();
                                 mBus.post(GameLogicController.EndGameEvent.INSTANCE);
                             }
                         }
@@ -118,21 +118,21 @@ public class StatsView implements CommunicationBus.BusManager {
         }
 
         if (result == randomQns) {
-            DecimalFormat df = new DecimalFormat("#.0");
-            double multipler = Double.parseDouble(tvMultipler.getText().toString());
-            multipler = Double.valueOf(df.format(multipler + 0.1));
-            tvMultipler.setText(Double.toString(multipler));
-            correctAns++;
+            double multiplier = Double.parseDouble(tvScore.getText().toString());
+            multiplier = Double.valueOf(multiplier + 1);
+            tvScore.setText(Double.toString(multiplier));
+            correctAnswerCount++;
         }
         return result;
     }
 
-    public void resetCurrent() {
+    public void newQuestion() {
         randomQns = randInt(0, 20);
-        tvQns.setText(Integer.toString(randomQns));
+        tvQuestion.setText(Integer.toString(randomQns));
         operands.clear();
         operator = null;
-        ((GamePadActivity) mContext).getGameBoard().resetBoard();
+        totalQuestions++;
+        //((GamePadActivity) mContext).getGameBoard().resetBoard();
     }
 
     public void setPaused(Boolean paused) {

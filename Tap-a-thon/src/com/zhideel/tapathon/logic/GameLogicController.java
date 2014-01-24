@@ -31,184 +31,180 @@ import java.util.List;
  * Encapsulates whole logic of the game.
  */
 public class GameLogicController implements BusManager {
-	private final Bus mBus;
-	public static ServerModel mModel;
-	private final Resources mResources;
+    private final Bus mBus;
+    public static ServerModel mModel;
+    private final Resources mResources;
     public GameResult gameResult;
 
-	public GameLogicController(Model model, Resources resources) {
-		mBus = CommunicationBus.getInstance();
-		mModel = model.getServerModel();
-		mModel.initTable();
-		mResources = resources;
-	}
+    public GameLogicController(Model model, Resources resources) {
+        mBus = CommunicationBus.getInstance();
+        mModel = model.getServerModel();
+        mModel.initTable();
+        mResources = resources;
+    }
 
-	/**
-	 * Performs initial actions at the start of the game.
-	 * 
-	 * @param event
-	 *            that triggers game start
-	 */
-	@Subscribe
-	public void startGame(StartGameEvent event) {
-		mModel.setGameState(GameState.STARTED);
+    /**
+     * Performs initial actions at the start of the game.
+     *
+     * @param event that triggers game start
+     */
+    @Subscribe
+    public void startGame(StartGameEvent event) {
+        mModel.setGameState(GameState.STARTED);
         mBus.post(new ClientModel.ClientModelEvent.GameStart());
         final ChordMessage gameStartMessage = ChordMessage.obtainMessage(MessageType.GAME_START);
         for (Player player : mModel.getPlayers()) {
             sendToClient(gameStartMessage, player.getNodeName());
         }
-	}
+    }
 
-	/**
-	 * Performs initial actions at the end of the game.
-	 * 
-	 * @param event
-	 *            that triggers game end
-	 */
-	@Subscribe
-	public void endGame(EndGameEvent event) {
-		final List<Player> winners;
-		final List<Player> losers;
-		gameResult = GameUtils.getGameResult(mModel.getPlayers());
-		winners = gameResult.getWinners();
+    /**
+     * Performs initial actions at the end of the game.
+     *
+     * @param event that triggers game end
+     */
+    @Subscribe
+    public void endGame(EndGameEvent event) {
+        final List<Player> winners;
+        final List<Player> losers;
+        gameResult = GameUtils.getGameResult(mModel.getPlayers());
+        winners = gameResult.getWinners();
         losers = mModel.getPlayers();
 
-		// Notify the winners
-		for (Player winner : winners) {
-			if (losers != null) {
-				losers.remove(winner);
-			}
+        // Notify the winners
+        for (Player winner : winners) {
+            if (losers != null) {
+                losers.remove(winner);
+            }
 
-			final ChordMessage gameEndMessage = ChordMessage.obtainMessage(MessageType.GAME_END);
-			gameEndMessage.putInt(ChordMessage.SCORE, winner.getScore());
-			sendToClient(gameEndMessage, winner.getNodeName());
-		}
+            final ChordMessage gameEndMessage = ChordMessage.obtainMessage(MessageType.GAME_END);
+            gameEndMessage.putInt(ChordMessage.SCORE, winner.getScore());
+            sendToClient(gameEndMessage, winner.getNodeName());
+        }
 
-		// Notify the losers
-		if (losers != null) {
-			for (Player loser : losers) {
-				final ChordMessage gameEndMessage = ChordMessage.obtainMessage(MessageType.GAME_END);
-				gameEndMessage.putInt(ChordMessage.SCORE, loser.getScore());
-				sendToClient(gameEndMessage, loser.getNodeName());
-			}
-		}
+        // Notify the losers
+        if (losers != null) {
+            for (Player loser : losers) {
+                final ChordMessage gameEndMessage = ChordMessage.obtainMessage(MessageType.GAME_END);
+                gameEndMessage.putInt(ChordMessage.SCORE, loser.getScore());
+                sendToClient(gameEndMessage, loser.getNodeName());
+            }
+        }
 
-		mModel.clearGame();
-		mModel.setGameState(GameState.GAME_FINISHED);
+        mModel.clearGame();
+        mModel.setGameState(GameState.GAME_FINISHED);
 
         Intent eg = new Intent(GamePadActivity.mContext, EndGameActivity.class);
         GamePadActivity.mContext.startActivity(eg);
-	}
+    }
 
-	/**
-	 * Handles the user name event.
-	 * 
-	 * @param usernameEvent
-	 *            containing information about player that joined the game
-	 */
-	@Subscribe
-	public void handleUsername(GameLogicEvent.UsernameEvent usernameEvent) {
-		final String nodeName = usernameEvent.getNodeName();
-		final Player player = mModel.getPlayer(nodeName);
+    /**
+     * Handles the user name event.
+     *
+     * @param usernameEvent containing information about player that joined the game
+     */
+    @Subscribe
+    public void handleUsername(GameLogicEvent.UsernameEvent usernameEvent) {
+        final String nodeName = usernameEvent.getNodeName();
+        final Player player = mModel.getPlayer(nodeName);
         Integer score = ServerModel.INITIAL_SCORE;
         ChordMessage stateMessage = ChordMessage.obtainMessage(MessageType.USERNAME);
-		if (player == null) {
-			mModel.addPlayer(Player.createPlayer(usernameEvent.getUsername(), nodeName));
-		} else {
-			score = player.getScore();
-		}
+        if (player == null) {
+            mModel.addPlayer(Player.createPlayer(usernameEvent.getUsername(), nodeName));
+        } else {
+            score = player.getScore();
+        }
+        stateMessage.putInt(ChordMessage.SCORE, score);
+        sendToClient(stateMessage, usernameEvent);
+    }
 
-		stateMessage.putInt(ChordMessage.SCORE, score);
-		sendToClient(stateMessage, usernameEvent);
-	}
+    private <T extends GameLogicEvent> void sendToClient(ChordMessage message, T event) {
+        sendToClient(message, event.getNodeName());
+    }
 
-	private <T extends GameLogicEvent> void sendToClient(ChordMessage message, T event) {
-		sendToClient(message, event.getNodeName());
-	}
+    private void sendToClient(ChordMessage message, String nodeName) {
+        message.setReceiverNodeName(nodeName);
+        message.setFromLogic(true);
+        mBus.post(message);
+    }
 
-	private void sendToClient(ChordMessage message, String nodeName) {
-		message.setReceiverNodeName(nodeName);
-		message.setFromLogic(true);
-		mBus.post(message);
-	}
+    private void sendToClient(ChordMessage message, Player player) {
+        sendToClient(message, player.getNodeName());
+    }
 
-	private void sendToClient(ChordMessage message, Player player) {
-		sendToClient(message, player.getNodeName());
-	}
+    @Subscribe
+    public void onPlayerDisconnected(ClientDisconnectedEvent event) {
+        final Player player = mModel.getPlayer(event.getNodeName());
+    }
 
-	@Subscribe
-	public void onPlayerDisconnected(ClientDisconnectedEvent event) {
-		final Player player = mModel.getPlayer(event.getNodeName());
-	}
+    @Override
+    public void startBus() {
+        mBus.register(this);
+    }
 
-	@Override
-	public void startBus() {
-		mBus.register(this);
-	}
+    @Override
+    public void stopBus() {
+        mBus.unregister(this);
+    }
 
-	@Override
-	public void stopBus() {
-		mBus.unregister(this);
-	}
+    /**
+     * Event posted through the {@link com.squareup.otto.Bus} that contains information about changes in the game logic.
+     */
+    public static class GameLogicEvent extends BusEvent {
 
-	/**
-	 * Event posted through the {@link com.squareup.otto.Bus} that contains information about changes in the game logic.
-	 */
-	public static class GameLogicEvent extends BusEvent {
+        private static final long serialVersionUID = 20130312L;
 
-		private static final long serialVersionUID = 20130312L;
+        private final GameLogicEventType mType;
+        private static final String NODE_NAME = "NODE_NAME";
+        private static final String SCORE = "SCORE";
 
-		private final GameLogicEventType mType;
-		private static final String NODE_NAME = "NODE_NAME";
-		private static final String SCORE = "SCORE";
+        private GameLogicEvent(GameLogicEventType type, String nodeName) {
+            super();
+            putObject(NODE_NAME, nodeName);
+            mType = type;
+        }
 
-		private GameLogicEvent(GameLogicEventType type, String nodeName) {
-			super();
-			putObject(NODE_NAME, nodeName);
-			mType = type;
-		}
+        public String getNodeName() {
+            return (String) getObject(NODE_NAME);
+        }
 
-		public String getNodeName() {
-			return (String) getObject(NODE_NAME);
-		}
+        public static class UsernameEvent extends GameLogicEvent {
 
-		public static class UsernameEvent extends GameLogicEvent {
+            private static final long serialVersionUID = 20130325L;
 
-			private static final long serialVersionUID = 20130325L;
+            public static final String USERNAME = "USERNAME";
 
-			public static final String USERNAME = "USERNAME";
+            public UsernameEvent(String username, String nodeName) {
+                super(GameLogicEventType.USERNAME, nodeName);
+                putObject(USERNAME, username);
+            }
 
-			public UsernameEvent(String username, String nodeName) {
-				super(GameLogicEventType.USERNAME, nodeName);
-				putObject(USERNAME, username);
-			}
+            public String getUsername() {
+                return (String) getObject(USERNAME);
+            }
 
-			public String getUsername() {
-				return (String) getObject(USERNAME);
-			}
+        }
 
-		}
+        /**
+         * Represents type of the {@link com.zhideel.tapathon.logic.GameLogicController.GameLogicEvent}.
+         */
+        public enum GameLogicEventType {
+            //@formatter:off
+            USERNAME;
+            //@formatter:on
 
-		/**
-		 * Represents type of the {@link com.zhideel.tapathon.logic.GameLogicController.GameLogicEvent}.
-		 */
-		public enum GameLogicEventType {
-			//@formatter:off
-		    USERNAME;
-			//@formatter:on
+            @Override
+            public String toString() {
+                return name();
+            }
+        }
+    }
 
-			@Override
-			public String toString() {
-				return name();
-			}
-		}
-	}
+    public enum StartGameEvent {
+        INSTANCE;
+    }
 
-	public enum StartGameEvent {
-		INSTANCE;
-	}
-	
-	public enum EndGameEvent {
-		INSTANCE;
-	}
+    public enum EndGameEvent {
+        INSTANCE;
+    }
 }

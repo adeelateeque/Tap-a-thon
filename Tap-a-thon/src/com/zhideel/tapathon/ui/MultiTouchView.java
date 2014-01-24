@@ -23,7 +23,6 @@ public class MultiTouchView extends View {
     private Paint mPaint;
     private int[] colors = {Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW};
     private boolean isSelected;
-    private static boolean isContinue = true;
     private boolean isPaused = false;
     private Paint textPaint;
     private String currentText;
@@ -40,10 +39,6 @@ public class MultiTouchView extends View {
         selectedLevel = level;
     }
 
-    public static void setContinue(boolean cont) {
-        isContinue = cont;
-    }
-
     public void setPaused(boolean paused) {
         this.isPaused = paused;
         if (isPaused == false) {
@@ -56,10 +51,11 @@ public class MultiTouchView extends View {
         // set painter color to a color you like
         mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.WHITE);
         textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        textPaint.setTextSize(100);
+        textPaint.setTextSize(150);
 
         if (startGame == true) {
             minDelay = 0;
@@ -85,14 +81,16 @@ public class MultiTouchView extends View {
     private void randomPaint() {
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                if ((!isSelected) && (isContinue)) {
-                    MultiTouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
-                } else if (isContinue) {
+                if ((!isSelected) && (!isPaused)) {
+                    textPaint.setColor(colors[randInt(0, 3)]);
+                } else if (isPaused) {
                     MultiTouchView.this.setBackgroundColor(Color.WHITE);
+                    textPaint.setColor(Color.GREEN);
                 } else {
                     MultiTouchView.this.setBackgroundColor(Color.BLACK);
                 }
                 invalidate();
+                //As long as we are not paused we can keep painting randomly
                 if (isPaused == false) {
                     randomPaint();
                     randText();
@@ -111,7 +109,7 @@ public class MultiTouchView extends View {
     }
 
     private void randText() {
-        if ((!isSelected) && (isContinue)) {
+        if ((!isSelected) && (!isPaused)) {
             int rand = randInt(0, 13);
             if (rand == 10) {
                 currentText = "+";
@@ -129,13 +127,6 @@ public class MultiTouchView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // get pointer index from the event object
-        int pointerIndex = event.getActionIndex();
-
-        // get pointer ID
-        int pointerId = event.getPointerId(pointerIndex);
-
-        // get masked (not specific to a pointer) action
         int maskedAction = event.getActionMasked();
 
         switch (maskedAction) {
@@ -152,20 +143,17 @@ public class MultiTouchView extends View {
                         this.isSelected = true;
                         if ((operands.size() == 2) && (operator != null)) {
                             int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                            //Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
-                            ((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
+                            ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
                         }
                     }
 
                 } catch (NumberFormatException e) {
-                    String cOperator = currentText;
                     if (operator == null) {
-                        ((GamePadActivity) super.getContext()).getStatsView().setOperator(cOperator);
+                        ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
                         this.isSelected = true;
                         if (operands.size() == 2) {
                             int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                            //Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
-                            ((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
+                            ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
                         }
                     }
                 }
@@ -188,7 +176,7 @@ public class MultiTouchView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText(currentText, this.getWidth() / 2 - 20, this.getHeight() / 2 + 40, textPaint);
+        canvas.drawText(currentText, this.getWidth() / 2 - 30, this.getHeight() / 2 + 50, textPaint);
     }
 
 }

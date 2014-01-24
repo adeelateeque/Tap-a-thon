@@ -15,29 +15,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents deck of 52 {@link Pad}s.
+ * Represents deck of 9 Pads {@link Pad}s.
  */
 public class PadDeck {
 
-	private final List<Pad> mPads;
+    private final List<Pad> mPads;
 
-	public PadDeck() {
-		mPads = new ArrayList<Pad>();
+    public PadDeck() {
+        mPads = new ArrayList<Pad>();
 
-		initializeDeck();
-	}
+        initializeDeck();
+    }
 
 
-	private void initializeDeck() {
-		for(int i=0; i<12; i++)
-        {
+    private void initializeDeck() {
+        for (int i = 0; i < 12; i++) {
             mPads.add(i, new Pad(Pad.PadColor.MAGENTA, Pad.PadSymbol.ZERO));
         }
-	}
+    }
 
-	@Override
-	public String toString() {
-		return mPads.toString();
-	}
+    @Override
+    public String toString() {
+        return mPads.toString();
+    }
 
 }

@@ -5,6 +5,11 @@ import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -13,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.sec.android.allshare.ServiceConnector;
@@ -20,6 +26,7 @@ import com.sec.android.allshare.ServiceProvider;
 import com.sec.android.allshare.screen.ScreenCastManager;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ClientGameChord;
@@ -30,13 +37,14 @@ import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.logic.Model;
 import com.zhideel.tapathon.utils.BitmapCache;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
-public class GamePadActivity extends Activity implements CommunicationBus.BusManager{
-	
-	public static final String GAME_NAME = "TAPATHON";
+public class GamePadActivity extends Activity implements CommunicationBus.BusManager {
+
+    public static final String GAME_NAME = "TAPATHON";
     public static final String CLIENT = "CLIENT";
     public static final String SERVER_NAME = "SERVER_NAME";
     private Bus mBus;
@@ -51,9 +59,10 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private boolean mAllShareEnabled;
     private Dialog mAllShareDialog;
     private Dialog mNoAllShareCastDialog;
-	private boolean continueMusic;
+    private boolean continueMusic;
     private GameBoardView gameBoardView;
     private StatsView statsView;
+    private ImageView gameEndView;
     private Button btnStart;
     private TextView tvWaiting;
     private boolean allShareShownBefore = false;
@@ -64,8 +73,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            final WifiInfo info = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-            if (info == null) {
+            if (!Config.isWifiConnected()) {
                 finish();
                 Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
             }
@@ -73,14 +81,15 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     };
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_game_pad);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_game_pad);
         mContext = this;
-        btnStart =  (Button) findViewById(R.id.btn_start);
-        tvWaiting =  (TextView) findViewById(R.id.tv_waiting);
+        btnStart = (Button) findViewById(R.id.btn_start);
+        gameEndView = (ImageView) findViewById(R.id.game_end_view);
+        tvWaiting = (TextView) findViewById(R.id.tv_waiting);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +97,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 btnStart.setVisibility(View.GONE);
             }
         });
-
 
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerWifiStateReceiver();
@@ -107,7 +115,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         final Model model = new Model(!mIsClient);
 
         final Intent intent = getIntent();
-        mIsClient = intent.getBooleanExtra(CLIENT, false);
+        mIsClient = intent.getBooleanExtra(CLIENT, true);
 
         final String roomName;
 
@@ -141,7 +149,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
         } else {
             tvWaiting.setVisibility(View.GONE);
-            roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
+            roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
 
             //for host to setup AllShare
@@ -187,7 +195,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         for (CommunicationBus.BusManager manager : mManagers) {
             manager.startBus();
         }
-	}
+    }
 
 
     @Override
@@ -198,7 +206,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                      GamePadActivity.this.finish();
+                        GamePadActivity.this.finish();
                     }
                 })
                 .setNegativeButton(R.string.cancel, null)
@@ -243,54 +251,68 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         mBus.post(GameLogicController.StartGameEvent.INSTANCE);
     }
 
-    public GameBoardView getGameBoard()
+
+    //TODO build the image and display out to the TV http://developer.samsung.com/allshare-framework/technical-docs/Sample-View-Controller
+    public void receivedSceenshot()
     {
+        Bitmap[] parts = new Bitmap[4];
+        Bitmap result = Bitmap.createBitmap(parts[0].getWidth() * 2, parts[0].getHeight() * 2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(result);
+        Paint paint = new Paint();
+        for (int i = 0; i < parts.length; i++) {
+            canvas.drawBitmap(parts[i], parts[i].getWidth() * (i % 2), parts[i].getHeight() * (i / 2), paint);
+        }
+    }
+
+    public GameBoardView getGameBoard() {
         return gameBoardView;
     }
 
-    public StatsView getStatsView()
-    {
+    public StatsView getStatsView() {
         return statsView;
     }
 
     private void showGameDisplay() {
         MultiTouchView.GameLevel level = null;
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
+        if (extras != null) {
             level = (MultiTouchView.GameLevel) extras.getSerializable("level");
-            if(level == null)
-            {
+            if (level == null) {
                 level = MultiTouchView.GameLevel.EASY;
             }
         }
 
 
-        gameBoardView = new GameBoardView(this, level,(ViewGroup)findViewById(R.id.gameboard_container));
-        statsView = new StatsView(this, (ViewGroup)findViewById(R.id.statsboard_container));
+        gameBoardView = new GameBoardView(this, level, (ViewGroup) findViewById(R.id.gameboard_container));
+        statsView = new StatsView(this, (ViewGroup) findViewById(R.id.statsboard_container));
     }
 
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (!continueMusic) {
-			MusicManager.pause();
-		}
-        if(statsView != null) statsView.setPaused(true);
-        if(gameBoardView != null) gameBoardView.pauseBoard(true);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
+        if (statsView != null) statsView.setPaused(true);
+        if (gameBoardView != null) gameBoardView.pauseBoard(true);
         mNoAllShareCastDialog.dismiss();
         mAllShareDialog.dismiss();
         super.onPause();
 
-	}
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		continueMusic = false;
-		MusicManager.start(this, MusicManager.MUSIC_MENU);
-        if(statsView != null){ statsView.setPaused(false); }
-        if(gameBoardView != null){ gameBoardView.pauseBoard(false); }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
+        if (statsView != null) {
+            statsView.setPaused(false);
+        }
+        if (gameBoardView != null) {
+            gameBoardView.pauseBoard(false);
+        }
         if (!mIsClient && !allShareShownBefore) {
             if (mManager == null) {
                 allShareShownBefore = true;
@@ -300,12 +322,16 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 mAllShareDialog.show();
             }
         }
-	}
+    }
 
     private void registerWifiStateReceiver() {
         final IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         registerReceiver(mWiFiBroadcastReceiver, filter);
+    }
+
+    public void showGameEndView() {
+        gameEndView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -319,16 +345,14 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     }
 
     @Subscribe
-    public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent)
-    {
+    public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent) {
         mLogicController.gameResult.getWinners();
-        //TODO you can do the rest from here i.e displaying the scoreboard
+        //TODO display the scoreboard
     }
 
     @Subscribe
-    public void handleGameStart(GameActivityEvent.GameStartEvent gameStartEvent)
-    {
-      this.showGameDisplay();
+    public void handleGameStart(GameActivityEvent.GameStartEvent gameStartEvent) {
+        this.showGameDisplay();
     }
 
     public static class GameActivityEvent extends BusEvent {
