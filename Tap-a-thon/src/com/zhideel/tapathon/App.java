@@ -16,14 +16,17 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
     public void onCreate() {
         super.onCreate();
         Config.context = this;
+        boolean groupPlayAvailable = true;
         sgp = new Sgp();
         try {
             sgp.initialize(getApplicationContext());
         } catch (SsdkUnsupportedException e) {
             // Exception Handling
+            groupPlayAvailable = false;
         }
-        new SgpGroupPlay(this).start();
-
+        if(groupPlayAvailable == true){
+            new SgpGroupPlay(this).start();
+        }
     }
 
     @Override
@@ -41,10 +44,6 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
         if (sdk.hasSession()) {
             sdk.setParticipantInfo(false);
         }
-    }
-
-    public static Sgp getGroupPlaySgp() {
-        return sgp;
     }
 
     public static SgpGroupPlay getGroupPlaySdk() {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
-import com.zhideel.tapathon.App;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

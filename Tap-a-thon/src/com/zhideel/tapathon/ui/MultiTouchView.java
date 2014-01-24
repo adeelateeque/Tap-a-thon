@@ -81,22 +81,27 @@ public class MultiTouchView extends View {
     private void randomPaint() {
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                if ((!isSelected) && (!isPaused)) {
-                    textPaint.setColor(colors[randInt(0, 3)]);
-                } else if (isPaused) {
-                    MultiTouchView.this.setBackgroundColor(Color.WHITE);
-                    textPaint.setColor(Color.GREEN);
-                } else {
-                    MultiTouchView.this.setBackgroundColor(Color.BLACK);
-                }
-                invalidate();
-                //As long as we are not paused we can keep painting randomly
-                if (isPaused == false) {
-                    randomPaint();
-                    randText();
-                }
+                doThePaint();
             }
         }, getRandomDelay());
+    }
+
+    private void doThePaint()
+    {
+        if ((!isSelected) && (!isPaused)) {
+            textPaint.setColor(colors[randInt(0, 3)]);
+        } else if (isSelected) {
+            MultiTouchView.this.setBackgroundColor(Color.WHITE);
+            textPaint.setColor(Color.GREEN);
+        } else {
+            MultiTouchView.this.setBackgroundColor(Color.BLACK);
+        }
+        invalidate();
+        //As long as we are not paused we can keep painting randomly
+        if (isPaused == false) {
+            randomPaint();
+            randText();
+        }
     }
 
     private int getRandomDelay() {
@@ -157,6 +162,7 @@ public class MultiTouchView extends View {
                         }
                     }
                 }
+                doThePaint();
                 break;
             }
             case MotionEvent.ACTION_MOVE: { // a pointer was moved

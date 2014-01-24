@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
@@ -33,6 +36,10 @@ public class GameBoardView implements CommunicationBus.BusManager {
     }
 
     public void resetBoard() {
+        AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
+        anim.setDuration(500);
+        anim.setRepeatMode(Animation.REVERSE);
+        gridview.startAnimation(anim);
         gridview.setAdapter(new PadAdapter(mContext));
     }
 
@@ -87,8 +94,9 @@ class PadAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         MultiTouchView pad = (MultiTouchView) getItem(position);
-        pad.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / 3,
-                parent.getHeight() / 3 - 7));
+        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3,
+                parent.getHeight() / 3 - 5);
+        pad.setLayoutParams(params);
         return pad;
     }
 }

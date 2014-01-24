@@ -64,7 +64,7 @@ public class CreateChannelFragment extends DialogFragment {
                     Intent intent = new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
                     intent.putExtra("level", selection);
                     intent.putExtra(GamePadActivity.CLIENT, false);
-                    intent.putExtra(GamePadActivity.SERVER_NAME, etChannelName.getText());
+                    intent.putExtra(GamePadActivity.SERVER_NAME, etChannelName.getText().toString());
                     startActivity(intent);
                     getDialog().dismiss();
                 } else {

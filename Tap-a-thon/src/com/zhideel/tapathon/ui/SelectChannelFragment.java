@@ -60,7 +60,7 @@ public class SelectChannelFragment extends DialogFragment implements OnServerLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("Available Tapathon(s)");
+        getDialog().setTitle("Available Tapathons");
         view = (LinearLayout) inflater.inflate(R.layout.dialog_channel, null);
         channelList = (ListView) view.findViewById(R.id.lv_channel);
         btnCreate = (Button) view.findViewById(R.id.btn_create);
@@ -124,15 +124,6 @@ public class SelectChannelFragment extends DialogFragment implements OnServerLis
          * @param serverName name of the clicked server
          */
         void onServerChosen(String serverName);
-
-    }
-
-    /**
-     * Interface definition for a callback to be invoked when a servers list has changed.
-     */
-    public interface OnServerListChangedListener {
-
-        void onChanged(List<String> availableServers);
 
     }
 

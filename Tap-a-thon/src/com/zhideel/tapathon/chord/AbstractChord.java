@@ -11,9 +11,7 @@
  */
 package com.zhideel.tapathon.chord;
 
-import android.app.Application;
 import android.content.Context;
-import android.net.wifi.WifiManager;
 import com.samsung.chord.ChordManager;
 import com.samsung.chord.IChordChannel;
 import com.samsung.chord.IChordChannelListener;
@@ -24,9 +22,6 @@ import com.zhideel.tapathon.debug.LoggedChordChannel;
 import com.zhideel.tapathon.debug.LoggedChordChannelListener;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Contains general methods related to the communication over Chord. Intitializes {@link ChordManager} and handles

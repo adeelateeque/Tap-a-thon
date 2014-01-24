@@ -122,6 +122,7 @@ public class StatsView implements CommunicationBus.BusManager {
             multiplier = Double.valueOf(multiplier + 1);
             tvScore.setText(Double.toString(multiplier));
             correctAnswerCount++;
+            newQuestion();
         }
         return result;
     }
@@ -132,7 +133,7 @@ public class StatsView implements CommunicationBus.BusManager {
         operands.clear();
         operator = null;
         totalQuestions++;
-        //((GamePadActivity) mContext).getGameBoard().resetBoard();
+        ((GamePadActivity) mContext).getGameBoard().resetBoard();
     }
 
     public void setPaused(Boolean paused) {

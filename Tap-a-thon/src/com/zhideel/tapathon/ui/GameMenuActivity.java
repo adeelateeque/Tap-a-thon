@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.*;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +13,6 @@ import android.widget.Toast;
 import com.zhideel.tapathon.App;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class GameMenuActivity extends Activity implements SelectChannelFragment.OnServerChosenListener {
 
@@ -77,7 +72,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
                     dFrag.remove(prev);
                 }
                 dFrag.addToBackStack(null);
-                CreateChannelFragment mFragment = new CreateChannelFragment();
+                SelectChannelFragment mFragment = new SelectChannelFragment();
                 mFragment.show(getFragmentManager(), "dialog_channel");
                 dFrag.commit();
 
@@ -88,6 +83,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onResume() {
         super.onResume();
+        refreshButtons();
     }
 
     @Override
@@ -102,7 +98,8 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     }
 
     void setNameTextView(String name) {
-        etName.setText(name);
+        etName.setText("");
+        etName.append(name);
     }
 
     @Override
