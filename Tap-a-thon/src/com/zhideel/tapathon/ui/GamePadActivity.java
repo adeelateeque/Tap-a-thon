@@ -5,6 +5,8 @@ import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.*;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -31,6 +33,8 @@ import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.logic.Model;
 import com.zhideel.tapathon.utils.BitmapCache;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,15 +69,39 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            final WifiInfo info = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-            if (info == null) {
+            if (!isWifiConnected()) {
                 finish();
                 Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
-                //TODO pause everyone?
             }
         }
 
     };
+
+    public boolean isWifiConnected() {
+        //Check for Wifi Connection
+        final ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        //Check if it is an Access Point
+        Boolean apState = false;
+        try {
+            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            Method method = wifiManager.getClass().getDeclaredMethod("isWifiApEnabled");
+            method.setAccessible(true);
+
+            apState = (Boolean) method.invoke(wifiManager, (Object[]) null);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+
+        return (networkInfo != null && networkInfo.isConnected()) || apState;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

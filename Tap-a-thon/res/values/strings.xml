@@ -19,6 +19,7 @@
     <string name="start_as_client">Start as Client</string>
     <string name="start_as_server">Start as Server</string>
     <string name="settings">Settings</string>
+    <string name="group_play">Group Play</string>
     <string name="about">About</string>
     <string name="ok">OK</string>
     <string name="close">Close</string>
@@ -32,7 +33,7 @@
     <string name="amount_icon">amount_icon</string>
     <string name="bid">bid</string>
     <string name="min">min</string>
-    <string name="username_dialog_message">Please enter your name</string>
+    <string name="username_dialog_message">Enter your name</string>
     <string name="username_dialog_title">Username</string>
     <string name="hello">Hello</string>
     <string name="wifi_off">WiFi is turned off or not connected to a network. You have to turn it on and connect to a network.</string>

@@ -51,10 +51,11 @@ public class MultiTouchView extends View {
         // set painter color to a color you like
         mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.WHITE);
         textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        textPaint.setTextSize(100);
+        textPaint.setTextSize(150);
 
         if (startGame == true) {
             minDelay = 0;
@@ -175,7 +176,7 @@ public class MultiTouchView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText(currentText, this.getWidth() / 2 - 20, this.getHeight() / 2 + 40, textPaint);
+        canvas.drawText(currentText, this.getWidth() / 2 - 30, this.getHeight() / 2 + 50, textPaint);
     }
 
 }

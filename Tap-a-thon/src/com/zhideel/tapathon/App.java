@@ -1,16 +1,16 @@
 package com.zhideel.tapathon;
 
 import android.app.Application;
+import com.samsung.android.sdk.SsdkUnsupportedException;
 import com.samsung.android.sdk.groupplay.Sgp;
 import com.samsung.android.sdk.groupplay.SgpGroupPlay;
-import com.samsung.android.sdk.SsdkUnsupportedException;
 
 /**
  * Created by Adeel on 24/1/14.
  */
-public class App extends Application implements SgpGroupPlay.SgpConnectionStatusListener{
+public class App extends Application implements SgpGroupPlay.SgpConnectionStatusListener {
     private static Sgp sgp = null;
-    private static SgpGroupPlay sdk= null;
+    private static SgpGroupPlay sdk = null;
 
     @Override
     public void onCreate() {
@@ -37,6 +37,19 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
 
     @Override
     public void onDisconnected() {
-
+        sdk.setParticipantInfo(false);
+        if (sdk.hasSession()) {
+            sdk.setParticipantInfo(false);
+        }
     }
+
+    public static Sgp getGroupPlaySgp() {
+        return sgp;
+    }
+
+    public static SgpGroupPlay getGroupPlaySdk() {
+        return sdk;
+    }
+
+
 }
