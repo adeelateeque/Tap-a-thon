@@ -48,6 +48,8 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
 
         registerWifiStateReceiver();
 
+        btnStart = (Button) findViewById(R.id.btn_start);
+
         if (!isWifiConnected()) {
             enableButtons(false);
             Toast.makeText(this, getString(R.string.wifi_off), Toast.LENGTH_LONG).show();
@@ -55,7 +57,6 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
             enableButtons(true);
         }
 
-        btnStart = (Button) findViewById(R.id.btn_start);
         etName = (EditText) findViewById(R.id.user_name_text_view);
         final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES,
                 Context.MODE_PRIVATE);
@@ -124,6 +125,6 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     }
 
     public void enableButtons(boolean enabled) {
-        btnStart.setEnabled(enabled);
+        if(btnStart != null) btnStart.setEnabled(enabled);
     }
 }
