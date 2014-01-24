@@ -9,8 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.8"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical" android:gravity="bottom">
         <TextView
             android:textColor="@color/tappad_white"
             android:layout_width="wrap_content"
@@ -36,37 +35,33 @@
             android:layout_gravity="center_horizontal"
             android:visibility="visible" android:background="@color/dealer_font" android:paddingTop="5dp"
             android:paddingBottom="5dp" android:gravity="center_horizontal" android:alpha="0.8"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
 
+            <Button
+                    android:id="@+id/btn_group_play"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:onClick="groupPlayClick"
+                    android:padding="10dp"
+                    android:textColor="@color/menu_activity_button_text_color"
+                    android:visibility="visible" android:background="@drawable/grouplay"
+                    android:layout_marginLeft="10dp" android:layout_marginBottom="10dp"/>
+            <Button
+                    android:id="@+id/btn_settings"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:onClick="settingsClick"
+                    android:padding="10dp"
+                    android:textColor="@color/menu_activity_button_text_color"
+                    android:visibility="visible" android:background="@drawable/settings"/>
 
+        </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal">
-        <Button
-                android:id="@+id/button_settings"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:onClick="settingsClick"
-                android:padding="10dp"
-                android:text="@string/settings"
-                android:textColor="@color/menu_activity_button_text_color"
-                android:visibility="visible"/>
-
-        <Button
-                android:id="@+id/btn_group_play"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:onClick="groupPlayClick"
-                android:padding="10dp"
-                android:text="@string/group_play"
-                android:textColor="@color/menu_activity_button_text_color"
-                android:visibility="visible"/>
 
     </LinearLayout>
     <Button

@@ -161,8 +161,10 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
         if (btnStart != null) {
             if (isWifiConnected()) {
                 btnStart.setEnabled(true);
+                btnStart.setText("Start");
             } else {
                 btnStart.setEnabled(false);
+                btnStart.setText("Please Connect...");
             }
         }
 
@@ -170,6 +172,10 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
         if (App.getGroupPlaySdk() != null && btnGroupPlay != null) {
             if (!App.getGroupPlaySdk().hasSession()) {
                btnGroupPlay.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                btnGroupPlay.setVisibility(View.GONE);
             }
         }
     }
