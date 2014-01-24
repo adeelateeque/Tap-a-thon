@@ -94,6 +94,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(mWiFiBroadcastReceiver);
     }
 
     void setNameTextView(String name) {

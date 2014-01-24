@@ -69,7 +69,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             if (info == null) {
                 finish();
                 Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
-
                 //TODO pause everyone?
             }
         }

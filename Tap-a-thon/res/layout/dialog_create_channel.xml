@@ -9,7 +9,8 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="59dp"
-            android:hint="@string/new_channel_name"/>
+            android:hint="@string/new_channel_name" android:gravity="center_vertical|center_horizontal"
+            android:textColor="#7fff1a"/>
 
     <RadioGroup
         android:id="@+id/rg_lvl"
