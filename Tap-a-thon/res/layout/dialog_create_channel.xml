@@ -5,6 +5,12 @@
     android:orientation="vertical"
     android:minWidth="350dp">
 
+    <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:hint="@string/new_channel_name"/>
+
     <RadioGroup
         android:id="@+id/rg_lvl"
         android:layout_width="match_parent"

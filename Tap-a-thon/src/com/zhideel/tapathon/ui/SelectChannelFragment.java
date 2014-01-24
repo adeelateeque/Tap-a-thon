@@ -3,7 +3,6 @@ package com.zhideel.tapathon.ui;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameChannelFragment extends DialogFragment implements OnServerListChangedListener, BusManager,ListView.OnItemClickListener {
+public class SelectChannelFragment extends DialogFragment implements OnServerListChangedListener, BusManager, ListView.OnItemClickListener {
 	
 	private ConnectionChord mConnectionChord;
 	private OnServerChosenListener mOnServerChosenListener;
@@ -33,7 +32,7 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	
 	private LinearLayout view;
 	private Button btnCreate;
-    private ListView listChannel;
+    private ListView channelList;
 	
 	@Subscribe
 	public void onNodeLeftOnPublicChannel(NodeLeftOnPublicChannelEvent event) {
@@ -53,22 +52,22 @@ public class GameChannelFragment extends DialogFragment implements OnServerListC
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mBus = CommunicationBus.getInstance();
-		mConnectionChord = new ConnectionChord(getActivity().getApplicationContext(), GamePadActivity.GAME_NAME, GameChannelFragment.this);
+        startBus();
+		mConnectionChord = new ConnectionChord(getActivity().getApplicationContext(), GamePadActivity.GAME_NAME, SelectChannelFragment.this);
 		mOnServerChosenListener = (OnServerChosenListener) getActivity();
-		startBus();
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		getDialog().setTitle("Available room(s)");
+		getDialog().setTitle("Available Tapathon(s)");
 		view = (LinearLayout) inflater.inflate(R.layout.dialog_channel, null);
-		listChannel = (ListView) view.findViewById(R.id.lv_channel);
+		channelList = (ListView) view.findViewById(R.id.lv_channel);
 		btnCreate = (Button) view.findViewById(R.id.btn_create);
 		
 		mServerAdapter = new ServerAdapter();
-        listChannel.setOnItemClickListener(this);
-		listChannel.setAdapter(mServerAdapter);
+        channelList.setAdapter(mServerAdapter);
+        channelList.setOnItemClickListener(this);
 		return view;
 	}
 

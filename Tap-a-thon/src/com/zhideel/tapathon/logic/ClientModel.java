@@ -121,7 +121,7 @@ public class ClientModel implements BusManager {
 	public static enum ClientModelEventType {
 		//@formatter:off
 		WON,
-		LOSE;
+		LOST;
 		//@formatter:off
 		
 		@Override

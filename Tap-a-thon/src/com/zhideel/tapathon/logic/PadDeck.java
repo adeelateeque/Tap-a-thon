@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents deck of 52 {@link Pad}s.
+ * Represents deck of 12 Pads {@link Pad}s.
  */
 public class PadDeck {
 

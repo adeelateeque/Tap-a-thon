@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.zhideel.tapathon.R;
 
-public class GameMenuActivity extends Activity implements GameChannelFragment.OnServerChosenListener {
+public class GameMenuActivity extends Activity implements SelectChannelFragment.OnServerChosenListener {
 
 	public static final String TAG = "Tapathon";
     public static final String TAPATHON_PREFERENCES = "TAPATHON_PREFERENCES";
@@ -45,54 +45,45 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnStart = (Button) findViewById(R.id.btn_start);
-        etName = (EditText) findViewById(R.id.user_name_text_view);
-        final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES,
-                Context.MODE_PRIVATE);
-        final String userName = sharedPreferences.getString(GameMenuActivity.USER_NAME_KEY, "");
-        etName.append(userName.trim());
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                    String name = etName.getText().toString();
-                    if (!(name.length() > 0)) {
-                       name = "ANONYMOUS";
-                    }
-                    final SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(GameMenuActivity.USER_NAME_KEY, name);
-                    editor.apply();
-                    setNameTextView(name);
-
-                    
-                   FragmentTransaction dFrag = getFragmentManager().beginTransaction();
-                    Fragment prev = getFragmentManager().findFragmentByTag("dialog_channel");
-                    if (prev != null) {
-            	    	dFrag.remove(prev);
-            	    }
-            	    dFrag.addToBackStack(null);
-                    CreateChannelFragment mFragment = new CreateChannelFragment();
-                    mFragment.show(getFragmentManager(), "dialog_channel");
-                    dFrag.commit();
-                    
-                    //Toast.makeText(getBaseContext(), "Start", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
-
-        final String name = mSharedPreferences.getString(USER_NAME_KEY, "");
-        setNameTextView(name);
-
-        /*
         registerWifiStateReceiver();
 
         if (!isWifiConnected()) {
             enableButtons(false);
             Toast.makeText(this, getString(R.string.wifi_off), Toast.LENGTH_LONG).show();
-        }*/
+        }
+        else{
+            enableButtons(true);
+        }
 
-        enableButtons(true);
+        btnStart = (Button) findViewById(R.id.btn_start);
+        etName = (EditText) findViewById(R.id.user_name_text_view);
+        final SharedPreferences sharedPreferences = GameMenuActivity.this.getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES,
+                Context.MODE_PRIVATE);
+        final String userName = sharedPreferences.getString(GameMenuActivity.USER_NAME_KEY, android.os.Build.MODEL);
+        setNameTextView(userName.trim());
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etName.getText().toString();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(GameMenuActivity.USER_NAME_KEY, name);
+                editor.apply();
+
+                FragmentTransaction dFrag = getFragmentManager().beginTransaction();
+                Fragment prev = getFragmentManager().findFragmentByTag("dialog_channel");
+                if (prev != null) {
+                    dFrag.remove(prev);
+                }
+                dFrag.addToBackStack(null);
+                CreateChannelFragment mFragment = new CreateChannelFragment();
+                mFragment.show(getFragmentManager(), "dialog_channel");
+                dFrag.commit();
+
+            }
+        });
+        mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
     }
 
     @Override
@@ -103,10 +94,6 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    private boolean isNewUser() {
-        return !mSharedPreferences.contains(USER_NAME_KEY);
     }
 
     void setNameTextView(String name) {
@@ -140,11 +127,4 @@ public class GameMenuActivity extends Activity implements GameChannelFragment.On
     public void enableButtons(boolean enabled) {
         btnStart.setEnabled(enabled);
     }
-
-   /* public void enableClientButton() {
-        mClientButton.setEnabled(true);
-    }*/
-
-
-
 }

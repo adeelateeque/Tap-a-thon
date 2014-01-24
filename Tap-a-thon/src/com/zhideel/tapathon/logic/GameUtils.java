@@ -15,7 +15,7 @@ import java.util.*;
 
 public class GameUtils {
 
-	private static final int MAX_CARDS_NUMBER = 7;
+	private static final int MAX_PLAYERS = 4;
 
 	private GameUtils() {
 		// No. op.
@@ -24,8 +24,7 @@ public class GameUtils {
 	/**
 	 * Returns game result. Contains the players and their hands.
 	 * 
-	 * @param players
-	 *            A list of all players.
+	 * @param players A list of all players.
 	 * @return A GameResult object.
 	 */
 	public static GameResult getGameResult(List<Player> players) {
@@ -80,7 +79,7 @@ public class GameUtils {
 		private List<Player> mWinners;
 
 		/**
-		 * Constructor method. GameResult holds all game information - which player has what cards.
+		 * Constructor method. GameResult holds all game information
          * @param winnersList
          */
 		public GameResult(List<Player> winnersList) {
@@ -88,14 +87,13 @@ public class GameUtils {
 		}
 
 		/**
-		 * Returns the name of the players highest hand.
+		 * Returns the name of the player highest score
 		 *
 		 * @param player
-		 *            The player whose hand is required.
 		 * @return The score of the player.
 		 */
-		public Integer getPlayerScore(Player player) {
-			return player.getScore();
+		public Integer getTopPlayerScore(Player player) {
+			return mWinners.get(0).getScore();
 		}
 
 		/**

@@ -29,252 +29,255 @@ import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
  */
 public abstract class AbstractChord implements BusManager {
 
-	private static final String PAYLOAD_SUFFIX = "_CHORD_TYPE";
-	private final String mPayloadType;
+    private static final String PAYLOAD_SUFFIX = "_CHORD_TYPE";
+    private final String mPayloadType;
 
-	private final ChordManager mChordManager;
-	private IChordChannel mPublicChannel;
-	private IChordChannel mPrivateChannel;
-	final Bus mBus;
+    private final ChordManager mChordManager;
+    private IChordChannel mPublicChannel;
+    private IChordChannel mPrivateChannel;
+    final Bus mBus;
 
-	private final IChordManagerListener mChordManagerListener = new IChordManagerListener() {
+    private final IChordManagerListener mChordManagerListener = new IChordManagerListener() {
 
-		@Override
-		public void onStarted(String nodeName, int reason) {
-			onChordStarted(nodeName, reason);
-		}
+        @Override
+        public void onStarted(String nodeName, int reason) {
+            onChordStarted(nodeName, reason);
+        }
 
-		@Override
-		public void onNetworkDisconnected() {
-			onChordDisconnected();
-		}
+        @Override
+        public void onNetworkDisconnected() {
+            onChordDisconnected();
+        }
 
-		@Override
-		public void onError(int error) {
-			onChordError(error);
-		}
+        @Override
+        public void onError(int error) {
+            onChordError(error);
+        }
 
-		@Override
-		public void onStopped(int arg0) {
-			
-		}
+        @Override
+        public void onStopped(int arg0) {
 
-	};
+        }
 
-	private final IChordChannelListener mChordPublicChannelListener = new LoggedChordChannelListener(
+    };
 
-	new IChordChannelListenerAdapter() {
+    private final IChordChannelListener mChordPublicChannelListener = new LoggedChordChannelListener(
 
-		@Override
-		public void onDataReceived(String fromNode, String fromChannel, String payloadType, byte[][] payload) {
-			if (mPayloadType.equals(payloadType)) {
-				final ChordMessage receivedMessage = ChordMessage.obtainChordMessage(payload[0], fromNode);
-				handlePublicMessage(receivedMessage);
-			}
-		}
+            new IChordChannelListenerAdapter() {
 
-		@Override
-		public void onNodeJoined(String fromNode, String fromChannel) {
-			onNodeJoinedOnPublicChannel(fromNode);
-		};
+                @Override
+                public void onDataReceived(String fromNode, String fromChannel, String payloadType, byte[][] payload) {
+                    if (mPayloadType.equals(payloadType)) {
+                        final ChordMessage receivedMessage = ChordMessage.obtainChordMessage(payload[0], fromNode);
+                        handlePublicMessage(receivedMessage);
+                    }
+                }
 
-		@Override
-		public void onNodeLeft(String fromNode, String fromChannel) {
-			onNodeLeftOnPublicChannel(fromNode);
-		};
+                @Override
+                public void onNodeJoined(String fromNode, String fromChannel) {
+                    onNodeJoinedOnPublicChannel(fromNode);
+                }
 
-	});
+                ;
 
-	private final IChordChannelListener mChordPrivateChannelListener = new LoggedChordChannelListener(
+                @Override
+                public void onNodeLeft(String fromNode, String fromChannel) {
+                    onNodeLeftOnPublicChannel(fromNode);
+                }
 
-	new IChordChannelListenerAdapter() {
+                ;
 
-		@Override
-		public void onDataReceived(String fromNode, String fromChannel, String payloadType, byte[][] payload) {
-			if (mPayloadType.equals(payloadType)) {
-				final ChordMessage receivedMessage = ChordMessage.obtainChordMessage(payload[0], fromNode);
-				handlePrivateMessage(receivedMessage);
-			}
-		}
+            });
 
-		@Override
-		public void onNodeLeft(String fromNode, String fromChannel) {
-			onNodeLeftOnPrivateChannel(fromNode);
-		};
+    private final IChordChannelListener mChordPrivateChannelListener = new LoggedChordChannelListener(
 
-		@Override
-		public void onNodeJoined(String fromNode, String fromChannel) {
-			onNodeJoinedOnPrivateChannel(fromNode);
-		};
+            new IChordChannelListenerAdapter() {
 
-	});
+                @Override
+                public void onDataReceived(String fromNode, String fromChannel, String payloadType, byte[][] payload) {
+                    if (mPayloadType.equals(payloadType)) {
+                        final ChordMessage receivedMessage = ChordMessage.obtainChordMessage(payload[0], fromNode);
+                        handlePrivateMessage(receivedMessage);
+                    }
+                }
 
-	AbstractChord(Context context, String gameName) {
-		mPayloadType = gameName + PAYLOAD_SUFFIX;
-		mChordManager = ChordManager.getInstance(context);
-		mBus = CommunicationBus.getInstance();
+                @Override
+                public void onNodeLeft(String fromNode, String fromChannel) {
+                    onNodeLeftOnPrivateChannel(fromNode);
+                }
 
-		final int result = mChordManager.start(ChordManager.INTERFACE_TYPE_WIFI, mChordManagerListener);
+                ;
 
-		if (result != ChordManager.ERROR_NONE) {
-			onChordStartFailed(result);
-		}
-	}
+                @Override
+                public void onNodeJoined(String fromNode, String fromChannel) {
+                    onNodeJoinedOnPrivateChannel(fromNode);
+                }
 
-	public void stopChord() {
-		if (mPublicChannel != null) {
-			mChordManager.leaveChannel(mPublicChannel.getName());
-		}
-		if (mPrivateChannel != null) {
-			mChordManager.leaveChannel(mPrivateChannel.getName());
-		}
-		mChordManager.stop();
-	}
+                ;
 
-	/**
-	 * Joins to the channel with the specified name and stores it as a private channel.
-	 * 
-	 * @param channelName
-	 */
-	void joinPrivateChannel(String channelName) {
-		mPrivateChannel = new LoggedChordChannel(mChordManager.joinChannel(channelName, mChordPrivateChannelListener),
-				true);
-		onJoinedToPrivateChannel(mPrivateChannel);
-	}
+            });
 
-	/**
-	 * Joins to the public channel (ChordManager.PUBLIC_CHANNEL).
-	 */
-	void joinPublicChannel() {
-		mPublicChannel = new LoggedChordChannel(mChordManager.joinChannel(ChordManager.PUBLIC_CHANNEL,
-				mChordPublicChannelListener), false);
-		onJoinedToPublicChannel(mPublicChannel);
-	}
+    AbstractChord(Context context, String gameName) {
+        mPayloadType = gameName + PAYLOAD_SUFFIX;
+        mChordManager = ChordManager.getInstance(context);
+        mBus = CommunicationBus.getInstance();
 
-	void onChordDisconnected() {
-		mBus.post(ChordDisconnectedEvent.INSTANCE);
-	}
+        final int result = mChordManager.start(ChordManager.INTERFACE_TYPE_WIFI, mChordManagerListener);
 
-	void onChordError(int error) {
-		mBus.post(ChordErrorEvent.INSTANCE);
-	}
+        if (result != ChordManager.ERROR_NONE) {
+            onChordStartFailed(result);
+        }
+    }
 
-	void onChordStartFailed(int reason) {
-		mBus.post(ChordStartFailedEvent.INSTANCE);
-	}
+    public void stopChord() {
+        if (mPublicChannel != null) {
+            mChordManager.leaveChannel(mPublicChannel.getName());
+        }
+        if (mPrivateChannel != null) {
+            mChordManager.leaveChannel(mPrivateChannel.getName());
+        }
+        mChordManager.stop();
+    }
 
-	void onChordStarted(String userNodeName, int reason) {
-		mBus.post(ChordStartedEvent.INSTANCE);
-	}
+    /**
+     * Joins to the channel with the specified name and stores it as a private channel.
+     *
+     * @param channelName
+     */
+    void joinPrivateChannel(String channelName) {
+        mPrivateChannel = new LoggedChordChannel(mChordManager.joinChannel(channelName, mChordPrivateChannelListener),
+                true);
+        onJoinedToPrivateChannel(mPrivateChannel);
+    }
 
-	/**
-	 * Invoked when a node has left the private channel.
-	 * 
-	 * @param nodeName
-	 *            the node's name that has left the channel
-	 */
-	void onNodeLeftOnPrivateChannel(String nodeName) {
-	}
+    /**
+     * Joins to the public channel (ChordManager.PUBLIC_CHANNEL).
+     */
+    void joinPublicChannel() {
+        mPublicChannel = new LoggedChordChannel(mChordManager.joinChannel(ChordManager.PUBLIC_CHANNEL,
+                mChordPublicChannelListener), false);
+        onJoinedToPublicChannel(mPublicChannel);
+    }
 
-	/**
-	 * Invoked when a node has joined the private channel.
-	 * 
-	 * @param nodeName
-	 *            the node's name that has joined the channel
-	 */
-	void onNodeJoinedOnPrivateChannel(String nodeName) {
-	}
+    void onChordDisconnected() {
+        mBus.post(ChordDisconnectedEvent.INSTANCE);
+    }
 
-	void onNodeJoinedOnPublicChannel(String nodeName) {
-		mBus.post(NodeJoinedOnPublicChannelEvent.INSTANCE);
-	}
+    void onChordError(int error) {
+        mBus.post(ChordErrorEvent.INSTANCE);
+    }
 
-	void onNodeLeftOnPublicChannel(String nodeName) {
-		mBus.post(NodeLeftOnPublicChannelEvent.INSTANCE);
-	}
+    void onChordStartFailed(int reason) {
+        mBus.post(ChordStartFailedEvent.INSTANCE);
+    }
 
-	void onJoinedToPrivateChannel(IChordChannel privateChannel) {
-		mBus.post(JoinedToPrivateChannelEvent.INSTANCE);
-	}
+    void onChordStarted(String userNodeName, int reason) {
+        mBus.post(ChordStartedEvent.INSTANCE);
+    }
 
-	void onJoinedToPublicChannel(IChordChannel publicChannel) {
-		mBus.post(JoinedToPublicChannelEvent.INSTANCE);
-	}
+    /**
+     * Invoked when a node has left the private channel.
+     *
+     * @param nodeName the node's name that has left the channel
+     */
+    void onNodeLeftOnPrivateChannel(String nodeName) {
+    }
 
-	/**
-	 * Sends message over public channel.
-	 * 
-	 * @param message
-	 *            to be sent
-	 */
-	void sendPublicMessage(ChordMessage message) {
-		mPublicChannel.sendDataToAll(mPayloadType, new byte[][]{message.getBytes()});
-	}
+    /**
+     * Invoked when a node has joined the private channel.
+     *
+     * @param nodeName the node's name that has joined the channel
+     */
+    void onNodeJoinedOnPrivateChannel(String nodeName) {
+    }
 
-	/**
-	 * Sends message over private channel.
-	 * 
-	 * @param message
-	 *            to be sent
-	 * @param toNode
-	 *            node nome of the receiver
-	 */
-	void sendPrivateMessage(ChordMessage message, String toNode) {
-		mPrivateChannel.sendData(toNode, mPayloadType, new byte[][]{message.getBytes()});
-	}
+    void onNodeJoinedOnPublicChannel(String nodeName) {
+        mBus.post(NodeJoinedOnPublicChannelEvent.INSTANCE);
+    }
 
-	void handlePublicMessage(ChordMessage message) {
-		throw new UnsupportedOperationException(message.getType().name());
-	}
+    void onNodeLeftOnPublicChannel(String nodeName) {
+        mBus.post(NodeLeftOnPublicChannelEvent.INSTANCE);
+    }
 
-	void handlePrivateMessage(ChordMessage message) {
-		throw new UnsupportedOperationException(message.getType().name());
-	}
+    void onJoinedToPrivateChannel(IChordChannel privateChannel) {
+        mBus.post(JoinedToPrivateChannelEvent.INSTANCE);
+    }
 
-	String getNodeName() {
-		return mChordManager.getName();
-	}
+    void onJoinedToPublicChannel(IChordChannel publicChannel) {
+        mBus.post(JoinedToPublicChannelEvent.INSTANCE);
+    }
 
-	@Override
-	public void startBus() {
-		mBus.register(this);
-	}
+    /**
+     * Sends message over public channel.
+     *
+     * @param message to be sent
+     */
+    void sendPublicMessage(ChordMessage message) {
+        mPublicChannel.sendDataToAll(mPayloadType, new byte[][]{message.getBytes()});
+    }
 
-	@Override
-	public void stopBus() {
-		mBus.unregister(this);
-	}
+    /**
+     * Sends message over private channel.
+     *
+     * @param message to be sent
+     * @param toNode  node nome of the receiver
+     */
+    void sendPrivateMessage(ChordMessage message, String toNode) {
+        mPrivateChannel.sendData(toNode, mPayloadType, new byte[][]{message.getBytes()});
+    }
 
-	public enum JoinedToPrivateChannelEvent {
-		INSTANCE;
-	}
+    void handlePublicMessage(ChordMessage message) {
+        throw new UnsupportedOperationException(message.getType().name());
+    }
 
-	public enum JoinedToPublicChannelEvent {
-		INSTANCE;
-	}
+    void handlePrivateMessage(ChordMessage message) {
+        throw new UnsupportedOperationException(message.getType().name());
+    }
 
-	public enum NodeLeftOnPublicChannelEvent {
-		INSTANCE;
-	}
+    String getNodeName() {
+        return mChordManager.getName();
+    }
 
-	public enum NodeJoinedOnPublicChannelEvent {
-		INSTANCE;
-	}
+    @Override
+    public void startBus() {
+        mBus.register(this);
+    }
 
-	public enum ChordStartedEvent {
-		INSTANCE;
-	}
+    @Override
+    public void stopBus() {
+        mBus.unregister(this);
+    }
 
-	public enum ChordStartFailedEvent {
-		INSTANCE;
-	}
+    public enum JoinedToPrivateChannelEvent {
+        INSTANCE;
+    }
 
-	public enum ChordErrorEvent {
-		INSTANCE;
-	}
+    public enum JoinedToPublicChannelEvent {
+        INSTANCE;
+    }
 
-	public enum ChordDisconnectedEvent {
-		INSTANCE;
-	}
+    public enum NodeLeftOnPublicChannelEvent {
+        INSTANCE;
+    }
+
+    public enum NodeJoinedOnPublicChannelEvent {
+        INSTANCE;
+    }
+
+    public enum ChordStartedEvent {
+        INSTANCE;
+    }
+
+    public enum ChordStartFailedEvent {
+        INSTANCE;
+    }
+
+    public enum ChordErrorEvent {
+        INSTANCE;
+    }
+
+    public enum ChordDisconnectedEvent {
+        INSTANCE;
+    }
 
 }

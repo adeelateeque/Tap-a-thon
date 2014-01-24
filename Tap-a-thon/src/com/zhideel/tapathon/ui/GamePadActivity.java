@@ -71,6 +71,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             if (info == null) {
                 finish();
                 Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
+
+                //TODO pause everyone?
             }
         }
 
@@ -93,7 +95,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             }
         });
 
-
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerWifiStateReceiver();
 
@@ -111,7 +112,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         final Model model = new Model(!mIsClient);
 
         final Intent intent = getIntent();
-        mIsClient = intent.getBooleanExtra(CLIENT, false);
+        mIsClient = intent.getBooleanExtra(CLIENT, true);
 
         final String roomName;
 
@@ -145,7 +146,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
         } else {
             tvWaiting.setVisibility(View.GONE);
-            roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
+            roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
 
             //for host to setup AllShare
@@ -331,7 +332,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent)
     {
         mLogicController.gameResult.getWinners();
-        //TODO you can do the rest from here i.e displaying the scoreboard
+        //TODO display the scoreboard
     }
 
     @Subscribe

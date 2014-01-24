@@ -1,4 +1,4 @@
-Tap-a-thon
+Tapathon
 ==========
 
-Tap-a-thon
+Tapathon

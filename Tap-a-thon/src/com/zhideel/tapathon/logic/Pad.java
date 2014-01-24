@@ -14,7 +14,7 @@ package com.zhideel.tapathon.logic;
 import java.io.Serializable;
 
 /**
- * Represents individual card used in the Tap-a-thon game.
+ * Represents individual card used in the Tapathon game.
  */
 public class Pad implements Serializable {
 
