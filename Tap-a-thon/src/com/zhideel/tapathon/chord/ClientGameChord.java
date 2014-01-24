@@ -12,7 +12,6 @@
 package com.zhideel.tapathon.chord;
 
 import android.content.Context;
-
 import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
 
@@ -21,45 +20,45 @@ import com.zhideel.tapathon.chord.ChordMessage.MessageType;
  */
 public class ClientGameChord extends GameChord {
 
-	private String mServerNodeName;
+    private String mServerNodeName;
 
-	public ClientGameChord(Context context, String roomName, String gameName, String userName) {
-		super(context, roomName, gameName, userName);
-	}
+    public ClientGameChord(Context context, String roomName, String gameName, String userName) {
+        super(context, roomName, gameName, userName);
+    }
 
-	@Override
-	void handlePrivateMessage(ChordMessage message) {
-		switch (message.getType()) {
-		case SERVER_NODE_NAME:
-			mServerNodeName = message.getString(ChordMessage.SERVER_NODE_NAME);
-			final ChordMessage usernameMessage = ChordMessage.obtainMessage(MessageType.USERNAME);
-			usernameMessage.putString(ChordMessage.USERNAME, mUserName);
-			sendPrivateMessage(usernameMessage);
-			mBus.post(JoinedToServerEvent.INSTANCE);
-			break;
-		default:
-			super.handlePrivateMessage(message);
-		}
-	}
+    @Override
+    void handlePrivateMessage(ChordMessage message) {
+        switch (message.getType()) {
+            case SERVER_NODE_NAME:
+                mServerNodeName = message.getString(ChordMessage.SERVER_NODE_NAME);
+                final ChordMessage usernameMessage = ChordMessage.obtainMessage(MessageType.USERNAME);
+                usernameMessage.putString(ChordMessage.USERNAME, mUserName);
+                sendPrivateMessage(usernameMessage);
+                mBus.post(JoinedToServerEvent.INSTANCE);
+                break;
+            default:
+                super.handlePrivateMessage(message);
+        }
+    }
 
-	@Override
-	void onNodeLeftOnPrivateChannel(String nodeName) {
-		super.onNodeLeftOnPrivateChannel(nodeName);
+    @Override
+    void onNodeLeftOnPrivateChannel(String nodeName) {
+        super.onNodeLeftOnPrivateChannel(nodeName);
 
-		if (nodeName.equalsIgnoreCase(mServerNodeName)) {
-			mBus.post(ServerDisconnectedEvent.INSTANCE);
-		}
-	}
+        if (nodeName.equalsIgnoreCase(mServerNodeName)) {
+            mBus.post(ServerDisconnectedEvent.INSTANCE);
+        }
+    }
 
-	@Override
-	void onChordStarted(String userNodeName, int reason) {
-		super.onChordStarted(userNodeName, reason);
-		joinPrivateChannel(mRoomName);
-	}
+    @Override
+    void onChordStarted(String userNodeName, int reason) {
+        super.onChordStarted(userNodeName, reason);
+        joinPrivateChannel(mRoomName);
+    }
 
-	@Subscribe
-	public void sendPrivateMessage(ChordMessage message) {
-		super.sendPrivateMessage(message, mServerNodeName);
-	}
+    @Subscribe
+    public void sendPrivateMessage(ChordMessage message) {
+        super.sendPrivateMessage(message, mServerNodeName);
+    }
 
 }

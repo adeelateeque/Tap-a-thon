@@ -19,53 +19,53 @@ import com.zhideel.tapathon.logic.ClientModel;
  */
 public abstract class GameChord extends AbstractChord {
 
-	final String mUserName;
-	final String mRoomName;
+    final String mUserName;
+    final String mRoomName;
 
-	GameChord(Context context, String roomName, String gameName, String userName) {
-		super(context, gameName);
-		mUserName = userName;
-		mRoomName = roomName;
-	}
+    GameChord(Context context, String roomName, String gameName, String userName) {
+        super(context, gameName);
+        mUserName = userName;
+        mRoomName = roomName;
+    }
 
-	@Override
-	void handlePrivateMessage(ChordMessage message) {
-		switch (message.getType()) {
-        case GAME_START:
-            mBus.post(new ClientModel.ClientModelEvent.GameStart());
-            break;
-		case GAME_END:
-			mBus.post(new ClientModel.ClientModelEvent.GameEnd(message.getInt(ChordMessage.SCORE)));
-			break;
-		case GET_SERVERS_LIST:
-		case SERVER_NAME_BROADCAST:
-		case USERNAME:
-		case SERVER_NODE_NAME:
-			throw new IllegalArgumentException(message.getType().name());
-		default:
-			super.handlePrivateMessage(message);
-		}
-	}
+    @Override
+    void handlePrivateMessage(ChordMessage message) {
+        switch (message.getType()) {
+            case GAME_START:
+                mBus.post(new ClientModel.ClientModelEvent.GameStart());
+                break;
+            case GAME_END:
+                mBus.post(new ClientModel.ClientModelEvent.GameEnd(message.getInt(ChordMessage.SCORE)));
+                break;
+            case GET_SERVERS_LIST:
+            case SERVER_NAME_BROADCAST:
+            case USERNAME:
+            case SERVER_NODE_NAME:
+                throw new IllegalArgumentException(message.getType().name());
+            default:
+                super.handlePrivateMessage(message);
+        }
+    }
 
-	public enum ServerDisconnectedEvent {
-		INSTANCE;
-	}
+    public enum ServerDisconnectedEvent {
+        INSTANCE;
+    }
 
-	public static class ClientDisconnectedEvent {
+    public static class ClientDisconnectedEvent {
 
-		private final String mNodeName;
+        private final String mNodeName;
 
-		public ClientDisconnectedEvent(String nodeName) {
-			mNodeName = nodeName;
-		}
+        public ClientDisconnectedEvent(String nodeName) {
+            mNodeName = nodeName;
+        }
 
-		public String getNodeName() {
-			return mNodeName;
-		}
-	}
+        public String getNodeName() {
+            return mNodeName;
+        }
+    }
 
-	public enum JoinedToServerEvent {
-		INSTANCE;
-	}
+    public enum JoinedToServerEvent {
+        INSTANCE;
+    }
 
 }

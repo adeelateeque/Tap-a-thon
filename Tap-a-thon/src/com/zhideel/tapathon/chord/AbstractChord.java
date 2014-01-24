@@ -12,7 +12,6 @@
 package com.zhideel.tapathon.chord;
 
 import android.content.Context;
-
 import com.samsung.chord.ChordManager;
 import com.samsung.chord.IChordChannel;
 import com.samsung.chord.IChordChannelListener;

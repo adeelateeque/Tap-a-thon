@@ -26,111 +26,105 @@ import java.util.Locale;
  */
 public class BitmapCache {
 
-	private static final String EXTENSION = ".png";
-	private final LruCache<String, Bitmap> mMemoryCache;
-	private final AssetManager mAssetManager;
+    private static final String EXTENSION = ".png";
+    private final LruCache<String, Bitmap> mMemoryCache;
+    private final AssetManager mAssetManager;
 
-	/**
-	 * Creates new {@link com.zhideel.tapathon.utils.BitmapCache} with the specified size.
-	 * 
-	 * @param maxCacheSize
-	 *            of the {@link android.util.LruCache}
-	 * @param assetManager
-	 *            manager used for loading bitmaps from assets
-	 */
-	public BitmapCache(int maxCacheSize, AssetManager assetManager) {
-		mMemoryCache = new LruCache<String, Bitmap>(maxCacheSize) {
-			@Override
-			protected int sizeOf(String key, Bitmap value) {
-				return value.getByteCount();
-			}
-		};
-		mAssetManager = assetManager;
-	}
+    /**
+     * Creates new {@link com.zhideel.tapathon.utils.BitmapCache} with the specified size.
+     *
+     * @param maxCacheSize of the {@link android.util.LruCache}
+     * @param assetManager manager used for loading bitmaps from assets
+     */
+    public BitmapCache(int maxCacheSize, AssetManager assetManager) {
+        mMemoryCache = new LruCache<String, Bitmap>(maxCacheSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                return value.getByteCount();
+            }
+        };
+        mAssetManager = assetManager;
+    }
 
-	private void addBitmapToCache(String key, Bitmap bitmap) {
-		if (getBitmapFromCache(key) == null) {
-			mMemoryCache.put(key, bitmap);
-		}
-	}
+    private void addBitmapToCache(String key, Bitmap bitmap) {
+        if (getBitmapFromCache(key) == null) {
+            mMemoryCache.put(key, bitmap);
+        }
+    }
 
-	private Bitmap getBitmapFromCache(String key) {
-		return mMemoryCache.get(key);
-	}
+    private Bitmap getBitmapFromCache(String key) {
+        return mMemoryCache.get(key);
+    }
 
-	private Bitmap getBitmapFromAsset(String strName) {
-		InputStream istr;
-		Bitmap bitmap = null;
-		try {
-			istr = mAssetManager.open(strName + EXTENSION);
-			bitmap = BitmapFactory.decodeStream(istr);
-		} catch (IOException e) {
-			return null;
-		}
-		return bitmap;
-	}
+    private Bitmap getBitmapFromAsset(String strName) {
+        InputStream istr;
+        Bitmap bitmap = null;
+        try {
+            istr = mAssetManager.open(strName + EXTENSION);
+            bitmap = BitmapFactory.decodeStream(istr);
+        } catch (IOException e) {
+            return null;
+        }
+        return bitmap;
+    }
 
-	/**
-	 * 
-	 * Returns {@link android.graphics.Bitmap} from the cache. When {@link android.graphics.Bitmap} is not found it tries to load it from the assets.
-	 * 
-	 * @param bitmapName
-	 *            of the {@link android.graphics.Bitmap} to be loaded
-	 * @return bitmap with the specified name or null if bitmap is not found
-	 */
-	public Bitmap getBitmap(String bitmapName) {
-		Bitmap bitmap;
+    /**
+     * Returns {@link android.graphics.Bitmap} from the cache. When {@link android.graphics.Bitmap} is not found it tries to load it from the assets.
+     *
+     * @param bitmapName of the {@link android.graphics.Bitmap} to be loaded
+     * @return bitmap with the specified name or null if bitmap is not found
+     */
+    public Bitmap getBitmap(String bitmapName) {
+        Bitmap bitmap;
 
-		if ((bitmap = getBitmapFromCache(bitmapName)) != null) {
-			return bitmap;
-		} else {
-			bitmap = getBitmapFromAsset(bitmapName);
-			Preconditions.checkNotNull(bitmap);
-			addBitmapToCache(bitmapName, bitmap);
-			return getBitmapFromCache(bitmapName);
-		}
+        if ((bitmap = getBitmapFromCache(bitmapName)) != null) {
+            return bitmap;
+        } else {
+            bitmap = getBitmapFromAsset(bitmapName);
+            Preconditions.checkNotNull(bitmap);
+            addBitmapToCache(bitmapName, bitmap);
+            return getBitmapFromCache(bitmapName);
+        }
 
-	}
+    }
 
-	/**
-	 * Returns bitmap for the specified {@link com.zhideel.tapathon.logic.Pad}.
-	 * 
-	 * @param pad
-	 *            whose {@link android.graphics.Bitmap} should be returned
-	 * @return {@link android.graphics.Bitmap} of the specified {@link com.zhideel.tapathon.logic.Pad}
-	 */
-	public Bitmap getBitmapForCard(Pad pad) {
-		return getBitmap(pad.getColor().name().toLowerCase(Locale.getDefault()) + "_"
-				+ pad.getSymbol().name().toLowerCase(Locale.getDefault()));
-	}
+    /**
+     * Returns bitmap for the specified {@link com.zhideel.tapathon.logic.Pad}.
+     *
+     * @param pad whose {@link android.graphics.Bitmap} should be returned
+     * @return {@link android.graphics.Bitmap} of the specified {@link com.zhideel.tapathon.logic.Pad}
+     */
+    public Bitmap getBitmapForCard(Pad pad) {
+        return getBitmap(pad.getColor().name().toLowerCase(Locale.getDefault()) + "_"
+                + pad.getSymbol().name().toLowerCase(Locale.getDefault()));
+    }
 
-	/**
-	 * Returns {@link android.graphics.Bitmap} for the specified client pad.
-	 * 
-	 * @param pad
-	 *            whose (@link Bitmap} should be returned
-	 * @return {@link android.graphics.Bitmap} of the specified client pad
-	 */
-	public Bitmap getBitmapForClientCard(Pad pad) {
-		// @formatter:off
-		final StringBuilder builder = new StringBuilder("client_")
-			.append(pad.getColor().name().toLowerCase(Locale.getDefault()))
-			.append('_')
-			.append(pad.getSymbol().name().toLowerCase(Locale.getDefault()));
-		// @formatter:on
+    /**
+     * Returns {@link android.graphics.Bitmap} for the specified client pad.
+     *
+     * @param pad whose (@link Bitmap} should be returned
+     * @return {@link android.graphics.Bitmap} of the specified client pad
+     */
+    public Bitmap getBitmapForClientCard(Pad pad) {
+        // @formatter:off
+        final StringBuilder builder = new StringBuilder("client_")
+                .append(pad.getColor().name().toLowerCase(Locale.getDefault()))
+                .append('_')
+                .append(pad.getSymbol().name().toLowerCase(Locale.getDefault()));
+        // @formatter:on
 
-		return getBitmap(builder.toString());
-	}
+        return getBitmap(builder.toString());
+    }
 
-	/**
-	 * Returns {@link android.graphics.Bitmap} for the client token.
-	 * 
-	 * @param tokenType
-	 *            of the token
-	 * @return {@link android.graphics.Bitmap} of the token
-	 */
-	/*public Bitmap getBitmapForClientToken(TokenType tokenType) {
-		final StringBuilder builder = new StringBuilder("client_");
+    /**
+     * Returns {@link android.graphics.Bitmap} for the client token.
+     *
+     * @param tokenType
+     *            of the token
+     * @return {@link android.graphics.Bitmap} of the token
+     */
+    /*public Bitmap getBitmapForClientToken(TokenType tokenType) {
+        final StringBuilder builder = new StringBuilder("client_");
 
 		switch (tokenType) {
 		case BIG_BLIND:

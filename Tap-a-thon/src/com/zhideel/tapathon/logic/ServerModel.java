@@ -22,128 +22,126 @@ import java.util.List;
  */
 public class ServerModel implements BusManager {
 
-	public static final int INITIAL_SCORE = 0;
-	public static final int MAX_PLAYER_NUMBER = 4;
-	public static final int MIN_PLAYER_NUMBER = 2;
+    public static final int INITIAL_SCORE = 0;
+    public static final int MAX_PLAYER_NUMBER = 4;
+    public static final int MIN_PLAYER_NUMBER = 2;
 
-	private final List<Player> mPlayers;
-	private final Bus mBus;
-	private PadDeck mDeck;
-	private GameState mGameState;
+    private final List<Player> mPlayers;
+    private final Bus mBus;
+    private PadDeck mDeck;
+    private GameState mGameState;
 
-	public ServerModel() {
-		mPlayers = new ArrayList<Player>();
-		mBus = CommunicationBus.getInstance();
-		mGameState = GameState.NOT_STARTED;
-	}
+    public ServerModel() {
+        mPlayers = new ArrayList<Player>();
+        mBus = CommunicationBus.getInstance();
+        mGameState = GameState.NOT_STARTED;
+    }
 
-	void addPlayer(Player player) {
-		mPlayers.add(player);
-	}
+    void addPlayer(Player player) {
+        mPlayers.add(player);
+    }
 
-	void removePlayer(Player player) {
-		Player toRemove = null;
+    void removePlayer(Player player) {
+        Player toRemove = null;
 
-		for (Player p : mPlayers) {
-			if (p.getNodeName().equalsIgnoreCase(player.getNodeName())) {
-				toRemove = p;
-				break;
-			}
-		}
+        for (Player p : mPlayers) {
+            if (p.getNodeName().equalsIgnoreCase(player.getNodeName())) {
+                toRemove = p;
+                break;
+            }
+        }
 
-		mPlayers.remove(toRemove);
-	}
+        mPlayers.remove(toRemove);
+    }
 
-	/**
-	 * Return player with the specified node name
-	 * 
-	 * @param nodeName
-	 *            name of the player's node to be returned
-	 * @return player with the specified name or null if such player does not exist.
-	 */
-	Player getPlayer(String nodeName) {
-		for (Player player : mPlayers) {
-			if (player.getNodeName().equalsIgnoreCase(nodeName)) {
-				return player;
-			}
-		}
-		return null;
-	}
+    /**
+     * Return player with the specified node name
+     *
+     * @param nodeName name of the player's node to be returned
+     * @return player with the specified name or null if such player does not exist.
+     */
+    Player getPlayer(String nodeName) {
+        for (Player player : mPlayers) {
+            if (player.getNodeName().equalsIgnoreCase(nodeName)) {
+                return player;
+            }
+        }
+        return null;
+    }
 
-	public List<Player> getPlayers() {
-		return new ArrayList<Player>(mPlayers);
-	}
+    public List<Player> getPlayers() {
+        return new ArrayList<Player>(mPlayers);
+    }
 
-	PadDeck getDeck() {
-		return mDeck;
-	}
+    PadDeck getDeck() {
+        return mDeck;
+    }
 
-	GameState getGameState() {
-		return mGameState;
-	}
+    GameState getGameState() {
+        return mGameState;
+    }
 
-	void setGameState(GameState gameState) {
-		mGameState = gameState;
-	}
+    void setGameState(GameState gameState) {
+        mGameState = gameState;
+    }
 
-	/**
-	 * Performs table initialization.
-	 */
-	void initTable() {
-		mDeck = new PadDeck();
-	}
+    /**
+     * Performs table initialization.
+     */
+    void initTable() {
+        mDeck = new PadDeck();
+    }
 
-	/**
-	 * Clear state of the current game.
-	 */
-	void clearGame() {
+    /**
+     * Clear state of the current game.
+     */
+    void clearGame() {
 
-	}
+    }
 
-	@Override
-	public void startBus() {
-		mBus.register(this);
-	}
+    @Override
+    public void startBus() {
+        mBus.register(this);
+    }
 
-	@Override
-	public void stopBus() {
-		mBus.unregister(this);
-	}
+    @Override
+    public void stopBus() {
+        mBus.unregister(this);
+    }
 
-	/**
-	 * Indicates what state the game currently is at.
-	 */
-	public enum GameState {
-		//@formatter:off
-		NOT_STARTED,
+    /**
+     * Indicates what state the game currently is at.
+     */
+    public enum GameState {
+        //@formatter:off
+        NOT_STARTED,
         STARTED,
         RESUMED,
         PAUSED,
-		GAME_FINISHED;
-		//@formatter:on
+        GAME_FINISHED;
+        //@formatter:on
 
-		/**
-		 * Returns {@link com.zhideel.tapathon.logic.ServerModel.GameState} that follows current state.
-		 * 
-		 * @param currentState
-		 *            of the game
-		 * @return next {@link com.zhideel.tapathon.logic.ServerModel.GameState}
-		 */
-		public static GameState getNextState(GameState currentState) {
-			switch (currentState) {
-			case NOT_STARTED:
-				return STARTED;
-			case STARTED:
-				return PAUSED;
-			case PAUSED:
-				return RESUMED;
-			case RESUMED:
-				return GAME_FINISHED;
-			default:
-				throw new IllegalArgumentException(currentState.name());
-			}
-		}
+        /**
+         * Returns {@link com.zhideel.tapathon.logic.ServerModel.GameState} that follows current state.
+         *
+         * @param currentState of the game
+         * @return next {@link com.zhideel.tapathon.logic.ServerModel.GameState}
+         */
+        public static GameState getNextState(GameState currentState) {
+            switch (currentState) {
+                case NOT_STARTED:
+                    return STARTED;
+                case STARTED:
+                    return PAUSED;
+                case PAUSED:
+                    return RESUMED;
+                case RESUMED:
+                    return GAME_FINISHED;
+                default:
+                    throw new IllegalArgumentException(currentState.name());
+            }
+        }
 
-	}
+    }
 
 }

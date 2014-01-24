@@ -36,11 +36,9 @@ public class GameBoardView implements CommunicationBus.BusManager {
         gridview.setAdapter(new PadAdapter(mContext));
     }
 
-    public void pauseBoard(boolean paused)
-    {
-       ListAdapter adapter = gridview.getAdapter();
-        for(int i = 0; i < adapter.getCount(); i++)
-        {
+    public void pauseBoard(boolean paused) {
+        ListAdapter adapter = gridview.getAdapter();
+        for (int i = 0; i < adapter.getCount(); i++) {
             MultiTouchView view = (MultiTouchView) adapter.getItem(i);
             view.setPaused(paused);
         }
@@ -61,17 +59,16 @@ public class GameBoardView implements CommunicationBus.BusManager {
 
 class PadAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<MultiTouchView> tappads;
+    private ArrayList<MultiTouchView> pads;
 
     public PadAdapter(Context c) {
         mContext = c;
-        tappads = new ArrayList<MultiTouchView>();
-        for(int i=0; i < getCount(); i++)
-        {
-            MultiTouchView tappad;
-            tappad = new MultiTouchView(mContext, null);
-            tappad.setAlpha(0.4f);
-            tappads.add(tappad);
+        pads = new ArrayList<MultiTouchView>();
+        for (int i = 0; i < getCount(); i++) {
+            MultiTouchView pad;
+            pad = new MultiTouchView(mContext, null);
+            pad.setAlpha(0.4f);
+            pads.add(pad);
         }
     }
 
@@ -80,7 +77,7 @@ class PadAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return tappads.get(position);
+        return pads.get(position);
     }
 
     public long getItemId(int position) {
@@ -89,9 +86,9 @@ class PadAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        MultiTouchView tappad = (MultiTouchView) getItem(position);
-        tappad.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / 3,
+        MultiTouchView pad = (MultiTouchView) getItem(position);
+        pad.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / 3,
                 parent.getHeight() / 3 - 7));
-        return tappad;
+        return pad;
     }
 }

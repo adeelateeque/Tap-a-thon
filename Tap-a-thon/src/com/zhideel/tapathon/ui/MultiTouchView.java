@@ -23,7 +23,6 @@ public class MultiTouchView extends View {
     private Paint mPaint;
     private int[] colors = {Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW};
     private boolean isSelected;
-    private static boolean isContinue = true;
     private boolean isPaused = false;
     private Paint textPaint;
     private String currentText;
@@ -38,10 +37,6 @@ public class MultiTouchView extends View {
 
     public static void setLevel(GameLevel level) {
         selectedLevel = level;
-    }
-
-    public static void setContinue(boolean cont) {
-        isContinue = cont;
     }
 
     public void setPaused(boolean paused) {
@@ -85,14 +80,16 @@ public class MultiTouchView extends View {
     private void randomPaint() {
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                if ((!isSelected) && (isContinue)) {
-                    MultiTouchView.this.setBackgroundColor(colors[randInt(0, 3)]);
-                } else if (isContinue) {
+                if ((!isSelected) && (!isPaused)) {
+                    textPaint.setColor(colors[randInt(0, 3)]);
+                } else if (isPaused) {
                     MultiTouchView.this.setBackgroundColor(Color.WHITE);
+                    textPaint.setColor(Color.GREEN);
                 } else {
                     MultiTouchView.this.setBackgroundColor(Color.BLACK);
                 }
                 invalidate();
+                //As long as we are not paused we can keep painting randomly
                 if (isPaused == false) {
                     randomPaint();
                     randText();
@@ -111,7 +108,7 @@ public class MultiTouchView extends View {
     }
 
     private void randText() {
-        if ((!isSelected) && (isContinue)) {
+        if ((!isSelected) && (!isPaused)) {
             int rand = randInt(0, 13);
             if (rand == 10) {
                 currentText = "+";
@@ -129,13 +126,6 @@ public class MultiTouchView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // get pointer index from the event object
-        int pointerIndex = event.getActionIndex();
-
-        // get pointer ID
-        int pointerId = event.getPointerId(pointerIndex);
-
-        // get masked (not specific to a pointer) action
         int maskedAction = event.getActionMasked();
 
         switch (maskedAction) {
@@ -152,20 +142,17 @@ public class MultiTouchView extends View {
                         this.isSelected = true;
                         if ((operands.size() == 2) && (operator != null)) {
                             int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                            //Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
-                            ((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
+                            ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
                         }
                     }
 
                 } catch (NumberFormatException e) {
-                    String cOperator = currentText;
                     if (operator == null) {
-                        ((GamePadActivity) super.getContext()).getStatsView().setOperator(cOperator);
+                        ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
                         this.isSelected = true;
                         if (operands.size() == 2) {
                             int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                            //Toast.makeText(getContext(), Integer.toString(result), Toast.LENGTH_SHORT).show();
-                            ((GamePadActivity) super.getContext()).getStatsView().resetCurrent();
+                            ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
                         }
                     }
                 }

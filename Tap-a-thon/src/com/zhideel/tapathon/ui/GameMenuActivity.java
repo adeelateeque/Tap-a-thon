@@ -17,7 +17,7 @@ import com.zhideel.tapathon.R;
 
 public class GameMenuActivity extends Activity implements SelectChannelFragment.OnServerChosenListener {
 
-	public static final String TAG = "Tapathon";
+    public static final String TAG = "Tapathon";
     public static final String TAPATHON_PREFERENCES = "TAPATHON_PREFERENCES";
     public static final String USER_NAME_KEY = "USER_NAME_KEY";
 
@@ -30,12 +30,12 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
 
         @Override
         public void onReceive(Context context, Intent intent) {
-        final WifiInfo info = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-        if (info == null) {
-            enableButtons(false);
-        } else {
-            enableButtons(true);
-        }
+            final WifiInfo info = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
+            if (info == null) {
+                enableButtons(false);
+            } else {
+                enableButtons(true);
+            }
         }
 
     };
@@ -51,8 +51,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
         if (!isWifiConnected()) {
             enableButtons(false);
             Toast.makeText(this, getString(R.string.wifi_off), Toast.LENGTH_LONG).show();
-        }
-        else{
+        } else {
             enableButtons(true);
         }
 

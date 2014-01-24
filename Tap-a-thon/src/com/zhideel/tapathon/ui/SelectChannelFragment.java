@@ -24,73 +24,73 @@ import java.util.Collections;
 import java.util.List;
 
 public class SelectChannelFragment extends DialogFragment implements OnServerListChangedListener, BusManager, ListView.OnItemClickListener {
-	
-	private ConnectionChord mConnectionChord;
-	private OnServerChosenListener mOnServerChosenListener;
-	private ServerAdapter mServerAdapter;
-	private Bus mBus;
-	
-	private LinearLayout view;
-	private Button btnCreate;
+
+    private ConnectionChord mConnectionChord;
+    private OnServerChosenListener mOnServerChosenListener;
+    private ServerAdapter mServerAdapter;
+    private Bus mBus;
+
+    private LinearLayout view;
+    private Button btnCreate;
     private ListView channelList;
-	
-	@Subscribe
-	public void onNodeLeftOnPublicChannel(NodeLeftOnPublicChannelEvent event) {
-		findServers();
-	}
 
-	@Subscribe
-	public void onNodeJoinedOnPublicChannel(NodeJoinedOnPublicChannelEvent event) {
-		findServers();
-	}
-	
-	private void findServers() {
-		mConnectionChord.findServers();
-	}
+    @Subscribe
+    public void onNodeLeftOnPublicChannel(NodeLeftOnPublicChannelEvent event) {
+        findServers();
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mBus = CommunicationBus.getInstance();
+    @Subscribe
+    public void onNodeJoinedOnPublicChannel(NodeJoinedOnPublicChannelEvent event) {
+        findServers();
+    }
+
+    private void findServers() {
+        mConnectionChord.findServers();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mBus = CommunicationBus.getInstance();
         startBus();
-		mConnectionChord = new ConnectionChord(getActivity().getApplicationContext(), GamePadActivity.GAME_NAME, SelectChannelFragment.this);
-		mOnServerChosenListener = (OnServerChosenListener) getActivity();
-	}
+        mConnectionChord = new ConnectionChord(getActivity().getApplicationContext(), GamePadActivity.GAME_NAME, SelectChannelFragment.this);
+        mOnServerChosenListener = (OnServerChosenListener) getActivity();
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		getDialog().setTitle("Available Tapathon(s)");
-		view = (LinearLayout) inflater.inflate(R.layout.dialog_channel, null);
-		channelList = (ListView) view.findViewById(R.id.lv_channel);
-		btnCreate = (Button) view.findViewById(R.id.btn_create);
-		
-		mServerAdapter = new ServerAdapter();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        getDialog().setTitle("Available Tapathon(s)");
+        view = (LinearLayout) inflater.inflate(R.layout.dialog_channel, null);
+        channelList = (ListView) view.findViewById(R.id.lv_channel);
+        btnCreate = (Button) view.findViewById(R.id.btn_create);
+
+        mServerAdapter = new ServerAdapter();
         channelList.setAdapter(mServerAdapter);
         channelList.setOnItemClickListener(this);
-		return view;
-	}
+        return view;
+    }
 
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		
-		btnCreate.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				FragmentTransaction dFrag = getFragmentManager().beginTransaction();
-				Fragment prev = getFragmentManager().findFragmentByTag("dialog_create");
-				if (prev != null) {
-					dFrag.remove(prev);
-         	    }
-         	    dFrag.addToBackStack(null);
-         	    CreateChannelFragment mFragment = new CreateChannelFragment();
-         	    mFragment.show(getFragmentManager(), "dialog_create");
-         	    dFrag.commit();
-         	    getDialog().dismiss();
-			}
-		});
-	}
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btnCreate.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction dFrag = getFragmentManager().beginTransaction();
+                Fragment prev = getFragmentManager().findFragmentByTag("dialog_create");
+                if (prev != null) {
+                    dFrag.remove(prev);
+                }
+                dFrag.addToBackStack(null);
+                CreateChannelFragment mFragment = new CreateChannelFragment();
+                mFragment.show(getFragmentManager(), "dialog_create");
+                dFrag.commit();
+                getDialog().dismiss();
+            }
+        });
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,82 +99,81 @@ public class SelectChannelFragment extends DialogFragment implements OnServerLis
     }
 
     @Override
-	public void startBus() {
-		mBus.register(this);
-	}
+    public void startBus() {
+        mBus.register(this);
+    }
 
-	@Override
-	public void stopBus() {
-		mBus.unregister(this);
-	}
+    @Override
+    public void stopBus() {
+        mBus.unregister(this);
+    }
 
-	@Override
-	public void onChanged(List<String> availableServers) {
-		mServerAdapter.setServersList(availableServers);
-	}
-	
-	/**
-	 * Interface definition for a callback to be invoked when server is chosen.
-	 */
-	public interface OnServerChosenListener {
+    @Override
+    public void onChanged(List<String> availableServers) {
+        mServerAdapter.setServersList(availableServers);
+    }
 
-		/**
-		 * Called when a view with server's name has been clicked.
-		 * 
-		 * @param serverName
-		 *            name of the clicked server
-		 */
-		void onServerChosen(String serverName);
+    /**
+     * Interface definition for a callback to be invoked when server is chosen.
+     */
+    public interface OnServerChosenListener {
 
-	}
+        /**
+         * Called when a view with server's name has been clicked.
+         *
+         * @param serverName name of the clicked server
+         */
+        void onServerChosen(String serverName);
 
-	/**
-	 * Interface definition for a callback to be invoked when a servers list has changed.
-	 */
-	public interface OnServerListChangedListener {
+    }
 
-		void onChanged(List<String> availableServers);
+    /**
+     * Interface definition for a callback to be invoked when a servers list has changed.
+     */
+    public interface OnServerListChangedListener {
 
-	}
-	
-	private class ServerAdapter extends BaseAdapter {
+        void onChanged(List<String> availableServers);
 
-		private final List<String> mServers;
+    }
 
-		public ServerAdapter() {
-			super();
-			mServers = new ArrayList<String>();
-		}
+    private class ServerAdapter extends BaseAdapter {
 
-		public void setServersList(List<String> servers) {
-			if (!(mServers.size() == servers.size() && mServers.containsAll(servers))) {
-				mServers.clear();
-				mServers.addAll(servers);
-				Collections.sort(mServers);
-				notifyDataSetChanged();
-			}
-		}
+        private final List<String> mServers;
 
-		@Override
-		public int getCount() {
-			return mServers.size();
-		}
+        public ServerAdapter() {
+            super();
+            mServers = new ArrayList<String>();
+        }
 
-		@Override
-		public String getItem(int position) {
-			return mServers.get(position);
-		}
+        public void setServersList(List<String> servers) {
+            if (!(mServers.size() == servers.size() && mServers.containsAll(servers))) {
+                mServers.clear();
+                mServers.addAll(servers);
+                Collections.sort(mServers);
+                notifyDataSetChanged();
+            }
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+        @Override
+        public int getCount() {
+            return mServers.size();
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			final TextView textView = (TextView) View.inflate(getActivity(), R.layout.server_name_text_view, null);
-			textView.setText(mServers.get(position));
-			return textView;
-		}
-	}
+        @Override
+        public String getItem(int position) {
+            return mServers.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final TextView textView = (TextView) View.inflate(getActivity(), R.layout.server_name_text_view, null);
+            textView.setText(mServers.get(position));
+            return textView;
+        }
+    }
 }
