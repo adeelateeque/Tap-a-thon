@@ -44,6 +44,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
 
         btnStart = (Button) findViewById(R.id.btn_start);
         btnGroupPlay = (Button) findViewById(R.id.btn_group_play);
+        btnGroupPlay.setVisibility(View.GONE);
 
         refreshButtons();
 

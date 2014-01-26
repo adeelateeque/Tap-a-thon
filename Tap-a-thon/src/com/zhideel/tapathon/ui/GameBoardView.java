@@ -94,8 +94,8 @@ class PadAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         MultiTouchView pad = (MultiTouchView) getItem(position);
-        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3,
-                parent.getHeight() / 3 - 5);
+        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - 10,
+                parent.getHeight() / 3 - 10);
         pad.setLayoutParams(params);
         return pad;
     }

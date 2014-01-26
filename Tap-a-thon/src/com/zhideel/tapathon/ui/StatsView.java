@@ -166,7 +166,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
         // Start without a delay
         // Each element then alternates between vibrate, sleep, vibrate, sleep...
-        long[] pattern = {0, 150, 100, 500};
+        long[] pattern = {0, 150, 150, 500};
 
         // The '-1' here means to vibrate once
         // '0' would make the pattern vibrate indefinitely

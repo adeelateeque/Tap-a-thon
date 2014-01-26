@@ -199,7 +199,9 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        GamePadActivity.this.finish();
+                        Intent eg = new Intent(GamePadActivity.this, GameMenuActivity.class);
+                        startActivity(eg);
+                        finish();
                     }
                 })
                 .setNegativeButton(R.string.cancel, null)

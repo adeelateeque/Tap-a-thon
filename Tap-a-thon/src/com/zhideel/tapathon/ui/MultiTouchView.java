@@ -59,7 +59,10 @@ public class MultiTouchView extends View {
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.WHITE);
         textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        textPaint.setTextSize(150);
+        // Convert the dips to pixels
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        int textSize = (int) (50 * scale + 0.5f);
+        textPaint.setTextSize(textSize);
 
         if (startGame == true) {
             minDelay = 0;

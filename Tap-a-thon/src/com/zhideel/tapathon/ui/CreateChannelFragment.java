@@ -61,12 +61,13 @@ public class CreateChannelFragment extends DialogFragment {
                 }
 
                 if ((selection != null)) {
-                    Intent intent = new Intent(CreateChannelFragment.this.getActivity(), GamePadActivity.class);
+                    Intent intent = new Intent(getActivity(), GamePadActivity.class);
                     intent.putExtra("level", selection);
                     intent.putExtra(GamePadActivity.CLIENT, false);
                     intent.putExtra(GamePadActivity.SERVER_NAME, etChannelName.getText().toString());
                     startActivity(intent);
                     getDialog().dismiss();
+                    getActivity().finish();
                 } else {
                     Toast.makeText(getActivity(), "Please select a difficulty.", Toast.LENGTH_SHORT).show();
                 }
