@@ -24,7 +24,7 @@ public class MultiTouchView extends View {
     // Usually this can be a field rather than a method variable
     private static Random rand = new Random();
     private Paint mPaint;
-    private int[] colors = {Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW};
+    private int[] colors = {getResources().getColor(R.color.tappad_cyan), Color.MAGENTA, getResources().getColor(R.color.tappad_red), getResources().getColor(R.color.tappad_yellow)};
     private boolean isSelected;
     private boolean isPaused = false;
     private Paint textPaint;
@@ -83,9 +83,8 @@ public class MultiTouchView extends View {
                 maxDelay = 3500;
             }
         }
-
-        randomPaint();
         randText();
+        randomPaint();
     }
 
     private void randomPaint() {
@@ -102,9 +101,11 @@ public class MultiTouchView extends View {
             textPaint.setColor(colors[randInt(0, 3)]);
         } else if (isSelected) {
             MultiTouchView.this.setBackgroundColor(Color.WHITE);
-            textPaint.setColor(Color.GREEN);
+            MultiTouchView.this.setAlpha(0.5f);
+            textPaint.setColor(getResources().getColor(R.color.tappad_green));
         } else {
             MultiTouchView.this.setBackgroundColor(Color.BLACK);
+            MultiTouchView.this.setAlpha(0.5f);
         }
         invalidate();
         //As long as we are not paused we can keep painting randomly
@@ -148,41 +149,43 @@ public class MultiTouchView extends View {
 
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN: {
-                MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                if(!isSelected){
+                    MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
+                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.release();
-                    }
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mp.release();
+                        }
 
-                });
-                mp.start();
-                ArrayList<Integer> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
-                String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
+                    });
+                    mp.start();
+                    ArrayList<Integer> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
+                    String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 
-                try {
-                    int number = Integer.parseInt(currentText);
-                    if (operands.size() < 2) {
-                        ((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
-                        this.isSelected = true;
-                        if ((operands.size() == 2) && (operator != null)) {
-                            int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                            ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                    try {
+                        int number = Integer.parseInt(currentText);
+                        if (operands.size() < 2) {
+                            ((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
+                            this.isSelected = true;
+                            if ((operands.size() == 2) && (operator != null)) {
+                                int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
+                                ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                            }
+                        }
+
+                    } catch (NumberFormatException e) {
+                        if (operator == null) {
+                            ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
+                            this.isSelected = true;
+                            if (operands.size() == 2) {
+                                int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
+                                ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                            }
                         }
                     }
-
-                } catch (NumberFormatException e) {
-                    if (operator == null) {
-                        ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
-                        this.isSelected = true;
-                        if (operands.size() == 2) {
-                            int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                            ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
-                        }
-                    }
+                    doThePaint();
                 }
-                doThePaint();
                 break;
             }
             case MotionEvent.ACTION_MOVE: { // a pointer was moved

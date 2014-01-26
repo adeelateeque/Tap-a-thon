@@ -74,7 +74,7 @@ class PadAdapter extends BaseAdapter {
         for (int i = 0; i < getCount(); i++) {
             MultiTouchView pad;
             pad = new MultiTouchView(mContext, null);
-            pad.setAlpha(0.4f);
+            pad.setAlpha(0.8f);
             pads.add(pad);
         }
     }

@@ -4,6 +4,10 @@
     <color name="tappad_black">#000000</color>
     <color name="tappad_green">#ff00ff00</color>
     <color name="tappad_red">#ffff0000</color>
+    <color name="tappad_yellow">#FFFF00</color>
+    <color name="tappad_cyan">#00B1FF</color>
+
+
     <color name="game_activity_text_color">#FFD0D5A7</color>
     <color name="menu_activity_button_text_color">#FFFFFEFE</color>
     <color name="normal_player_border">#FFD0D5A7</color>

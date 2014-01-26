@@ -32,7 +32,7 @@ public class StatsView implements CommunicationBus.BusManager {
     private Random rand = new Random();
     private int randomQuestion, correctAnswerCount, totalQuestions;
     private int interval = 60;
-
+    private boolean isFirstQuestionAsked = false;
     public StatsView(Context context, ViewGroup viewGroup) {
         mContext = (Activity) context;
         this.mBus = CommunicationBus.getInstance();
@@ -51,7 +51,7 @@ public class StatsView implements CommunicationBus.BusManager {
     }
 
     public void setInterval(int interval) {
-        tvTimer.setText(Integer.toString(interval));
+        tvTimer.setText(Integer.toString(interval) + "s");
     }
 
     private void timer() {
@@ -200,7 +200,13 @@ public class StatsView implements CommunicationBus.BusManager {
         tvQuestion.setText(Integer.toString(randomQuestion));
         stopwatch = Stopwatch.start();
         totalQuestions++;
-        ((GamePadActivity) mContext).getGameBoard().resetBoard();
+        if(!isFirstQuestionAsked)
+        {
+            isFirstQuestionAsked = true;
+        }
+        else{
+            ((GamePadActivity) mContext).getGameBoard().resetBoard();
+        }
     }
 
     public void setPaused(Boolean paused) {
