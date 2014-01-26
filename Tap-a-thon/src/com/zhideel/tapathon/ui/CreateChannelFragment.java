@@ -32,7 +32,7 @@ public class CreateChannelFragment extends DialogFragment {
         view = (LinearLayout) inflater.inflate(R.layout.dialog_create_channel, null);
         etChannelName = (EditText) view.findViewById(R.id.et_name);
         etChannelName.setEnabled(false);
-        etChannelName.setText(getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 4)));
+        etChannelName.setText((getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 4)).toUpperCase()));
         rgLvl = (RadioGroup) view.findViewById(R.id.rg_lvl);
         btnCreate = (Button) view.findViewById(R.id.btn_create);
         btnCancel = (Button) view.findViewById(R.id.btn_cancel);

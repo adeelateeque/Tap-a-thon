@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private boolean mIsClient;
     private ServiceProvider mServiceProvider;
     private ScreenCastManager mManager;
-    private BitmapCache mMemoryCache;
     private Vibrator mVibrator;
     private boolean mAllShareEnabled;
     private Dialog mAllShareDialog;
@@ -58,6 +58,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private GameBoardView gameBoardView;
     private StatsView statsView;
     private ImageView gameEndView;
+    private ImageView answerResultView;
     private Button btnStart;
     private TextView tvWaiting;
     private boolean allShareShownBefore = false;
@@ -68,10 +69,10 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!Config.isWifiConnected()) {
-                finish();
-                Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
-            }
+        if (!Config.isWifiConnected()) {
+            finish();
+            Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
+        }
         }
 
     };
@@ -84,6 +85,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         mContext = this;
         btnStart = (Button) findViewById(R.id.btn_start);
         gameEndView = (ImageView) findViewById(R.id.game_end_view);
+        answerResultView  = (ImageView) findViewById(R.id.answer_result_view);
+        Config.slideToTop(answerResultView);
         tvWaiting = (TextView) findViewById(R.id.tv_waiting);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,10 +98,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerWifiStateReceiver();
-
-        final int memClass = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
-        final int cacheSize = 1024 * 1024 * memClass / 8;
-        mMemoryCache = new BitmapCache(cacheSize, getAssets());
 
         final String userName = getSharedPreferences(GameMenuActivity.TAPATHON_PREFERENCES, MODE_PRIVATE).getString(
                 GameMenuActivity.USER_NAME_KEY, "");
@@ -246,7 +245,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         mBus.post(GameLogicController.StartGameEvent.INSTANCE);
     }
 
-
     //TODO build the image and display out to the TV http://developer.samsung.com/allshare-framework/technical-docs/Sample-View-Controller
     public void receivedSceenshot()
     {
@@ -326,7 +324,34 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     }
 
     public void showGameEndView() {
+        mVibrator.vibrate(1000);
         gameEndView.setVisibility(View.VISIBLE);
+    }
+
+    public void flashCorrectAnswerView() {
+        answerResultView.setBackgroundResource(R.drawable.correct_answer);
+        answerResultView.setVisibility(View.VISIBLE);
+        answerResultView.clearAnimation();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Config.slideToTop(answerResultView);
+            }
+        }, 250);
+    }
+
+    public void flashWrongAnswerView() {
+        answerResultView.setBackgroundResource(R.drawable.wrong_answer);
+        answerResultView.setVisibility(View.VISIBLE);
+        answerResultView.clearAnimation();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Config.slideToTop(answerResultView);
+            }
+        }, 250);
     }
 
     @Override
@@ -342,7 +367,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     @Subscribe
     public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent) {
         mLogicController.gameResult.getWinners();
-        //TODO display the scoreboard
     }
 
     @Subscribe

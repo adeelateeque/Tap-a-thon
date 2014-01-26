@@ -2,6 +2,8 @@ package com.zhideel.tapathon.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class StatsView implements CommunicationBus.BusManager {
     private ArrayList<Integer> operands;
     private String operator;
     private TextView tvScore, tvQuestion, tvTimer;
+    private long timeOfLastQuestion = 0;
     private Random rand = new Random();
     private int randomQns, correctAnswerCount, totalQuestions;
     private int interval = 60;
@@ -63,8 +66,13 @@ public class StatsView implements CommunicationBus.BusManager {
 
                                 interval--;
                                 setInterval(interval);
+                                if(System.currentTimeMillis() - timeOfLastQuestion >= MultiTouchView.maxNextQuestionDelay)
+                                {
+                                   newQuestion();
+                                }
+                            }
 
-                            } else {
+                            else {
                                 ((GamePadActivity) mContext).getGameBoard().pauseBoard(true);
                                 time.cancel();
                                 ((GamePadActivity) mContext).showGameEndView();
@@ -116,20 +124,72 @@ public class StatsView implements CommunicationBus.BusManager {
         } else {
             result = op1 + op2;
         }
-
+        long timeOfAnswer = System.currentTimeMillis();
+        //If answered correctly
         if (result == randomQns) {
-            double multiplier = Double.parseDouble(tvScore.getText().toString());
-            multiplier = Double.valueOf(multiplier + 1);
-            tvScore.setText(Double.toString(multiplier));
+            congratulate();
+            double currentScore = Double.parseDouble(tvScore.getText().toString());
+            long elapsedTime = timeOfAnswer - timeOfLastQuestion;
+            int reward = Math.round(((elapsedTime/MultiTouchView.maxNextQuestionDelay * 100) + (correctAnswerCount / totalQuestions * 100)) / 200);
+            currentScore = Double.valueOf((currentScore + reward) / 200);
+            tvScore.setText(Double.toString(currentScore) + "%");
             correctAnswerCount++;
             newQuestion();
         }
+        else
+        {
+            criticize();
+        }
         return result;
+    }
+
+    private void congratulate()
+    {
+        MediaPlayer mp = MediaPlayer.create(mContext, R.raw.correct_answer);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+
+        });
+        mp.start();
+        Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+
+        // Start without a delay
+        // Each element then alternates between vibrate, sleep, vibrate, sleep...
+        long[] pattern = {0, 100, 50, 500};
+
+        // The '-1' here means to vibrate once
+        // '0' would make the pattern vibrate indefinitely
+        v.vibrate(pattern, -1);
+
+        ((GamePadActivity) mContext).flashCorrectAnswerView();
+    }
+
+    private void criticize()
+    {
+        MediaPlayer mp = MediaPlayer.create(mContext, R.raw.wrong_answer);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+
+        });
+        mp.start();
+        Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        v.vibrate(500);
+        ((GamePadActivity) mContext).flashWrongAnswerView();
     }
 
     public void newQuestion() {
         randomQns = randInt(0, 20);
         tvQuestion.setText(Integer.toString(randomQns));
+        timeOfLastQuestion = System.currentTimeMillis();
         operands.clear();
         operator = null;
         totalQuestions++;
@@ -142,7 +202,6 @@ public class StatsView implements CommunicationBus.BusManager {
             timer();
         }
     }
-
 
     @Override
     public void startBus() {

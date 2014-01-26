@@ -4,10 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import com.zhideel.tapathon.Config;
+import com.zhideel.tapathon.R;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,7 +29,8 @@ public class MultiTouchView extends View {
     private boolean isPaused = false;
     private Paint textPaint;
     private String currentText;
-    private static GameLevel selectedLevel;
+    public static GameLevel selectedLevel;
+    public static long maxNextQuestionDelay;
     private int minDelay, maxDelay;
     private boolean startGame = false;
 
@@ -63,12 +67,15 @@ public class MultiTouchView extends View {
             startGame = false;
         } else {
             if (selectedLevel == GameLevel.EASY) {
+                maxNextQuestionDelay = 10000;
                 minDelay = 4000;
                 maxDelay = 6000;
             } else if (selectedLevel == GameLevel.MEDIUM) {
+                maxNextQuestionDelay = 6000;
                 minDelay = 3500;
                 maxDelay = 4500;
             } else if (selectedLevel == GameLevel.HARD) {
+                maxNextQuestionDelay = 3000;
                 minDelay = 2000;
                 maxDelay = 3500;
             }
@@ -138,6 +145,16 @@ public class MultiTouchView extends View {
 
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN: {
+                MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+
+                });
+                mp.start();
                 ArrayList<Integer> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
                 String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 
