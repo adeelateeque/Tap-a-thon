@@ -15,7 +15,7 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
     @Override
     public void onCreate() {
         super.onCreate();
-        Config.context = this;
+        Config.context = this.getApplicationContext();
         boolean groupPlayAvailable = true;
         sgp = new Sgp();
         try {

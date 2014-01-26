@@ -2,6 +2,7 @@ package com.zhideel.tapathon.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.logic.Player;
@@ -23,6 +25,13 @@ public class EndGameActivity extends Activity {
 
     private ListView lvScore;
     private List<Player> players;
+
+    @Override
+    public void onBackPressed() {
+        Intent eg = new Intent(EndGameActivity.this, GameMenuActivity.class);
+        startActivity(eg);
+        finish();
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

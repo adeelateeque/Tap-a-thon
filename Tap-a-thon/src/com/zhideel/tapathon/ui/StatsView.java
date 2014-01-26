@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.R;
+import com.zhideel.tapathon.Stopwatch;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
 
@@ -27,9 +28,9 @@ public class StatsView implements CommunicationBus.BusManager {
     private ArrayList<Integer> operands;
     private String operator;
     private TextView tvScore, tvQuestion, tvTimer;
-    private long timeOfLastQuestion = 0;
+    private Stopwatch stopwatch;
     private Random rand = new Random();
-    private int randomQns, correctAnswerCount, totalQuestions;
+    private int randomQuestion, correctAnswerCount, totalQuestions;
     private int interval = 60;
 
     public StatsView(Context context, ViewGroup viewGroup) {
@@ -45,7 +46,7 @@ public class StatsView implements CommunicationBus.BusManager {
         timer();
         correctAnswerCount = 0;
         totalQuestions = 0;
-        tvScore.setText("0");
+        tvScore.setText("0%");
         newQuestion();
     }
 
@@ -66,7 +67,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
                                 interval--;
                                 setInterval(interval);
-                                if(System.currentTimeMillis() - timeOfLastQuestion >= MultiTouchView.maxNextQuestionDelay)
+                                if(stopwatch.elapsed() >= MultiTouchView.maxNextQuestionDelay)
                                 {
                                    newQuestion();
                                 }
@@ -114,25 +115,31 @@ public class StatsView implements CommunicationBus.BusManager {
     public int doCalc() {
         Integer op1 = operands.get(0);
         Integer op2 = operands.get(1);
-        Integer result = 0;
-        if (operator.equalsIgnoreCase("X")) {
-            result = op1 * op2;
-        } else if (operator.equalsIgnoreCase("/")) {
-            result = op1 / op2;
-        } else if (operator.equalsIgnoreCase("-")) {
-            result = op1 - op2;
-        } else {
-            result = op1 + op2;
+        Integer result;
+        try{
+            if (operator.equalsIgnoreCase("X")) {
+                result = op1 * op2;
+            } else if (operator.equalsIgnoreCase("/")) {
+                result = op1 / op2;
+            } else if (operator.equalsIgnoreCase("-")) {
+                result = op1 - op2;
+            } else {
+                result = op1 + op2;
+            }
         }
-        long timeOfAnswer = System.currentTimeMillis();
+        catch (ArithmeticException e)
+        {
+          result = 0;
+        }
+
         //If answered correctly
-        if (result == randomQns) {
+        if (result == randomQuestion) {
             congratulate();
-            double currentScore = Double.parseDouble(tvScore.getText().toString());
-            long elapsedTime = timeOfAnswer - timeOfLastQuestion;
-            int reward = Math.round(((elapsedTime/MultiTouchView.maxNextQuestionDelay * 100) + (correctAnswerCount / totalQuestions * 100)) / 200);
-            currentScore = Double.valueOf((currentScore + reward) / 200);
-            tvScore.setText(Double.toString(currentScore) + "%");
+            int currentScore = Integer.parseInt(tvScore.getText().toString().replace("%", ""));
+            int elapsedTime = stopwatch.elapsed();
+            int reward = Math.round(((((float) MultiTouchView.maxNextQuestionDelay - elapsedTime)/MultiTouchView.maxNextQuestionDelay * 100) + ((float) correctAnswerCount / totalQuestions * 100)) / 200 * 100);
+            currentScore = Integer.valueOf(Math.round(((float)currentScore + reward) / 200 * 100));
+            tvScore.setText(Integer.toString(currentScore) + "%");
             correctAnswerCount++;
             newQuestion();
         }
@@ -159,7 +166,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
         // Start without a delay
         // Each element then alternates between vibrate, sleep, vibrate, sleep...
-        long[] pattern = {0, 100, 50, 500};
+        long[] pattern = {0, 150, 100, 500};
 
         // The '-1' here means to vibrate once
         // '0' would make the pattern vibrate indefinitely
@@ -187,11 +194,11 @@ public class StatsView implements CommunicationBus.BusManager {
     }
 
     public void newQuestion() {
-        randomQns = randInt(0, 20);
-        tvQuestion.setText(Integer.toString(randomQns));
-        timeOfLastQuestion = System.currentTimeMillis();
         operands.clear();
         operator = null;
+        randomQuestion = randInt(0, 20);
+        tvQuestion.setText(Integer.toString(randomQuestion));
+        stopwatch = Stopwatch.start();
         totalQuestions++;
         ((GamePadActivity) mContext).getGameBoard().resetBoard();
     }

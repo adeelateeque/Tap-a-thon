@@ -30,7 +30,7 @@ public class MultiTouchView extends View {
     private Paint textPaint;
     private String currentText;
     public static GameLevel selectedLevel;
-    public static long maxNextQuestionDelay;
+    public static int maxNextQuestionDelay;
     private int minDelay, maxDelay;
     private boolean startGame = false;
 
@@ -67,15 +67,15 @@ public class MultiTouchView extends View {
             startGame = false;
         } else {
             if (selectedLevel == GameLevel.EASY) {
-                maxNextQuestionDelay = 10000;
+                maxNextQuestionDelay = 15000;
                 minDelay = 4000;
                 maxDelay = 6000;
             } else if (selectedLevel == GameLevel.MEDIUM) {
-                maxNextQuestionDelay = 6000;
+                maxNextQuestionDelay = 10000;
                 minDelay = 3500;
                 maxDelay = 4500;
             } else if (selectedLevel == GameLevel.HARD) {
-                maxNextQuestionDelay = 3000;
+                maxNextQuestionDelay = 5000;
                 minDelay = 2000;
                 maxDelay = 3500;
             }

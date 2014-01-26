@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ChordMessage;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
@@ -71,7 +72,7 @@ public class GameLogicController implements BusManager {
         winners = gameResult.getWinners();
         losers = mModel.getPlayers();
 
-        // Notify the winners
+        // Notify the winner
         for (Player winner : winners) {
             if (losers != null) {
                 losers.remove(winner);
@@ -94,8 +95,8 @@ public class GameLogicController implements BusManager {
         mModel.clearGame();
         mModel.setGameState(GameState.GAME_FINISHED);
 
-        Intent eg = new Intent(GamePadActivity.mContext, EndGameActivity.class);
-        GamePadActivity.mContext.startActivity(eg);
+        Intent eg = new Intent(GamePadActivity.instance, EndGameActivity.class);
+        GamePadActivity.instance.startActivity(eg);
     }
 
     /**

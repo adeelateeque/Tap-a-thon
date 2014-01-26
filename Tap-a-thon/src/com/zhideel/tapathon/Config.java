@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * Created by Adeel on 24/1/14.
  */
 public final class Config {
-    public static App context = null;
+    public static Context context = null;
 
 
     public static boolean isAPConnected()
@@ -97,5 +97,9 @@ public final class Config {
         animate.setFillAfter(true);
         view.startAnimation(animate);
         view.setVisibility(View.GONE);
+    }
+
+    public static int currentTimeMillis() {
+        return (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
     }
 }

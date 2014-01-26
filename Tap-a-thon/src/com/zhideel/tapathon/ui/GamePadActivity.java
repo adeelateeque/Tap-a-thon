@@ -62,8 +62,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private Button btnStart;
     private TextView tvWaiting;
     private boolean allShareShownBefore = false;
-
-    public static Context mContext;
+    public static GamePadActivity instance = null;
 
     private final BroadcastReceiver mWiFiBroadcastReceiver = new BroadcastReceiver() {
 
@@ -80,9 +79,9 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_game_pad);
-        mContext = this;
         btnStart = (Button) findViewById(R.id.btn_start);
         gameEndView = (ImageView) findViewById(R.id.game_end_view);
         answerResultView  = (ImageView) findViewById(R.id.answer_result_view);
@@ -366,7 +365,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     @Subscribe
     public void handleGameEnd(GameActivityEvent.GameEndEvent gameEndEvent) {
-        mLogicController.gameResult.getWinners();
     }
 
     @Subscribe
