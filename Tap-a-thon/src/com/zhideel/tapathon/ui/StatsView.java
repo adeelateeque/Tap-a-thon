@@ -138,7 +138,7 @@ public class StatsView implements CommunicationBus.BusManager {
             int currentScore = Integer.parseInt(tvScore.getText().toString().replace("%", ""));
             int elapsedTime = stopwatch.elapsed();
             int reward = Math.round(((((float) MultiTouchView.maxNextQuestionDelay - elapsedTime)/MultiTouchView.maxNextQuestionDelay * 100) + ((float) correctAnswerCount / totalQuestions * 100)) / 200 * 100);
-            currentScore = Integer.valueOf(Math.round(((float)currentScore + reward) / 200 * 100));
+            currentScore = Integer.valueOf(Math.round(((float)currentScore * totalQuestions + reward) / ((totalQuestions + 1) * 100) * 100));
             tvScore.setText(Integer.toString(currentScore) + "%");
             correctAnswerCount++;
             newQuestion();

@@ -60,11 +60,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05137fe-3a51-40a3-9895-b09c628d6cf4" name="Default" comment="Commit Progress…&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java" afterPath="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" afterPath="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tap-a-thon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -143,10 +139,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatsView.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="StatsView.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="42" selection-start="802" selection-end="802" vertical-scroll-proportion="102.92" vertical-offset="3032" max-vertical-offset="3553">
+            <state line="140" column="61" selection-start="4698" selection-end="4703" vertical-scroll-proportion="0.5952381" vertical-offset="1893" max-vertical-offset="3553">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -154,10 +150,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiTouchView.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MultiTouchView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="38" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.4722222" vertical-offset="544" max-vertical-offset="3451">
+            <state line="59" column="38" selection-start="1838" selection-end="1838" vertical-scroll-proportion="-9.52" vertical-offset="544" max-vertical-offset="3451">
               <folding>
                 <element signature="e#1330#1331#0" expanded="true" />
                 <element signature="e#1367#1368#0" expanded="true" />
@@ -281,9 +277,9 @@
         <option value="$PROJECT_DIR$/Tap-a-thon/res/layout/view_stats.xml" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java" />
+        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java" />
       </list>
     </option>
   </component>
@@ -1290,12 +1286,12 @@
       <workItem from="1388819473660" duration="1462000" />
       <workItem from="1388940153172" duration="2478000" />
       <workItem from="1390528800109" duration="16728000" />
-      <workItem from="1390562511106" duration="22776000" />
+      <workItem from="1390562511106" duration="23131000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137367000" />
+    <option name="totallyTimeSpent" value="137722000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1319,7 +1315,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1339,7 +1335,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38968483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32168674" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31445783" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31445783" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33493975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35049504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1791,18 +1787,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="42" selection-start="802" selection-end="802" vertical-scroll-proportion="102.92" vertical-offset="3032" max-vertical-offset="3553">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MultiTouchView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="38" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.4722222" vertical-offset="544" max-vertical-offset="3451">
+        <state line="59" column="38" selection-start="1838" selection-end="1838" vertical-scroll-proportion="-9.52" vertical-offset="544" max-vertical-offset="3451">
           <folding>
             <element signature="e#1330#1331#0" expanded="true" />
             <element signature="e#1367#1368#0" expanded="true" />
@@ -1810,6 +1797,15 @@
             <element signature="e#2990#2991#0" expanded="true" />
             <element signature="e#4897#5130#0" expanded="true" />
             <element signature="e#5106#5107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/StatsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="61" selection-start="4698" selection-end="4703" vertical-scroll-proportion="0.5952381" vertical-offset="1893" max-vertical-offset="3553">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
