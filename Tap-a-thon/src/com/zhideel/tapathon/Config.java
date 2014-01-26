@@ -102,4 +102,11 @@ public final class Config {
     public static int currentTimeMillis() {
         return (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
     }
+
+    public static int getDipfromPixels(int sizeInPixels)
+    {
+        // Convert the dips to pixels
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (sizeInPixels * scale + 0.5f);
+    }
 }

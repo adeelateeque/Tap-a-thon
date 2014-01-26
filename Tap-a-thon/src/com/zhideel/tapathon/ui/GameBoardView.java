@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import com.squareup.otto.Bus;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.logic.CommunicationBus;
 
@@ -95,7 +96,7 @@ class PadAdapter extends BaseAdapter {
 
         MultiTouchView pad = (MultiTouchView) getItem(position);
         GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - 10,
-                parent.getHeight() / 3 - 10);
+                parent.getHeight() / 3 - Config.getDipfromPixels(3));
         pad.setLayoutParams(params);
         return pad;
     }

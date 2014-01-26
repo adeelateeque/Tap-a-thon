@@ -59,10 +59,8 @@ public class MultiTouchView extends View {
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.WHITE);
         textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        // Convert the dips to pixels
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        int textSize = (int) (50 * scale + 0.5f);
-        textPaint.setTextSize(textSize);
+
+        textPaint.setTextSize(Config.getDipfromPixels(50));
 
         if (startGame == true) {
             minDelay = 0;
@@ -205,7 +203,7 @@ public class MultiTouchView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText(currentText, this.getWidth() / 2 - 30, this.getHeight() / 2 + 50, textPaint);
+        canvas.drawText(currentText, this.getWidth() / 2 - Config.getDipfromPixels(10), this.getHeight() / 2 + Config.getDipfromPixels(17), textPaint);
     }
 
 }
