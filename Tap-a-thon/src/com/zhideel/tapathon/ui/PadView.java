@@ -52,6 +52,7 @@ public class PadView extends View {
     }
 
     private void initView() {
+        currentText = "0";
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // set painter color to a color you like
         mPaint.setColor(Color.WHITE);
@@ -214,7 +215,7 @@ public class PadView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int xPos =  (int) ((canvas.getWidth() / 2) + textPaint.measureText(currentText)/2);
+        int xPos =  (int) ((canvas.getWidth() / 2) - textPaint.measureText(currentText)/2) + Config.getDipfromPixels((isDividedByTwo) ? 35 : 15);
         int yPos = (int) ((canvas.getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2));
         canvas.drawText(currentText, xPos, yPos, textPaint);
     }
