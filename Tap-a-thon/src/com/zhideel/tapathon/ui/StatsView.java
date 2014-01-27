@@ -129,7 +129,7 @@ public class StatsView implements CommunicationBus.BusManager {
         }
         catch (ArithmeticException e)
         {
-          result = 0f;
+          result = 0.0f;
         }
 
         //If answered correctly

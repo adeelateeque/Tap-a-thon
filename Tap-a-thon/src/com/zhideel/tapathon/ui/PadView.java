@@ -160,30 +160,7 @@ public class PadView extends View {
 
                     });
                     mp.start();
-                    ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
-                    String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
-
-                    try {
-                        float number = Float.parseFloat(currentText);
-                        if (operands.size() < 2) {
-                            ((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
-                            this.isSelected = true;
-                            if ((operands.size() == 2) && (operator != null)) {
-                                ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                                ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
-                            }
-                        }
-
-                    } catch (NumberFormatException e) {
-                        if (operator == null) {
-                            ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
-                            this.isSelected = true;
-                            if (operands.size() == 2) {
-                                ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                                ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
-                            }
-                        }
-                    }
+                    calculate();
                 }
                 else
                 {
@@ -192,6 +169,7 @@ public class PadView extends View {
                     {
                         isDividedByTwo = true;
                         currentText = Float.toString((Float.parseFloat(currentText) / 2));
+                        calculate();
                     }
                 }
                 doThePaint();
@@ -209,6 +187,40 @@ public class PadView extends View {
         invalidate();
 
         return true;
+    }
+
+    private void calculate()
+    {
+        ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
+        String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
+
+
+        if(isDividedByTwo)
+        {
+            operands.remove(Float.parseFloat(currentText) * 2);
+        }
+
+        try {
+            float number = Float.parseFloat(currentText);
+            if (operands.size() < 2) {
+                ((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
+                this.isSelected = true;
+                if ((operands.size() == 2) && (operator != null)) {
+                    ((GamePadActivity) super.getContext()).getStatsView().doCalc();
+                    ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            if (operator == null) {
+                ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
+                this.isSelected = true;
+                if (operands.size() == 2) {
+                    ((GamePadActivity) super.getContext()).getStatsView().doCalc();
+                    ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                }
+            }
+        }
     }
 
     @Override
