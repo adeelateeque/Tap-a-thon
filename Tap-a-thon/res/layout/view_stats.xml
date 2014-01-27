@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:text="Question"
             android:gravity="center"
+            android:layout_gravity="top"
             android:textColor="@color/tappad_green"/>
 
         <TextView
@@ -26,9 +27,9 @@
             android:layout_height="0dp"
             android:layout_weight="0.33"
             android:textSize="40sp"
-            android:gravity="top|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:textColor="#00b1ff"
-            android:layout_marginTop="-5dp"/>
+            android:layout_marginTop="-20dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -44,6 +45,7 @@
             android:layout_width="match_parent"
             android:text="Score"
             android:gravity="center"
+            android:layout_gravity="top"
             android:textColor="@color/tappad_green"/>
 
         <TextView
@@ -52,9 +54,9 @@
             android:layout_height="0dp"
             android:layout_weight="0.33"
             android:textSize="40sp"
-            android:gravity="top|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:textColor="#ffff00"
-            android:layout_marginTop="-5dp"/>
+            android:layout_marginTop="-20dp"/>
 
     </LinearLayout>
 
@@ -70,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Timer"
+            android:layout_gravity="top"
             android:gravity="center"
             android:textColor="@color/tappad_green"/>
 
@@ -79,9 +82,9 @@
             android:layout_height="0dp"
             android:layout_weight="0.33"
             android:textSize="40sp"
-            android:gravity="top|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/tappad_red"
-            android:layout_marginTop="-5dp"/>
+            android:layout_marginTop="-20dp"/>
     </LinearLayout>
 
 </LinearLayout>

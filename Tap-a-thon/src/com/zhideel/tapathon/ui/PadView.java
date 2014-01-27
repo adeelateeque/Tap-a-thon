@@ -29,6 +29,7 @@ public class PadView extends View {
     private boolean isPaused = false;
     private Paint textPaint;
     private String currentText;
+    private boolean isDividedByTwo;
     public static GameLevel selectedLevel;
     public static int maxNextQuestionDelay;
     private int minDelay, maxDelay;
@@ -59,6 +60,7 @@ public class PadView extends View {
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.WHITE);
         textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
+        textPaint.setTextAlign(Paint.Align.CENTER);
 
         textPaint.setTextSize(Config.getDipfromPixels(50));
 
@@ -185,9 +187,11 @@ public class PadView extends View {
                 }
                 else
                 {
-                    if(!currentText.equals("X") && !currentText.equals("/") && !currentText.equals("+") && !currentText.equals("-"))
+
+                    if(!isDividedByTwo && !currentText.equals("X") && !currentText.equals("/") && !currentText.equals("+") && !currentText.equals("-"))
                     {
-                        currentText =  String.format("%.2f", Float.toString((Float.parseFloat(currentText) / 2)));
+                        isDividedByTwo = true;
+                        currentText = Float.toString((Float.parseFloat(currentText) / 2));
                     }
                 }
                 doThePaint();
@@ -210,7 +214,9 @@ public class PadView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText(currentText, this.getWidth() / 2 - Config.getDipfromPixels(10), this.getHeight() / 2 + Config.getDipfromPixels(17), textPaint);
+        int xPos =  (int) ((canvas.getWidth() / 2) + textPaint.measureText(currentText)/2);
+        int yPos = (int) ((canvas.getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2));
+        canvas.drawText(currentText, xPos, yPos, textPaint);
     }
 
 }
