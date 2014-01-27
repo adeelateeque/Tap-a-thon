@@ -1,7 +1,6 @@
 package com.zhideel.tapathon.ui;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.*;
@@ -33,7 +32,6 @@ import com.zhideel.tapathon.chord.ServerGameChord;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.logic.Model;
-import com.zhideel.tapathon.utils.BitmapCache;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -267,12 +265,12 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     }
 
     private void showGameDisplay() {
-        MultiTouchView.GameLevel level = null;
+        PadView.GameLevel level = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            level = (MultiTouchView.GameLevel) extras.getSerializable("level");
+            level = (PadView.GameLevel) extras.getSerializable("level");
             if (level == null) {
-                level = MultiTouchView.GameLevel.EASY;
+                level = PadView.GameLevel.EASY;
             }
         }
 

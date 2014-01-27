@@ -15,7 +15,7 @@ import com.zhideel.tapathon.R;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MultiTouchView extends View {
+public class PadView extends View {
 
     public enum GameLevel {
         EASY, MEDIUM, HARD;
@@ -34,7 +34,7 @@ public class MultiTouchView extends View {
     private int minDelay, maxDelay;
     private boolean startGame = false;
 
-    public MultiTouchView(Context context, AttributeSet attrs) {
+    public PadView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
@@ -98,12 +98,12 @@ public class MultiTouchView extends View {
         if ((!isSelected) && (!isPaused)) {
             textPaint.setColor(colors[randInt(0, 3)]);
         } else if (isSelected) {
-            MultiTouchView.this.setBackgroundColor(Color.WHITE);
-            MultiTouchView.this.setAlpha(0.5f);
+            PadView.this.setBackgroundColor(Color.WHITE);
+            PadView.this.setAlpha(0.5f);
             textPaint.setColor(getResources().getColor(R.color.tappad_green));
         } else {
-            MultiTouchView.this.setBackgroundColor(Color.BLACK);
-            MultiTouchView.this.setAlpha(0.5f);
+            PadView.this.setBackgroundColor(Color.BLACK);
+            PadView.this.setAlpha(0.5f);
         }
         invalidate();
         //As long as we are not paused we can keep painting randomly
@@ -158,16 +158,16 @@ public class MultiTouchView extends View {
 
                     });
                     mp.start();
-                    ArrayList<Integer> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
+                    ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
                     String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 
                     try {
-                        int number = Integer.parseInt(currentText);
+                        float number = Float.parseFloat(currentText);
                         if (operands.size() < 2) {
                             ((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
                             this.isSelected = true;
                             if ((operands.size() == 2) && (operator != null)) {
-                                int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
+                                ((GamePadActivity) super.getContext()).getStatsView().doCalc();
                                 ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
                             }
                         }
@@ -177,13 +177,20 @@ public class MultiTouchView extends View {
                             ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentText);
                             this.isSelected = true;
                             if (operands.size() == 2) {
-                                int result = ((GamePadActivity) super.getContext()).getStatsView().doCalc();
+                                ((GamePadActivity) super.getContext()).getStatsView().doCalc();
                                 ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
                             }
                         }
                     }
-                    doThePaint();
                 }
+                else
+                {
+                    if(!currentText.equals("X") && !currentText.equals("/") && !currentText.equals("+") && !currentText.equals("-"))
+                    {
+                        currentText =  String.format("%.2f", Float.toString((Float.parseFloat(currentText) / 2)));
+                    }
+                }
+                doThePaint();
                 break;
             }
             case MotionEvent.ACTION_MOVE: { // a pointer was moved

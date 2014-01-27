@@ -25,7 +25,7 @@ public class StatsView implements CommunicationBus.BusManager {
     private Activity mContext;
     private final Bus mBus;
     private boolean isPaused = false;
-    private ArrayList<Integer> operands;
+    private ArrayList<Float> operands;
     private String operator;
     private TextView tvScore, tvQuestion, tvTimer;
     private Stopwatch stopwatch;
@@ -39,7 +39,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
         View.inflate(mContext, R.layout.view_stats, viewGroup);
 
-        operands = new ArrayList<Integer>();
+        operands = new ArrayList<Float>();
         tvScore = (TextView) viewGroup.findViewById(R.id.tv_multipler);
         tvQuestion = (TextView) viewGroup.findViewById(R.id.tv_qns);
         tvTimer = (TextView) viewGroup.findViewById(R.id.tv_timer);
@@ -67,7 +67,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
                                 interval--;
                                 setInterval(interval);
-                                if(stopwatch.elapsed() >= MultiTouchView.maxNextQuestionDelay)
+                                if(stopwatch.elapsed() >= PadView.maxNextQuestionDelay)
                                 {
                                    newQuestion();
                                 }
@@ -92,13 +92,13 @@ public class StatsView implements CommunicationBus.BusManager {
         return randomNum;
     }
 
-    public void addOperand(Integer operand) {
+    public void addOperand(Float operand) {
         if (operands.size() < 2) {
             operands.add(operand);
         }
     }
 
-    public ArrayList<Integer> getOperands() {
+    public ArrayList<Float> getOperands() {
         return operands;
     }
 
@@ -112,10 +112,10 @@ public class StatsView implements CommunicationBus.BusManager {
         return this.operator;
     }
 
-    public int doCalc() {
-        Integer op1 = operands.get(0);
-        Integer op2 = operands.get(1);
-        Integer result;
+    public void doCalc() {
+        Float op1 = operands.get(0);
+        Float op2 = operands.get(1);
+        Float result;
         try{
             if (operator.equalsIgnoreCase("X")) {
                 result = op1 * op2;
@@ -129,15 +129,15 @@ public class StatsView implements CommunicationBus.BusManager {
         }
         catch (ArithmeticException e)
         {
-          result = 0;
+          result = 0f;
         }
 
         //If answered correctly
-        if (result == randomQuestion) {
+        if (Math.round(result) == randomQuestion) {
             congratulate();
             int currentScore = Integer.parseInt(tvScore.getText().toString().replace("%", ""));
             int elapsedTime = stopwatch.elapsed();
-            int reward = Math.round(((((float) MultiTouchView.maxNextQuestionDelay - elapsedTime)/MultiTouchView.maxNextQuestionDelay * 100) + ((float) correctAnswerCount / totalQuestions * 100)) / 200 * 100);
+            int reward = Math.round(((((float) PadView.maxNextQuestionDelay - elapsedTime)/ PadView.maxNextQuestionDelay * 100) + ((float) correctAnswerCount / totalQuestions * 100)) / 200 * 100);
             currentScore = Integer.valueOf(Math.round(((float)currentScore * totalQuestions + reward) / ((totalQuestions + 1) * 100) * 100));
             tvScore.setText(Integer.toString(currentScore) + "%");
             correctAnswerCount++;
@@ -147,7 +147,6 @@ public class StatsView implements CommunicationBus.BusManager {
         {
             criticize();
         }
-        return result;
     }
 
     private void congratulate()

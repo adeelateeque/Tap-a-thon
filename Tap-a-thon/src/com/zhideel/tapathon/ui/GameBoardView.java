@@ -8,7 +8,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import com.squareup.otto.Bus;
 import com.zhideel.tapathon.Config;
@@ -25,8 +24,8 @@ public class GameBoardView implements CommunicationBus.BusManager {
     private final Bus mBus;
     private GridView gridview;
 
-    public GameBoardView(Context context, MultiTouchView.GameLevel level, ViewGroup viewGroup) {
-        MultiTouchView.setLevel(level);
+    public GameBoardView(Context context, PadView.GameLevel level, ViewGroup viewGroup) {
+        PadView.setLevel(level);
         mContext = (Activity) context;
         this.mBus = CommunicationBus.getInstance();
 
@@ -47,7 +46,7 @@ public class GameBoardView implements CommunicationBus.BusManager {
     public void pauseBoard(boolean paused) {
         ListAdapter adapter = gridview.getAdapter();
         for (int i = 0; i < adapter.getCount(); i++) {
-            MultiTouchView view = (MultiTouchView) adapter.getItem(i);
+            PadView view = (PadView) adapter.getItem(i);
             view.setPaused(paused);
         }
     }
@@ -67,14 +66,14 @@ public class GameBoardView implements CommunicationBus.BusManager {
 
 class PadAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<MultiTouchView> pads;
+    private ArrayList<PadView> pads;
 
     public PadAdapter(Context c) {
         mContext = c;
-        pads = new ArrayList<MultiTouchView>();
+        pads = new ArrayList<PadView>();
         for (int i = 0; i < getCount(); i++) {
-            MultiTouchView pad;
-            pad = new MultiTouchView(mContext, null);
+            PadView pad;
+            pad = new PadView(mContext, null);
             pad.setAlpha(0.8f);
             pads.add(pad);
         }
@@ -94,7 +93,7 @@ class PadAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        MultiTouchView pad = (MultiTouchView) getItem(position);
+        PadView pad = (PadView) getItem(position);
         GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - 10,
                 parent.getHeight() / 3 - Config.getDipfromPixels(3));
         pad.setLayoutParams(params);

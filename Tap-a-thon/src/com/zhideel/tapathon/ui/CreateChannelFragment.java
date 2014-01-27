@@ -18,7 +18,7 @@ public class CreateChannelFragment extends DialogFragment {
     private EditText etChannelName;
     private RadioGroup rgLvl;
     private Button btnCreate, btnCancel;
-    private MultiTouchView.GameLevel selection;
+    private PadView.GameLevel selection;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,15 +48,15 @@ public class CreateChannelFragment extends DialogFragment {
             public void onClick(View v) {
                 switch (rgLvl.getCheckedRadioButtonId()) {
                     case R.id.rb_easy:
-                        selection = MultiTouchView.GameLevel.EASY;
+                        selection = PadView.GameLevel.EASY;
                         break;
 
                     case R.id.rb_normal:
-                        selection = MultiTouchView.GameLevel.MEDIUM;
+                        selection = PadView.GameLevel.MEDIUM;
                         break;
 
                     case R.id.rb_hard:
-                        selection = MultiTouchView.GameLevel.HARD;
+                        selection = PadView.GameLevel.HARD;
                         break;
                 }
 
