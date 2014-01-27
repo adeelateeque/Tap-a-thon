@@ -138,35 +138,35 @@ public class PadView extends View {
                     numberSet.add("+");
                     currentText = "+";
                 } else {
-                    randInt(0, 13);
+                    randInt(1, 13);
                 }
             } else if (rand == 11) {
                 if (!(Collections.frequency(numberSet, "-") > 1)) {
                     numberSet.add("-");
                     currentText = "-";
                 } else {
-                    randInt(0, 13);
+                    randInt(1, 13);
                 }
             } else if (rand == 12) {
                 if (!(Collections.frequency(numberSet, "X") > 1)) {
                     numberSet.add("X");
                     currentText = "X";
                 } else {
-                    randInt(0, 13);
+                    randInt(1, 13);
                 }
             } else if (rand == 13) {
                 if (!(Collections.frequency(numberSet, "/") > 1)) {
                     numberSet.add("/");
                     currentText = "/";
                 } else {
-                    randInt(0, 13);
+                    randInt(1, 13);
                 }
             } else {
                 if (Collections.frequency(numberSet, Integer.toString(rand)) < 2) {
                     numberSet.add(Integer.toString(rand));
                     currentText = Integer.toString(rand);
                 } else {
-                    randInt(0, 13);
+                    randInt(1, 13);
                 }
             }
         }
