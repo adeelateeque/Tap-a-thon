@@ -66,9 +66,9 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         @Override
         public void onReceive(Context context, Intent intent) {
-        if (!Config.isWifiConnected()) {
-            finish();
+        if (!Config.isNetworkAvailable()) {
             Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
+            finish();
         }
         }
 
@@ -337,7 +337,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             public void run() {
                 Config.slideToTop(answerResultView);
             }
-        }, 250);
+        }, 500);
     }
 
     public void flashWrongAnswerView() {
@@ -350,7 +350,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             public void run() {
                 Config.slideToTop(answerResultView);
             }
-        }, 250);
+        }, 500);
     }
 
     @Override

@@ -131,24 +131,24 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     }
 
     public void refreshButtons() {
+        //Check if we have Group Play and if we dont have a session
+        if (App.getGroupPlaySdk() != null && btnGroupPlay != null) {
+            if (!App.getGroupPlaySdk().hasSession()) {
+                btnGroupPlay.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                btnGroupPlay.setVisibility(View.GONE);
+            }
+        }
+
         if (btnStart != null) {
-            if (Config.isWifiConnected()) {
+            if (Config.isNetworkAvailable()) {
                 btnStart.setEnabled(true);
                 btnStart.setText("Start");
             } else {
                 btnStart.setEnabled(false);
                 btnStart.setText("Please Connect...");
-            }
-        }
-
-        //Check if we have Group Play and if we dont have a session
-        if (App.getGroupPlaySdk() != null && btnGroupPlay != null) {
-            if (!App.getGroupPlaySdk().hasSession()) {
-               btnGroupPlay.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                btnGroupPlay.setVisibility(View.GONE);
             }
         }
     }

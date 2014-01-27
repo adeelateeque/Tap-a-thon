@@ -64,6 +64,11 @@ public final class Config {
         return (networkInfo != null && networkInfo.isConnected()) || apState;
     }
 
+    public static boolean isNetworkAvailable()
+    {
+        return isWifiConnected() || (App.getGroupPlaySdk() != null && App.getGroupPlaySdk().hasSession());
+    }
+
     // To animate view slide out from left to right
     public static void slideToRight(View view){
         TranslateAnimation animate = new TranslateAnimation(0,view.getWidth(),0,0);
