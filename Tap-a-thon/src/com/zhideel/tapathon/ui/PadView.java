@@ -52,7 +52,6 @@ public class PadView extends View {
     }
 
     private void initView() {
-        currentText = "0";
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // set painter color to a color you like
         mPaint.setColor(Color.WHITE);

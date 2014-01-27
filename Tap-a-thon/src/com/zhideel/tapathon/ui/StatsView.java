@@ -195,7 +195,7 @@ public class StatsView implements CommunicationBus.BusManager {
     public void newQuestion() {
         operands.clear();
         operator = null;
-        randomQuestion = randInt(0, 20);
+        randomQuestion = randInt(1, 20);
         tvQuestion.setText(Integer.toString(randomQuestion));
         stopwatch = Stopwatch.start();
         totalQuestions++;
