@@ -13,7 +13,6 @@ import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class PadView extends View {
@@ -35,7 +34,6 @@ public class PadView extends View {
     public static int maxNextQuestionDelay;
     private int minDelay, maxDelay;
     private boolean startGame = false;
-    private static final ArrayList<String> numberSet = new ArrayList<String>();
 
     public PadView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -54,6 +52,7 @@ public class PadView extends View {
     }
 
     private void initView() {
+        currentText = "0";
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // set painter color to a color you like
         mPaint.setColor(Color.WHITE);
@@ -65,8 +64,6 @@ public class PadView extends View {
         textPaint.setTextAlign(Paint.Align.CENTER);
 
         textPaint.setTextSize(Config.getDipfromPixels(50));
-
-        currentText = "0";
 
         if (startGame == true) {
             minDelay = 0;
@@ -99,7 +96,8 @@ public class PadView extends View {
         }, getRandomDelay());
     }
 
-    private void doThePaint() {
+    private void doThePaint()
+    {
         if ((!isSelected) && (!isPaused)) {
             textPaint.setColor(colors[randInt(0, 3)]);
         } else if (isSelected) {
@@ -129,45 +127,17 @@ public class PadView extends View {
 
     private void randText() {
         if ((!isSelected) && (!isPaused)) {
-            if(!isDividedByTwo || !(currentText.equals("0"))){
-                numberSet.remove(currentText);
-            }
-            int rand = randInt(1, 13);
+            int rand = randInt(0, 13);
             if (rand == 10) {
-                if (!(Collections.frequency(numberSet, "+") > 1)) {
-                    numberSet.add("+");
-                    currentText = "+";
-                } else {
-                    randInt(1, 13);
-                }
+                currentText = "+";
             } else if (rand == 11) {
-                if (!(Collections.frequency(numberSet, "-") > 1)) {
-                    numberSet.add("-");
-                    currentText = "-";
-                } else {
-                    randInt(1, 13);
-                }
+                currentText = "-";
             } else if (rand == 12) {
-                if (!(Collections.frequency(numberSet, "X") > 1)) {
-                    numberSet.add("X");
-                    currentText = "X";
-                } else {
-                    randInt(1, 13);
-                }
+                currentText = "X";
             } else if (rand == 13) {
-                if (!(Collections.frequency(numberSet, "/") > 1)) {
-                    numberSet.add("/");
-                    currentText = "/";
-                } else {
-                    randInt(1, 13);
-                }
+                currentText = "/";
             } else {
-                if (Collections.frequency(numberSet, Integer.toString(rand)) < 2) {
-                    numberSet.add(Integer.toString(rand));
-                    currentText = Integer.toString(rand);
-                } else {
-                    randInt(1, 13);
-                }
+                currentText = Integer.toString(rand);
             }
         }
     }
@@ -180,7 +150,7 @@ public class PadView extends View {
 
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN: {
-                if (!isSelected) {
+                if(!isSelected){
                     MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
                     mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
@@ -215,9 +185,12 @@ public class PadView extends View {
                             }
                         }
                     }
-                } else {
+                }
+                else
+                {
 
-                    if (!isDividedByTwo && !currentText.equals("X") && !currentText.equals("/") && !currentText.equals("+") && !currentText.equals("-")) {
+                    if(!isDividedByTwo && !currentText.equals("X") && !currentText.equals("/") && !currentText.equals("+") && !currentText.equals("-"))
+                    {
                         isDividedByTwo = true;
                         currentText = Float.toString((Float.parseFloat(currentText) / 2));
                     }
@@ -242,7 +215,7 @@ public class PadView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int xPos = (int) ((canvas.getWidth() / 2) - textPaint.measureText(currentText) / 2) + Config.getDipfromPixels((isDividedByTwo) ? 35 : 16);
+        int xPos =  (int) ((canvas.getWidth() / 2) - textPaint.measureText(currentText)/2) + Config.getDipfromPixels((isDividedByTwo) ? 35 : 15);
         int yPos = (int) ((canvas.getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2));
         canvas.drawText(currentText, xPos, yPos, textPaint);
     }
