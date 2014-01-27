@@ -94,9 +94,9 @@ public class GameLogicController implements BusManager {
 
         mModel.clearGame();
         mModel.setGameState(GameState.GAME_FINISHED);
-
+        /*
         Intent eg = new Intent(GamePadActivity.instance, EndGameActivity.class);
-        GamePadActivity.instance.startActivity(eg);
+        GamePadActivity.instance.startActivity(eg);*/
     }
 
     /**

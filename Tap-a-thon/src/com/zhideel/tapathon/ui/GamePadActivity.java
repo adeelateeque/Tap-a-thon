@@ -82,6 +82,13 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         setContentView(R.layout.activity_game_pad);
         btnStart = (Button) findViewById(R.id.btn_start);
         gameEndView = (ImageView) findViewById(R.id.game_end_view);
+        gameEndView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startGame();
+                gameEndView.setVisibility(View.GONE);
+            }
+        });
         answerResultView  = (ImageView) findViewById(R.id.answer_result_view);
         Config.slideToTop(answerResultView);
         tvWaiting = (TextView) findViewById(R.id.tv_waiting);

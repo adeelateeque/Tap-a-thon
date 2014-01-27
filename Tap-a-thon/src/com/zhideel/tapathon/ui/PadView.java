@@ -215,7 +215,7 @@ public class PadView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int xPos =  (int) ((canvas.getWidth() / 2) - textPaint.measureText(currentText)/2) + Config.getDipfromPixels((isDividedByTwo) ? 35 : 15);
+        int xPos =  (int) ((canvas.getWidth() / 2) - textPaint.measureText(currentText)/2) + Config.getDipfromPixels((isDividedByTwo) ? 35 : 16);
         int yPos = (int) ((canvas.getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2));
         canvas.drawText(currentText, xPos, yPos, textPaint);
     }

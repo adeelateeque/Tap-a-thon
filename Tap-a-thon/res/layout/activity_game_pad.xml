@@ -51,7 +51,7 @@
                     android:layout_height="fill_parent"
                     android:id="@+id/game_end_view"
                     android:background="@drawable/game_over"
-                    android:alpha="0.5"
+                    android:alpha="0.7"
                     android:visibility="gone"/>
 
                 <ImageView
