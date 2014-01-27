@@ -113,9 +113,9 @@ public class StatsView implements CommunicationBus.BusManager {
     }
 
     public void doCalc() {
-        Float op1 = operands.get(0);
-        Float op2 = operands.get(1);
-        Float result;
+        float op1 = operands.get(0);
+        float op2 = operands.get(1);
+        float result;
         try{
             if (operator.equalsIgnoreCase("X")) {
                 result = op1 * op2;
@@ -133,7 +133,7 @@ public class StatsView implements CommunicationBus.BusManager {
         }
 
         //If answered correctly
-        if (Math.round(result) == randomQuestion) {
+        if (((int) result) == randomQuestion) {
             congratulate();
             int currentScore = Integer.parseInt(tvScore.getText().toString().replace("%", ""));
             int elapsedTime = stopwatch.elapsed();
