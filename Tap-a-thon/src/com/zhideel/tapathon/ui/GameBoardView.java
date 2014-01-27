@@ -94,7 +94,7 @@ class PadAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         PadView pad = (PadView) getItem(position);
-        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - 10,
+        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - Config.getDipfromPixels(3),
                 parent.getHeight() / 3 - Config.getDipfromPixels(3));
         pad.setLayoutParams(params);
         return pad;
