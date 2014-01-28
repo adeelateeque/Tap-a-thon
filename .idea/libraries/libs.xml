@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Tap-a-thon/libs/chord-migration-v1.5.0-20130828.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Tap-a-thon/libs/android-support-v13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Tapathon/libs/chord-migration-v1.5.0-20130828.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Tapathon/libs/android-support-v13.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
