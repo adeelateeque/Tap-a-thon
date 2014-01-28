@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.newrelic.agent.android.NewRelic;
 import com.zhideel.tapathon.App;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
@@ -22,7 +21,6 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     public static final String USER_NAME_KEY = "USER_NAME_KEY";
 
     private Button btnStart;
-    private Button btnGroupPlay;
     private EditText etName;
 
     private SharedPreferences mSharedPreferences;
@@ -31,7 +29,6 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            refreshButtons();
         }
 
     };
@@ -39,19 +36,11 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NewRelic.withApplicationToken(
-                "AAa8bf8ee972e6b39c667cd145f079ceb20ecc2098"
-        ).start(this.getApplication());
         setContentView(R.layout.activity_main);
         mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
         registerWifiStateReceiver();
 
         btnStart = (Button) findViewById(R.id.btn_start);
-        btnGroupPlay = (Button) findViewById(R.id.btn_group_play);
-        btnGroupPlay.setVisibility(View.GONE);
-
-        refreshButtons();
-
         if (!btnStart.isEnabled()) {
 
             Toast.makeText(this, getString(R.string.wifi_off), Toast.LENGTH_LONG).show();
@@ -77,7 +66,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
                     dFrag.remove(prev);
                 }
                 dFrag.addToBackStack(null);
-                SelectChannelFragment mFragment = new SelectChannelFragment();
+                CreateChannelFragment mFragment = new CreateChannelFragment();
                 mFragment.show(getFragmentManager(), "dialog_channel");
                 dFrag.commit();
 
@@ -88,7 +77,6 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onResume() {
         super.onResume();
-        refreshButtons();
     }
 
     @Override
@@ -119,41 +107,5 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
         final IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         registerReceiver(mWiFiBroadcastReceiver, filter);
-    }
-
-    public void settingsClick(View v) {
-        startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
-    }
-
-    public void groupPlayClick(View v) {
-        //Check if we have Group Play and if we have a session
-        if (App.getGroupPlaySdk() != null) {
-            if (App.getGroupPlaySdk().runGroupPlay()) {
-                refreshButtons();
-            }
-        }
-    }
-
-    public void refreshButtons() {
-        //Check if we have Group Play and if we dont have a session
-        if (App.getGroupPlaySdk() != null && btnGroupPlay != null) {
-            if (!App.getGroupPlaySdk().hasSession()) {
-                btnGroupPlay.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                btnGroupPlay.setVisibility(View.GONE);
-            }
-        }
-
-        if (btnStart != null) {
-            if (Config.isNetworkAvailable()) {
-                btnStart.setEnabled(true);
-                btnStart.setText("Start");
-            } else {
-                btnStart.setEnabled(false);
-                btnStart.setText("Please Connect...");
-            }
-        }
     }
 }

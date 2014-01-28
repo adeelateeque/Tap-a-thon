@@ -37,7 +37,7 @@ public class GameBoardView implements CommunicationBus.BusManager {
 
     public void resetBoard() {
         AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
-        anim.setDuration(500);
+        anim.setDuration(1000);
         anim.setRepeatMode(Animation.REVERSE);
         gridview.startAnimation(anim);
         gridview.setAdapter(new PadAdapter(mContext));
@@ -80,7 +80,7 @@ class PadAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return 9;
+        return 10;
     }
 
     public Object getItem(int position) {
@@ -94,7 +94,7 @@ class PadAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         PadView pad = (PadView) getItem(position);
-        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - Config.getDipfromPixels(3),
+        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth() / 3 - Config.getDipfromPixels(5),
                 parent.getHeight() / 3 - Config.getDipfromPixels(3));
         pad.setLayoutParams(params);
         return pad;

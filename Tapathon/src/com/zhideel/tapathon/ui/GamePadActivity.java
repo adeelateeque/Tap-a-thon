@@ -67,8 +67,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         @Override
         public void onReceive(Context context, Intent intent) {
         if (!Config.isNetworkAvailable()) {
-            Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
-            finish();
+            /*Toast.makeText(GamePadActivity.this, getString(R.string.wifi_disconnected), Toast.LENGTH_LONG).show();
+            finish();*/
         }
         }
 
@@ -110,7 +110,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         mManagers = new LinkedList<CommunicationBus.BusManager>();
         mManagers.add(this);
 
-        final Model model = new Model(!mIsClient);
+        //final Model model = new Model(!mIsClient);
 
         final Intent intent = getIntent();
         mIsClient = intent.getBooleanExtra(CLIENT, true);
@@ -141,14 +141,16 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                     }
                 }).setCancelable(false).create();
 
-        if (mIsClient) {
+        /*if (mIsClient) {
             btnStart.setVisibility(View.GONE);
             roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
         } else {
             tvWaiting.setVisibility(View.GONE);
             roomName = getIntent().getStringExtra(SERVER_NAME);
-            mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
+            mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);*/
+
+            tvWaiting.setVisibility(View.GONE);
 
             //for host to setup AllShare
             ServiceConnector.createServiceProvider(this, new ServiceConnector.IServiceConnectEventListener() {
@@ -183,12 +185,12 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 }
             });
 
-            mLogicController = new GameLogicController(model, getResources());
-            mManagers.add(mLogicController);
-        }
+            //mLogicController = new GameLogicController(model, getResources());
+            //mManagers.add(mLogicController);
+        //}
 
-        mManagers.add(model);
-        mManagers.add(mGameChord);
+        //mManagers.add(model);
+        //mManagers.add(mGameChord);
 
         for (CommunicationBus.BusManager manager : mManagers) {
             manager.startBus();
@@ -224,7 +226,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             gameBoardView.stopBus();
         }
 
-        mGameChord.stopChord();
+        //mGameChord.stopChord();
         if (mManager != null) {
             mManager.stop();
         }
@@ -248,7 +250,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     }
 
     public void startGame() {
-        mBus.post(GameLogicController.StartGameEvent.INSTANCE);
+        showGameDisplay();
+        //mBus.post(GameLogicController.StartGameEvent.INSTANCE);
     }
 
     //TODO build the image and display out to the TV http://developer.samsung.com/allshare-framework/technical-docs/Sample-View-Controller
@@ -349,6 +352,19 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     public void flashWrongAnswerView() {
         answerResultView.setBackgroundResource(R.drawable.wrong_answer);
+        answerResultView.setVisibility(View.VISIBLE);
+        answerResultView.clearAnimation();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Config.slideToTop(answerResultView);
+            }
+        }, 500);
+    }
+
+    public void flashNextQuestionView() {
+        answerResultView.setBackgroundResource(R.drawable.nextquestion);
         answerResultView.setVisibility(View.VISIBLE);
         answerResultView.clearAnimation();
         final Handler handler = new Handler();

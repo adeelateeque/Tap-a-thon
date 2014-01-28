@@ -30,7 +30,6 @@ public class EndGameActivity extends Activity {
     public void onBackPressed() {
         Intent eg = new Intent(EndGameActivity.this, GameMenuActivity.class);
         startActivity(eg);
-        finish();
     }
 
     public void onCreate(Bundle savedInstanceState) {

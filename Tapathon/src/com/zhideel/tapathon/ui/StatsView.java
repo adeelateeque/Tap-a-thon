@@ -69,6 +69,7 @@ public class StatsView implements CommunicationBus.BusManager {
                                 setInterval(interval);
                                 if(stopwatch.elapsed() >= PadView.maxNextQuestionDelay)
                                 {
+                                   ((GamePadActivity) mContext).flashNextQuestionView();
                                    newQuestion();
                                 }
                             }
