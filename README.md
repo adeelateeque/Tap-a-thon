@@ -1,2 +1,1 @@
-Tap-a-thon
-==========
+Tapathon - Math is fun, with friends...
