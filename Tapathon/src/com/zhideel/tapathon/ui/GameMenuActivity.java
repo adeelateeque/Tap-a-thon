@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.newrelic.agent.android.NewRelic;
 import com.zhideel.tapathon.App;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
@@ -38,6 +39,9 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NewRelic.withApplicationToken(
+                "AAa8bf8ee972e6b39c667cd145f079ceb20ecc2098"
+        ).start(this.getApplication());
         setContentView(R.layout.activity_main);
         mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
         registerWifiStateReceiver();

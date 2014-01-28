@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="android-agent-3.264.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Tap-a-thon/libs/android-agent-3.264.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
