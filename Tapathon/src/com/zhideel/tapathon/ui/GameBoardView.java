@@ -80,7 +80,7 @@ class PadAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return 10;
+        return 9;
     }
 
     public Object getItem(int position) {

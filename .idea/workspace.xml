@@ -59,20 +59,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05137fe-3a51-40a3-9895-b09c628d6cf4" name="Default" comment="Commit Progress…&#10;">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tapathon/libs/android-agent-3.264.0.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/AndroidManifest.xml" afterPath="$PROJECT_DIR$/Tapathon/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/Config.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/CreateChannelFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/EndGameActivity.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/EndGameActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameMenuActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" afterPath="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/res/layout/activity_game_pad.xml" afterPath="$PROJECT_DIR$/Tapathon/res/layout/activity_game_pad.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/Tapathon/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/res/values/strings.xml" afterPath="$PROJECT_DIR$/Tapathon/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tapathon/res/layout/view_game_pad.xml" afterPath="$PROJECT_DIR$/Tapathon/res/layout/view_game_pad.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tap-a-thon.iws" />
@@ -141,7 +128,28 @@
     <favorites_list name="Tap-a-thon" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="GameBoardView.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="0" selection-start="2369" selection-end="2369" vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="1410">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PadView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="13" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="4320">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -1205,12 +1213,12 @@
       <workItem from="1390875474179" duration="45000" />
       <workItem from="1390875716765" duration="13000" />
       <workItem from="1390875749356" duration="109000" />
-      <workItem from="1390889287383" duration="9622000" />
+      <workItem from="1390889287383" duration="9787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161857000" />
+    <option name="totallyTimeSpent" value="162022000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1234,7 +1242,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1254,7 +1262,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38968483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32079208" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31287128" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31287128" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33465347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35049504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1637,21 +1645,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="57" selection-start="3821" selection-end="3821" vertical-scroll-proportion="0.0" vertical-offset="1451" max-vertical-offset="4485">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1650#1651#0" expanded="true" />
-            <element signature="e#1687#1688#0" expanded="true" />
-            <element signature="e#3267#3572#0" expanded="true" />
-            <element signature="e#3561#3562#0" expanded="true" />
-            <element signature="e#5484#5717#0" expanded="true" />
-            <element signature="e#5693#5694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="276" column="32" selection-start="10033" selection-end="10048" vertical-scroll-proportion="5.7421875" vertical-offset="0" max-vertical-offset="5805">
@@ -1679,9 +1672,18 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="4320">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="0" selection-start="2370" selection-end="2370" vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="1410">
+        <state line="88" column="0" selection-start="2369" selection-end="2369" vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="1410">
           <folding />
         </state>
       </provider>
