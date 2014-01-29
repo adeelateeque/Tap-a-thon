@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tapathon</string>
-    <string name="app_name_with_title">Tapathon - Math is fun!</string>
+    <string name="app_name_with_title">Tapathon</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="login">Login</string>

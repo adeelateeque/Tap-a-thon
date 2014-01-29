@@ -6,11 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
@@ -23,21 +26,30 @@ public class PadView extends View {
     public enum GameLevel {
         EASY, MEDIUM, HARD;
     }
+    public static GameLevel selectedLevel;
 
-    // Usually this can be a field rather than a method variable
-    private Random rand = new Random();
-    private Paint mPaint;
+    private static final Random rand = new Random();
+    private Paint padPaint;
     private int[] colors = {getResources().getColor(R.color.tappad_cyan), Color.MAGENTA, getResources().getColor(R.color.tappad_red), getResources().getColor(R.color.tappad_yellow)};
+
     private boolean isSelected = false;
     private boolean isPaused = false;
-    private Paint textPaint;
+
+    private Paint symbolPaint;
+    private String symbol;
     private String currentSymbol;
+
+    //Combo states
     private boolean isDividedByTwo;
-    public static GameLevel selectedLevel;
+    private boolean isMultipliedByTwo;
+
     public static int maxNextQuestionDelay;
-    private int minDelay, maxDelay;
+    private int randomMinDelay, randomMaxDelay;
+
     private boolean startGame = false;
+
     private static final SymbolSet symbolSet = new SymbolSet();
+
     private GestureDetector doubleTapDetector;
 
     public PadView(Context context, AttributeSet attrs) {
@@ -58,41 +70,42 @@ public class PadView extends View {
     }
 
     private void initView() {
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(Color.WHITE);
-        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        padPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        padPaint.setColor(Color.WHITE);
+        padPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Crayon.ttf");
         Typeface face = Typeface.create(fontFace, Typeface.BOLD);
 
-        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setColor(Color.WHITE);
-        textPaint.setTypeface(face);
-        textPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        textPaint.setTextSize(Config.getDipfromPixels(75));
+        symbolPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        symbolPaint.setColor(Color.WHITE);
+        symbolPaint.setTypeface(face);
+        symbolPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
+        symbolPaint.setTextSize(Config.getDipfromPixels(75));
 
         if (startGame == true) {
-            minDelay = 0;
-            maxDelay = 0;
+            randomMinDelay = 0;
+            randomMaxDelay = 0;
             startGame = false;
         } else {
             if (selectedLevel == GameLevel.EASY) {
                 maxNextQuestionDelay = 15000;
-                minDelay = 4000;
-                maxDelay = 6000;
+                randomMinDelay = 4000;
+                randomMaxDelay = 6000;
             } else if (selectedLevel == GameLevel.MEDIUM) {
                 maxNextQuestionDelay = 10000;
-                minDelay = 3500;
-                maxDelay = 4500;
+                randomMinDelay = 3500;
+                randomMaxDelay = 4500;
             } else if (selectedLevel == GameLevel.HARD) {
                 maxNextQuestionDelay = 5000;
-                minDelay = 2000;
-                maxDelay = 3500;
+                randomMinDelay = 2000;
+                randomMaxDelay = 3500;
             }
         }
-        currentSymbol = "1";
-        randText();
-        doThePaint();
+        symbol = "1";
+        currentSymbol = symbol;
+
+        new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         randomPaint();
     }
 
@@ -102,7 +115,7 @@ public class PadView extends View {
                 doThePaint();
                 //As long as we are not paused we can keep painting randomly
                 if (isPaused == false) {
-                    randText();
+                    new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     randomPaint();
                 }
             }
@@ -111,26 +124,29 @@ public class PadView extends View {
 
     private void doThePaint() {
         if ((!isSelected) && (!isPaused)) {
-            textPaint.setColor(colors[randInt(0, 3)]);
+            symbolPaint.setColor(colors[randInt(0, 3)]);
         } else if (isSelected) {
             PadView.this.setBackgroundColor(Color.WHITE);
             PadView.this.setAlpha(0.5f);
-            textPaint.setColor(getResources().getColor(R.color.tappad_green));
+            symbolPaint.setColor(getResources().getColor(R.color.tappad_green));
         }
+        AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
+        anim.setDuration(750);
+        anim.setRepeatMode(Animation.REVERSE);
+        this.startAnimation(anim);
         invalidate();
     }
 
     private int getRandomDelay() {
-        return randInt(1, randInt(1, 3)) * randInt(0, 1) < 0.5 ? minDelay : maxDelay;
+        return randInt(1, randInt(1, 3)) * randInt(0, 1) < 0.5 ? randomMinDelay : randomMaxDelay;
     }
 
     public int randInt(int min, int max) {
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
+        return rand.nextInt((max - min) + 1) + min;
     }
 
     private void randText() {
-        symbolSet.remove(currentSymbol);
+        symbolSet.remove(symbol);
 
         if ((!isSelected) && (!isPaused)) {
             String newSymbol;
@@ -147,7 +163,8 @@ public class PadView extends View {
                 newSymbol = Integer.toString(rand);
             }
 
-            if (!newSymbol.equals(currentSymbol) && symbolSet.add(newSymbol)) {
+            if (!newSymbol.equals(symbol) && symbolSet.add(newSymbol)) {
+                symbol = newSymbol;
                 currentSymbol = newSymbol;
             } else {
                 randText();
@@ -166,7 +183,7 @@ public class PadView extends View {
 
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN: {
-                if (!isSelected) {
+                if (!isSelected && event.getPointerCount() == 1) {
                     MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
                     mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
@@ -178,7 +195,11 @@ public class PadView extends View {
                     });
                     mp.start();
                     calculate();
-                } else {
+                } else if (event.getPointerCount() == 2)
+                {
+                    multiplyByTwo();
+                }
+                else {
                     divideByTwo();
                 }
                 invalidate();
@@ -198,11 +219,18 @@ public class PadView extends View {
         return true;
     }
 
-
     private void divideByTwo() {
         if (!isDividedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
             isDividedByTwo = true;
             currentSymbol = Float.toString((Float.parseFloat(currentSymbol) / 2));
+            calculate();
+        }
+    }
+
+    private void multiplyByTwo() {
+        if (!isMultipliedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
+            isMultipliedByTwo = true;
+            currentSymbol = Float.toString((Float.parseFloat(currentSymbol) * 2));
             calculate();
         }
     }
@@ -214,6 +242,8 @@ public class PadView extends View {
 
         if (isDividedByTwo) {
             operands.remove(Float.parseFloat(currentSymbol) * 2);
+        }else if (isMultipliedByTwo) {
+            operands.remove(Float.parseFloat(currentSymbol) / 2);
         }
 
         try {
@@ -239,12 +269,19 @@ public class PadView extends View {
         }
     }
 
+    private void resetCombos()
+    {
+        currentSymbol = symbol;
+        isDividedByTwo = false;
+        isMultipliedByTwo = false;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int xPos = (int) ((canvas.getWidth() / 2) - textPaint.measureText(currentSymbol) / 2);
-        int yPos = (int) ((canvas.getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2)) + Config.getDipfromPixels(12);
-        canvas.drawText(currentSymbol, xPos, yPos, textPaint);
+        int xPos = (int) ((canvas.getWidth() / 2) - symbolPaint.measureText(currentSymbol) / 2);
+        int yPos = (int) ((canvas.getHeight() / 2) - ((symbolPaint.descent() + symbolPaint.ascent()) / 2)) + Config.getDipfromPixels(12);
+        canvas.drawText(currentSymbol, xPos, yPos, symbolPaint);
         invalidate();
     }
 
@@ -289,6 +326,27 @@ public class PadView extends View {
             PadView.this.divideByTwo();
             return true;
         }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            PadView.this.resetCombos();
+        }
     }
+
+
+    private class RandomSymbolGeneratorTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPostExecute(Void result) {
+            doThePaint();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            randText();
+            return null;
+        }
+    }
+
 
 }

@@ -36,10 +36,6 @@ public class GameBoardView implements CommunicationBus.BusManager {
     }
 
     public void resetBoard() {
-        AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
-        anim.setDuration(1000);
-        anim.setRepeatMode(Animation.REVERSE);
-        gridview.startAnimation(anim);
         gridview.setAdapter(new PadAdapter(mContext));
     }
 

@@ -241,6 +241,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         mAllShareDialog.dismiss();
         mNoAllShareCastDialog.dismiss();
 
+        MusicManager.release();
+
         super.onDestroy();
     }
 
