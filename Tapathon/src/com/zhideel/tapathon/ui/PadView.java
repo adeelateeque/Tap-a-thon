@@ -33,6 +33,7 @@ public class PadView extends View {
     private int[] colors = {getResources().getColor(R.color.tappad_cyan), Color.MAGENTA, getResources().getColor(R.color.tappad_red), getResources().getColor(R.color.tappad_yellow)};
 
     private boolean isSelected = false;
+    private boolean isWhite = false;
     private boolean isPaused = false;
 
     private Paint symbolPaint;
@@ -105,7 +106,7 @@ public class PadView extends View {
         symbol = "1";
         currentSymbol = symbol;
 
-        new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new RandomSymbolGeneratorTask().execute();
         randomPaint();
     }
 
@@ -115,7 +116,7 @@ public class PadView extends View {
                 doThePaint();
                 //As long as we are not paused we can keep painting randomly
                 if (isPaused == false) {
-                    new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    new RandomSymbolGeneratorTask().execute();
                     randomPaint();
                 }
             }
@@ -124,17 +125,22 @@ public class PadView extends View {
 
     private void doThePaint() {
         if ((!isSelected) && (!isPaused)) {
+            PadView.this.isWhite = false;
             symbolPaint.setColor(colors[randInt(0, 3)]);
-        } else if (isSelected) {
+            invalidate();
+        } else if (isSelected && !PadView.this.isWhite) {
+            PadView.this.isWhite = true;
             PadView.this.setBackgroundColor(Color.WHITE);
             PadView.this.setAlpha(0.5f);
             symbolPaint.setColor(getResources().getColor(R.color.tappad_green));
+            invalidate();
         }
-        AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
-        anim.setDuration(750);
-        anim.setRepeatMode(Animation.REVERSE);
-        this.startAnimation(anim);
-        invalidate();
+        else{
+           /* AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
+            anim.setDuration(750);
+            anim.setRepeatMode(Animation.REVERSE);
+            this.startAnimation(anim);*/
+        }
     }
 
     private int getRandomDelay() {
@@ -183,17 +189,19 @@ public class PadView extends View {
 
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN: {
+
+                MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+
+                });
+                mp.start();
+
                 if (!isSelected && event.getPointerCount() == 1) {
-                    MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
-                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            mp.release();
-                        }
-
-                    });
-                    mp.start();
                     calculate();
                 } else if (event.getPointerCount() == 2)
                 {
@@ -222,17 +230,32 @@ public class PadView extends View {
     private void divideByTwo() {
         if (!isDividedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
             isDividedByTwo = true;
-            currentSymbol = Float.toString((Float.parseFloat(currentSymbol) / 2));
+            currentSymbol = formatDecimals((Float.parseFloat(currentSymbol) / 2));
             calculate();
+        }else if(isDividedByTwo)
+        {
+            resetCombos();
         }
     }
 
     private void multiplyByTwo() {
         if (!isMultipliedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
             isMultipliedByTwo = true;
-            currentSymbol = Float.toString((Float.parseFloat(currentSymbol) * 2));
+            currentSymbol = formatDecimals(Float.parseFloat(currentSymbol) * 2);
             calculate();
         }
+        else if(isMultipliedByTwo)
+        {
+            resetCombos();
+        }
+    }
+
+    private String formatDecimals(float number)
+    {
+        if(number == (int) number)
+            return String.format("%d",(int)number);
+        else
+            return String.format("%s",number);
     }
 
     private void calculate() {
