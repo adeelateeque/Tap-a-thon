@@ -18,6 +18,7 @@ import com.zhideel.tapathon.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PadView extends View {
 
@@ -38,6 +39,7 @@ public class PadView extends View {
     private Paint symbolPaint;
     private String symbol;
     private String currentSymbol;
+    private boolean isFirstPaint = false;
 
     //Combo states
     private boolean isDividedByTwo;
@@ -52,6 +54,10 @@ public class PadView extends View {
 
     private GestureDetector doubleTapDetector;
 
+    public static void setLevel(GameLevel level) {
+        selectedLevel = level;
+    }
+
     public PadView(Context context, AttributeSet attrs) {
         super(context, attrs);
         doubleTapDetector = new GestureDetector(context, new DoubleTapDetector());
@@ -61,16 +67,14 @@ public class PadView extends View {
                 return doubleTapDetector.onTouchEvent(event);
             }
         });
+        isPaused = true;
         initView();
-    }
-
-    public static void setLevel(GameLevel level) {
-        selectedLevel = level;
     }
 
     public void setPaused(boolean paused) {
         this.isPaused = paused;
         if (isPaused == false) {
+            isFirstPaint = true;
             randomPaint();
         }
     }
@@ -108,24 +112,22 @@ public class PadView extends View {
                 randomMaxDelay = 4000;
             }
         }
-        symbol = "1";
+        symbol = "";
         currentSymbol = symbol;
-
-        new RandomSymbolGeneratorTask().execute();
-        randomPaint();
     }
 
     private void randomPaint() {
         new Handler().postDelayed(new Runnable() {
             public void run() {
+                isFirstPaint = false;
                 doThePaint();
                 //As long as we are not paused we can keep painting randomly
                 if (isPaused == false) {
-                    new RandomSymbolGeneratorTask().execute();
+                    new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     randomPaint();
                 }
             }
-        }, getRandomDelay());
+        }, isFirstPaint ? 0 : getRandomDelay());
     }
 
     private void doThePaint() {
@@ -150,7 +152,7 @@ public class PadView extends View {
         return rand.nextInt((max - min) + 1) + min;
     }
 
-    private void randText() {
+    private void randSymbol() {
         symbolSet.remove(symbol);
 
         if ((!isSelected) && (!isPaused)) {
@@ -172,7 +174,7 @@ public class PadView extends View {
                 symbol = newSymbol;
                 currentSymbol = newSymbol;
             } else {
-                randText();
+                randSymbol();
             }
         }
     }
@@ -256,7 +258,7 @@ public class PadView extends View {
     }
 
 
-    private static class SymbolSet extends ArrayList<String> {
+    private static class SymbolSet extends CopyOnWriteArrayList<String> {
         @Override
         public boolean add(String symbol) {
 
@@ -347,7 +349,7 @@ public class PadView extends View {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            randText();
+            randSymbol();
             return null;
         }
     }

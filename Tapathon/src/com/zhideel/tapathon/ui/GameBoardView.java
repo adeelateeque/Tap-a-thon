@@ -37,9 +37,10 @@ public class GameBoardView implements CommunicationBus.BusManager {
 
     public void resetBoard() {
         gridview.setAdapter(new PadAdapter(mContext));
+        setPaused(false);
     }
 
-    public void pauseBoard(boolean paused) {
+    public void setPaused(boolean paused) {
         ListAdapter adapter = gridview.getAdapter();
         for (int i = 0; i < adapter.getCount(); i++) {
             PadView view = (PadView) adapter.getItem(i);
@@ -68,8 +69,7 @@ class PadAdapter extends BaseAdapter {
         mContext = c;
         pads = new ArrayList<PadView>();
         for (int i = 0; i < getCount(); i++) {
-            PadView pad;
-            pad = new PadView(mContext, null);
+            PadView pad = new PadView(mContext, null);
             pad.setAlpha(0.8f);
             pads.add(pad);
         }
