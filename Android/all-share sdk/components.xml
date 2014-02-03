@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<componentsType>
+    <platform name="allshare_android">
+        <version number="2.0">
+            <category name="sample">
+                <revision number="0">
+                    <entry>
+                        <type>location</type>
+                        <value>Sample_2.0.0.zip</value>
+                    </entry>
+                </revision>
+            </category>
+            <category name="service">
+                <revision number="0">
+                    <entry>
+                        <type>count</type>
+                        <value>3</value>
+                    </entry>
+                    <entry>
+                        <type>location0</type>
+                        <value>AllShareControlshareService_2.0.0.apk</value>
+                    </entry>
+                    <entry>
+                        <type>package0</type>
+                        <value>com.sec.android.allshare.service.controlshare</value>
+                    </entry>
+                    <entry>
+                        <type>apk_version0</type>
+                        <value>10</value>
+                    </entry>
+                    <entry>
+                        <type>location1</type>
+                        <value>AllShareFileshareService_2.0.0.apk</value>
+                    </entry>
+                    <entry>
+                        <type>package1</type>
+                        <value>com.sec.android.allshare.service.fileshare</value>
+                    </entry>
+                    <entry>
+                        <type>apk_version1</type>
+                        <value>16</value>
+                    </entry>
+                    <entry>
+                        <type>location2</type>
+                        <value>AllShareMediashareService_2.0.0.apk</value>
+                    </entry>
+                    <entry>
+                        <type>package2</type>
+                        <value>com.sec.android.allshare.service.mediashare</value>
+                    </entry>
+                    <entry>
+                        <type>apk_version2</type>
+                        <value>16</value>
+                    </entry>
+                    <entry>
+                        <type>service_ids</type>
+                        <value>com.sec.android.allshare.framework</value>
+                    </entry>
+                </revision>
+            </category>
+            <category name="library">
+                <revision number="0">
+                    <entry>
+                        <type>count</type>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <type>jar0</type>
+                        <value>LibAllShareInterface_2.0.0.jar</value>
+                    </entry>
+                    <entry>
+                        <type>docs0</type>
+                        <value>LibAllShareInterface_docs_2.0.0.zip</value>
+                    </entry>
+                </revision>
+            </category>
+        </version>
+    </platform>
+</componentsType>
