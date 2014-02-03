@@ -22,6 +22,10 @@
 		C2847DA9189F9E9F001EE822 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2847D8D189F9E9F001EE822 /* CoreData.framework */; };
 		C2847DB1189F9E9F001EE822 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2847DAF189F9E9F001EE822 /* InfoPlist.strings */; };
 		C2847DB3189F9E9F001EE822 /* TapathonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2847DB2189F9E9F001EE822 /* TapathonTests.m */; };
+		C2847DBD189F9F11001EE822 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2847DBC189F9F11001EE822 /* NewRelicAgent.framework */; };
+		C2847DBF189F9F29001EE822 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2847DBE189F9F29001EE822 /* CoreTelephony.framework */; };
+		C2847DC1189F9F30001EE822 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2847DC0189F9F30001EE822 /* libz.dylib */; };
+		C2847DC3189F9F3E001EE822 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2847DC2189F9F3E001EE822 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		C2847DAE189F9E9F001EE822 /* TapathonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TapathonTests-Info.plist"; sourceTree = "<group>"; };
 		C2847DB0189F9E9F001EE822 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C2847DB2189F9E9F001EE822 /* TapathonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapathonTests.m; sourceTree = "<group>"; };
+		C2847DBC189F9F11001EE822 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
+		C2847DBE189F9F29001EE822 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		C2847DC0189F9F30001EE822 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C2847DC2189F9F3E001EE822 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +68,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2847DC3189F9F3E001EE822 /* SystemConfiguration.framework in Frameworks */,
+				C2847DC1189F9F30001EE822 /* libz.dylib in Frameworks */,
+				C2847DBF189F9F29001EE822 /* CoreTelephony.framework in Frameworks */,
 				C2847D8A189F9E9F001EE822 /* CoreGraphics.framework in Frameworks */,
 				C2847D8E189F9E9F001EE822 /* CoreData.framework in Frameworks */,
+				C2847DBD189F9F11001EE822 /* NewRelicAgent.framework in Frameworks */,
 				C2847D8C189F9E9F001EE822 /* UIKit.framework in Frameworks */,
 				C2847D88189F9E9F001EE822 /* Foundation.framework in Frameworks */,
 			);
@@ -103,6 +115,10 @@
 		C2847D86189F9E9F001EE822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2847DC2189F9F3E001EE822 /* SystemConfiguration.framework */,
+				C2847DC0189F9F30001EE822 /* libz.dylib */,
+				C2847DBE189F9F29001EE822 /* CoreTelephony.framework */,
+				C2847DBC189F9F11001EE822 /* NewRelicAgent.framework */,
 				C2847D87189F9E9F001EE822 /* Foundation.framework */,
 				C2847D89189F9E9F001EE822 /* CoreGraphics.framework */,
 				C2847D8B189F9E9F001EE822 /* UIKit.framework */,
@@ -372,6 +388,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/adeelateeque/Development/Tapathon/iOS/Tapathon,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tapathon/Tapathon-Prefix.pch";
 				INFOPLIST_FILE = "Tapathon/Tapathon-Info.plist";
@@ -385,6 +405,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/adeelateeque/Development/Tapathon/iOS/Tapathon,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tapathon/Tapathon-Prefix.pch";
 				INFOPLIST_FILE = "Tapathon/Tapathon-Info.plist";
