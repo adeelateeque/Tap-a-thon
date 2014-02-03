@@ -14,10 +14,8 @@ import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.sec.android.allshare.ServiceConnector;
 import com.sec.android.allshare.ServiceProvider;
 import com.sec.android.allshare.screen.ScreenCastManager;
@@ -26,12 +24,9 @@ import com.squareup.otto.Subscribe;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.chord.BusEvent;
-import com.zhideel.tapathon.chord.ClientGameChord;
 import com.zhideel.tapathon.chord.GameChord;
-import com.zhideel.tapathon.chord.ServerGameChord;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
-import com.zhideel.tapathon.logic.Model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -57,10 +52,9 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     private StatsView statsView;
     private ImageView gameEndView;
     private ImageView answerResultView;
-    private Button btnStart;
-    private TextView tvWaiting;
     private boolean allShareShownBefore = false;
     public static GamePadActivity instance = null;
+    PadView.GameLevel level = PadView.GameLevel.EASY;
 
     private final BroadcastReceiver mWiFiBroadcastReceiver = new BroadcastReceiver() {
 
@@ -80,7 +74,15 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         instance = this;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_game_pad);
-        btnStart = (Button) findViewById(R.id.btn_start);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            level = (PadView.GameLevel) extras.getSerializable("level");
+            if (level == null) {
+                level = PadView.GameLevel.EASY;
+            }
+        }
+
         gameEndView = (ImageView) findViewById(R.id.game_end_view);
         gameEndView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,14 +93,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         });
         answerResultView  = (ImageView) findViewById(R.id.answer_result_view);
         Config.slideToTop(answerResultView);
-        tvWaiting = (TextView) findViewById(R.id.tv_waiting);
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startGame();
-                btnStart.setVisibility(View.GONE);
-            }
-        });
 
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerWifiStateReceiver();
@@ -115,33 +109,10 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         final Intent intent = getIntent();
         mIsClient = intent.getBooleanExtra(CLIENT, true);
 
-        final String roomName;
-
-        mAllShareDialog = new AlertDialog.Builder(GamePadActivity.this).setMessage(R.string.all_share_dialog_message)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mManager.activateManagerUI();
-                    }
-                }).setNegativeButton(R.string.all_share_dialog_exit, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mAllShareDialog.dismiss();
-                    }
-                }).setCancelable(false).create();
-
-        mNoAllShareCastDialog = new AlertDialog.Builder(GamePadActivity.this)
-                .setMessage(R.string.no_all_share_cast_dialog).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mNoAllShareCastDialog.dismiss();
-                    }
-                }).setCancelable(false).create();
+        startGame();
 
         /*if (mIsClient) {
+            final String roomName;
             btnStart.setVisibility(View.GONE);
             roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
@@ -150,7 +121,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             roomName = getIntent().getStringExtra(SERVER_NAME);
             mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);*/
 
-            tvWaiting.setVisibility(View.GONE);
+            //mManager.activateManagerUI();
 
             //for host to setup AllShare
             ServiceConnector.createServiceProvider(this, new ServiceConnector.IServiceConnectEventListener() {
@@ -160,20 +131,16 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                     mServiceProvider = sprovider;
                     mManager = sprovider.getScreenCastManager();
                     if (mManager != null) {
-                        mNoAllShareCastDialog.dismiss();
-                        mAllShareDialog.show();
                         mManager.setScreenCastEventListener(new ScreenCastManager.IScreenCastEventListener() {
 
                             @Override
                             public void onStopped(ScreenCastManager screencastmanager) {
                                 mAllShareEnabled = false;
-                                mAllShareDialog.show();
                             }
 
                             @Override
                             public void onStarted(ScreenCastManager screencastmanager) {
                                 mAllShareEnabled = true;
-                                mAllShareDialog.dismiss();
                                 screencastmanager.setMode(ScreenCastManager.ScreenMode.DUAL);
                             }
                         });
@@ -227,19 +194,17 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         }
 
         //mGameChord.stopChord();
-        if (mManager != null) {
+        /*if (mManager != null) {
             mManager.stop();
         }
 
+        */
         if (mServiceProvider != null) {
             ServiceConnector.deleteServiceProvider(mServiceProvider);
         }
 
         unregisterReceiver(mWiFiBroadcastReceiver);
 
-
-        mAllShareDialog.dismiss();
-        mNoAllShareCastDialog.dismiss();
 
         MusicManager.release();
 
@@ -251,9 +216,16 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         super.onStop();
     }
 
-    public void startGame() {
-        showGameDisplay();
-        //mBus.post(GameLogicController.StartGameEvent.INSTANCE);
+    public void resumeGame() {
+        gameBoardView.setPaused(false);
+        statsView.setPaused(false);
+    }
+
+    public void startGame()
+    {
+        gameBoardView = new GameBoardView(this, level, (ViewGroup) findViewById(R.id.gameboard_container));
+        statsView = new StatsView(this, (ViewGroup) findViewById(R.id.statsboard_container));
+        resumeGame();
     }
 
     //TODO build the image and display out to the TV http://developer.samsung.com/allshare-framework/technical-docs/Sample-View-Controller
@@ -276,22 +248,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         return statsView;
     }
 
-    private void showGameDisplay() {
-        PadView.GameLevel level = null;
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            level = (PadView.GameLevel) extras.getSerializable("level");
-            if (level == null) {
-                level = PadView.GameLevel.EASY;
-            }
-        }
-
-
-        gameBoardView = new GameBoardView(this, level, (ViewGroup) findViewById(R.id.gameboard_container));
-        statsView = new StatsView(this, (ViewGroup) findViewById(R.id.statsboard_container));
-    }
-
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -299,11 +255,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             MusicManager.pause();
         }
         if (statsView != null) statsView.setPaused(true);
-        if (gameBoardView != null) gameBoardView.pauseBoard(true);
-        mNoAllShareCastDialog.dismiss();
-        mAllShareDialog.dismiss();
-        super.onPause();
-
+        if (gameBoardView != null) gameBoardView.setPaused(true);
     }
 
     @Override
@@ -311,21 +263,31 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         super.onResume();
         continueMusic = false;
         MusicManager.start(this, MusicManager.MUSIC_MENU);
-        if (statsView != null) {
-            statsView.setPaused(false);
-        }
-        if (gameBoardView != null) {
-            gameBoardView.pauseBoard(false);
-        }
-        if (!mIsClient && !allShareShownBefore) {
-            if (mManager == null) {
-                allShareShownBefore = true;
-                mNoAllShareCastDialog.show();
-            } else if (!mAllShareEnabled) {
-                allShareShownBefore = true;
-                mAllShareDialog.show();
-            }
-        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.level = (PadView.GameLevel) savedInstanceState.getSerializable("STATE_LEVEL");
+        statsView.setTime(savedInstanceState.getInt("STATE_TIMER") + 3);
+        statsView.tvQuestion.setText(savedInstanceState.getString("STATE_QUESTION"));
+        statsView.tvScore.setText(savedInstanceState.getString("STATE_SCORE"));
+        resumeGame();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("STATE_SCORE", statsView.tvScore.getText().toString());
+        savedInstanceState.putString("STATE_QUESTION", statsView.tvQuestion.getText().toString());
+        savedInstanceState.putInt("STATE_TIMER", statsView.getTime());
+        savedInstanceState.putSerializable("STATE_LEVEL", level);
     }
 
     private void registerWifiStateReceiver() {
@@ -394,7 +356,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     @Subscribe
     public void handleGameStart(GameActivityEvent.GameStartEvent gameStartEvent) {
-        this.showGameDisplay();
+
     }
 
     public static class GameActivityEvent extends BusEvent {

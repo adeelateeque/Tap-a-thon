@@ -8,24 +8,23 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
+import android.view.*;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class PadView extends View {
+public class PadView extends LinearLayout {
 
     public enum GameLevel {
         EASY, MEDIUM, HARD;
     }
+
     public static GameLevel selectedLevel;
 
     private static final Random rand = new Random();
@@ -36,13 +35,15 @@ public class PadView extends View {
     private boolean isWhite = false;
     private boolean isPaused = false;
 
-    private Paint symbolPaint;
     private String symbol;
     private String currentSymbol;
+    private boolean isFirstPaint = false;
 
     //Combo states
     private boolean isDividedByTwo;
     private boolean isMultipliedByTwo;
+
+    private TextView tvSymbol;
 
     public static int maxNextQuestionDelay;
     private int randomMinDelay, randomMaxDelay;
@@ -53,19 +54,30 @@ public class PadView extends View {
 
     private GestureDetector doubleTapDetector;
 
-    public PadView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        doubleTapDetector = new GestureDetector(context, new DoubleTapDetector());
-        initView();
-    }
-
     public static void setLevel(GameLevel level) {
         selectedLevel = level;
+    }
+
+    public PadView(Context context) {
+        super(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.view_pad, this, true);
+        tvSymbol = (TextView) findViewById(R.id.pad_symbol);
+        doubleTapDetector = new GestureDetector(context, new DoubleTapDetector());
+        this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                return doubleTapDetector.onTouchEvent(event);
+            }
+        });
+        isPaused = true;
+        initView();
     }
 
     public void setPaused(boolean paused) {
         this.isPaused = paused;
         if (isPaused == false) {
+            isFirstPaint = true;
             randomPaint();
         }
     }
@@ -78,11 +90,10 @@ public class PadView extends View {
         Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Crayon.ttf");
         Typeface face = Typeface.create(fontFace, Typeface.BOLD);
 
-        symbolPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        symbolPaint.setColor(Color.WHITE);
-        symbolPaint.setTypeface(face);
-        symbolPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        symbolPaint.setTextSize(Config.getDipfromPixels(75));
+        tvSymbol.setTextColor(Color.WHITE);
+        tvSymbol.setTypeface(face);
+        tvSymbol.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
+        tvSymbol.setTextSize(75);
 
         if (startGame == true) {
             randomMinDelay = 0;
@@ -90,56 +101,50 @@ public class PadView extends View {
             startGame = false;
         } else {
             if (selectedLevel == GameLevel.EASY) {
-                maxNextQuestionDelay = 15000;
+                maxNextQuestionDelay = 16000;
                 randomMinDelay = 4000;
                 randomMaxDelay = 6000;
             } else if (selectedLevel == GameLevel.MEDIUM) {
-                maxNextQuestionDelay = 10000;
+                maxNextQuestionDelay = 12000;
                 randomMinDelay = 3500;
-                randomMaxDelay = 4500;
+                randomMaxDelay = 5000;
             } else if (selectedLevel == GameLevel.HARD) {
-                maxNextQuestionDelay = 5000;
-                randomMinDelay = 2000;
-                randomMaxDelay = 3500;
+                maxNextQuestionDelay = 8000;
+                randomMinDelay = 3000;
+                randomMaxDelay = 4000;
             }
         }
-        symbol = "1";
+        symbol = "";
         currentSymbol = symbol;
-
-        new RandomSymbolGeneratorTask().execute();
-        randomPaint();
     }
 
     private void randomPaint() {
         new Handler().postDelayed(new Runnable() {
             public void run() {
+                isFirstPaint = false;
                 doThePaint();
                 //As long as we are not paused we can keep painting randomly
                 if (isPaused == false) {
-                    new RandomSymbolGeneratorTask().execute();
+                    new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     randomPaint();
                 }
             }
-        }, getRandomDelay());
+        }, isFirstPaint ? 0 : getRandomDelay());
     }
 
     private void doThePaint() {
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
-            symbolPaint.setColor(colors[randInt(0, 3)]);
+            tvSymbol.setTextColor(colors[randInt(0, 3)]);
+            tvSymbol.setText(currentSymbol);
             invalidate();
         } else if (isSelected && !PadView.this.isWhite) {
             PadView.this.isWhite = true;
             PadView.this.setBackgroundColor(Color.WHITE);
             PadView.this.setAlpha(0.5f);
-            symbolPaint.setColor(getResources().getColor(R.color.tappad_green));
+            tvSymbol.setTextColor(getResources().getColor(R.color.tappad_green));
+            tvSymbol.setText(currentSymbol);
             invalidate();
-        }
-        else{
-           /* AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
-            anim.setDuration(750);
-            anim.setRepeatMode(Animation.REVERSE);
-            this.startAnimation(anim);*/
         }
     }
 
@@ -151,7 +156,7 @@ public class PadView extends View {
         return rand.nextInt((max - min) + 1) + min;
     }
 
-    private void randText() {
+    private void randSymbol() {
         symbolSet.remove(symbol);
 
         if ((!isSelected) && (!isPaused)) {
@@ -173,100 +178,59 @@ public class PadView extends View {
                 symbol = newSymbol;
                 currentSymbol = newSymbol;
             } else {
-                randText();
+                randSymbol();
             }
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int maskedAction = event.getActionMasked();
-
-        //handle double tap
-        doubleTapDetector.onTouchEvent(event);
-
-        switch (maskedAction) {
-
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_POINTER_DOWN: {
-
-                MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.release();
-                    }
-
-                });
-                mp.start();
-
-                if (!isSelected && event.getPointerCount() == 1) {
-                    calculate();
-                } else if (event.getPointerCount() == 2)
-                {
-                    multiplyByTwo();
-                }
-                else {
-                    divideByTwo();
-                }
-                invalidate();
-                doThePaint();
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: { // a pointer was moved
-                break;
-            }
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_POINTER_UP:
-            case MotionEvent.ACTION_CANCEL: {
-                break;
-            }
-        }
-
-        return true;
-    }
 
     private void divideByTwo() {
-        if (!isDividedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
+        if (!isDividedByTwo && !isOperator(currentSymbol)) {
             isDividedByTwo = true;
             currentSymbol = formatDecimals((Float.parseFloat(currentSymbol) / 2));
+            invalidate();
             calculate();
-        }else if(isDividedByTwo)
-        {
-            resetCombos();
         }
     }
 
     private void multiplyByTwo() {
-        if (!isMultipliedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
+        if (!isMultipliedByTwo && !isOperator(currentSymbol)) {
             isMultipliedByTwo = true;
             currentSymbol = formatDecimals(Float.parseFloat(currentSymbol) * 2);
+            invalidate();
             calculate();
-        }
-        else if(isMultipliedByTwo)
-        {
-            resetCombos();
         }
     }
 
-    private String formatDecimals(float number)
-    {
-        if(number == (int) number)
-            return String.format("%d",(int)number);
+    private void reverseSymbol() {
+        if (currentSymbol.equals("X")) {
+            currentSymbol = "/";
+        } else if (currentSymbol.equals("/")) {
+            currentSymbol = "X";
+        } else if (currentSymbol.equals("+")) {
+            currentSymbol = "-";
+        } else if (currentSymbol.equals("-")) {
+            currentSymbol = "+";
+        }
+    }
+
+    private String formatDecimals(float number) {
+        if (number == (int) number)
+            return String.format("%d", (int) number);
         else
-            return String.format("%s",number);
+            return String.format("%s", number);
     }
 
     private void calculate() {
         ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
         String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 
-
-        if (isDividedByTwo) {
-            operands.remove(Float.parseFloat(currentSymbol) * 2);
-        }else if (isMultipliedByTwo) {
-            operands.remove(Float.parseFloat(currentSymbol) / 2);
+        if (!isOperator(currentSymbol)) {
+            if (isDividedByTwo) {
+                operands.remove(Float.parseFloat(currentSymbol) * 2);
+            } else if (isMultipliedByTwo) {
+                operands.remove(Float.parseFloat(currentSymbol) / 2);
+            }
         }
 
         try {
@@ -281,7 +245,7 @@ public class PadView extends View {
             }
 
         } catch (NumberFormatException e) {
-            if (operator == null) {
+            if (operator == null && isOperator(currentSymbol)) {
                 ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentSymbol);
                 this.isSelected = true;
                 if (operands.size() == 2) {
@@ -292,24 +256,17 @@ public class PadView extends View {
         }
     }
 
-    private void resetCombos()
-    {
+    private void resetCombos() {
         currentSymbol = symbol;
         isDividedByTwo = false;
         isMultipliedByTwo = false;
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        int xPos = (int) ((canvas.getWidth() / 2) - symbolPaint.measureText(currentSymbol) / 2);
-        int yPos = (int) ((canvas.getHeight() / 2) - ((symbolPaint.descent() + symbolPaint.ascent()) / 2)) + Config.getDipfromPixels(12);
-        canvas.drawText(currentSymbol, xPos, yPos, symbolPaint);
-        invalidate();
+    private boolean isOperator(String symbol) {
+        return symbol.equals("X") || symbol.equals("/") || symbol.equals("+") || symbol.equals("-");
     }
 
-
-    private static class SymbolSet extends ArrayList<String> {
+    private static class SymbolSet extends CopyOnWriteArrayList<String> {
         @Override
         public boolean add(String symbol) {
 
@@ -336,23 +293,66 @@ public class PadView extends View {
         }
     }
 
+
     private class DoubleTapDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onDown(MotionEvent e) {
+            //Always play a sound
+            MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+
+            });
+            mp.start();
+            if (!isSelected && e.getPointerCount() == 1) {
+                calculate();
+            } else if (e.getPointerCount() == 2) {
+                if (!isMultipliedByTwo) {
+                    multiplyByTwo();
+                } else {
+                    resetCombos();
+                }
+            } else if (!isOperator(currentSymbol)) {
+                if (!isDividedByTwo) {
+                    PadView.this.divideByTwo();
+                } else {
+                    resetCombos();
+                }
+            } else {
+                reverseSymbol();
+            }
+            doThePaint();
             return true;
         }
 
         // event when double tap occurs
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            PadView.this.divideByTwo();
+
+            if (!isOperator(currentSymbol)) {
+                if (!isDividedByTwo) {
+                    PadView.this.divideByTwo();
+                } else {
+                    resetCombos();
+                }
+            } else {
+                reverseSymbol();
+            }
             return true;
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
-            PadView.this.resetCombos();
+            if (!isMultipliedByTwo) {
+                PadView.this.multiplyByTwo();
+            } else {
+                resetCombos();
+            }
         }
     }
 
@@ -366,7 +366,7 @@ public class PadView extends View {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            randText();
+            randSymbol();
             return null;
         }
     }
