@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -118,6 +119,7 @@ public class StatsView implements CommunicationBus.BusManager {
         float op2 = operands.get(1);
         float result;
         try{
+            Log.d(StatsView.class.getName(), "Trying to calculate: " + operands.get(0) + " " + operator +" " + operands.get(1));
             if (operator.equalsIgnoreCase("X")) {
                 result = op1 * op2;
             } else if (operator.equalsIgnoreCase("/")) {

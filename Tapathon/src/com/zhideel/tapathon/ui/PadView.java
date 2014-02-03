@@ -12,8 +12,6 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
@@ -26,6 +24,7 @@ public class PadView extends View {
     public enum GameLevel {
         EASY, MEDIUM, HARD;
     }
+
     public static GameLevel selectedLevel;
 
     private static final Random rand = new Random();
@@ -56,6 +55,12 @@ public class PadView extends View {
     public PadView(Context context, AttributeSet attrs) {
         super(context, attrs);
         doubleTapDetector = new GestureDetector(context, new DoubleTapDetector());
+        this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                return doubleTapDetector.onTouchEvent(event);
+            }
+        });
         initView();
     }
 
@@ -135,12 +140,6 @@ public class PadView extends View {
             symbolPaint.setColor(getResources().getColor(R.color.tappad_green));
             invalidate();
         }
-        else{
-           /* AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
-            anim.setDuration(750);
-            anim.setRepeatMode(Animation.REVERSE);
-            this.startAnimation(anim);*/
-        }
     }
 
     private int getRandomDelay() {
@@ -178,94 +177,39 @@ public class PadView extends View {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int maskedAction = event.getActionMasked();
-
-        //handle double tap
-        doubleTapDetector.onTouchEvent(event);
-
-        switch (maskedAction) {
-
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_POINTER_DOWN: {
-
-                MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.release();
-                    }
-
-                });
-                mp.start();
-
-                if (!isSelected && event.getPointerCount() == 1) {
-                    calculate();
-                } else if (event.getPointerCount() == 2)
-                {
-                    multiplyByTwo();
-                }
-                else {
-                    divideByTwo();
-                }
-                invalidate();
-                doThePaint();
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: { // a pointer was moved
-                break;
-            }
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_POINTER_UP:
-            case MotionEvent.ACTION_CANCEL: {
-                break;
-            }
-        }
-
-        return true;
-    }
 
     private void divideByTwo() {
-        if (!isDividedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
+        if (!isDividedByTwo && !isOperator(currentSymbol)) {
             isDividedByTwo = true;
             currentSymbol = formatDecimals((Float.parseFloat(currentSymbol) / 2));
+            invalidate();
             calculate();
-        }else if(isDividedByTwo)
-        {
-            resetCombos();
         }
     }
 
     private void multiplyByTwo() {
-        if (!isMultipliedByTwo && !currentSymbol.equals("X") && !currentSymbol.equals("/") && !currentSymbol.equals("+") && !currentSymbol.equals("-")) {
+        if (!isMultipliedByTwo && !isOperator(currentSymbol)) {
             isMultipliedByTwo = true;
             currentSymbol = formatDecimals(Float.parseFloat(currentSymbol) * 2);
+            invalidate();
             calculate();
-        }
-        else if(isMultipliedByTwo)
-        {
-            resetCombos();
         }
     }
 
-    private String formatDecimals(float number)
-    {
-        if(number == (int) number)
-            return String.format("%d",(int)number);
+    private String formatDecimals(float number) {
+        if (number == (int) number)
+            return String.format("%d", (int) number);
         else
-            return String.format("%s",number);
+            return String.format("%s", number);
     }
 
     private void calculate() {
         ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
         String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 
-
         if (isDividedByTwo) {
             operands.remove(Float.parseFloat(currentSymbol) * 2);
-        }else if (isMultipliedByTwo) {
+        } else if (isMultipliedByTwo) {
             operands.remove(Float.parseFloat(currentSymbol) / 2);
         }
 
@@ -281,7 +225,7 @@ public class PadView extends View {
             }
 
         } catch (NumberFormatException e) {
-            if (operator == null) {
+            if (operator == null && isOperator(currentSymbol)) {
                 ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentSymbol);
                 this.isSelected = true;
                 if (operands.size() == 2) {
@@ -292,11 +236,14 @@ public class PadView extends View {
         }
     }
 
-    private void resetCombos()
-    {
+    private void resetCombos() {
         currentSymbol = symbol;
         isDividedByTwo = false;
         isMultipliedByTwo = false;
+    }
+
+    private boolean isOperator(String symbol) {
+        return symbol.equals("X") || symbol.equals("/") || symbol.equals("+") || symbol.equals("-");
     }
 
     @Override
@@ -336,23 +283,57 @@ public class PadView extends View {
         }
     }
 
+
     private class DoubleTapDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onDown(MotionEvent e) {
+            //Always play a sound
+            MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+
+            });
+            mp.start();
+            if (!isSelected && e.getPointerCount() == 1) {
+                calculate();
+            } else if (e.getPointerCount() == 2) {
+                if (!isMultipliedByTwo) {
+                    multiplyByTwo();
+                } else {
+                    resetCombos();
+                }
+            } else if (!isDividedByTwo) {
+                divideByTwo();
+            } else {
+                resetCombos();
+            }
+            doThePaint();
             return true;
         }
 
         // event when double tap occurs
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            PadView.this.divideByTwo();
+            if (!isDividedByTwo) {
+                PadView.this.divideByTwo();
+            } else {
+                resetCombos();
+            }
             return true;
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
-            PadView.this.resetCombos();
+            if (!isMultipliedByTwo) {
+                PadView.this.multiplyByTwo();
+            } else {
+                resetCombos();
+            }
         }
     }
 

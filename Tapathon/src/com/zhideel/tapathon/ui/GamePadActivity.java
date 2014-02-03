@@ -117,7 +117,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
         final String roomName;
 
-        mAllShareDialog = new AlertDialog.Builder(GamePadActivity.this).setMessage(R.string.all_share_dialog_message)
+       /* mAllShareDialog = new AlertDialog.Builder(GamePadActivity.this).setMessage(R.string.all_share_dialog_message)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
                     @Override
@@ -140,7 +140,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                         mNoAllShareCastDialog.dismiss();
                     }
                 }).setCancelable(false).create();
-
+*/
         /*if (mIsClient) {
             btnStart.setVisibility(View.GONE);
             roomName = getIntent().getStringExtra(SERVER_NAME);
@@ -152,7 +152,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
             tvWaiting.setVisibility(View.GONE);
 
-            //for host to setup AllShare
+           /* //for host to setup AllShare
             ServiceConnector.createServiceProvider(this, new ServiceConnector.IServiceConnectEventListener() {
 
                 @Override
@@ -183,7 +183,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 @Override
                 public void onDeleted(ServiceProvider sprovider) {
                 }
-            });
+            });*/
 
             //mLogicController = new GameLogicController(model, getResources());
             //mManagers.add(mLogicController);
@@ -227,20 +227,20 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         }
 
         //mGameChord.stopChord();
-        if (mManager != null) {
+        /*if (mManager != null) {
             mManager.stop();
         }
 
         if (mServiceProvider != null) {
             ServiceConnector.deleteServiceProvider(mServiceProvider);
-        }
+        }*/
 
         unregisterReceiver(mWiFiBroadcastReceiver);
 
 
-        mAllShareDialog.dismiss();
+       /* mAllShareDialog.dismiss();
         mNoAllShareCastDialog.dismiss();
-
+*/
         MusicManager.release();
 
         super.onDestroy();
@@ -300,8 +300,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         }
         if (statsView != null) statsView.setPaused(true);
         if (gameBoardView != null) gameBoardView.pauseBoard(true);
-        mNoAllShareCastDialog.dismiss();
-        mAllShareDialog.dismiss();
+        /*mNoAllShareCastDialog.dismiss();
+        mAllShareDialog.dismiss();*/
         super.onPause();
 
     }
@@ -317,7 +317,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         if (gameBoardView != null) {
             gameBoardView.pauseBoard(false);
         }
-        if (!mIsClient && !allShareShownBefore) {
+        /*if (!mIsClient && !allShareShownBefore) {
             if (mManager == null) {
                 allShareShownBefore = true;
                 mNoAllShareCastDialog.show();
@@ -325,7 +325,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
                 allShareShownBefore = true;
                 mAllShareDialog.show();
             }
-        }
+        }*/
     }
 
     private void registerWifiStateReceiver() {
