@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.crashlytics.android.Crashlytics;
 import com.newrelic.agent.android.NewRelic;
 import com.zhideel.tapathon.App;
 import com.zhideel.tapathon.Config;
@@ -37,6 +38,8 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
+
         setContentView(R.layout.activity_main);
 
         NewRelic.withApplicationToken(

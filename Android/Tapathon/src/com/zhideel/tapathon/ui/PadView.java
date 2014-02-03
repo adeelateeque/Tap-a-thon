@@ -9,6 +9,8 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.*;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zhideel.tapathon.Config;
@@ -114,7 +116,7 @@ public class PadView extends LinearLayout {
                 randomMaxDelay = 4000;
             }
         }
-        symbol = "";
+        symbol = "1";
         currentSymbol = symbol;
     }
 
@@ -133,6 +135,8 @@ public class PadView extends LinearLayout {
     }
 
     private void doThePaint() {
+        animateSymbol();
+
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
             tvSymbol.setTextColor(colors[randInt(0, 3)]);
@@ -146,6 +150,15 @@ public class PadView extends LinearLayout {
             tvSymbol.setText(currentSymbol);
             invalidate();
         }
+    }
+
+    private void animateSymbol()
+    {
+        AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
+        anim.setDuration(750);
+        anim.setRepeatCount(1);
+        anim.setRepeatMode(Animation.REVERSE);
+        tvSymbol.startAnimation(anim);
     }
 
     private int getRandomDelay() {

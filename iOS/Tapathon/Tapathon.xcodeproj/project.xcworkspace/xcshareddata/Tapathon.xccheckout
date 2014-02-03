@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BE671771-DA18-4CB0-8EE5-D3E891DC458E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tapathon</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>02EAEA31-8940-4CB5-B47F-A50BF3E83068</key>
+		<string>https://github.com/adeelateeque/Tapathon</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS/Tapathon/Tapathon.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>02EAEA31-8940-4CB5-B47F-A50BF3E83068</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/adeelateeque/Tapathon</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>02EAEA31-8940-4CB5-B47F-A50BF3E83068</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>02EAEA31-8940-4CB5-B47F-A50BF3E83068</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tapathon</string>
+		</dict>
+	</array>
+</dict>
+</plist>

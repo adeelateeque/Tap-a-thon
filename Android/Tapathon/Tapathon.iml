@@ -22,6 +22,15 @@
     <orderEntry type="library" name="sdk-v1.0.0" level="project" />
     <orderEntry type="library" name="agent-maven-plugin-3.264.0" level="project" />
     <orderEntry type="library" name="android-agent-3.264.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Crashlytics">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/crashlytics.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

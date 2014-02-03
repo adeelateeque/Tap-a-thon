@@ -35,5 +35,6 @@
             android:name="com.zhideel.tapathon.ui.GamePadActivity"
             android:label="@string/app_name" android:screenOrientation="landscape" />
         <activity android:name="com.zhideel.tapathon.ui.EndGameActivity" android:label="@string/app_name" android:screenOrientation="landscape" />
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="996b8ab4549b597f0534c65e2c3c83f9f571add9"/>
     </application>
 </manifest>
