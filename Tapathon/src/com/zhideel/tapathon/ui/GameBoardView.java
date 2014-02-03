@@ -69,7 +69,7 @@ class PadAdapter extends BaseAdapter {
         mContext = c;
         pads = new ArrayList<PadView>();
         for (int i = 0; i < getCount(); i++) {
-            PadView pad = new PadView(mContext, null);
+            PadView pad = new PadView(mContext);
             pad.setAlpha(0.8f);
             pads.add(pad);
         }

@@ -8,10 +8,9 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.*;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
@@ -20,7 +19,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class PadView extends View {
+public class PadView extends LinearLayout {
 
     public enum GameLevel {
         EASY, MEDIUM, HARD;
@@ -36,7 +35,6 @@ public class PadView extends View {
     private boolean isWhite = false;
     private boolean isPaused = false;
 
-    private Paint symbolPaint;
     private String symbol;
     private String currentSymbol;
     private boolean isFirstPaint = false;
@@ -44,6 +42,8 @@ public class PadView extends View {
     //Combo states
     private boolean isDividedByTwo;
     private boolean isMultipliedByTwo;
+
+    private TextView tvSymbol;
 
     public static int maxNextQuestionDelay;
     private int randomMinDelay, randomMaxDelay;
@@ -58,8 +58,11 @@ public class PadView extends View {
         selectedLevel = level;
     }
 
-    public PadView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public PadView(Context context) {
+        super(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.view_pad, this, true);
+        tvSymbol = (TextView) findViewById(R.id.pad_symbol);
         doubleTapDetector = new GestureDetector(context, new DoubleTapDetector());
         this.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -87,11 +90,10 @@ public class PadView extends View {
         Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Crayon.ttf");
         Typeface face = Typeface.create(fontFace, Typeface.BOLD);
 
-        symbolPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        symbolPaint.setColor(Color.WHITE);
-        symbolPaint.setTypeface(face);
-        symbolPaint.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
-        symbolPaint.setTextSize(Config.getDipfromPixels(75));
+        tvSymbol.setTextColor(Color.WHITE);
+        tvSymbol.setTypeface(face);
+        tvSymbol.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
+        tvSymbol.setTextSize(75);
 
         if (startGame == true) {
             randomMinDelay = 0;
@@ -133,13 +135,15 @@ public class PadView extends View {
     private void doThePaint() {
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
-            symbolPaint.setColor(colors[randInt(0, 3)]);
+            tvSymbol.setTextColor(colors[randInt(0, 3)]);
+            tvSymbol.setText(currentSymbol);
             invalidate();
         } else if (isSelected && !PadView.this.isWhite) {
             PadView.this.isWhite = true;
             PadView.this.setBackgroundColor(Color.WHITE);
             PadView.this.setAlpha(0.5f);
-            symbolPaint.setColor(getResources().getColor(R.color.tappad_green));
+            tvSymbol.setTextColor(getResources().getColor(R.color.tappad_green));
+            tvSymbol.setText(currentSymbol);
             invalidate();
         }
     }
@@ -198,6 +202,18 @@ public class PadView extends View {
         }
     }
 
+    private void reverseSymbol() {
+        if (currentSymbol.equals("X")) {
+            currentSymbol = "/";
+        } else if (currentSymbol.equals("/")) {
+            currentSymbol = "X";
+        } else if (currentSymbol.equals("+")) {
+            currentSymbol = "-";
+        } else if (currentSymbol.equals("-")) {
+            currentSymbol = "+";
+        }
+    }
+
     private String formatDecimals(float number) {
         if (number == (int) number)
             return String.format("%d", (int) number);
@@ -209,10 +225,12 @@ public class PadView extends View {
         ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
         String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
 
-        if (isDividedByTwo) {
-            operands.remove(Float.parseFloat(currentSymbol) * 2);
-        } else if (isMultipliedByTwo) {
-            operands.remove(Float.parseFloat(currentSymbol) / 2);
+        if (!isOperator(currentSymbol)) {
+            if (isDividedByTwo) {
+                operands.remove(Float.parseFloat(currentSymbol) * 2);
+            } else if (isMultipliedByTwo) {
+                operands.remove(Float.parseFloat(currentSymbol) / 2);
+            }
         }
 
         try {
@@ -247,16 +265,6 @@ public class PadView extends View {
     private boolean isOperator(String symbol) {
         return symbol.equals("X") || symbol.equals("/") || symbol.equals("+") || symbol.equals("-");
     }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        int xPos = (int) ((canvas.getWidth() / 2) - symbolPaint.measureText(currentSymbol) / 2);
-        int yPos = (int) ((canvas.getHeight() / 2) - ((symbolPaint.descent() + symbolPaint.ascent()) / 2)) + Config.getDipfromPixels(12);
-        canvas.drawText(currentSymbol, xPos, yPos, symbolPaint);
-        invalidate();
-    }
-
 
     private static class SymbolSet extends CopyOnWriteArrayList<String> {
         @Override
@@ -309,10 +317,14 @@ public class PadView extends View {
                 } else {
                     resetCombos();
                 }
-            } else if (!isDividedByTwo) {
-                divideByTwo();
+            } else if (!isOperator(currentSymbol)) {
+                if (!isDividedByTwo) {
+                    PadView.this.divideByTwo();
+                } else {
+                    resetCombos();
+                }
             } else {
-                resetCombos();
+                reverseSymbol();
             }
             doThePaint();
             return true;
@@ -321,10 +333,15 @@ public class PadView extends View {
         // event when double tap occurs
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            if (!isDividedByTwo) {
-                PadView.this.divideByTwo();
+
+            if (!isOperator(currentSymbol)) {
+                if (!isDividedByTwo) {
+                    PadView.this.divideByTwo();
+                } else {
+                    resetCombos();
+                }
             } else {
-                resetCombos();
+                reverseSymbol();
             }
             return true;
         }
