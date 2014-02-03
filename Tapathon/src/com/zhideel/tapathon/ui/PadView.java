@@ -95,17 +95,17 @@ public class PadView extends View {
             startGame = false;
         } else {
             if (selectedLevel == GameLevel.EASY) {
-                maxNextQuestionDelay = 15000;
+                maxNextQuestionDelay = 16000;
                 randomMinDelay = 4000;
                 randomMaxDelay = 6000;
             } else if (selectedLevel == GameLevel.MEDIUM) {
-                maxNextQuestionDelay = 10000;
+                maxNextQuestionDelay = 12000;
                 randomMinDelay = 3500;
-                randomMaxDelay = 4500;
+                randomMaxDelay = 5000;
             } else if (selectedLevel == GameLevel.HARD) {
-                maxNextQuestionDelay = 5000;
-                randomMinDelay = 2000;
-                randomMaxDelay = 3500;
+                maxNextQuestionDelay = 8000;
+                randomMinDelay = 3000;
+                randomMaxDelay = 4000;
             }
         }
         symbol = "1";
