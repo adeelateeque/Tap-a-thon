@@ -139,8 +139,6 @@ public class PadView extends LinearLayout {
     }
 
     private void doThePaint() {
-        animateSymbol();
-
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
             tvSymbol.setTextColor(colors[randInt(0, 3)]);
@@ -333,7 +331,7 @@ public class PadView extends LinearLayout {
             currentSymbol = symbol;
             post(new Runnable() {
                 public void run() {
-                    animateSymbol();
+                    if(!isFirstPaint) { animateSymbol(); }
                     tvSymbol.setText(currentSymbol);
                 }
             });
