@@ -48,15 +48,15 @@ public class StatsView implements CommunicationBus.BusManager {
         tvQuestion = (TextView) viewGroup.findViewById(R.id.tv_qns);
         tvTimer = (TextView) viewGroup.findViewById(R.id.tv_timer);
 
-      /*  Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Crayon.ttf");
+        Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Varsity.ttf");
         Typeface face = Typeface.create(fontFace, Typeface.BOLD);
 
         tvTimer.setTypeface(face);
-        tvTimer.setTextSize(60);
+        tvTimer.setTextSize(50);
         tvQuestion.setTypeface(face);
-        tvQuestion.setTextSize(60);
+        tvQuestion.setTextSize(50);
         tvScore.setTypeface(face);
-        tvScore.setTextSize(60);*/
+        tvScore.setTextSize(50);
 
         correctAnswerCount = 0;
         totalQuestions = 0;

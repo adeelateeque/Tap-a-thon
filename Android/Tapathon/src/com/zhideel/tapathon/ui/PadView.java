@@ -93,11 +93,11 @@ public class PadView extends LinearLayout {
         padPaint.setColor(Color.WHITE);
         padPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
-        Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Crayon.ttf");
-        Typeface face = Typeface.create(fontFace, Typeface.BOLD);
 
-        tvSymbol.setTextColor(Color.WHITE);
+        Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "BebasNeue.otf");
+        Typeface face = Typeface.create(fontFace, Typeface.BOLD);
         tvSymbol.setTypeface(face);
+        tvSymbol.setTextColor(Color.WHITE);
         tvSymbol.setShadowLayer(5.0f, 5.0f, 5.0f, Color.BLACK);
         tvSymbol.setTextSize(75);
 
@@ -141,10 +141,13 @@ public class PadView extends LinearLayout {
     private void doThePaint() {
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
-            tvSymbol.setTextColor(colors[randInt(0, 3)]);
+            int randomColor = colors[randInt(0, 3)];
+            tvSymbol.setTextColor(randomColor);
+            tvSymbol.setShadowLayer(40, 0, 0, randomColor);
         } else if (isSelected && !PadView.this.isWhite) {
             PadView.this.isWhite = true;
             PadView.this.setBackgroundColor(Color.WHITE);
+            tvSymbol.setShadowLayer(40, 0, 0, Color.WHITE);
             PadView.this.setAlpha(0.5f);
             tvSymbol.setTextColor(getResources().getColor(R.color.tappad_green));
         }
