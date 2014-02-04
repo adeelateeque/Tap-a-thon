@@ -14,6 +14,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.sec.android.allshare.ServiceConnector;
@@ -73,6 +74,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         super.onCreate(savedInstanceState);
         instance = this;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_game_pad);
 
         Bundle extras = getIntent().getExtras();
