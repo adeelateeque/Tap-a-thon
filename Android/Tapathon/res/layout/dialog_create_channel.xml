@@ -16,8 +16,7 @@
         android:id="@+id/rg_lvl"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
         
         <RadioButton
             android:id="@+id/rb_easy"

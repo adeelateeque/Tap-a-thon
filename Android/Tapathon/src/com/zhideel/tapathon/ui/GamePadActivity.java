@@ -223,8 +223,8 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
 
     public void startGame()
     {
-        gameBoardView = new GameBoardView(this, level, (ViewGroup) findViewById(R.id.gameboard_container));
         statsView = new StatsView(this, (ViewGroup) findViewById(R.id.statsboard_container));
+        gameBoardView = new GameBoardView(this, level, (ViewGroup) findViewById(R.id.gameboard_container));
         resumeGame();
     }
 
@@ -275,7 +275,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         this.level = (PadView.GameLevel) savedInstanceState.getSerializable("STATE_LEVEL");
-        statsView.setTime(savedInstanceState.getInt("STATE_TIMER") + 3);
+        statsView.setTime(savedInstanceState.getInt("STATE_TIMER") + 2);
         statsView.tvQuestion.setText(savedInstanceState.getString("STATE_QUESTION"));
         statsView.tvScore.setText(savedInstanceState.getString("STATE_SCORE"));
         resumeGame();

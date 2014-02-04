@@ -42,14 +42,14 @@
 
     <Button
         android:id="@+id/btn_start"
-        android:text="@string/start"
+        android:text="@string/start_game"
         android:alpha="0.8"
         android:textColor="@color/tappad_white"
-        android:textSize="40dp"
+        android:textSize="32dp"
         android:background="#00a5ff"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.2"
+        android:layout_weight="0.15"
         android:gravity="center"/>
 
 </LinearLayout>

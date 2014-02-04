@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.newrelic.agent.android.NewRelic;
-import com.zhideel.tapathon.App;
-import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 
 public class GameMenuActivity extends Activity implements SelectChannelFragment.OnServerChosenListener {

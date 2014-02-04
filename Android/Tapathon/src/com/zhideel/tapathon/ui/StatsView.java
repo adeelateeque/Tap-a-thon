@@ -2,6 +2,7 @@ package com.zhideel.tapathon.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.squareup.otto.Bus;
+import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.Stopwatch;
 import com.zhideel.tapathon.logic.CommunicationBus;
@@ -35,6 +37,7 @@ public class StatsView implements CommunicationBus.BusManager {
     private int randomQuestion, correctAnswerCount, totalQuestions;
     public int time = 60;
     private boolean isFirstQuestionAsked = false;
+
     public StatsView(Context context, ViewGroup viewGroup) {
         mContext = (Activity) context;
         this.mBus = CommunicationBus.getInstance();
@@ -44,21 +47,31 @@ public class StatsView implements CommunicationBus.BusManager {
         tvScore = (TextView) viewGroup.findViewById(R.id.tv_multipler);
         tvQuestion = (TextView) viewGroup.findViewById(R.id.tv_qns);
         tvTimer = (TextView) viewGroup.findViewById(R.id.tv_timer);
+
+        Typeface fontFace = Typeface.createFromAsset(Config.context.getAssets(), "Crayon.ttf");
+        Typeface face = Typeface.create(fontFace, Typeface.BOLD);
+
+        tvTimer.setTypeface(face);
+        tvTimer.setTextSize(60);
+        tvQuestion.setTypeface(face);
+        tvQuestion.setTextSize(60);
+        tvScore.setTypeface(face);
+        tvScore.setTextSize(60);
+
         correctAnswerCount = 0;
         totalQuestions = 0;
-        tvScore.setText("0%");
-        tvTimer.setText(time + "s");
+        tvScore.setText("0");
+        tvTimer.setText(Integer.toString(time));
         newQuestion();
     }
 
     public void setTime(int time) {
         this.time = time;
-        tvTimer.setText(Integer.toString(time) + "s");
+        tvTimer.setText(Integer.toString(time));
     }
 
-    public int getTime()
-    {
-       return time;
+    public int getTime() {
+        return time;
     }
 
     private void timer() {
@@ -74,13 +87,11 @@ public class StatsView implements CommunicationBus.BusManager {
 
                                 StatsView.this.time--;
                                 setTime(StatsView.this.time);
-                                if(stopwatch.elapsed() >= PadView.maxNextQuestionDelay)
-                                {
-                                   ((GamePadActivity) mContext).flashNextQuestionView();
-                                   newQuestion();
+                                if (stopwatch.elapsed() >= PadView.maxNextQuestionDelay) {
+                                    ((GamePadActivity) mContext).flashNextQuestionView();
+                                    newQuestion();
                                 }
-                            }
-                            else {
+                            } else {
                                 ((GamePadActivity) mContext).getGameBoard().setPaused(true);
                                 timerTask.cancel();
                                 ((GamePadActivity) mContext).showGameEndView();
@@ -123,8 +134,8 @@ public class StatsView implements CommunicationBus.BusManager {
         float op1 = operands.get(0);
         float op2 = operands.get(1);
         float result;
-        try{
-            Log.d(StatsView.class.getName(), "Trying to calculate: " + operands.get(0) + " " + operator +" " + operands.get(1));
+        try {
+            Log.d(StatsView.class.getName(), "Trying to calculate: " + operands.get(0) + " " + operator + " " + operands.get(1));
             if (operator.equalsIgnoreCase("X")) {
                 result = op1 * op2;
             } else if (operator.equalsIgnoreCase("/")) {
@@ -134,31 +145,26 @@ public class StatsView implements CommunicationBus.BusManager {
             } else {
                 result = op1 + op2;
             }
-        }
-        catch (ArithmeticException e)
-        {
-          result = 0.0f;
+        } catch (ArithmeticException e) {
+            result = 0.0f;
         }
 
         //If answered correctly
         if (((int) result) == randomQuestion) {
             congratulate();
-            int currentScore = Integer.parseInt(tvScore.getText().toString().replace("%", ""));
+            int currentScore = Integer.parseInt(tvScore.getText().toString());
             int elapsedTime = stopwatch.elapsed();
-            int reward = Math.round(((((float) PadView.maxNextQuestionDelay - elapsedTime)/ PadView.maxNextQuestionDelay * 100) + ((float) correctAnswerCount / totalQuestions * 100)) / 200 * 100);
-            currentScore = Integer.valueOf(Math.round(((float)currentScore * totalQuestions + reward) / ((totalQuestions + 1) * 100) * 100));
-            tvScore.setText(Integer.toString(currentScore) + "%");
+            int reward = Math.round(((((float) PadView.maxNextQuestionDelay - elapsedTime) / PadView.maxNextQuestionDelay * 100) + ((float) correctAnswerCount / totalQuestions * 100)) / 200 * 100);
+            currentScore = Integer.valueOf(Math.round(((float) currentScore * totalQuestions + reward) / ((totalQuestions + 1) * 100) * 100));
+            tvScore.setText(Integer.toString(currentScore));
             correctAnswerCount++;
             newQuestion();
-        }
-        else
-        {
+        } else {
             criticize();
         }
     }
 
-    private void congratulate()
-    {
+    private void congratulate() {
         MediaPlayer mp = MediaPlayer.create(mContext, R.raw.correct_answer);
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
@@ -182,8 +188,7 @@ public class StatsView implements CommunicationBus.BusManager {
         ((GamePadActivity) mContext).flashCorrectAnswerView();
     }
 
-    private void criticize()
-    {
+    private void criticize() {
         MediaPlayer mp = MediaPlayer.create(mContext, R.raw.wrong_answer);
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
@@ -207,23 +212,17 @@ public class StatsView implements CommunicationBus.BusManager {
         tvQuestion.setText(Integer.toString(randomQuestion));
         stopwatch = Stopwatch.start();
         totalQuestions++;
-        if(!isFirstQuestionAsked)
-        {
+        if (!isFirstQuestionAsked) {
             isFirstQuestionAsked = true;
-        }
-        else{
+        } else {
             ((GamePadActivity) mContext).getGameBoard().resetBoard();
         }
     }
 
-    private int getMaxQuestionLimit()
-    {
-        if(PadView.selectedLevel == PadView.GameLevel.MEDIUM)
-        {
+    private int getMaxQuestionLimit() {
+        if (PadView.selectedLevel == PadView.GameLevel.MEDIUM) {
             return 35;
-        }
-        else if(PadView.selectedLevel == PadView.GameLevel.HARD)
-        {
+        } else if (PadView.selectedLevel == PadView.GameLevel.HARD) {
             return 50;
         }
 
@@ -234,9 +233,7 @@ public class StatsView implements CommunicationBus.BusManager {
         this.isPaused = paused;
         if (isPaused == false) {
             timer();
-        }
-        else
-        {
+        } else {
             timerTask.cancel();
         }
     }

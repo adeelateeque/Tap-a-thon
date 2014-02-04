@@ -1,14 +1,16 @@
 package com.zhideel.tapathon.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.view.*;
+import android.view.GestureDetector;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
@@ -37,13 +39,13 @@ public class PadView extends LinearLayout {
     private boolean isWhite = false;
     private boolean isPaused = false;
 
-    private String symbol;
     private String currentSymbol;
     private boolean isFirstPaint = false;
 
     //Combo states
     private boolean isDividedByTwo;
     private boolean isMultipliedByTwo;
+    private boolean isReversed;
 
     private TextView tvSymbol;
 
@@ -53,6 +55,8 @@ public class PadView extends LinearLayout {
     private boolean startGame = false;
 
     private static final SymbolSet symbolSet = new SymbolSet();
+
+    private StatsView statsView;
 
     private GestureDetector doubleTapDetector;
 
@@ -116,8 +120,8 @@ public class PadView extends LinearLayout {
                 randomMaxDelay = 4000;
             }
         }
-        symbol = "1";
-        currentSymbol = symbol;
+        statsView = ((GamePadActivity) super.getContext()).getStatsView();
+        setCurrentSymbol("1");
     }
 
     private void randomPaint() {
@@ -140,22 +144,17 @@ public class PadView extends LinearLayout {
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
             tvSymbol.setTextColor(colors[randInt(0, 3)]);
-            tvSymbol.setText(currentSymbol);
-            invalidate();
         } else if (isSelected && !PadView.this.isWhite) {
             PadView.this.isWhite = true;
             PadView.this.setBackgroundColor(Color.WHITE);
             PadView.this.setAlpha(0.5f);
             tvSymbol.setTextColor(getResources().getColor(R.color.tappad_green));
-            tvSymbol.setText(currentSymbol);
-            invalidate();
         }
     }
 
-    private void animateSymbol()
-    {
+    private void animateSymbol() {
         AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
-        anim.setDuration(750);
+        anim.setDuration(500);
         anim.setRepeatCount(1);
         anim.setRepeatMode(Animation.REVERSE);
         tvSymbol.startAnimation(anim);
@@ -170,9 +169,8 @@ public class PadView extends LinearLayout {
     }
 
     private void randSymbol() {
-        symbolSet.remove(symbol);
-
         if ((!isSelected) && (!isPaused)) {
+            symbolSet.remove(getOriginalSymbol());
             String newSymbol;
             int rand = randInt(1, 13);
             if (rand == 10) {
@@ -187,21 +185,30 @@ public class PadView extends LinearLayout {
                 newSymbol = Integer.toString(rand);
             }
 
-            if (!newSymbol.equals(symbol) && symbolSet.add(newSymbol)) {
-                symbol = newSymbol;
-                currentSymbol = newSymbol;
+            if (!newSymbol.equals(getOriginalSymbol()) && symbolSet.add(newSymbol)) {
+                setCurrentSymbol(newSymbol);
             } else {
                 randSymbol();
             }
         }
     }
 
+    private boolean canBeSelected() {
+        if (statsView.getOperands().size() < 2 && !isOperator(currentSymbol)) {
+            return true;
+        } else if (statsView.getOperator() == null && isOperator(currentSymbol)) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     private void divideByTwo() {
         if (!isDividedByTwo && !isOperator(currentSymbol)) {
             isDividedByTwo = true;
-            currentSymbol = formatDecimals((Float.parseFloat(currentSymbol) / 2));
-            invalidate();
+            isMultipliedByTwo = false;
+            setCurrentSymbol(formatDecimals((Float.parseFloat(currentSymbol) / 2)));
             calculate();
         }
     }
@@ -209,22 +216,29 @@ public class PadView extends LinearLayout {
     private void multiplyByTwo() {
         if (!isMultipliedByTwo && !isOperator(currentSymbol)) {
             isMultipliedByTwo = true;
-            currentSymbol = formatDecimals(Float.parseFloat(currentSymbol) * 2);
-            invalidate();
+            isDividedByTwo = false;
+            setCurrentSymbol(formatDecimals(Float.parseFloat(currentSymbol) * 2));
             calculate();
         }
     }
 
     private void reverseSymbol() {
-        if (currentSymbol.equals("X")) {
-            currentSymbol = "/";
-        } else if (currentSymbol.equals("/")) {
-            currentSymbol = "X";
-        } else if (currentSymbol.equals("+")) {
-            currentSymbol = "-";
-        } else if (currentSymbol.equals("-")) {
-            currentSymbol = "+";
+        isReversed = !isReversed;
+        setCurrentSymbol(reversedOperator(currentSymbol));
+    }
+
+    private String reversedOperator(String operator) {
+        if (operator.equals("X")) {
+            return "/";
+        } else if (operator.equals("/")) {
+            return "X";
+        } else if (operator.equals("+")) {
+            return "-";
+        } else if (operator.equals("-")) {
+            return "+";
         }
+
+        return operator;
     }
 
     private String formatDecimals(float number) {
@@ -235,44 +249,50 @@ public class PadView extends LinearLayout {
     }
 
     private void calculate() {
-        ArrayList<Float> operands = ((GamePadActivity) super.getContext()).getStatsView().getOperands();
-        String operator = ((GamePadActivity) super.getContext()).getStatsView().getOperator();
-
-        if (!isOperator(currentSymbol)) {
-            if (isDividedByTwo) {
-                operands.remove(Float.parseFloat(currentSymbol) * 2);
-            } else if (isMultipliedByTwo) {
-                operands.remove(Float.parseFloat(currentSymbol) / 2);
-            }
-        }
+        ArrayList<Float> operands = statsView.getOperands();
+        String operator = statsView.getOperator();
 
         try {
             float number = Float.parseFloat(currentSymbol);
             if (operands.size() < 2) {
-                ((GamePadActivity) super.getContext()).getStatsView().addOperand(number);
-                this.isSelected = true;
+                statsView.addOperand(number);
                 if ((operands.size() == 2) && (operator != null)) {
-                    ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                    ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                    statsView.doCalc();
+                    statsView.newQuestion();
                 }
             }
 
         } catch (NumberFormatException e) {
-            if (operator == null && isOperator(currentSymbol)) {
-                ((GamePadActivity) super.getContext()).getStatsView().setOperator(currentSymbol);
-                this.isSelected = true;
+            if (isOperator(currentSymbol)) {
+                statsView.setOperator(currentSymbol);
                 if (operands.size() == 2) {
-                    ((GamePadActivity) super.getContext()).getStatsView().doCalc();
-                    ((GamePadActivity) super.getContext()).getStatsView().newQuestion();
+                    statsView.doCalc();
+                    statsView.newQuestion();
                 }
             }
         }
     }
 
     private void resetCombos() {
-        currentSymbol = symbol;
+        setCurrentSymbol(getOriginalSymbol());
         isDividedByTwo = false;
         isMultipliedByTwo = false;
+    }
+
+    private String getOriginalSymbol() {
+        if (!isOperator(currentSymbol)) {
+            if (isDividedByTwo) {
+                return formatDecimals(Float.parseFloat(currentSymbol) * 2);
+            } else if (isMultipliedByTwo) {
+                return formatDecimals(Float.parseFloat(currentSymbol) / 2);
+            }
+        } else {
+            if (isReversed) {
+                return reversedOperator(currentSymbol);
+            }
+        }
+
+        return currentSymbol;
     }
 
     private boolean isOperator(String symbol) {
@@ -307,6 +327,20 @@ public class PadView extends LinearLayout {
     }
 
 
+    private void setCurrentSymbol(String symbol) {
+        //if nothing has changed, don't need to animate
+        if (this.currentSymbol == null || !this.currentSymbol.equals(symbol)) {
+            currentSymbol = symbol;
+            post(new Runnable() {
+                public void run() {
+                    animateSymbol();
+                    tvSymbol.setText(currentSymbol);
+                }
+            });
+        }
+    }
+
+
     private class DoubleTapDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
@@ -322,24 +356,28 @@ public class PadView extends LinearLayout {
 
             });
             mp.start();
-            if (!isSelected && e.getPointerCount() == 1) {
+
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+
+            if (!isSelected && canBeSelected()) {
+                isSelected = true;
                 calculate();
-            } else if (e.getPointerCount() == 2) {
-                if (!isMultipliedByTwo) {
-                    multiplyByTwo();
-                } else {
-                    resetCombos();
-                }
-            } else if (!isOperator(currentSymbol)) {
-                if (!isDividedByTwo) {
-                    PadView.this.divideByTwo();
-                } else {
+            } else if (isSelected && !isOperator(currentSymbol)) {
+                if(isDividedByTwo || isMultipliedByTwo)
+                {
                     resetCombos();
                 }
             } else {
-                reverseSymbol();
+                if(isOperator(currentSymbol) && !isReversed){
+                    reverseSymbol();
+                }
             }
             doThePaint();
+
             return true;
         }
 
@@ -347,9 +385,13 @@ public class PadView extends LinearLayout {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
 
+            if (!isSelected && canBeSelected()) {
+                isSelected = true;
+                doThePaint();
+            }
             if (!isOperator(currentSymbol)) {
-                if (!isDividedByTwo) {
-                    PadView.this.divideByTwo();
+                if (!isMultipliedByTwo) {
+                    PadView.this.multiplyByTwo();
                 } else {
                     resetCombos();
                 }
@@ -361,10 +403,18 @@ public class PadView extends LinearLayout {
 
         @Override
         public void onLongPress(MotionEvent e) {
-            if (!isMultipliedByTwo) {
-                PadView.this.multiplyByTwo();
+            if (!isSelected && canBeSelected()) {
+                isSelected = true;
+                doThePaint();
+            }
+            if (!isOperator(currentSymbol)) {
+                if (!isDividedByTwo) {
+                    PadView.this.divideByTwo();
+                } else {
+                    resetCombos();
+                }
             } else {
-                resetCombos();
+                reverseSymbol();
             }
         }
     }
