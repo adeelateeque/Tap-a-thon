@@ -26,16 +26,16 @@
             android:id="@+id/user_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/xhdpi_10dp"
+            android:layout_marginTop="@dimen/xhdpi_10dp"
             android:ems="10"
             android:hint="@string/username_dialog_message"
             android:inputType="text"
             android:maxLength="12"
             android:singleLine="true"
             android:layout_gravity="center_horizontal"
-            android:visibility="gone" android:background="@color/dealer_font" android:paddingTop="5dp"
-            android:paddingBottom="5dp" android:gravity="center_horizontal" android:alpha="0.8"/>
+            android:visibility="gone" android:background="@color/dealer_font" android:paddingTop="@dimen/xhdpi_5dp"
+            android:paddingBottom="@dimen/xhdpi_5dp" android:gravity="center_horizontal" android:alpha="0.8"/>
 
 
     </LinearLayout>

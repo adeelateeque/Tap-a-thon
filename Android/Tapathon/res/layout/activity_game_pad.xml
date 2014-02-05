@@ -21,8 +21,8 @@
             android:layout_weight="0.85"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="12dp"
+            android:paddingLeft="@dimen/xhdpi_10dp"
+            android:paddingRight="@dimen/xhdpi_12dp"
             android:weightSum="1"
             android:orientation="horizontal">
 
@@ -42,10 +42,9 @@
                     android:orientation="vertical"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="4dp" android:layout_marginBottom="8dp">
-
+                    android:layout_marginLeft="@dimen/xhdpi_5dp"
+                    android:layout_marginRight="@dimen/xhdpi_2dp"
+                    android:layout_marginTop="@dimen/xhdpi_4dp" android:layout_marginBottom="@dimen/xhdpi_8dp">
                 </LinearLayout>
 
                 <ImageView
@@ -55,7 +54,7 @@
                     android:background="@drawable/game_over"
                     android:alpha="0.6"
                     android:visibility="gone"
-                    android:layout_marginBottom="11dp"/>
+                    android:layout_marginBottom="@dimen/xhdpi_11dp"/>
 
                 <ImageView
                     android:layout_width="fill_parent"
@@ -71,7 +70,7 @@
                 android:layout_weight="0.25"
                 android:orientation="vertical"
                 android:weightSum="1"
-                android:paddingRight="5dp" android:layout_marginBottom="9dp" android:layout_marginTop="3dp"/>
+                android:paddingRight="@dimen/xhdpi_5dp" android:layout_marginBottom="@dimen/xhdpi_9dp" android:layout_marginTop="@dimen/xhdpi_3dp"/>
 
         </LinearLayout>
     </LinearLayout>

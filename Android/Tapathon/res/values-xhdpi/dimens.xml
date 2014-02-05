@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="xhdpi_negative_1dp">-1dp</dimen>
+    <dimen name="xhdpi_negative_2dp">-2dp</dimen>
+    <dimen name="xhdpi_negative_3dp">-3dp</dimen>
+    <dimen name="xhdpi_negative_4dp">-4dp</dimen>
+    <dimen name="xhdpi_negative_5dp">-5dp</dimen>
+    <dimen name="xhdpi_negative_6dp">-6dp</dimen>
+    <dimen name="xhdpi_negative_7dp">-7dp</dimen>
+    <dimen name="xhdpi_negative_8dp">-8dp</dimen>
+    <dimen name="xhdpi_negative_9dp">-9dp</dimen>
+    <dimen name="xhdpi_negative_10dp">-10dp</dimen>
+    <dimen name="xhdpi_negative_11dp">-11dp</dimen>
+    <dimen name="xhdpi_negative_12dp">-12dp</dimen>
+    <dimen name="xhdpi_negative_13dp">-13dp</dimen>
+    <dimen name="xhdpi_negative_14dp">-14dp</dimen>
+    <dimen name="xhdpi_negative_15dp">-15dp</dimen>
+    <dimen name="xhdpi_negative_16dp">-16dp</dimen>
+    <dimen name="xhdpi_negative_17dp">-17dp</dimen>
+    <dimen name="xhdpi_negative_18dp">-18dp</dimen>
+    <dimen name="xhdpi_negative_19dp">-19dp</dimen>
+    <dimen name="xhdpi_negative_20dp">-20dp</dimen>
+    <dimen name="xhdpi_negative_21dp">-21dp</dimen>
+    <dimen name="xhdpi_negative_22dp">-22dp</dimen>
+    <dimen name="xhdpi_negative_23dp">-23dp</dimen>
+    <dimen name="xhdpi_negative_24dp">-24dp</dimen>
+    <dimen name="xhdpi_negative_25dp">-25dp</dimen>
+
+    <dimen name="xhdpi_0dp">0dp</dimen>
+
+    <dimen name="xhdpi_1dp">1dp</dimen>
+    <dimen name="xhdpi_2dp">2dp</dimen>
+    <dimen name="xhdpi_3dp">3dp</dimen>
+    <dimen name="xhdpi_4dp">4dp</dimen>
+    <dimen name="xhdpi_5dp">5dp</dimen>
+    <dimen name="xhdpi_6dp">6dp</dimen>
+    <dimen name="xhdpi_7dp">7dp</dimen>
+    <dimen name="xhdpi_8dp">8dp</dimen>
+    <dimen name="xhdpi_9dp">9dp</dimen>
+    <dimen name="xhdpi_10dp">10dp</dimen>
+    <dimen name="xhdpi_11dp">11dp</dimen>
+    <dimen name="xhdpi_12dp">12dp</dimen>
+    <dimen name="xhdpi_13dp">13dp</dimen>
+    <dimen name="xhdpi_14dp">14dp</dimen>
+    <dimen name="xhdpi_15dp">15dp</dimen>
+    <dimen name="xhdpi_16dp">16dp</dimen>
+    <dimen name="xhdpi_17dp">17dp</dimen>
+    <dimen name="xhdpi_18dp">18dp</dimen>
+    <dimen name="xhdpi_19dp">19dp</dimen>
+    <dimen name="xhdpi_20dp">20dp</dimen>
+    <dimen name="xhdpi_21dp">21dp</dimen>
+    <dimen name="xhdpi_22dp">22dp</dimen>
+    <dimen name="xhdpi_23dp">23dp</dimen>
+    <dimen name="xhdpi_24dp">24dp</dimen>
+    <dimen name="xhdpi_25dp">25dp</dimen>
+</resources>
