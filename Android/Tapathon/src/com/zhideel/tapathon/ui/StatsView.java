@@ -15,11 +15,13 @@ import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.Stopwatch;
 import com.zhideel.tapathon.logic.CommunicationBus;
 import com.zhideel.tapathon.logic.GameLogicController;
+import com.zhideel.tapathon.utils.CountDownTimerWithPause;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Adeel on 15/11/13.
@@ -32,7 +34,7 @@ public class StatsView implements CommunicationBus.BusManager {
     private String operator;
     public TextView tvScore, tvQuestion, tvTimer;
     private Stopwatch stopwatch;
-    Timer timerTask;
+    private CountDownTimerWithPause timer;
     private Random rand = new Random();
     private int randomQuestion, correctAnswerCount, totalQuestions;
     public int time = 60;
@@ -67,42 +69,33 @@ public class StatsView implements CommunicationBus.BusManager {
 
     public void setTime(int time) {
         this.time = time;
-        tvTimer.setText(Integer.toString(time));
+        tvTimer.setText(Integer.toString(this.time));
     }
 
     public int getTime() {
         return time;
     }
 
-    private void timer() {
-        timerTask = new Timer();
-        timerTask.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (isPaused == false) {
-                    mContext.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (StatsView.this.time != 0) {
-
-                                StatsView.this.time--;
-                                setTime(StatsView.this.time);
-                                if (stopwatch.elapsed() >= PadView.maxNextQuestionDelay) {
-                                    ((GamePadActivity) mContext).flashNextQuestionView();
-                                    newQuestion();
-                                }
-                            } else {
-                                ((GamePadActivity) mContext).getGameBoard().setPaused(true);
-                                timerTask.cancel();
-                                ((GamePadActivity) mContext).showGameEndView();
-                                mBus.post(GameLogicController.EndGameEvent.INSTANCE);
-                            }
-                        }
-
-                    });
+    private void countdown() {
+            timer = new CountDownTimerWithPause(time * 1000, 1000, true) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                setTime((int) TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
+                if (stopwatch.elapsed() >= PadView.maxNextQuestionDelay) {
+                    ((GamePadActivity) mContext).flashNextQuestionView();
+                    newQuestion();
                 }
             }
-        }, 0, 1000);
+
+            @Override
+            public void onFinish() {
+                ((GamePadActivity) mContext).getGameBoard().setPaused(true);
+                ((GamePadActivity) mContext).showGameEndView();
+                mBus.post(GameLogicController.EndGameEvent.INSTANCE);
+            }
+        };
+
+        timer.create();
     }
 
     public int randInt(int min, int max) {
@@ -231,10 +224,10 @@ public class StatsView implements CommunicationBus.BusManager {
 
     public void setPaused(Boolean paused) {
         this.isPaused = paused;
-        if (isPaused == false) {
-            timer();
+        if (isPaused == false && timer == null) {
+                countdown();
         } else {
-            timerTask.cancel();
+            timer.pause();
         }
     }
 

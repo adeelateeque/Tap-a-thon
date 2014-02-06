@@ -277,7 +277,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         this.level = (PadView.GameLevel) savedInstanceState.getSerializable("STATE_LEVEL");
-        statsView.setTime(savedInstanceState.getInt("STATE_TIMER") + 2);
+        statsView.setTime(savedInstanceState.getInt("STATE_TIMER"));
         statsView.tvQuestion.setText(savedInstanceState.getString("STATE_QUESTION"));
         statsView.tvScore.setText(savedInstanceState.getString("STATE_SCORE"));
         resumeGame();

@@ -36,6 +36,7 @@ public class PadView extends LinearLayout {
     private int[] colors = {getResources().getColor(R.color.tappad_cyan), Color.MAGENTA, getResources().getColor(R.color.tappad_red), getResources().getColor(R.color.tappad_yellow)};
 
     private boolean isSelected = false;
+    private boolean isUsed = false;
     private boolean isWhite = false;
     private boolean isPaused = false;
 
@@ -128,11 +129,9 @@ public class PadView extends LinearLayout {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 isFirstPaint = false;
-                doThePaint();
                 //As long as we are not paused we can keep painting randomly
-                if (isPaused == false) {
+                if (isPaused == false && isSelected == false) {
                     new RandomSymbolGeneratorTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    randomPaint();
                 }
             }
         }, isFirstPaint ? 0 : getRandomDelay());
@@ -169,7 +168,7 @@ public class PadView extends LinearLayout {
         return rand.nextInt((max - min) + 1) + min;
     }
 
-    private void randSymbol() {
+    private void randomSymbol() {
         if ((!isSelected) && (!isPaused)) {
             symbolSet.remove(getOriginalSymbol());
             String newSymbol;
@@ -189,7 +188,7 @@ public class PadView extends LinearLayout {
             if (!newSymbol.equals(getOriginalSymbol()) && symbolSet.add(newSymbol)) {
                 setCurrentSymbol(newSymbol);
             } else {
-                randSymbol();
+                randomSymbol();
             }
         }
     }
@@ -210,7 +209,6 @@ public class PadView extends LinearLayout {
             isDividedByTwo = true;
             isMultipliedByTwo = false;
             setCurrentSymbol(formatDecimals((Float.parseFloat(currentSymbol) / 2)));
-            calculate();
         }
     }
 
@@ -219,7 +217,6 @@ public class PadView extends LinearLayout {
             isMultipliedByTwo = true;
             isDividedByTwo = false;
             setCurrentSymbol(formatDecimals(Float.parseFloat(currentSymbol) * 2));
-            calculate();
         }
     }
 
@@ -255,7 +252,8 @@ public class PadView extends LinearLayout {
 
         try {
             float number = Float.parseFloat(currentSymbol);
-            if (operands.size() < 2) {
+            if (operands.size() < 2 && !isUsed) {
+                isUsed = true;
                 statsView.addOperand(number);
                 if ((operands.size() == 2) && (operator != null)) {
                     statsView.doCalc();
@@ -334,7 +332,9 @@ public class PadView extends LinearLayout {
             currentSymbol = symbol;
             post(new Runnable() {
                 public void run() {
-                    if(!isFirstPaint) { animateSymbol(); }
+                    if (!isFirstPaint) {
+                        animateSymbol();
+                    }
                     tvSymbol.setText(currentSymbol);
                 }
             });
@@ -346,6 +346,11 @@ public class PadView extends LinearLayout {
 
         @Override
         public boolean onDown(MotionEvent e) {
+
+            if (!isSelected && canBeSelected()) {
+                isSelected = true;
+            }
+
             //Always play a sound
             MediaPlayer mp = MediaPlayer.create(Config.context, R.raw.tap);
             mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -363,22 +368,15 @@ public class PadView extends LinearLayout {
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
-
-            if (!isSelected && canBeSelected()) {
-                isSelected = true;
-                calculate();
-            } else if (isSelected && !isOperator(currentSymbol)) {
-                if(isDividedByTwo || isMultipliedByTwo)
-                {
+            //tapping after it is selected only resets the combos
+                if (!isOperator(currentSymbol) && (isDividedByTwo || isMultipliedByTwo)) {
                     resetCombos();
-                }
-            } else {
-                if(isOperator(currentSymbol) && !isReversed){
+                } else if (isReversed) {
                     reverseSymbol();
                 }
-            }
-            doThePaint();
 
+            doThePaint();
+            calculate();
             return true;
         }
 
@@ -388,17 +386,23 @@ public class PadView extends LinearLayout {
 
             if (!isSelected && canBeSelected()) {
                 isSelected = true;
-                doThePaint();
             }
+
             if (!isOperator(currentSymbol)) {
                 if (!isMultipliedByTwo) {
                     PadView.this.multiplyByTwo();
                 } else {
                     resetCombos();
                 }
-            } else {
-                reverseSymbol();
+            } else { //this is an operator, reverse it if it hasn't been yet
+                if (!isReversed) {
+                    reverseSymbol();
+                }
             }
+
+            doThePaint();
+            calculate();
+
             return true;
         }
 
@@ -406,34 +410,34 @@ public class PadView extends LinearLayout {
         public void onLongPress(MotionEvent e) {
             if (!isSelected && canBeSelected()) {
                 isSelected = true;
-                doThePaint();
             }
+
             if (!isOperator(currentSymbol)) {
                 if (!isDividedByTwo) {
                     PadView.this.divideByTwo();
                 } else {
                     resetCombos();
                 }
-            } else {
-                reverseSymbol();
+            }
+            doThePaint();
+            calculate();
+        }
+    }
+
+        private class RandomSymbolGeneratorTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected void onPostExecute(Void result) {
+                doThePaint();
+                randomPaint();
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                randomSymbol();
+                return null;
             }
         }
-    }
-
-
-    private class RandomSymbolGeneratorTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPostExecute(Void result) {
-            doThePaint();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            randSymbol();
-            return null;
-        }
-    }
 
 
 }

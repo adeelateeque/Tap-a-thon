@@ -4,8 +4,8 @@
     <filters>
       <filter>
         <option name="logLevel" value="debug" />
-        <option name="logMessagePattern" value="Trying to calculate:" />
-        <option name="logTagPattern" value="" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="StatsView" />
         <option name="name" value="Tapathon" />
         <option name="packageNamePattern" value="com.zhideel.tapathon" />
         <option name="pid" value="" />
@@ -55,7 +55,6 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Tapathon" />
   </component>
   <component name="ChangeListManager">
@@ -127,39 +126,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="view_stats.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/view_stats.xml">
+      <file leaf-file-name="StatsView.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="50" selection-start="2427" selection-end="2427" vertical-scroll-proportion="-19.615385" vertical-offset="0" max-vertical-offset="1725">
+            <state line="97" column="23" selection-start="3357" selection-end="3357" vertical-scroll-proportion="-2.2576985" vertical-offset="2503" max-vertical-offset="3120">
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="dialog_create_channel.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/dialog_create_channel.xml">
+      <file leaf-file-name="CountDownTimerWithPause.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/utils/CountDownTimerWithPause.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="59" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.4668874" vertical-offset="123" max-vertical-offset="1125">
+            <state line="110" column="32" selection-start="3194" selection-end="3264" vertical-scroll-proportion="-8.461538" vertical-offset="1430" max-vertical-offset="3450">
               <folding>
-                <element signature="e#403#429#0" expanded="true" />
-                <element signature="e#788#807#0" expanded="true" />
-                <element signature="e#1011#1025#0" expanded="true" />
-                <element signature="e#1062#1080#0" expanded="true" />
-                <element signature="e#1350#1366#0" expanded="true" />
-                <element signature="e#1403#1421#0" expanded="true" />
-                <element signature="e#1465#1484#0" expanded="true" />
-                <element signature="e#1696#1714#0" expanded="true" />
-                <element signature="e#1744#1758#0" expanded="true" />
-                <element signature="e#2173#2188#0" expanded="true" />
-                <element signature="e#2422#2438#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="GamePadActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="279" column="66" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.0" vertical-offset="3296" max-vertical-offset="5070">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimerTask.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/TimerTask.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="19" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timer.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/Timer.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="11" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -185,7 +195,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/GameChannelFragment.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/chord/ServerGameChord.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/logic/PadDeck.java" />
         <option value="$PROJECT_DIR$/Tap-a-thon/src/com/zhideel/tapathon/ui/MusicManager.java" />
@@ -222,9 +231,6 @@
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java" />
         <option value="$PROJECT_DIR$/Tapathon/res/layout/view_game_pad.xml" />
         <option value="$PROJECT_DIR$/Tapathon/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" />
-        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
-        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java" />
         <option value="$PROJECT_DIR$/Tapathon/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/Tapathon/res/layout/activity_game_pad.xml" />
         <option value="$PROJECT_DIR$/Tapathon/res/layout/activity_main.xml" />
@@ -236,6 +242,10 @@
         <option value="$USER_HOME$/Library/Caches/IntelliJIdea13/compile-server/tap-a-thon_4358c937/targets/java-production/Tapathon/android/generated_sources/aapt/com/zhideel/tapathon/R.java" />
         <option value="$PROJECT_DIR$/Tapathon/res/layout/view_stats.xml" />
         <option value="$PROJECT_DIR$/Tapathon/res/layout/dialog_create_channel.xml" />
+        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java" />
+        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/utils/CountDownTimerWithPause.java" />
+        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
+        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" />
       </list>
     </option>
   </component>
@@ -525,10 +535,114 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android API 19 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android API 19 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android API 19 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android API 19 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android API 19 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Tap-a-thon" />
@@ -552,6 +666,68 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tap-a-thon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tapathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -589,6 +765,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -615,7 +793,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="LayoutCode.rearrangeEntriesXML" value="false" />
-    <property name="SearchEverywhereHistory" value="if (!isSelected &amp;&amp; canBeSelected()) {                 isSelected = true;                 doThePaint();             }             if (!isOperator(currentSymbol)) {                 if (!isDividedByTwo) {                     PadView.this.divideByTwo();                 } else {                     resetCombos();                 }             } else {                 reverseSymbol();             }             return true;&#10;int&#10;l" />
+    <property name="SearchEverywhereHistory" value="&#10;if (!isSelected &amp;&amp; canBeSelected()) {                 isSelected = true;                 doThePaint();             }             if (!isOperator(currentSymbol)) {                 if (!isDividedByTwo) {                     PadView.this.divideByTwo();                 } else {                     resetCombos();                 }             } else {                 reverseSymbol();             }             return true;&#10;int&#10;l" />
     <property name="ExportedModule" value="Tapathon" />
     <property name="ExportedApkPath" value="$USER_HOME$/Google Drive/Tapathon.apk" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
@@ -979,12 +1157,13 @@
       <workItem from="1391481761709" duration="231000" />
       <workItem from="1391482128700" duration="13656000" />
       <workItem from="1391528709141" duration="1220000" />
-      <workItem from="1391572650105" duration="4404000" />
+      <workItem from="1391572650105" duration="4631000" />
+      <workItem from="1391582459639" duration="5336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209428000" />
+    <option name="totallyTimeSpent" value="214991000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1012,44 +1191,44 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35049504" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17596567" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32772276" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1641791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38968483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31808943" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30487806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31808943" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30487806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35049504" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17596567" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33231708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34756097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32772276" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19241774" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1509299" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.23866348" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1509299" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16400427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18903089" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38968483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35049504" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17596567" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32772276" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16400427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1067,8 +1246,8 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3325062" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34756097" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19241774" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1509299" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.23866348" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1509299" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1098,26 +1277,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/chord/ConnectionChord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="32" selection-start="1391" selection-end="1391" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1035" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/CommunicationBus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="21" selection-start="1047" selection-end="1047" vertical-scroll-proportion="0.3880597" vertical-offset="0" max-vertical-offset="1005" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/PadDeck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="23" selection-start="665" selection-end="665" vertical-scroll-proportion="0.13392857" vertical-offset="0" max-vertical-offset="672" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/ant.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/chord/ClientGameChord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="52" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.5299539" vertical-offset="0" max-vertical-offset="870" />
@@ -1272,9 +1431,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/ClientModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.0" vertical-offset="1101" max-vertical-offset="1755">
-          <folding />
-        </state>
+        <state line="53" column="0" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.0" vertical-offset="1101" max-vertical-offset="1755" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/res/values/colors.xml">
@@ -1284,48 +1441,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="30" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.48165137" vertical-offset="270" max-vertical-offset="3150">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/GameUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="11" selection-start="2763" selection-end="2763" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1410">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="387" column="44" selection-start="12867" selection-end="12867" vertical-scroll-proportion="6.283784" vertical-offset="2287" max-vertical-offset="5746">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="60" selection-start="534" selection-end="534" vertical-scroll-proportion="0.18644068" vertical-offset="20" max-vertical-offset="1530">
-          <folding />
-        </state>
+        <state line="83" column="11" selection-start="2763" selection-end="2763" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1410" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/Pad.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="16" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.0" vertical-offset="588" max-vertical-offset="1156">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="305" column="0" selection-start="9834" selection-end="9834" vertical-scroll-proportion="52.384617" vertical-offset="5802" max-vertical-offset="6390">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="60" column="16" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.0" vertical-offset="588" max-vertical-offset="1156" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/activity_end_game.xml">
@@ -1348,17 +1471,7 @@
     <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/activity_game_pad.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="72" column="145" selection-start="3172" selection-end="3172" vertical-scroll-proportion="0.8340708" vertical-offset="326" max-vertical-offset="1230">
-          <folding>
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_12dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_5dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_2dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_4dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_8dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_11dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_5dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_9dp&quot;" />
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_3dp&quot;" />
-          </folding>
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1368,9 +1481,7 @@
     <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/view_pad.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="51" selection-start="314" selection-end="314" vertical-scroll-proportion="0.09955752" vertical-offset="0" max-vertical-offset="904">
-          <folding>
-            <marker date="1391580064000" expanded="true" signature="-1:-1" placeholder="&quot;@dimen/xhdi_2dp&quot;" />
-          </folding>
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1391,12 +1502,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="28" selection-start="1901" selection-end="1901" vertical-scroll-proportion="0.77986723" vertical-offset="0" max-vertical-offset="904">
           <folding>
-            <element signature="e#1127#1146#0" expanded="true" />
-            <element signature="e#1184#1203#0" expanded="true" />
-            <element signature="e#1258#1291#0" expanded="true" />
-            <element signature="e#1554#1572#0" expanded="true" />
-            <element signature="e#1607#1625#0" expanded="true" />
-            <element signature="e#1776#1796#0" expanded="true" />
+            <element signature="e#1127#1146#0" expanded="false" />
+            <element signature="e#1184#1203#0" expanded="false" />
+            <element signature="e#1258#1291#0" expanded="false" />
+            <element signature="e#1554#1572#0" expanded="false" />
+            <element signature="e#1607#1625#0" expanded="false" />
+            <element signature="e#1776#1796#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1413,9 +1524,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/ServerModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="11" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.13354531" vertical-offset="201" max-vertical-offset="1995">
-          <folding />
-        </state>
+        <state line="33" column="11" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.13354531" vertical-offset="201" max-vertical-offset="1995" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/res/values-hdpi/dimens.xml">
@@ -1427,9 +1536,7 @@
     </entry>
     <entry file="file://$USER_HOME$/Library/Caches/IntelliJIdea13/compile-server/tap-a-thon_4358c937/targets/java-production/Tapathon/android/generated_sources/aapt/com/zhideel/tapathon/R.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="38" selection-start="2005" selection-end="2005" vertical-scroll-proportion="0.33227345" vertical-offset="346" max-vertical-offset="3600">
-          <folding />
-        </state>
+        <state line="42" column="38" selection-start="2005" selection-end="2005" vertical-scroll-proportion="0.33227345" vertical-offset="346" max-vertical-offset="3600" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/res/values-mdpi/dimens.xml">
@@ -1456,9 +1563,31 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/dialog_create_channel.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="59" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.4668874" vertical-offset="123" max-vertical-offset="1125">
+          <folding>
+            <element signature="e#403#429#0" expanded="false" />
+            <element signature="e#788#807#0" expanded="false" />
+            <element signature="e#1011#1025#0" expanded="false" />
+            <element signature="e#1062#1080#0" expanded="false" />
+            <element signature="e#1350#1366#0" expanded="false" />
+            <element signature="e#1403#1421#0" expanded="false" />
+            <element signature="e#1465#1484#0" expanded="false" />
+            <element signature="e#1696#1714#0" expanded="false" />
+            <element signature="e#1744#1758#0" expanded="false" />
+            <element signature="e#2173#2188#0" expanded="false" />
+            <element signature="e#2422#2438#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/view_stats.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="50" selection-start="2427" selection-end="2427" vertical-scroll-proportion="-19.615385" vertical-offset="0" max-vertical-offset="1725">
+        <state line="68" column="50" selection-start="2427" selection-end="2427" vertical-scroll-proportion="1.6887417" vertical-offset="0" max-vertical-offset="1725">
           <folding />
         </state>
       </provider>
@@ -1466,26 +1595,64 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/res/layout/dialog_create_channel.xml">
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GameBoardView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="59" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.4668874" vertical-offset="123" max-vertical-offset="1125">
+        <state line="40" column="16" selection-start="1182" selection-end="1182" vertical-scroll-proportion="0.33231708" vertical-offset="202" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/lang/Override.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="18" selection-start="306" selection-end="306" vertical-scroll-proportion="0.16006097" vertical-offset="0" max-vertical-offset="656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="364" column="0" selection-start="11691" selection-end="11691" vertical-scroll-proportion="1.5952381" vertical-offset="4185" max-vertical-offset="6450">
           <folding>
-            <element signature="e#403#429#0" expanded="true" />
-            <element signature="e#788#807#0" expanded="true" />
-            <element signature="e#1011#1025#0" expanded="true" />
-            <element signature="e#1062#1080#0" expanded="true" />
-            <element signature="e#1350#1366#0" expanded="true" />
-            <element signature="e#1403#1421#0" expanded="true" />
-            <element signature="e#1465#1484#0" expanded="true" />
-            <element signature="e#1696#1714#0" expanded="true" />
-            <element signature="e#1744#1758#0" expanded="true" />
-            <element signature="e#2173#2188#0" expanded="true" />
-            <element signature="e#2422#2438#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/Timer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="11" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/TimerTask.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="19" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/utils/CountDownTimerWithPause.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="32" selection-start="3194" selection-end="3264" vertical-scroll-proportion="-8.461538" vertical-offset="1430" max-vertical-offset="3450">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="279" column="66" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.0" vertical-offset="3296" max-vertical-offset="5070">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="23" selection-start="3357" selection-end="3357" vertical-scroll-proportion="-2.2576985" vertical-offset="2503" max-vertical-offset="3120">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
