@@ -222,7 +222,7 @@ public class StatsView implements CommunicationBus.BusManager {
         return 20;
     }
 
-    public void setPaused(Boolean paused) {
+    public void setPaused(boolean paused) {
         this.isPaused = paused;
         if (isPaused == false && timer == null) {
                 countdown();

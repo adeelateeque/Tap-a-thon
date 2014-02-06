@@ -125,55 +125,7 @@
     <favorites_list name="Tap-a-thon" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="StatsView.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="23" selection-start="3357" selection-end="3357" vertical-scroll-proportion="-2.2576985" vertical-offset="2503" max-vertical-offset="3120">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CountDownTimerWithPause.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/utils/CountDownTimerWithPause.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="32" selection-start="3194" selection-end="3264" vertical-scroll-proportion="-8.461538" vertical-offset="1430" max-vertical-offset="3450">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GamePadActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="279" column="66" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.0" vertical-offset="3296" max-vertical-offset="5070">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimerTask.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/TimerTask.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="19" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Timer.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/Timer.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="11" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -244,8 +196,8 @@
         <option value="$PROJECT_DIR$/Tapathon/res/layout/dialog_create_channel.xml" />
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java" />
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/utils/CountDownTimerWithPause.java" />
-        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" />
+        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
       </list>
     </option>
   </component>
@@ -1158,12 +1110,12 @@
       <workItem from="1391482128700" duration="13656000" />
       <workItem from="1391528709141" duration="1220000" />
       <workItem from="1391572650105" duration="4631000" />
-      <workItem from="1391582459639" duration="5336000" />
+      <workItem from="1391582459639" duration="6190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214991000" />
+    <option name="totallyTimeSpent" value="215845000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1187,17 +1139,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31808943" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31808943" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30487806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30487806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35049504" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1620,14 +1572,14 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/Timer.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="11" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+        <state line="13" column="11" selection-start="379" selection-end="379" vertical-scroll-proportion="0.27439025" vertical-offset="0" max-vertical-offset="656">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../../adt-bundle-mac-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/util/TimerTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="19" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+        <state line="9" column="19" selection-start="273" selection-end="273" vertical-scroll-proportion="0.18292683" vertical-offset="0" max-vertical-offset="656">
           <folding />
         </state>
       </provider>
@@ -1641,17 +1593,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="279" column="66" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.0" vertical-offset="3296" max-vertical-offset="5070">
+        <state line="226" column="0" selection-start="7507" selection-end="7507" vertical-scroll-proportion="-57.115383" vertical-offset="1290" max-vertical-offset="3120">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="23" selection-start="3357" selection-end="3357" vertical-scroll-proportion="-2.2576985" vertical-offset="2503" max-vertical-offset="3120">
-          <folding />
+        <state line="235" column="74" selection-start="8171" selection-end="8171" vertical-scroll-proportion="0.5320122" vertical-offset="2621" max-vertical-offset="5160">
+          <folding>
+            <element signature="e#2167#2487#0" expanded="true" />
+            <element signature="e#2479#2480#0" expanded="true" />
+            <element signature="e#6387#6400#0" expanded="true" />
+            <element signature="e#6437#6448#0" expanded="true" />
+            <element signature="e#6845#6860#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

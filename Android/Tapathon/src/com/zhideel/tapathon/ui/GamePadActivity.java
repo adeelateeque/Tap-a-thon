@@ -70,7 +70,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -89,10 +89,11 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         gameEndView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startGame();
+                startGame(savedInstanceState);
                 gameEndView.setVisibility(View.GONE);
             }
         });
+
         answerResultView  = (ImageView) findViewById(R.id.answer_result_view);
         Config.slideToTop(answerResultView);
 
@@ -111,7 +112,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         final Intent intent = getIntent();
         mIsClient = intent.getBooleanExtra(CLIENT, true);
 
-        startGame();
+        startGame(savedInstanceState);
 
         /*if (mIsClient) {
             final String roomName;
@@ -223,10 +224,20 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
         statsView.setPaused(false);
     }
 
-    public void startGame()
+    public void startGame(Bundle savedInstanceState)
     {
         statsView = new StatsView(this, (ViewGroup) findViewById(R.id.statsboard_container));
         gameBoardView = new GameBoardView(this, level, (ViewGroup) findViewById(R.id.gameboard_container));
+
+
+        if(savedInstanceState != null)
+        {
+            this.level = (PadView.GameLevel) savedInstanceState.getSerializable("STATE_LEVEL");
+            statsView.setTime(savedInstanceState.getInt("STATE_TIMER") + 1);
+            statsView.tvQuestion.setText(savedInstanceState.getString("STATE_QUESTION"));
+            statsView.tvScore.setText(savedInstanceState.getString("STATE_SCORE"));
+        }
+
         resumeGame();
     }
 
@@ -271,16 +282,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     protected void onRestart() {
         super.onRestart();
 
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        this.level = (PadView.GameLevel) savedInstanceState.getSerializable("STATE_LEVEL");
-        statsView.setTime(savedInstanceState.getInt("STATE_TIMER"));
-        statsView.tvQuestion.setText(savedInstanceState.getString("STATE_QUESTION"));
-        statsView.tvScore.setText(savedInstanceState.getString("STATE_SCORE"));
-        resumeGame();
     }
 
     @Override
