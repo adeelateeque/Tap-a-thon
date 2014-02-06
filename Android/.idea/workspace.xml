@@ -196,8 +196,8 @@
         <option value="$PROJECT_DIR$/Tapathon/res/layout/dialog_create_channel.xml" />
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/PadView.java" />
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/utils/CountDownTimerWithPause.java" />
-        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" />
         <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java" />
+        <option value="$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java" />
       </list>
     </option>
   </component>
@@ -1110,12 +1110,12 @@
       <workItem from="1391482128700" duration="13656000" />
       <workItem from="1391528709141" duration="1220000" />
       <workItem from="1391572650105" duration="4631000" />
-      <workItem from="1391582459639" duration="6190000" />
+      <workItem from="1391582459639" duration="6532000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215845000" />
+    <option name="totallyTimeSpent" value="216187000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1476,7 +1476,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/logic/ServerModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="11" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.13354531" vertical-offset="201" max-vertical-offset="1995" />
+        <state line="33" column="11" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.13354531" vertical-offset="201" max-vertical-offset="1995">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/res/values-hdpi/dimens.xml">
@@ -1593,13 +1595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="0" selection-start="7507" selection-end="7507" vertical-scroll-proportion="-57.115383" vertical-offset="1290" max-vertical-offset="3120">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/GamePadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="235" column="74" selection-start="8171" selection-end="8171" vertical-scroll-proportion="0.5320122" vertical-offset="2621" max-vertical-offset="5160">
@@ -1610,6 +1605,13 @@
             <element signature="e#6437#6448#0" expanded="true" />
             <element signature="e#6845#6860#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tapathon/src/com/zhideel/tapathon/ui/StatsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="0" selection-start="3114" selection-end="3114" vertical-scroll-proportion="-0.8333333" vertical-offset="1500" max-vertical-offset="3120">
+          <folding />
         </state>
       </provider>
     </entry>

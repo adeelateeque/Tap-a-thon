@@ -69,7 +69,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
     public void setTime(int time) {
         this.time = time;
-        tvTimer.setText(Integer.toString(this.time));
+        tvTimer.setText(Integer.toString(this.time).equals("1") ?  Integer.toString(this.time - 1) : Integer.toString(this.time));
     }
 
     public int getTime() {
