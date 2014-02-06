@@ -4,5 +4,5 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginLeft="@dimen/xhdpi_2dp"
+        android:layout_marginLeft="2dp"
         android:id="@+id/pad_symbol" android:layout_gravity="center" android:gravity="center"/>

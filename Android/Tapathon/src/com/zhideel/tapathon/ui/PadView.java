@@ -145,9 +145,8 @@ public class PadView extends LinearLayout {
             tvSymbol.setShadowLayer(40, 0, 0, randomColor);
         } else if (isSelected && !PadView.this.isWhite) {
             PadView.this.isWhite = true;
-            PadView.this.setBackgroundColor(Color.WHITE);
-            tvSymbol.setShadowLayer(40, 0, 0, Color.WHITE);
-            PadView.this.setAlpha(0.5f);
+            PadView.this.setBackground(getResources().getDrawable(R.drawable.pad_background));
+            tvSymbol.setShadowLayer(0,0,0,0);
             tvSymbol.setTextColor(getResources().getColor(R.color.tappad_green));
         }
     }

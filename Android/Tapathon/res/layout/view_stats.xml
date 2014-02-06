@@ -4,107 +4,107 @@
               android:orientation="vertical"
               android:weightSum="1"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:paddingTop="5dp"
+              android:gravity="center"
+              android:layout_gravity="center_vertical|center_horizontal">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.333"
-        android:weightSum="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:textSize="20sp"
-            android:layout_height="0dp"
-            android:layout_width="fill_parent"
-            android:text="QUESTION"
-            android:gravity="center"
-            android:layout_weight="0.30"
-            android:textColor="@color/tappad_green"
-            android:layout_marginTop="@dimen/xhdpi_5dp"/>
-
-        <TextView
-            android:id="@+id/tv_qns"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.70"
-            android:textSize="40sp"
-            android:gravity="center_horizontal|top"
-            android:layout_marginTop="-5dp"
-            android:textColor="#00b1ff"
-            android:textStyle="bold"
-            android:text="test"
-            android:shadowColor="#00b1ff" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="30"
-            />
+            android:layout_weight="0.333"
+            android:weightSum="1"
+            android:orientation="vertical"
+            >
+
+        <TextView
+                android:textSize="20sp"
+                android:layout_height="0dp"
+                android:layout_width="fill_parent"
+                android:text="QUESTION"
+                android:layout_weight="0.30"
+                android:gravity="center"
+                android:textColor="@color/tappad_green"/>
+
+        <TextView
+                android:id="@+id/tv_qns"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.70"
+                android:gravity="center"
+                android:layout_marginLeft="2dp"
+                android:textSize="75sp"
+                android:textColor="#00b1ff"
+                android:textStyle="bold"
+                android:text="test"
+                android:shadowColor="#00b1ff" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="50"
+                />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.333"
-        android:weightSum="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:textSize="20sp"
-            android:layout_height="0dp"
             android:layout_width="fill_parent"
-            android:text="SCORE (%)"
+            android:layout_height="0dp"
+            android:layout_weight="0.333"
+            android:weightSum="1"
+            android:orientation="vertical"
             android:gravity="center"
-            android:layout_weight="0.30"
-            android:textColor="@color/tappad_green"
-            android:layout_marginTop="@dimen/xhdpi_5dp"/>
+            >
 
         <TextView
-            android:id="@+id/tv_multipler"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.70"
-            android:textSize="40sp"
-            android:gravity="center_horizontal|top"
-            android:layout_marginTop="@dimen/xhdpi_negative_5dp"
-            android:textColor="#ffff00"
-            android:textStyle="bold"
-            android:shadowColor="#ffff00" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="30"
-           />
+                android:textSize="20sp"
+                android:layout_height="0dp"
+                android:layout_width="fill_parent"
+                android:text="SCORE (%)"
+                android:layout_weight="0.30"
+                android:gravity="center"
+                android:textColor="@color/tappad_green"/>
+
+        <TextView
+                android:id="@+id/tv_multipler"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.70"
+                android:textSize="75sp"
+                android:textColor="#ffff00"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="2dp"
+                android:shadowColor="#ffff00" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="50"
+                />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.333"
-        android:weightSum="1"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
-
-        <TextView
-            android:textSize="20sp"
-            android:layout_height="0dp"
             android:layout_width="fill_parent"
-            android:text="TIMER (s)"
-            android:layout_weight="0.30"
+            android:layout_height="0dp"
+            android:layout_weight="0.333"
+            android:weightSum="1"
+            android:orientation="vertical"
             android:gravity="center"
-            android:textColor="@color/tappad_green"
-            android:layout_marginTop="@dimen/xhdpi_5dp"/>
+            >
 
         <TextView
-            android:id="@+id/tv_timer"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.70"
-            android:textSize="40sp"
-            android:gravity="center_horizontal|top"
-            android:layout_marginTop="@dimen/xhdpi_negative_5dp"
-            android:textColor="@color/tappad_red"
-            android:textStyle="bold"
-            android:shadowColor="@color/tappad_red" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="30"
-            />
+                android:textSize="20sp"
+                android:layout_height="0dp"
+                android:layout_width="fill_parent"
+                android:text="TIMER (s)"
+                android:layout_weight="0.30"
+                android:gravity="center"
+                android:textColor="@color/tappad_green"/>
+
+        <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.70"
+                android:textSize="75sp"
+                android:textColor="@color/tappad_red"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="2dp"
+                android:shadowColor="@color/tappad_red" android:shadowDx="0.0" android:shadowDy="0.0"
+                android:shadowRadius="50"
+                />
     </LinearLayout>
 
 </LinearLayout>

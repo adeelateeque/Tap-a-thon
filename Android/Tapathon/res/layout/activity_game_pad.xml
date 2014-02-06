@@ -1,77 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:orientation="vertical"
-                  android:layout_width="fill_parent"
-                  android:layout_height="fill_parent"
-                  android:weightSum="1"
-                  android:background="@drawable/sd_main"
-                  android:baselineAligned="false">
-
-        <LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:weightSum="1"
+              android:baselineAligned="false"
+              android:background="@drawable/sd_main">
+    <LinearLayout
+            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.15"/>
-
-        <LinearLayout
-            android:layout_weight="0.85"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:paddingLeft="@dimen/xhdpi_10dp"
-            android:paddingRight="@dimen/xhdpi_12dp"
             android:weightSum="1"
             android:orientation="horizontal">
 
-            <FrameLayout
+        <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.75"
+                android:layout_weight="0.8"
                 android:orientation="vertical"
                 android:layout_gravity="left|top"
                 android:gravity="left">
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/gameboard_container"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="0.75"
+                    android:layout_weight="0.8"
+                    android:padding="10dp"
                     android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginLeft="@dimen/xhdpi_5dp"
-                    android:layout_marginRight="@dimen/xhdpi_2dp"
-                    android:layout_marginTop="@dimen/xhdpi_4dp" android:layout_marginBottom="@dimen/xhdpi_8dp">
-                </LinearLayout>
+                    android:gravity="center">
+            </LinearLayout>
 
-                <ImageView
+            <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/game_end_view"
                     android:background="@drawable/game_over"
-                    android:alpha="0.6"
-                    android:visibility="gone"
-                    android:layout_marginBottom="@dimen/xhdpi_11dp"/>
+                    android:alpha="0.75"
+                    android:visibility="gone"/>
 
-                <ImageView
+            <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/answer_result_view"
                     android:visibility="gone"/>
-            </FrameLayout>
+        </FrameLayout>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/statsboard_container"
                 android:layout_height="fill_parent"
                 android:layout_width="0dp"
-                android:layout_weight="0.25"
+                android:layout_weight="0.2"
                 android:orientation="vertical"
-                android:weightSum="1"
-                android:paddingRight="@dimen/xhdpi_5dp" android:layout_marginBottom="@dimen/xhdpi_9dp" android:layout_marginTop="@dimen/xhdpi_3dp"/>
+                android:weightSum="1"/>
 
-        </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>
