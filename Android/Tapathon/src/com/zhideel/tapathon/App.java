@@ -16,7 +16,7 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
     public void onCreate() {
         super.onCreate();
         Config.context = this.getApplicationContext();
-        boolean groupPlayAvailable = true;
+        /*boolean groupPlayAvailable = true;
         sgp = new Sgp();
         try {
             sgp.initialize(getApplicationContext());
@@ -26,7 +26,7 @@ public class App extends Application implements SgpGroupPlay.SgpConnectionStatus
         }
         if(groupPlayAvailable == true){
             new SgpGroupPlay(this).start();
-        }
+        }*/
     }
 
     @Override

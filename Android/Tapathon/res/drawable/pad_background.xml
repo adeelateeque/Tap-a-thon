@@ -5,18 +5,18 @@
     <item>
         <shape android:shape="rectangle">
 
-            <solid android:color="#FFFFFF"/>
+            <solid android:color="#cc00cd12"/>
             <corners android:radius="25dp"/>
 
         </shape>
     </item>
 
     <!-- White Top color -->
-    <item android:bottom="3px">
+    <item android:bottom="3dp">
 
         <shape android:shape="rectangle">
 
-            <solid android:color="#CCFFFFFF"/>
+            <solid android:color="#cc00842d"/>
             <corners android:radius="25dp"/>
 
 

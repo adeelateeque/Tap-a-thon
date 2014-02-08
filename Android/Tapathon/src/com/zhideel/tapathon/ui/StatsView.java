@@ -14,13 +14,10 @@ import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.R;
 import com.zhideel.tapathon.Stopwatch;
 import com.zhideel.tapathon.logic.CommunicationBus;
-import com.zhideel.tapathon.logic.GameLogicController;
 import com.zhideel.tapathon.utils.CountDownTimerWithPause;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -91,7 +88,6 @@ public class StatsView implements CommunicationBus.BusManager {
             public void onFinish() {
                 ((GamePadActivity) mContext).getGameBoard().setPaused(true);
                 ((GamePadActivity) mContext).showGameEndView();
-                mBus.post(GameLogicController.EndGameEvent.INSTANCE);
             }
         };
 
@@ -224,7 +220,7 @@ public class StatsView implements CommunicationBus.BusManager {
 
     public void setPaused(boolean paused) {
         this.isPaused = paused;
-        if (isPaused == false && timer == null) {
+        if (isPaused == false) {
                 countdown();
         } else {
             timer.pause();

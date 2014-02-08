@@ -7,8 +7,10 @@ import android.content.*;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.newrelic.agent.android.NewRelic;
@@ -22,6 +24,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
 
     private Button btnStart;
     private EditText etName;
+    private RadioGroup rgLvl;
 
     private SharedPreferences mSharedPreferences;
 
@@ -36,13 +39,13 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         Crashlytics.start(this);
 
         setContentView(R.layout.activity_main);
 
-        NewRelic.withApplicationToken(
-                "AAc1494d8887b688edeaf4f3eab7441cf978a22ded"
-        ).start(this.getApplication());
+        rgLvl = (RadioGroup) findViewById(R.id.rg_lvl);
 
         mSharedPreferences = getSharedPreferences(TAPATHON_PREFERENCES, MODE_PRIVATE);
         registerWifiStateReceiver();
@@ -67,7 +70,7 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
                 editor.putString(GameMenuActivity.USER_NAME_KEY, name);
                 editor.apply();
 
-                FragmentTransaction dFrag = getFragmentManager().beginTransaction();
+                /*FragmentTransaction dFrag = getFragmentManager().beginTransaction();
                 Fragment prev = getFragmentManager().findFragmentByTag("dialog_channel");
                 if (prev != null) {
                     dFrag.remove(prev);
@@ -75,7 +78,33 @@ public class GameMenuActivity extends Activity implements SelectChannelFragment.
                 dFrag.addToBackStack(null);
                 CreateChannelFragment mFragment = new CreateChannelFragment();
                 mFragment.show(getFragmentManager(), "dialog_channel");
-                dFrag.commit();
+                dFrag.commit();*/
+
+                PadView.GameLevel selection = null;
+
+                switch (rgLvl.getCheckedRadioButtonId()) {
+                    case R.id.rb_easy:
+                        selection = PadView.GameLevel.EASY;
+                        break;
+
+                    case R.id.rb_normal:
+                        selection = PadView.GameLevel.MEDIUM;
+                        break;
+
+                    case R.id.rb_hard:
+                        selection = PadView.GameLevel.HARD;
+                        break;
+                }
+
+                if ((selection != null)) {
+                    Intent intent = new Intent(GameMenuActivity.this, GamePadActivity.class);
+                    intent.putExtra("level", selection);
+                    intent.putExtra(GamePadActivity.CLIENT, false);
+                    intent.putExtra(GamePadActivity.SERVER_NAME, "");
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(GameMenuActivity.this, "Please select a difficulty.", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

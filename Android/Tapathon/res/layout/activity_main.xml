@@ -3,13 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/landing_bg"
+    android:background="@drawable/sd_main"
     >
-
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="0.85"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"
+        android:gravity="center">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_launcher"
+        android:layout_gravity="center"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.65"
         android:orientation="vertical" android:gravity="center">
         <TextView
             android:textColor="@color/tappad_white"
@@ -18,7 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Player:"
             android:padding="10dp"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:background="#00a5ff"
             android:alpha="0.8"
             android:visibility="gone"/>
@@ -36,13 +47,54 @@
             android:layout_gravity="center_horizontal"
             android:visibility="gone" android:background="@color/dealer_font" android:paddingTop="@dimen/xhdpi_5dp"
             android:paddingBottom="@dimen/xhdpi_5dp" android:gravity="center_horizontal" android:alpha="0.8"/>
+        <RadioGroup
+            android:id="@+id/rg_lvl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:weightSum="1"
+            android:padding="25dp"
+            >
 
+            <RadioButton
+                android:id="@+id/rb_easy"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/easy"
+                android:paddingStart="10dp"/>
+
+            <RadioButton
+                android:id="@+id/rb_normal"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/normal"
+                android:paddingStart="10dp"/>
+
+            <RadioButton
+                android:id="@+id/rb_hard"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/hard"
+                android:paddingStart="10dp"/>
+
+        </RadioGroup>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_start"
-        android:text="@string/start_game"
+        android:text="START"
         android:alpha="0.8"
         android:textColor="@color/tappad_white"
         android:textSize="32dp"

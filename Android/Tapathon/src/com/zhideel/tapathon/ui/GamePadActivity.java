@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 import com.sec.android.allshare.ServiceConnector;
 import com.sec.android.allshare.ServiceProvider;
 import com.sec.android.allshare.screen.ScreenCastManager;
@@ -90,6 +89,7 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             @Override
             public void onClick(View view) {
                 startGame(savedInstanceState);
+                resumeGame();
                 gameEndView.setVisibility(View.GONE);
             }
         });
@@ -237,8 +237,6 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
             statsView.tvQuestion.setText(savedInstanceState.getString("STATE_QUESTION"));
             statsView.tvScore.setText(savedInstanceState.getString("STATE_SCORE"));
         }
-
-        resumeGame();
     }
 
     //TODO build the image and display out to the TV http://developer.samsung.com/allshare-framework/technical-docs/Sample-View-Controller
@@ -274,6 +272,9 @@ public class GamePadActivity extends Activity implements CommunicationBus.BusMan
     @Override
     protected void onResume() {
         super.onResume();
+
+        resumeGame();
+
         continueMusic = false;
         MusicManager.start(this, MusicManager.MUSIC_MENU);
     }

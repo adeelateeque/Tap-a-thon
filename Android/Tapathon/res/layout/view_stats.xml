@@ -23,7 +23,7 @@
                 android:layout_width="fill_parent"
                 android:text="QUESTION"
                 android:layout_weight="0.30"
-                android:gravity="center"
+                android:gravity="bottom|center_horizontal"
                 android:textColor="@color/tappad_green"/>
 
         <TextView
@@ -31,7 +31,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.70"
-                android:gravity="center"
+                android:gravity="top|center_horizontal"
                 android:layout_marginLeft="2dp"
                 android:textSize="75sp"
                 android:textColor="#00b1ff"
@@ -56,7 +56,7 @@
                 android:layout_width="fill_parent"
                 android:text="SCORE (%)"
                 android:layout_weight="0.30"
-                android:gravity="center"
+                android:gravity="bottom|center_horizontal"
                 android:textColor="@color/tappad_green"/>
 
         <TextView
@@ -67,7 +67,7 @@
                 android:textSize="75sp"
                 android:textColor="#ffff00"
                 android:textStyle="bold"
-                android:gravity="center"
+                android:gravity="top|center_horizontal"
                 android:layout_marginLeft="2dp"
                 android:shadowColor="#ffff00" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="50"
                 />
@@ -89,7 +89,7 @@
                 android:layout_width="fill_parent"
                 android:text="TIMER (s)"
                 android:layout_weight="0.30"
-                android:gravity="center"
+                android:gravity="bottom|center_horizontal"
                 android:textColor="@color/tappad_green"/>
 
         <TextView
@@ -100,7 +100,7 @@
                 android:textSize="75sp"
                 android:textColor="@color/tappad_red"
                 android:textStyle="bold"
-                android:gravity="center"
+                android:gravity="top|center_horizontal"
                 android:layout_marginLeft="2dp"
                 android:shadowColor="@color/tappad_red" android:shadowDx="0.0" android:shadowDy="0.0"
                 android:shadowRadius="50"

@@ -11,11 +11,9 @@
  */
 package com.zhideel.tapathon.logic;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.zhideel.tapathon.Config;
 import com.zhideel.tapathon.chord.BusEvent;
 import com.zhideel.tapathon.chord.ChordMessage;
 import com.zhideel.tapathon.chord.ChordMessage.MessageType;
@@ -23,8 +21,6 @@ import com.zhideel.tapathon.chord.GameChord.ClientDisconnectedEvent;
 import com.zhideel.tapathon.logic.CommunicationBus.BusManager;
 import com.zhideel.tapathon.logic.GameUtils.GameResult;
 import com.zhideel.tapathon.logic.ServerModel.GameState;
-import com.zhideel.tapathon.ui.EndGameActivity;
-import com.zhideel.tapathon.ui.GamePadActivity;
 
 import java.util.List;
 

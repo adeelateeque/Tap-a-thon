@@ -112,6 +112,6 @@ public final class Config {
     {
         // Convert the dips to pixels
         final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (sizeInPixels * scale);
+        return (int) (sizeInPixels * scale + 0.5f);
     }
 }

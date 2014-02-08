@@ -15,7 +15,7 @@ import java.util.UUID;
 public class CreateChannelFragment extends DialogFragment {
 
     private LinearLayout view;
-    private EditText etChannelName;
+    private TextView etChannelName;
     private RadioGroup rgLvl;
     private Button btnCreate, btnCancel;
     private PadView.GameLevel selection;
@@ -28,10 +28,9 @@ public class CreateChannelFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("Create a Tapathon");
+        getDialog().setTitle("Select Difficulty");
         view = (LinearLayout) inflater.inflate(R.layout.dialog_create_channel, null);
-        etChannelName = (EditText) view.findViewById(R.id.et_name);
-        etChannelName.setEnabled(false);
+        etChannelName = (TextView) view.findViewById(R.id.et_name);
         etChannelName.setText((getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 4)).toUpperCase()));
         rgLvl = (RadioGroup) view.findViewById(R.id.rg_lvl);
         btnCreate = (Button) view.findViewById(R.id.btn_create);

@@ -1,5 +1,6 @@
 package com.zhideel.tapathon.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -69,6 +70,7 @@ public class PadView extends LinearLayout {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_pad, this, true);
+
         tvSymbol = (TextView) findViewById(R.id.pad_symbol);
         doubleTapDetector = new GestureDetector(context, new DoubleTapDetector());
         this.setOnTouchListener(new OnTouchListener() {
@@ -137,6 +139,7 @@ public class PadView extends LinearLayout {
         }, isFirstPaint ? 0 : getRandomDelay());
     }
 
+    @SuppressLint("NewApi")
     private void doThePaint() {
         if ((!isSelected) && (!isPaused)) {
             PadView.this.isWhite = false;
@@ -145,7 +148,16 @@ public class PadView extends LinearLayout {
             tvSymbol.setShadowLayer(40, 0, 0, randomColor);
         } else if (isSelected && !PadView.this.isWhite) {
             PadView.this.isWhite = true;
-            PadView.this.setBackground(getResources().getDrawable(R.drawable.pad_background));
+
+
+            int sdk = android.os.Build.VERSION.SDK_INT;
+            if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                //noinspection deprecation
+                PadView.this.setBackgroundDrawable(getResources().getDrawable(R.drawable.pad_background));
+            } else {
+                PadView.this.setBackground(getResources().getDrawable(R.drawable.pad_background));
+            }
+
             tvSymbol.setShadowLayer(0,0,0,0);
             tvSymbol.setTextColor(getResources().getColor(R.color.tappad_green));
         }
